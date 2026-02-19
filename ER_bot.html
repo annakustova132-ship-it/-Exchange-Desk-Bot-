@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exchange Desk Bot | Инструкция</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <span class="logo-text">
+                    <span class="logo-exchange">Exchange</span>
+                    <span class="logo-desk">Desk</span>
+                    <span class="logo-bot">Bot</span>
+                </span>
+            </a>
+            
+            <nav class="desktop-nav">
+                <a href="#functions" class="nav-link">Функции</a>
+                <a href="#modules" class="nav-link">Настройка</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#support" class="nav-link">Поддержка</a>
+            </nav>
+            
+            <a href="#pdf" class="cta-button desktop-btn">
+                <i class="fas fa-download"></i>
+                <span>Скачать</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+        <nav class="mobile-menu-content">
+            <a href="#functions" class="mobile-nav-link">
+                <i class="fas fa-cogs"></i>
+                <span>Функции</span>
+            </a>
+            <a href="#modules" class="mobile-nav-link">
+                <i class="fas fa-list-ol"></i>
+                <span>Настройки</span>
+            </a>
+            <a href="#faq" class="mobile-nav-link">
+                <i class="fas fa-question-circle"></i>
+                <span>FAQ</span>
+            </a>
+            <a href="#support" class="mobile-nav-link">
+                <i class="fas fa-headset"></i>
+                <span>Поддержка</span>
+            </a>
+            <a href="#pdf" class="mobile-nav-link download">
+                <i class="fas fa-download"></i>
+                <span>Скачать инструкцию</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <i class="fas fa-bolt"></i> Полное руководство
+            </div>
+            <h1 class="hero-title">
+                <span class="hero-exchange">Exchange</span>
+                <span class="hero-desk">Desk</span>
+                <span class="hero-bot">Bot</span>
+            </h1>
+            <p class="hero-subtitle">Telegram-бот для автоматизации обменных операций</p>
+            <p class="hero-description">Мультипользовательская система управления обменными пунктами. Изолированные базы данных, кросс-валютные пары и полный цикл сделок в одном решении. Управляйте обменным пунктом как профессионал через Telegram.</p>
+            <a href="#functions" class="cta-button hero-btn">
+                <i class="fas fa-play-circle"></i> Начать изучение
+            </a>
+        </div>
+    </section>
+
+    <!-- Info Cards -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Для кого?</h3>
+                    <ul>
+                        <li><strong>Владельцы обменников</strong> и криптобирж</li>
+                        <li><strong>Финтех-стартапы,</strong> предприниматели в сфере финансов</li>
+                        <li>Для тех, кто хочет <strong>автоматизировать рутинные операции</strong> и масштабировать бизнес</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Что делает?</h3>
+                    <ul>
+                         <li>Автоматизирует <strong>создание заказов,</strong> управление курсами</li>
+                        <li>Работа с <strong>кросс-парами,</strong> выгрузка отчетов</li>
+                        <li>Сокращает время на обработку операций <strong>с 10 минут до 30 секунд</strong></li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3>Как начать?</h3>
+                    <ul>
+                         <li><strong>1.</strong> Напишите боту <strong>@exchangebot</strong></li>
+                      <li><strong>2.</strong> Зарегистрируйтесь <strong>за 2 минуты</strong></li>
+                        <li><strong>3.</strong> Настройте базовые параметры</li>
+                        <li><strong>4.</strong> Начните работу! <strong>Первые сделки через 15 минут</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Functions -->
+    <section id="functions" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Основные функции</h2>
+                <p class="section-subtitle">Все возможности для управления обменным пунктом</p>
+            </div>
+
+            <div class="functions-grid">
+                <div class="function-card">
+                    <div class="function-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3>Управление пользователями</h3>
+                    <p>Добавление сотрудников, назначение ролей (владелец, администратор, оператор, пользователь), контроль доступа.</p>
+                </div>
+
+                <div class="function-card">
+                    <div class="function-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Настройка валют</h3>
+                    <p>Создание базы валют, добавление кросс-пар, установка номиналов, настройка дробных частей.</p>
+                </div>
+
+                <div class="function-card">
+                    <div class="function-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Аналитика и отчеты</h3>
+                    <p>Выгрузка данных в Excel, анализ сделок, статистика по валютам, финансовые отчеты.</p>
+                </div>
+
+                <div class="function-card">
+                    <div class="function-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Безопасность</h3>
+                    <p>Изолированные базы данных, разграничение прав, защита от несанкционированного доступа.</p>
+                </div>
+
+                <div class="function-card">
+                    <div class="function-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Коммуникация</h3>
+                    <p>Встроенный канал для сотрудников, обсуждение заказов, прикрепление скриншотов.</p>
+                </div>
+
+                <div class="function-card">
+                    <div class="function-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Автоматизация</h3>
+                    <p>Автоматические расчеты, округление сумм, уведомления об изменении статусов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules -->
+    <section id="modules" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Пошаговая настройка</h2>
+                    <p class="section-subtitle">12 шагов для профессиональной работы. Выполняя их последовательно, вы сможете ознакомиться со всеми функциями и быстро научиться работать в системе.</p>
+                </div>
+                <div class="stats">
+                    <div class="stat-badge">
+                        <span class="stat-number">12</span> шагов
+                    </div>
+                    <div class="stat-badge">
+                        <span class="stat-number">6</span> функций
+                    </div>
+                </div>
+            </div>
+
+            <div class="modules-grid">
+                <!-- Module 1 -->
+                <div class="module-card" data-module="start">
+                    <div class="module-number">1</div>
+                    <div class="module-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Начало работы</h3>
+                    <p>Первые шаги: регистрация в системе, согласие с условиями, получение Telegram ID</p>
+                    <button class="module-btn">
+                        <i class="fas fa-book-open"></i> Подробнее
+                    </button>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="module-card" data-module="exchange">
+                    <div class="module-number">2</div>
+                    <div class="module-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Создание обменного пункта</h3>
+                    <p>Настройка названия, базовой валюты, часового пояса</p>
+                    <button class="module-btn">
+                        <i class="fas fa-book-open"></i> Подробнее
+                    </button>
+                </div>
+              <!-- Module 3 -->
+                <div class="module-card" data-module="users">
+                    <div class="module-number">3</div>
+                    <div class="module-icon">
+                        <i class="fas fa-user-group"></i>
+                    </div>
+                    <h3>Управление пользователями</h3>
+                    <p>Пользователи и роли</p>
+                    <button class="module-btn">
+                        <i class="fas fa-book-open"></i> Подробнее
+                    </button>
+                </div>
+
+                <!-- Module 4 -->
+                <div class="module-card" data-module="fractional">
+                    <div class="module-number">4</div>
+                    <div class="module-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>База валют и кросс-пары</h3>
+                    <p>Создание и управление валютной базой, настройка кросс-валютных пар для торговли</p>
+                    <button class="module-btn">
+                        <i class="fas fa-book-open"></i> Подробнее
+                    </button>
+                </div>
+
+                <!-- Module 5 -->
+                <div class="module-card" data-module="fraction">
+                    <div class="module-number">5</div>
+                    <div class="module-icon">
+                        <i class="fas fa-divide"></i>
+                    </div>
+                    <h3>Конфигурация параметров</h3>
+                    <p>Этот раздел позволяет детально настроить отображение и поведение каждой валюты в системе</p>
+                    <button class="module-btn">
+                        <i class="fas fa-book-open"></i> Подробнее
+                    </button>
+                </div>
+
+                <!-- Module 6 -->
+                <div class="module-card" data-module="rates">
+                    <div class="module-number">6</div>
+                    <div class="module-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Управление курсами</h3>
+                    <p>Выставление и корректировка курсов покупки/продажи</p>
+                    <button class="module-btn">
+                        <i class="fas fa-book-open"></i> Подробнее
+                    </button>
+                </div>
+
+                <!-- Module 7 -->
+                <div class="module-card" data-module="channel">
+                    <div class="module-number">7</div>
+                    <div class="module-icon">
+                        <i class="fas fa-broadcast-tower"></i>
+                    </div>
+                    <h3>Канал для сотрудников</h3>
+                    <p>Настройка закрытого канала для внутренней работы</p>
+                    <button class="module-btn">
+                        <i class="fas fa-book-open"></i> Подробнее
+                    </button>
+                </div>
+
+                <!-- Module 8 -->
+                <div class="module-card" data-module="orders">
+                    <div class="module-number">8</div>
+                    <div class="module-icon">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <h3>Создание заказов</h3>
+                    <p>Полный цикл работы со сделками и кросс-парами</p>
+                    <button class="module-btn">
+                        <i class="fas fa-book-open"></i> Подробнее
+                    </button>
+                </div>
+             
+              <!-- Module 9 -->
+                <div class="module-card" data-module="edit-orders">
+                    <div class="module-number">9</div>
+                    <div class="module-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3>Редактирование заказов</h3>
+                    <p>Три способа редактирования и корректировка параметров</p>
+                    <button class="module-btn">
+                        <i class="fas fa-book-open"></i> Подробнее
+                    </button>
+                </div>
+
+                <!-- Module 10 -->
+                <div class="module-card" data-module="status">
+                    <div class="module-number">10</div>
+                    <div class="module-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Статусы заказов</h3>
+                    <p>Управление статусами сделок и автоматические переходы</p>
+                    <button class="module-btn">
+                        <i class="fas fa-book-open"></i> Подробнее
+                    </button>
+                </div>
+
+                <!-- Module 11 -->
+                <div class="module-card" data-module="cross">
+                    <div class="module-number">11</div>
+                    <div class="module-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Работа с кросс-парами</h3>
+                    <p>Округление сумм и варианты доплаты</p>
+                    <button class="module-btn">
+                        <i class="fas fa-book-open"></i> Подробнее
+                    </button>
+                </div>
+
+            
+
+        <!-- Module 12 -->
+                <div class="module-card" data-module="export">
+                    <div class="module-number">12</div>
+                    <div class="module-icon">
+                        <i class="fas fa-file-export"></i>
+                    </div>
+                    <h3>Выгрузка данных</h3>
+                    <p>Экспорт заказов в Excel для бухгалтерии</p>
+                    <button class="module-btn">
+                        <i class="fas fa-book-open"></i> Подробнее
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PDF Section -->
+    <section id="pdf" class="section">
+        <div class="container">
+            <div class="pdf-card">
+                <div class="pdf-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <h3>Полная инструкция в PDF</h3>
+                <p>Скачайте полное руководство с детальными инструкциями по всем модулям</p>
+                <a href="#" class="cta-button">
+                    <i class="fas fa-download"></i> Скачать (PDF, 2.1 MB)
+                </a>
+            </div>
+        </div>
+    </section>
+
+     <!-- FAQ Section -->
+    <section id="faq" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">FAQ</h2>
+                 <p class="section-subtitle"> Ответы на популярные вопросы</p>
+                
+                <div class="faq-search-container">
+                    <i class="fas fa-search faq-search-icon"></i>
+                    <input type="text" class="faq-search" id="faqSearch" placeholder="Поиск по вопросам...">
+                </div>
+            </div>
+
+            <div class="faq-categories" id="faqCategories">
+                <button class="faq-category active" data-category="all">Все вопросы</button>
+                <button class="faq-category" data-category="general">Общие вопросы</button>
+                <button class="faq-category" data-category="currency">Валюты</button>
+                <button class="faq-category" data-category="orders">Заказы</button>
+                <button class="faq-category" data-category="channel">Канал</button>
+            </div>
+
+            <div class="faq-grid" id="faqGrid">
+                <!-- Общие вопросы -->
+                <div class="faq-item" data-category="general">
+                    <div class="faq-question">
+                        <div class="faq-question-content">
+                            <i class="fas fa-question-circle"></i>
+                            <h3>Можно ли работать в нескольких обменных пунктах?</h3>
+                        </div>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Да! Один пользователь может:</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Быть владельцем своего обменного пункта</li>
+                            <li><i class="fas fa-check"></i> Работать оператором в чужом обменнике</li>
+                        </ul>
+                        <div class="faq-note">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Данные разных обменников полностью изолированы.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="general">
+                    <div class="faq-question">
+                        <div class="faq-question-content">
+                            <i class="fas fa-question-circle"></i>
+                            <h3>Что делать, если бот не отвечает?</h3>
+                        </div>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <ol class="faq-steps">
+                            <li><span class="step-badge">1</span> Проверьте интернет-соединение</li>
+                            <li><span class="step-badge">2</span> Перезапустите Telegram</li>
+                            <li><span class="step-badge">3</span> Отправьте команду <code>/start</code></li>
+                        </ol>
+                        <div class="faq-warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Если проблема сохраняется — свяжитесь с владельцем</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Валюты -->
+                <div class="faq-item" data-category="currency">
+                    <div class="faq-question">
+                        <div class="faq-question-content">
+                            <i class="fas fa-question-circle"></i>
+                            <h3>Зачем нужна глобальная база номиналов?</h3>
+                        </div>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Глобальная база автоматически подгружает все существующие номиналы купюр для валюты.</p>
+                        <div class="faq-tip">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Достаточно один раз настроить — и все номиналы появятся автоматически</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="currency">
+                    <div class="faq-question">
+                        <div class="faq-question-content">
+                            <i class="fas fa-question-circle"></i>
+                            <h3>Как изменить дробную часть?</h3>
+                        </div>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-path">
+                            <i class="fas fa-map-signs"></i>
+                            <code>Настройки → Валютные пары → Кастомизация → Дробная часть</code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Заказы -->
+                <div class="faq-item" data-category="orders">
+                    <div class="faq-question">
+                        <div class="faq-question-content">
+                            <i class="fas fa-question-circle"></i>
+                            <h3>Что означают статусы заказов?</h3>
+                        </div>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="status-grid">
+                            <div class="status-item">
+                                <span class="status-badge">🟡</span>
+                                <span><strong>Новый</strong> — создан</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-badge">🔵</span>
+                                <span><strong>В обработке</strong> — оператор работает</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-badge">🟢</span>
+                                <span><strong>Подтверждён</strong> — в канале</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-badge">✅</span>
+                                <span><strong>Выполнен</strong> — завершён</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Канал -->
+                <div class="faq-item" data-category="channel">
+                    <div class="faq-question">
+                        <div class="faq-question-content">
+                            <i class="fas fa-question-circle"></i>
+                            <h3>Обязательно создавать канал?</h3>
+                        </div>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Нет, это опционально. Но канал упрощает работу команды.</p>
+                        <div class="faq-tip">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>С каналом все сотрудники видят заказы в реальном времени</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-no-results" id="faqNoResults" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>Ничего не найдено</h3>
+                <p>Попробуйте изменить поисковый запрос</p>
+            </div>
+
+            <div class="faq-footer">
+                <button class="faq-show-all" id="faqShowAll">
+                    <i class="fas fa-chevron-down"></i> Развернуть все
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                    <p class="modal-subtitle" id="modalSubtitle"></p>
+                </div>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-content">
+                    <h3>Пошаговая инструкция</h3>
+                    <ul class="modal-steps" id="modalSteps"></ul>
+                    <div class="submodules" id="submodules"></div>
+                </div>
+                
+                <div class="modal-sidebar">
+                    <h4>Полезная информация</h4>
+                    <div class="sidebar-tip" id="sidebarTip"></div>
+                    <div class="sidebar-warning" id="sidebarWarning"></div>
+                    <div class="sidebar-path" id="sidebarPath"></div>
+                    <div class="sidebar-tags" id="sidebarTags"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+    <!-- Footer -->
+    <footer id="support" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Exchange Desk Bot</h3>
+                    <p>Telegram-бот для автоматизации обменных операций</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Разделы</h3>
+                    <ul>
+                        <li><a href="#functions">Функции</a></li>
+                        <li><a href="#modules">Шаги</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Ресурсы</h3>
+                    <ul>
+                        <li><a href="#pdf">Инструкция</a></li>
+                        <li><a href="#">Видеоуроки</a></li>
+                        <li><a href="#">Блог</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-envelope"></i> support@exchangedesk.bot</a></li>
+                        <li><a href="#"><i class="fas fa-paper-plane"></i> @exchangedesk</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Exchange Desk Bot. Все права защищены.</p>
+                <p class="version">Версия 2.1</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                    <p class="modal-subtitle" id="modalSubtitle"></p>
+                </div>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-content">
+                    <h3>Пошаговая инструкция</h3>
+                    <ul class="modal-steps" id="modalSteps"></ul>
+                    
+                    <div class="submodules" id="submodules"></div>
+                </div>
+                
+                <div class="modal-sidebar">
+                    <h4>Полезная информация</h4>
+                    
+                    <div class="sidebar-tip" id="sidebarTip"></div>
+                    <div class="sidebar-warning" id="sidebarWarning"></div>
+                    <div class="sidebar-path" id="sidebarPath"></div>
+                    
+                    <div class="sidebar-tags" id="sidebarTags"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+   

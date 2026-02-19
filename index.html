@@ -2407,6 +2407,46 @@
         transform: translateX(100%); /* Уходим за правый край */
     }
 }
+        /* PDF Card */
+.pdf-card {
+    background: var(--bg-card);
+    border: 2px dashed var(--border-color);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.pdf-card:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: var(--shadow-glow);
+}
+
+.pdf-icon {
+    font-size: 3.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
+    animation: bounce 2s ease infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.pdf-card h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+.pdf-card p {
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
 
         /* Медиа-запрос для мобильных */
         @media (max-width: 768px) {

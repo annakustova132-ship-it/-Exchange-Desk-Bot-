@@ -2350,6 +2350,63 @@
     text-align: center;
     text-shadow: 0 0 30px rgba(255, 65, 108, 0.3);
 }
+        /* Footer - ИСПРАВЛЕННАЯ ВЕРСИЯ */
+.footer {
+    position: relative; /* ОБЯЗАТЕЛЬНО для позиционирования псевдоэлемента */
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    padding: 3rem 0 1.5rem;
+    overflow: hidden; /* Чтобы линия не создавала горизонтальный скролл */
+    z-index: 1; /* Базовый z-index */
+}
+
+/* Светящаяся линия в футере */
+.footer::before {
+    content: ''; /* ОБЯЗАТЕЛЬНО - без этого псевдоэлемент не отобразится */
+    position: absolute;
+    top: 0; /* Прижимаем к верхнему краю футера */
+    left: 0;
+    width: 100%; /* На всю ширину */
+    height: 2px; /* Увеличил высоту для лучшей видимости */
+    
+    /* ГРАДИЕНТ - проверяем что переменные существуют */
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        #FF6B35,     /* Явно указываем цвета вместо переменных */
+        #36D1DC,      /* для проверки */
+        #5DFDCB, 
+        transparent
+    );
+    
+    /* Альтернатива с переменными (если переменные работают) */
+    /* background: linear-gradient(90deg, 
+        transparent, 
+        var(--accent-orange, #FF6B35), 
+        var(--accent-cyan, #36D1DC), 
+        var(--accent-green, #5DFDCB), 
+        transparent
+    ); */
+    
+    z-index: 2; /* Поверх содержимого футера */
+    pointer-events: none; /* Чтобы линия не мешала кликать по ссылкам */
+    
+    /* АНИМАЦИЯ */
+    animation: scanline 3s linear infinite; /* Ускорил для наглядности */
+    
+    /* Для отладки - временно убираем анимацию и делаем линию видимой всегда */
+    /* opacity: 1; */
+    /* transform: translateX(0); */
+}
+
+@keyframes scanline {
+    0% {
+        transform: translateX(-100%); /* Начинаем за левым краем */
+    }
+    100% {
+        transform: translateX(100%); /* Уходим за правый край */
+    }
+}
 
         /* Медиа-запрос для мобильных */
         @media (max-width: 768px) {

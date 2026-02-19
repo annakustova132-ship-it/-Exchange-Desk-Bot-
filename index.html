@@ -2482,6 +2482,37 @@
         transform: translateX(100%);
     }
 }
+        /* Кнопка возвращения в меню*/
+.scroll-top-btn {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 9999;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #FF6B35, #36D1DC);
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(54, 209, 220, 0.35);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(12px);
+}
+
+@media (max-width: 1023px) {
+  .scroll-top-btn { display: flex; }
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
 
         /* Медиа-запрос для мобильных */
         @media (max-width: 768px) {
@@ -3389,6 +3420,16 @@
             </div>
         </div>
     </div>
+     
+  <!-- кнопка в меню -->
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+    <script src="script.js"></script>
+</body>
+   
 
     <script>
         // Module Data
@@ -4070,6 +4111,17 @@
                 }
             });
         }
+        // Kнопка в меню
+(function() {
+  const btn = document.getElementById('scrollTopBtn');
+  if (!btn) return;
+  window.addEventListener('scroll', function() {
+    btn.classList.toggle('visible', window.scrollY > 300);
+  }, { passive: true });
+  btn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
     </script>
 </body>
 </html>

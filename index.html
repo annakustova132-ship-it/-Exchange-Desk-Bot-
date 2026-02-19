@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* ===== ОСНОВНЫЕ СТИЛИ ===== */
+        /* Reset & Base */
         * {
             margin: 0;
             padding: 0;
@@ -15,22 +15,31 @@
         }
 
         :root {
+            /* Colors */
             --bg-primary: #0a0a1a;
             --bg-secondary: #12122b;
             --bg-card: #1a1a3a;
             --bg-hover: #24244a;
+            
             --text-primary: #f0f0ff;
             --text-secondary: #b8b8d6;
             --text-muted: #8a8ab5;
+            
             --accent-orange: #FF6B35;
             --accent-cyan: #36D1DC;
             --accent-green: #5DFDCB;
             --accent-red: #ef4444;
+            
             --gradient-primary: linear-gradient(135deg, #FF6B35 0%, #36D1DC 50%, #5DFDCB 100%);
+            
             --border-color: #2d2d5a;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            
+            /* Spacing */
             --header-height: 70px;
             --spacing: 1.5rem;
+            
+            /* Transitions */
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -102,9 +111,17 @@
             display: none;
         }
 
-        .logo-exchange { color: var(--accent-orange); }
-        .logo-desk { color: var(--accent-cyan); }
-        .logo-bot { color: var(--text-primary); }
+        .logo-exchange {
+            color: var(--accent-orange);
+        }
+
+        .logo-desk {
+            color: var(--accent-cyan);
+        }
+
+        .logo-bot {
+            color: var(--text-primary);
+        }
 
         .desktop-nav {
             display: none;
@@ -143,7 +160,9 @@
             box-shadow: var(--shadow);
         }
 
-        .desktop-btn { display: none; }
+        .desktop-btn {
+            display: none;
+        }
 
         .mobile-menu-btn {
             width: 44px;
@@ -175,7 +194,9 @@
             pointer-events: none;
         }
 
-        .mobile-menu.active { pointer-events: all; }
+        .mobile-menu.active {
+            pointer-events: all;
+        }
 
         .mobile-menu-overlay {
             position: absolute;
@@ -186,7 +207,9 @@
             transition: var(--transition);
         }
 
-        .mobile-menu.active .mobile-menu-overlay { opacity: 1; }
+        .mobile-menu.active .mobile-menu-overlay {
+            opacity: 1;
+        }
 
         .mobile-menu-content {
             position: absolute;
@@ -202,7 +225,9 @@
             overflow-y: auto;
         }
 
-        .mobile-menu.active .mobile-menu-content { transform: translateX(0); }
+        .mobile-menu.active .mobile-menu-content {
+            transform: translateX(0);
+        }
 
         .mobile-nav-link {
             display: flex;
@@ -258,8 +283,14 @@
             margin-bottom: 1rem;
         }
 
-        .hero-exchange { color: var(--accent-orange); }
-        .hero-desk { color: var(--accent-cyan); }
+        .hero-exchange {
+            color: var(--accent-orange);
+        }
+
+        .hero-desk {
+            color: var(--accent-cyan);
+        }
+
         .hero-bot {
             color: var(--accent-green);
             display: block;
@@ -279,7 +310,9 @@
             font-size: 1.1rem;
         }
 
-        .hero-btn { font-size: 1.1rem; }
+        .hero-btn {
+            font-size: 1.1rem;
+        }
 
         /* Info Section */
         .info-section {
@@ -322,7 +355,10 @@
             margin-bottom: 1rem;
         }
 
-        .info-card ul { list-style: none; }
+        .info-card ul {
+            list-style: none;
+        }
+
         .info-card li {
             color: var(--text-secondary);
             margin-bottom: 0.75rem;
@@ -338,11 +374,18 @@
             font-weight: 700;
         }
 
-        .info-card strong { color: var(--text-primary); }
+        .info-card strong {
+            color: var(--text-primary);
+        }
 
         /* Section */
-        .section { padding: 4rem 0; }
-        .section-dark { background: var(--bg-secondary); }
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-dark {
+            background: var(--bg-secondary);
+        }
 
         .section-header {
             text-align: center;
@@ -425,7 +468,9 @@
             margin-bottom: 0.75rem;
         }
 
-        .function-card p { color: var(--text-secondary); }
+        .function-card p {
+            color: var(--text-secondary);
+        }
 
         /* Modules Grid */
         .modules-grid {
@@ -544,9 +589,17 @@
             margin-bottom: 1rem;
         }
 
-        .footer-col p { color: var(--text-secondary); }
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 0.75rem; }
+        .footer-col p {
+            color: var(--text-secondary);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.75rem;
+        }
 
         .footer-col a {
             color: var(--text-secondary);
@@ -557,7 +610,9 @@
             gap: 0.5rem;
         }
 
-        .footer-col a:hover { color: var(--text-primary); }
+        .footer-col a:hover {
+            color: var(--text-primary);
+        }
 
         .footer-bottom {
             padding-top: 1.5rem;
@@ -587,7 +642,9 @@
             padding: var(--spacing);
         }
 
-        .modal.active { display: flex; }
+        .modal.active {
+            display: flex;
+        }
 
         .modal-overlay {
             position: absolute;
@@ -672,14 +729,16 @@
             margin-bottom: 1.5rem;
         }
 
-        .modal-steps { list-style: none; }
+        .modal-steps {
+            list-style: none;
+        }
 
         .modal-steps li {
+            display: flex;
+            gap: 1.5rem;
             margin-bottom: 2rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid var(--border-color);
-            display: flex;
-            gap: 1.5rem;
         }
 
         .modal-steps li:last-child {
@@ -705,7 +764,9 @@
             margin-bottom: 0.5rem;
         }
 
-        .step-content p { color: var(--text-secondary); }
+        .step-content p {
+            color: var(--text-secondary);
+        }
 
         .modal-sidebar {
             margin-top: 2rem;
@@ -729,18 +790,21 @@
             font-size: 0.95rem;
         }
 
+        /* СОВЕТ - синяя карточка */
         .sidebar-tip {
             background: rgba(59, 130, 246, 0.08);
             border: 1px solid rgba(59, 130, 246, 0.2);
             color: #93c5fd;
         }
 
+        /* ВАЖНО - серая карточка */
         .sidebar-warning {
             background: rgba(156, 163, 175, 0.08);
             border: 1px solid rgba(156, 163, 175, 0.2);
             color: #d1d5db;
         }
 
+        /* ПУТЬ - фиолетовая карточка */
         .sidebar-path {
             background: rgba(139, 92, 246, 0.08);
             border: 1px solid rgba(139, 92, 246, 0.2);
@@ -776,7 +840,9 @@
         }
 
         /* Submodules */
-        .submodules { margin-top: 3rem; }
+        .submodules {
+            margin-top: 3rem;
+        }
 
         .submodules h4 {
             font-size: 1.3rem;
@@ -800,8 +866,13 @@
             transition: var(--transition);
         }
 
-        .submodule-card:hover { border-color: var(--accent-cyan); }
-        .submodule-card.active { background: var(--bg-hover); }
+        .submodule-card:hover {
+            border-color: var(--accent-cyan);
+        }
+
+        .submodule-card.active {
+            background: var(--bg-hover);
+        }
 
         .submodule-header {
             display: flex;
@@ -831,7 +902,9 @@
             transition: var(--transition);
         }
 
-        .submodule-card.active .submodule-toggle { transform: rotate(180deg); }
+        .submodule-card.active .submodule-toggle {
+            transform: rotate(180deg);
+        }
 
         .submodule-content {
             max-height: 0;
@@ -877,15 +950,411 @@
             gap: 0.5rem;
         }
 
-        .submodule-info strong { color: var(--text-primary); }
+        .submodule-info strong {
+            color: var(--text-primary);
+        }
 
-        /* FAQ Styles */
+        /* Responsive */
+        @media (min-width: 768px) {
+            .logo-text {
+                display: block;
+            }
+            
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .info-grid .info-card:last-child {
+                grid-column: span 2;
+            }
+            
+            .functions-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .modules-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .modal-body {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 2rem;
+            }
+            
+            .modal-sidebar {
+                margin-top: 0;
+            }
+            
+            .submodule-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .desktop-nav {
+                display: flex;
+            }
+            
+            .desktop-btn {
+                display: inline-flex;
+            }
+            
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .info-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .info-grid .info-card:last-child {
+                grid-column: auto;
+            }
+            
+            .functions-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .modules-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .section-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                text-align: left;
+            }
+            
+            .stats {
+                justify-content: flex-end;
+                margin-top: 0;
+            }
+        }
+
+        /* Animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .function-card,
+            .module-card,
+            .info-card {
+                animation: fadeInUp 0.6s ease backwards;
+            }
+            
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .function-card:nth-child(1) { animation-delay: 0.1s; }
+            .function-card:nth-child(2) { animation-delay: 0.2s; }
+            .function-card:nth-child(3) { animation-delay: 0.3s; }
+            .function-card:nth-child(4) { animation-delay: 0.4s; }
+            .function-card:nth-child(5) { animation-delay: 0.5s; }
+            .function-card:nth-child(6) { animation-delay: 0.6s; }
+            
+            .module-card:nth-child(n) { animation-delay: calc(0.1s * var(--index)); }
+        }
+        /* ===== КРАСНЫЕ ТОЧКИ И ПОЛОСКИ ===== */
+
+        .modal-steps {
+            list-style: none;
+        }
+
+        .modal-steps li {
+            margin-bottom: 1.75rem;
+            padding-left: 2.5rem;
+            position: relative;
+            border-bottom: none !important;
+        }
+
+        /* Серая вертикальная линия */
+        .modal-steps li::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #2d2d5a;
+            z-index: 1;
+        }
+
+        /* Красная точка */
+        .modal-steps li::after {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #FF6B35;
+            z-index: 2;
+            border: 2px solid var(--bg-card);
+            box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Для последнего шага укорачиваем линию */
+        .modal-steps li:last-child::before {
+            bottom: calc(100% - 30px);
+        }
+
+        /* Номер шага в круге */
+        .step-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B35, #FF8A35);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 26px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-right: 0.75rem;
+            vertical-align: middle;
+            box-shadow: 0 2px 4px rgba(255, 107, 53, 0.3);
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Альтернативный вариант: только точки без номеров в кругах */
+        .modal-steps.simple li {
+            padding-left: 1.5rem;
+        }
+
+        .modal-steps.simple .step-number {
+            display: none;
+        }
+
+        .modal-steps.simple li::after {
+            left: 0;
+            top: 6px;
+        }
+
+        .modal-steps.simple li::before {
+            display: none;
+        }
+
+        /* Анимация появления */
+        .modal-steps li {
+            opacity: 0;
+            transform: translateX(-10px);
+            animation: slideInRight 0.4s ease forwards;
+        }
+
+        .modal-steps li:nth-child(1) { animation-delay: 0.1s; }
+        .modal-steps li:nth-child(2) { animation-delay: 0.2s; }
+        .modal-steps li:nth-child(3) { animation-delay: 0.3s; }
+        .modal-steps li:nth-child(4) { animation-delay: 0.4s; }
+        .modal-steps li:nth-child(5) { animation-delay: 0.5s; }
+        .modal-steps li:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Цветовые варианты */
+        .modal-steps.blue li::after {
+            background: #36D1DC;
+        }
+
+        .modal-steps.green li::after {
+            background: #5DFDCB;
+        }
+
+        .modal-steps.purple li::after {
+            background: #8b5cf6;
+        }
+
+        /* Для мобильных */
+        @media (max-width: 768px) {
+            .modal-steps li {
+                padding-left: 2rem;
+            }
+            
+            .modal-steps li::before {
+                left: 9px;
+            }
+            
+            .modal-steps li::after {
+                left: 5px;
+                width: 8px;
+                height: 8px;
+            }
+            
+            .step-number {
+                width: 22px;
+                height: 22px;
+                line-height: 22px;
+                font-size: 0.75rem;
+            }
+        }
+        .modal-steps li.active::after {
+            width: 12px;
+            height: 12px;
+            background: #FF0000;
+            box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2);
+        }
+        /* ===== МОНОХРОМНАЯ ГРАДИЕНТНАЯ ТЕМА ===== */
+
+        .warning-card {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.02), 
+                rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid #FF6B35;
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .warning-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255, 107, 53, 0.05), 
+                transparent 70%);
+            pointer-events: none;
+        }
+
+        .warning-icon {
+            background: linear-gradient(135deg, #FF6B35, #FF8A35);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .warning-title {
+            background: linear-gradient(135deg, #FF6B35, #FF8A35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        .warning-text {
+            color: rgba(255, 255, 255, 0.7);
+            position: relative;
+            z-index: 1;
+        }
+
+        .path-card {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.02), 
+                rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid #36D1DC;
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .path-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(54, 209, 220, 0.05), 
+                transparent 70%);
+            pointer-events: none;
+        }
+
+        .path-icon {
+            background: linear-gradient(135deg, #36D1DC, #5DFDCB);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .path-title {
+            background: linear-gradient(135deg, #36D1DC, #5DFDCB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        .path-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'JetBrains Mono', monospace;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tag-item {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.05), 
+                rgba(255, 255, 255, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .tag-item:hover {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1), 
+                rgba(255, 255, 255, 0.15));
+            color: white;
+        }
+        /* ======================================= */
+        /*            FAQ МОДУЛЬ                   */
+        /* ======================================= */
+
+        /* ===== КОНТЕЙНЕР ПОИСКА ===== */
         .faq-search-container {
             position: relative;
             max-width: 400px;
             margin: 1.5rem auto 0;
         }
 
+        /* Иконка поиска (лупа) */
         .faq-search-icon {
             position: absolute;
             left: 1rem;
@@ -896,6 +1365,7 @@
             pointer-events: none;
         }
 
+        /* Поле ввода поиска */
         .faq-search {
             width: 100%;
             padding: 0.75rem 1rem 0.75rem 2.5rem;
@@ -907,14 +1377,19 @@
             transition: var(--transition);
         }
 
+        /* Поле поиска в фокусе */
         .faq-search:focus {
             outline: none;
             border-color: var(--accent-cyan);
             box-shadow: 0 0 0 3px rgba(54, 209, 220, 0.1);
         }
 
-        .faq-search::placeholder { color: var(--text-muted); }
+        /* Плейсхолдер в поле поиска */
+        .faq-search::placeholder {
+            color: var(--text-muted);
+        }
 
+        /* ===== КАТЕГОРИИ ВОПРОСОВ ===== */
         .faq-categories {
             display: flex;
             flex-wrap: wrap;
@@ -923,6 +1398,7 @@
             margin-bottom: 2rem;
         }
 
+        /* Кнопка категории */
         .faq-category {
             padding: 0.6rem 1.2rem;
             background: var(--bg-card);
@@ -935,19 +1411,23 @@
             transition: var(--transition);
         }
 
+        /* Кнопка категории при наведении */
         .faq-category:hover {
             background: var(--bg-hover);
             color: var(--text-primary);
             border-color: var(--accent-cyan);
         }
 
+        /* Активная кнопка категории */
         .faq-category.active {
-            background: var(--gradient-primary);
-            color: var(--bg-primary);
+            background: linear-gradient(135deg, #11998e, #38ef7d, #00b4db);
+            color: white;
             border-color: transparent;
             font-weight: 600;
+            box-shadow: 0 4px 15px rgba(17, 153, 142, 0.3);
         }
 
+        /* ===== СЕТКА ВОПРОСОВ ===== */
         .faq-grid {
             display: flex;
             flex-direction: column;
@@ -956,18 +1436,46 @@
             margin: 0 auto;
         }
 
+        /* ===== ОТДЕЛЬНЫЙ ВОПРОС ===== */
         .faq-item {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 16px;
             overflow: hidden;
             transition: var(--transition);
-            opacity: 1;
-            transform: translateY(0);
+            
+            /* Анимация появления */
+            opacity: 0;
+            transform: translateY(10px);
+            animation: faqFadeIn 0.4s ease forwards;
         }
 
-        .faq-item:hover { border-color: var(--accent-cyan); }
+        /* Анимация появления */
+        @keyframes faqFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
+        /* Задержки анимации для каждого вопроса */
+        .faq-item:nth-child(1) { animation-delay: 0.1s; }
+        .faq-item:nth-child(2) { animation-delay: 0.15s; }
+        .faq-item:nth-child(3) { animation-delay: 0.2s; }
+        .faq-item:nth-child(4) { animation-delay: 0.25s; }
+        .faq-item:nth-child(5) { animation-delay: 0.3s; }
+        .faq-item:nth-child(6) { animation-delay: 0.35s; }
+        .faq-item:nth-child(7) { animation-delay: 0.4s; }
+        .faq-item:nth-child(8) { animation-delay: 0.45s; }
+        .faq-item:nth-child(9) { animation-delay: 0.5s; }
+
+        /* Вопрос при наведении */
+        .faq-item:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: var(--shadow);
+        }
+
+        /* ===== ЗАГОЛОВОК ВОПРОСА (кликабельная область) ===== */
         .faq-question {
             display: flex;
             align-items: center;
@@ -977,6 +1485,7 @@
             user-select: none;
         }
 
+        /* Контент внутри заголовка (текст и иконка) */
         .faq-question-content {
             display: flex;
             align-items: center;
@@ -984,12 +1493,14 @@
             flex: 1;
         }
 
+        /* Иконка перед вопросом */
         .faq-question-content i {
             font-size: 1.2rem;
             color: var(--accent-cyan);
             width: 24px;
         }
 
+        /* Текст вопроса */
         .faq-question-content h3 {
             font-size: 1.1rem;
             font-weight: 600;
@@ -997,6 +1508,7 @@
             margin: 0;
         }
 
+        /* Стрелка-переключатель */
         .faq-toggle {
             font-size: 1.2rem;
             color: var(--text-secondary);
@@ -1005,11 +1517,13 @@
             text-align: center;
         }
 
+        /* Стрелка в открытом состоянии */
         .faq-item.active .faq-toggle {
             transform: rotate(180deg);
             color: var(--accent-cyan);
         }
 
+        /* ===== ОТВЕТ НА ВОПРОС ===== */
         .faq-answer {
             max-height: 0;
             padding: 0 1.5rem;
@@ -1018,95 +1532,381 @@
             border-top: 0px solid transparent;
         }
 
+        /* Ответ в открытом состоянии */
         .faq-item.active .faq-answer {
-            max-height: 500px;
+            max-height: 2000px;
             padding: 0 1.5rem 1.5rem;
             border-top-width: 1px;
             border-top-color: var(--border-color);
         }
 
+        /* Текст ответа */
         .faq-answer p {
             color: var(--text-secondary);
             margin-bottom: 1rem;
+            line-height: 1.6;
         }
 
-        .faq-answer ul, .faq-answer ol {
+        /* Списки в ответе */
+        .faq-answer ul, 
+        .faq-answer ol {
             margin: 1rem 0;
             padding-left: 1.5rem;
         }
 
+        /* Элементы списка */
         .faq-answer li {
             color: var(--text-secondary);
             margin-bottom: 0.5rem;
         }
 
-        .faq-note, .faq-tip, .faq-warning, .faq-path {
+        /* Иконки в элементах списка */
+        .faq-answer li i {
+            color: var(--accent-green);
+            margin-right: 0.5rem;
+            width: 18px;
+        }
+
+        /* ===== СПЕЦИАЛЬНЫЕ БЛОКИ В ОТВЕТАХ ===== */
+        /* Общие стили для всех блоков */
+        .faq-note,
+        .faq-tip,
+        .faq-warning,
+        .faq-path {
             display: flex;
             align-items: flex-start;
             gap: 0.75rem;
             padding: 1rem;
             border-radius: 12px;
             margin-top: 1rem;
+            background: var(--bg-secondary);
         }
 
+        /* Иконки в специальных блоках */
+        .faq-note i, 
+        .faq-tip i, 
+        .faq-warning i, 
+        .faq-path i {
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ===== ПРИМЕЧАНИЕ (синий) ===== */
         .faq-note {
             background: rgba(54, 209, 220, 0.1);
             border: 1px solid rgba(54, 209, 220, 0.2);
         }
 
-        .faq-note i { color: var(--accent-cyan); }
+        .faq-note i {
+            color: var(--accent-cyan);
+        }
 
+        /* ===== СОВЕТ (зеленый) ===== */
         .faq-tip {
             background: rgba(93, 253, 203, 0.1);
             border: 1px solid rgba(93, 253, 203, 0.2);
         }
 
-        .faq-tip i { color: var(--accent-green); }
+        .faq-tip i {
+            color: var(--accent-green);
+        }
 
+        /* ===== ПРЕДУПРЕЖДЕНИЕ (оранжевый) ===== */
         .faq-warning {
             background: rgba(255, 107, 53, 0.1);
             border: 1px solid rgba(255, 107, 53, 0.2);
         }
 
-        .faq-warning i { color: var(--accent-orange); }
+        .faq-warning i {
+            color: var(--accent-orange);
+        }
 
+        /* ===== ПУТЬ НАВИГАЦИИ (фиолетовый) ===== */
         .faq-path {
             background: rgba(139, 92, 246, 0.1);
             border: 1px solid rgba(139, 92, 246, 0.2);
             font-family: 'JetBrains Mono', monospace;
         }
 
-        .faq-path i { color: #a78bfa; }
+        .faq-path i {
+            color: #a78bfa;
+        }
 
+        .faq-path code {
+            color: var(--text-primary);
+            background: transparent;
+            padding: 0;
+        }
+
+        /* ===== СПИСОК ШАГОВ ===== */
+        .faq-steps {
+            list-style: none;
+            padding: 0 !important;
+        }
+
+        /* Элемент списка шагов */
+        .faq-steps li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Номер шага в кружке */
+        .step-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            color: var(--bg-primary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        /* Код в шагах */
+        .faq-steps code,
+        .faq-answer code {
+            background: var(--bg-hover);
+            color: var(--accent-cyan);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* ===== СЕТКА СТАТУСОВ ЗАКАЗОВ ===== */
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        /* Отдельный статус */
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+        }
+
+        /* Цветной маркер статуса */
+        .status-badge {
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* ===== БЛОК "НИЧЕГО НЕ НАЙДЕНО" ===== */
         .faq-no-results {
             text-align: center;
             padding: 3rem;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            max-width: 600px;
-            margin: 2rem auto 0;
         }
 
+        /* Иконка в блоке "Ничего не найдено" */
         .faq-no-results i {
             font-size: 3rem;
             color: var(--text-muted);
             margin-bottom: 1rem;
         }
 
+        /* Заголовок в блоке "Ничего не найдено" */
         .faq-no-results h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
             color: var(--text-primary);
         }
 
-        .faq-no-results p { color: var(--text-secondary); }
+        /* Текст в блоке "Ничего не найдено" */
+        .faq-no-results p {
+            color: var(--text-secondary);
+        }
 
+        /* ===== ФУТЕР FAQ ===== */
         .faq-footer {
             text-align: center;
             margin-top: 2rem;
         }
 
+        /* Кнопка "Развернуть все / Свернуть все" */
+        .faq-show-all {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        /* Кнопка при наведении */
+        .faq-show-all:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-color: var(--accent-cyan);
+        }
+
+        /* Иконка на кнопке */
+        .faq-show-all i {
+            transition: var(--transition);
+        }
+
+        /* Повернутая иконка в активном состоянии (не используется, но оставлено для совместимости) */
+        .faq-show-all.active i {
+            transform: rotate(180deg);
+        }
+
+        /* ===== МЕДИА-ЗАПРОСЫ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ ===== */
+        @media (max-width: 768px) {
+            /* Уменьшаем шрифт вопроса */
+            .faq-question-content h3 {
+                font-size: 1rem;
+            }
+            
+            /* Уменьшаем расстояние между категориями */
+            .faq-categories {
+                gap: 0.5rem;
+            }
+            
+            /* Уменьшаем размер кнопок категорий */
+            .faq-category {
+                padding: 0.4rem 1rem;
+                font-size: 0.85rem;
+            }
+            
+            /* Уменьшаем отступы в вопросе */
+            .faq-question {
+                padding: 1rem;
+            }
+            
+            /* Уменьшаем отступы в открытом ответе */
+            .faq-item.active .faq-answer {
+                padding: 0 1rem 1rem;
+            }
+            
+            /* Сетка статусов в одну колонку */
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ ЛУЧШЕЙ ЧИТАЕМОСТИ ===== */
+
+        /* Выделение активного вопроса */
+        .faq-item.active {
+            border-color: var(--accent-cyan);
+        }
+
+        /* Анимация для появления новых результатов после поиска */
+        .faq-item {
+            transition: opacity 0.3s ease, transform 0.3s ease, display 0.3s ease;
+        }
+
+        /* Стили для выделения текста при поиске (можно добавить через JS) */
+        .faq-highlight {
+            background-color: rgba(255, 107, 53, 0.3);
+            color: var(--text-primary);
+            padding: 0.1rem 0.2rem;
+            border-radius: 4px;
+        }
+
+        /* Стили для ссылок внутри ответов */
+        .faq-answer a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-cyan);
+        }
+
+        .faq-answer a:hover {
+            color: var(--accent-green);
+            border-bottom-color: var(--accent-green);
+        }
+
+         /* ===== ВЫРАВНИВАНИЕ FAQ ПО ЦЕНТРУ ===== */
+
+        /* Центрируем весь заголовок */
+        .section-header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* Заголовок FAQ с градиентом как в Hero */
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #FF6B35 0%, #36D1DC 50%, #5DFDCB 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            text-align: center;
+            text-shadow: 0 0 30px rgba(255, 65, 108, 0.3);
+        }
+
+        /* Подзаголовок */
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Контейнер поиска по центру */
+        .faq-search-container {
+            margin: 1.5rem auto 0;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Категории по центру */
+        .faq-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        /* Сетка FAQ по центру */
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Футер с кнопкой по центру */
+        .faq-footer {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* Кнопка "Развернуть все" */
         .faq-show-all {
             display: inline-flex;
             align-items: center;
@@ -1129,46 +1929,444 @@
             border-color: var(--accent-cyan);
         }
 
-        /* Responsive */
-        @media (min-width: 768px) {
-            .logo-text { display: block; }
-            .info-grid { grid-template-columns: repeat(2, 1fr); }
-            .info-grid .info-card:last-child { grid-column: span 2; }
-            .functions-grid { grid-template-columns: repeat(2, 1fr); }
-            .modules-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
-            
-            .modal-body {
-                display: grid;
-                grid-template-columns: 2fr 1fr;
-                gap: 2rem;
-            }
-            
-            .modal-sidebar { margin-top: 0; }
-            .submodule-grid { grid-template-columns: repeat(2, 1fr); }
+        /* Блок "Ничего не найдено" по центру */
+        .faq-no-results {
+            text-align: center;
+            padding: 3rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            max-width: 600px;
+            margin: 2rem auto 0;
         }
 
-        @media (min-width: 1024px) {
-            .mobile-menu-btn { display: none; }
-            .desktop-nav { display: flex; }
-            .desktop-btn { display: inline-flex; }
-            .hero-title { font-size: 3.5rem; }
-            .info-grid { grid-template-columns: repeat(3, 1fr); }
-            .info-grid .info-card:last-child { grid-column: auto; }
-            .functions-grid { grid-template-columns: repeat(3, 1fr); }
-            .modules-grid { grid-template-columns: repeat(3, 1fr); }
-            .footer-grid { grid-template-columns: repeat(4, 1fr); }
-            
-            .section-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                text-align: left;
+        /* Медиа-запрос для мобильных */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
             }
             
-            .stats {
-                justify-content: flex-end;
-                margin-top: 0;
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .faq-search-container {
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+            
+            .faq-categories {
+                padding: 0 1rem;
+            }
+        }  
+        /* Стили для объяснения формата ввода */
+        .telegram-explanation {
+            background: linear-gradient(135deg, rgba(0, 136, 204, 0.1) 0%, rgba(0, 136, 204, 0.05) 100%);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid #0088cc;
+        }
+
+        .explanation-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            color: #0088cc;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .explanation-header i {
+            font-size: 1.2rem;
+        }
+
+        .telegram-explanation p {
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .format-showcase {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .format-card {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            transition: var(--transition);
+        }
+
+        .format-card.correct {
+            border-left: 4px solid #28a745;
+        }
+
+        .format-card.incorrect {
+            border-left: 4px solid #dc3545;
+            opacity: 0.8;
+            background: rgba(220, 53, 69, 0.05);
+        }
+
+        .format-card.result {
+            border-left: 4px solid #36D1DC;
+            background: linear-gradient(135deg, rgba(54, 209, 220, 0.05) 0%, rgba(54, 209, 220, 0.1) 100%);
+        }
+
+        .format-icon {
+            font-size: 1.3rem;
+        }
+
+        .format-card.correct .format-icon {
+            color: #28a745;
+        }
+
+        .format-card.incorrect .format-icon {
+            color: #dc3545;
+        }
+
+        .format-card.result .format-icon {
+            color: #36D1DC;
+        }
+
+        .format-content {
+            flex: 1;
+        }
+
+        .format-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .code-demo {
+            background: var(--bg-secondary);
+            padding: 10px 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-family: monospace;
+            border: 1px solid var(--border-color);
+        }
+
+        .code-demo.wrong {
+            background: rgba(220, 53, 69, 0.1);
+            border-color: rgba(220, 53, 69, 0.3);
+        }
+
+        .code-demo code {
+            color: #FF6B35;
+            font-size: 0.9rem;
+        }
+
+        .format-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .format-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .format-arrow i {
+            font-size: 1.5rem;
+        }
+
+        .tags-demo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .currency-tag {
+            background: var(--bg-secondary);
+            border: 1px solid #36D1DC;
+            color: #36D1DC;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .format-note {
+            margin: 20px 0 !important;
+        }
+
+        .examples {
+            margin-top: 12px;
+            padding: 10px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+        }
+
+        .examples ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+
+        .examples li {
+            margin: 5px 0;
+            font-family: monospace;
+            color: #FF6B35;
+        }
+
+        .examples-note {
+            margin: 8px 0 0 0;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            font-style: italic;
+        }
+
+        /* Медиа-запрос для мобильных */
+        @media (max-width: 768px) {
+            .format-showcase {
+                flex-direction: column;
+            }
+            
+            .format-arrow {
+                transform: rotate(90deg);
+                margin: 5px 0;
+            }
+            
+            .format-arrow i {
+                font-size: 1.2rem;
+            }
+        }
+        /* ===== ОСНОВНЫЕ СТИЛИ ДЛЯ РАБОТЫ FAQ ===== */
+
+        /* Стили для элемента FAQ */
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: var(--transition);
+            margin-bottom: 1rem;
+        }
+
+        /* Заголовок вопроса */
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 1.5rem;
+            cursor: pointer;
+            background: var(--bg-card);
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--bg-secondary);
+        }
+
+        .faq-question-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .faq-question-content i {
+            color: #FF6B35;
+            font-size: 1.2rem;
+        }
+
+        .faq-question-content h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Иконка переключения */
+        .faq-toggle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        /* ===== ЭТО САМОЕ ГЛАВНОЕ - СТИЛИ ДЛЯ ОТКРЫТИЯ/ЗАКРЫТИЯ ===== */
+        .faq-answer {
+            max-height: 0;
+            padding: 0 1.5rem;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background: var(--bg-secondary);
+            border-top: 0 solid transparent;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 2000px;
+            padding: 1.5rem;
+            border-top-width: 1px;
+            border-top-color: var(--border-color);
+        }
+
+        /* Контент внутри ответа */
+        .faq-answer p {
+            margin: 0 0 1rem 0;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .faq-answer ul, 
+        .faq-answer ol {
+            margin: 0 0 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .faq-answer li {
+            margin: 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        /* Специальные блоки внутри ответов */
+        .faq-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: rgba(54, 209, 220, 0.1);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-left: 4px solid #36D1DC;
+        }
+
+        .faq-note i {
+            color: #36D1DC;
+            font-size: 1.1rem;
+            margin-top: 2px;
+        }
+
+        .faq-warning {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 193, 7, 0.1);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: #856404;
+        }
+
+        .faq-warning i {
+            color: #FFC107;
+        }
+
+        .faq-tip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-top: 15px;
+            color: #FF6B35;
+        }
+
+        .faq-tip i {
+            color: #FF6B35;
+        }
+
+        .faq-path {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-secondary);
+            padding: 12px 15px;
+            border-radius: 30px;
+            margin-top: 15px;
+            border: 1px dashed var(--border-color);
+        }
+
+        .faq-path i {
+            color: #36D1DC;
+        }
+
+        .faq-path code {
+            background: var(--bg-card);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #FF6B35;
+        }
+
+        /* Стили для шагов */
+        .faq-steps {
+            list-style: none;
+            padding: 0 !important;
+        }
+
+        .faq-steps li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .step-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: #36D1DC;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        /* Яркий заголовок FAQ */
+.section-title {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #FF416C, #FF4B2B, #FFD700, #11998e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    text-align: center;
+    text-shadow: 0 0 30px rgba(255, 65, 108, 0.3);
+}
+
+        /* Медиа-запрос для мобильных */
+        @media (max-width: 768px) {
+            .faq-question {
+                padding: 1rem;
+            }
+            
+            .faq-question-content h3 {
+                font-size: 1rem;
+            }
+            
+            .faq-answer {
+                padding: 0 1rem;
+            }
+            
+            .faq-item.active .faq-answer {
+                padding: 1rem;
             }
         }
     </style>
@@ -1275,7 +2473,7 @@
                     </div>
                     <h3>Что делает?</h3>
                     <ul>
-                        <li>Автоматизирует <strong>создание заказов,</strong> управление курсами</li>
+                         <li>Автоматизирует <strong>создание заказов,</strong> управление курсами</li>
                         <li>Работа с <strong>кросс-парами,</strong> выгрузка отчетов</li>
                         <li>Сокращает время на обработку операций <strong>с 10 минут до 30 секунд</strong></li>
                     </ul>
@@ -1287,8 +2485,8 @@
                     </div>
                     <h3>Как начать?</h3>
                     <ul>
-                        <li><strong>1.</strong> Напишите боту <strong>@exchangebot</strong></li>
-                        <li><strong>2.</strong> Зарегистрируйтесь <strong>за 2 минуты</strong></li>
+                         <li><strong>1.</strong> Напишите боту <strong>@exchangebot</strong></li>
+                      <li><strong>2.</strong> Зарегистрируйтесь <strong>за 2 минуты</strong></li>
                         <li><strong>3.</strong> Настройте базовые параметры</li>
                         <li><strong>4.</strong> Начните работу! <strong>Первые сделки через 15 минут</strong></li>
                     </ul>
@@ -1401,8 +2599,7 @@
                         <i class="fas fa-book-open"></i> Подробнее
                     </button>
                 </div>
-
-                <!-- Module 3 -->
+              <!-- Module 3 -->
                 <div class="module-card" data-module="users">
                     <div class="module-number">3</div>
                     <div class="module-icon">
@@ -1479,8 +2676,8 @@
                         <i class="fas fa-book-open"></i> Подробнее
                     </button>
                 </div>
-
-                <!-- Module 9 -->
+             
+              <!-- Module 9 -->
                 <div class="module-card" data-module="edit-orders">
                     <div class="module-number">9</div>
                     <div class="module-icon">
@@ -1544,19 +2741,19 @@
                 </div>
                 <h3>Полная инструкция в PDF</h3>
                 <p>Скачайте полное руководство с детальными инструкциями по всем модулям</p>
-                <a href="#" class="cta-button" onclick="alert('PDF будет доступен для скачивания позже')">
+                <a href="files/Exchange_Desk_Bot.pdf" class="cta-button" download target="_blank">
                     <i class="fas fa-download"></i> Скачать (PDF, 2.1 MB)
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
+     <!-- FAQ Section -->
     <section id="faq" class="section section-dark">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">FAQ</h2>
-                <p class="section-subtitle">Ответы на популярные вопросы</p>
+                 <p class="section-subtitle"> Ответы на популярные вопросы</p>
                 
                 <div class="faq-search-container">
                     <i class="fas fa-search faq-search-icon"></i>
@@ -1615,187 +2812,185 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="faq-item" data-category="general">
-                    <div class="faq-question">
-                        <div class="faq-question-content">
-                            <i class="fas fa-question-circle"></i>
-                            <h3>В чем разница между зелеными и красными кнопками при создании заказа?</h3>
-                        </div>
-                        <i class="fas fa-chevron-down faq-toggle"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="color-difference">
-                            <div class="color-item">
-                                <div class="color-badge green">
-                                    <i class="fas fa-arrow-down"></i>
-                                    <span>🟢 Зеленая кнопка</span>
-                                </div>
-                                <p>— обменный пункт <strong>покупает</strong> валюту у клиента</p>
-                                <small class="color-hint">(вы продаете, пункт принимает)</small>
-                            </div>
-                            
-                            <div class="color-item">
-                                <div class="color-badge red">
-                                    <i class="fas fa-arrow-up"></i>
-                                    <span>🔴 Красная кнопка</span>
-                                </div>
-                                <p>— обменный пункт <strong>продает</strong> валюту клиенту</p>
-                                <small class="color-hint">(вы покупаете, пункт отдает)</small>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-note">
-                            <i class="fas fa-info-circle"></i>
-                            <span>Цвета кнопок соответствуют направлению обмена: зеленый = "входящий" поток валюты в пункт, красный = "исходящий" поток из пункта.</span>
-                        </div>
+              <div class="faq-item" data-category="general">
+    <div class="faq-question">
+        <div class="faq-question-content">
+            <i class="fas fa-question-circle"></i>
+            <h3>В чем разница между зелеными и красными кнопками при создании заказа?</h3>
+        </div>
+        <i class="fas fa-chevron-down faq-toggle"></i>
+    </div>
+    <div class="faq-answer">
+        <div class="color-difference">
+            <div class="color-item">
+                <div class="color-badge green">
+                    <i class="fas fa-arrow-down"></i>
+                    <span>🟢 Зеленая кнопка</span>
+                </div>
+                <p>— обменный пункт <strong>покупает</strong> валюту у клиента</p>
+                <small class="color-hint">(вы продаете, пункт принимает)</small>
+            </div>
+            
+            <div class="color-item">
+                <div class="color-badge red">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>🔴 Красная кнопка</span>
+                </div>
+                <p>— обменный пункт <strong>продает</strong> валюту клиенту</p>
+                <small class="color-hint">(вы покупаете, пункт отдает)</small>
+            </div>
+        </div>
+        
+        <div class="faq-note">
+            <i class="fas fa-info-circle"></i>
+            <span>Цвета кнопок соответствуют направлению обмена: зеленый = "входящий" поток валюты в пункт, красный = "исходящий" поток из пункта.</span>
+        </div>
+    </div>
+</div>
+              <div class="faq-item" data-category="general">
+    <div class="faq-question">
+        <div class="faq-question-content">
+            <i class="fas fa-question-circle"></i>
+            <h3>Как обновить таблицу котировок, чтобы увидеть самые свежие курсы?</h3>
+        </div>
+        <i class="fas fa-chevron-down faq-toggle"></i>
+    </div>
+    <div class="faq-answer">
+        <div class="info-message">
+            <i class="fas fa-sync-alt"></i>
+            <p>Таблица котировок автоматически показывает <strong>последние установленные курсы</strong>.</p>
+        </div>
+        
+        <div class="update-instructions">
+            <div class="instruction-step">
+                <span class="step-number">1</span>
+                <div class="step-content">
+                    <span class="step-action">Нажмите кнопку</span>
+                    <div class="button-demo">
+                        <i class="fas fa-edit"></i>
+                        <span>📝 Курсы валют</span>
                     </div>
                 </div>
-
-                <div class="faq-item" data-category="general">
-                    <div class="faq-question">
-                        <div class="faq-question-content">
-                            <i class="fas fa-question-circle"></i>
-                            <h3>Как обновить таблицу котировок, чтобы увидеть самые свежие курсы?</h3>
-                        </div>
-                        <i class="fas fa-chevron-down faq-toggle"></i>
+            </div>
+            
+            <div class="instruction-arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <div class="instruction-step">
+                <span class="step-number">2</span>
+                <div class="step-content">
+                    <span class="step-action">Бот пришлет</span>
+                    <div class="result-demo">
+                        <i class="fas fa-table"></i>
+                        <span>актуальную таблицу</span>
                     </div>
-                    <div class="faq-answer">
-                        <div class="info-message">
-                            <i class="fas fa-sync-alt"></i>
-                            <p>Таблица котировок автоматически показывает <strong>последние установленные курсы</strong>.</p>
-                        </div>
-                        
-                        <div class="update-instructions">
-                            <div class="instruction-step">
-                                <span class="step-number">1</span>
-                                <div class="step-content">
-                                    <span class="step-action">Нажмите кнопку</span>
-                                    <div class="button-demo">
-                                        <i class="fas fa-edit"></i>
-                                        <span>📝 Курсы валют</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="instruction-arrow">
-                                <i class="fas fa-arrow-down"></i>
-                            </div>
-                            
-                            <div class="instruction-step">
-                                <span class="step-number">2</span>
-                                <div class="step-content">
-                                    <span class="step-action">Бот пришлет</span>
-                                    <div class="result-demo">
-                                        <i class="fas fa-table"></i>
-                                        <span>актуальную таблицу</span>
-                                    </div>
-                                    <span class="step-note">с самыми свежими курсами</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-note">
-                            <i class="fas fa-info-circle"></i>
-                            <span>Кнопка находится в <strong>главном меню</strong> — просто нажмите её повторно в любой момент, чтобы обновить данные.</span>
-                        </div>
-                        
-                        <div class="faq-tip">
-                            <i class="fas fa-lightbulb"></i>
-                            <span>После изменения курсов достаточно снова вызвать таблицу — она всегда покажет актуальную информацию.</span>
-                        </div>
+                    <span class="step-note">с самыми свежими курсами</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-note">
+            <i class="fas fa-info-circle"></i>
+            <span>Кнопка находится в <strong>главном меню</strong> — просто нажмите её повторно в любой момент, чтобы обновить данные.</span>
+        </div>
+        
+        <div class="faq-tip">
+            <i class="fas fa-lightbulb"></i>
+            <span>После изменения курсов достаточно снова вызвать таблицу — она всегда покажет актуальную информацию.</span>
+        </div>
+    </div>
+</div>
+              <div class="faq-item" data-category="general">
+    <div class="faq-question">
+        <div class="faq-question-content">
+            <i class="fas fa-question-circle"></i>
+            <h3>Почему при вводе списка валют я должен писать их через запятую, а не в столбик?</h3>
+        </div>
+        <i class="fas fa-chevron-down faq-toggle"></i>
+    </div>
+    <div class="faq-answer">
+        <div class="telegram-explanation">
+            <div class="explanation-header">
+                <i class="fab fa-telegram-plane"></i>
+                <span>Особенность Telegram</span>
+            </div>
+            <p>Telegram обрабатывает сообщение как <strong>одну строку</strong>. Если написать валюты в столбик, бот увидит это как одно большое сообщение с переносами, которые сложно правильно обработать.</p>
+        </div>
+        
+        <div class="format-showcase">
+            <div class="format-card correct">
+                <div class="format-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="format-content">
+                    <span class="format-label">✅ Правильный формат</span>
+                    <div class="code-demo">
+                        <code>USD, EUR, GBP, CHF, JPY</code>
+                    </div>
+                    <p class="format-desc">Через запятую — бот легко разбирает список</p>
+                </div>
+            </div>
+            
+            <div class="format-arrow">
+                <i class="fas fa-long-arrow-alt-right"></i>
+                <span>бот парсит</span>
+            </div>
+            
+            <div class="format-card result">
+                <div class="format-icon">
+                    <i class="fas fa-list"></i>
+                </div>
+                <div class="format-content">
+                    <span class="format-label">📋 Результат</span>
+                    <div class="tags-demo">
+                        <span class="currency-tag">USD</span>
+                        <span class="currency-tag">EUR</span>
+                        <span class="currency-tag">GBP</span>
+                        <span class="currency-tag">CHF</span>
+                        <span class="currency-tag">JPY</span>
                     </div>
                 </div>
-
-                <div class="faq-item" data-category="general">
-                    <div class="faq-question">
-                        <div class="faq-question-content">
-                            <i class="fas fa-question-circle"></i>
-                            <h3>Почему при вводе списка валют я должен писать их через запятую, а не в столбик?</h3>
-                        </div>
-                        <i class="fas fa-chevron-down faq-toggle"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="telegram-explanation">
-                            <div class="explanation-header">
-                                <i class="fab fa-telegram-plane"></i>
-                                <span>Особенность Telegram</span>
-                            </div>
-                            <p>Telegram обрабатывает сообщение как <strong>одну строку</strong>. Если написать валюты в столбик, бот увидит это как одно большое сообщение с переносами, которые сложно правильно обработать.</p>
-                        </div>
-                        
-                        <div class="format-showcase">
-                            <div class="format-card correct">
-                                <div class="format-icon">
-                                    <i class="fas fa-check-circle"></i>
-                                </div>
-                                <div class="format-content">
-                                    <span class="format-label">✅ Правильный формат</span>
-                                    <div class="code-demo">
-                                        <code>USD, EUR, GBP, CHF, JPY</code>
-                                    </div>
-                                    <p class="format-desc">Через запятую — бот легко разбирает список</p>
-                                </div>
-                            </div>
-                            
-                            <div class="format-arrow">
-                                <i class="fas fa-long-arrow-alt-right"></i>
-                                <span>бот парсит</span>
-                            </div>
-                            
-                            <div class="format-card result">
-                                <div class="format-icon">
-                                    <i class="fas fa-list"></i>
-                                </div>
-                                <div class="format-content">
-                                    <span class="format-label">📋 Результат</span>
-                                    <div class="tags-demo">
-                                        <span class="currency-tag">USD</span>
-                                        <span class="currency-tag">EUR</span>
-                                        <span class="currency-tag">GBP</span>
-                                        <span class="currency-tag">CHF</span>
-                                        <span class="currency-tag">JPY</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="format-card incorrect">
-                            <div class="format-icon">
-                                <i class="fas fa-times-circle"></i>
-                            </div>
-                            <div class="format-content">
-                                <span class="format-label">❌ Неправильный формат</span>
-                                <div class="code-demo wrong">
-                                    <code>USD</code><br>
-                                    <code>EUR</code><br>
-                                    <code>GBP</code>
-                                </div>
-                                <p class="format-desc">В столбик — бот получит одну строку с символами <code>\n</code>, что усложняет обработку</p>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-note format-note">
-                            <i class="fas fa-info-circle"></i>
-                            <div class="note-content">
-                                <p><strong>Формат через запятую — это стандартный способ передачи списка данных боту.</strong> Он простой и не требует сложного парсинга.</p>
-                                <div class="examples">
-                                    <p>Можно писать как:</p>
-                                    <ul>
-                                        <li><code>USD, EUR, GBP</code></li>
-                                        <li><code>USD, EUR, GBP, CHF, USD_black</code></li>
-                                    </ul>
-                                    <p class="examples-note">Главное, чтобы <strong>запятые были</strong> между валютами.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-tip">
-                            <i class="fas fa-lightbulb"></i>
-                            <span>Пробелы после запятых необязательны — бот всё поймет: USD,EUR,GBP тоже работает</span>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        
+        <div class="format-card incorrect">
+            <div class="format-icon">
+                <i class="fas fa-times-circle"></i>
+            </div>
+            <div class="format-content">
+                <span class="format-label">❌ Неправильный формат</span>
+                <div class="code-demo wrong">
+                    <code>USD</code><br>
+                    <code>EUR</code><br>
+                    <code>GBP</code>
                 </div>
+                <p class="format-desc">В столбик — бот получит одну строку с символами <code>\n</code>, что усложняет обработку</p>
+            </div>
+        </div>
+        
+        <div class="faq-note format-note">
+            <i class="fas fa-info-circle"></i>
+            <div class="note-content">
+                <p><strong>Формат через запятую — это стандартный способ передачи списка данных боту.</strong> Он простой и не требует сложного парсинга.</p>
+                <div class="examples">
+                    <p>Можно писать как:</p>
+                    <ul>
+                        <li><code>USD, EUR, GBP</code></li>
+                        <li><code>USD, EUR, GBP, CHF, USD_black</code></li>
+                    </ul>
+                    <p class="examples-note">Главное, чтобы <strong>запятые были</strong> между валютами.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-tip">
+            <i class="fas fa-lightbulb"></i>
+            <span>Пробелы после запятых необязательны — бот всё поймет: USD,EUR,GBP тоже работает</span>
+        </div>
+    </div>
+</div>
+
 
                 <!-- Валюты -->
                 <div class="faq-item" data-category="currency">
@@ -1830,147 +3025,146 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="faq-item" data-category="currency">
-                    <div class="faq-question">
-                        <div class="faq-question-content">
-                            <i class="fas fa-question-circle"></i>
-                            <h3>Я случайно удалил важную валюту из списка. Как восстановить?</h3>
-                        </div>
-                        <i class="fas fa-chevron-down faq-toggle"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="recovery-message">
-                            <i class="fas fa-undo-alt"></i>
-                            <p><strong>Просто добавьте ее заново</strong> через раздел <span class="highlight-path">База данных валют</span></p>
-                        </div>
-                        
-                        <div class="warning-block">
-                            <div class="warning-header">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <span class="warning-title">Важно!</span>
-                            </div>
-                            <p>После добавления нужно будет <strong>заново настроить</strong> для нее:</p>
-                        </div>
-                        
-                        <div class="settings-grid">
-                            <div class="settings-item">
-                                <div class="settings-icon red">
-                                    <i class="fas fa-chart-line"></i>
-                                </div>
-                                <div class="settings-content">
-                                    <span class="settings-label">Курсы</span>
-                                    <span class="settings-note">(они сбросятся)</span>
-                                </div>
-                            </div>
-                            
-                            <div class="settings-item">
-                                <div class="settings-icon blue">
-                                    <i class="fas fa-coins"></i>
-                                </div>
-                                <div class="settings-content">
-                                    <span class="settings-label">Номиналы</span>
-                                    <span class="settings-note">(если не использовали глобальную связку)</span>
-                                </div>
-                            </div>
-                            
-                            <div class="settings-item">
-                                <div class="settings-icon purple">
-                                    <i class="fas fa-smile"></i>
-                                </div>
-                                <div class="settings-content">
-                                    <span class="settings-label">Эмодзи и дробная часть</span>
-                                </div>
-                            </div>
-                            
-                            <div class="settings-item">
-                                <div class="settings-icon green">
-                                    <i class="fas fa-exchange-alt"></i>
-                                </div>
-                                <div class="settings-content">
-                                    <span class="settings-label">Кросс-пары с этой валютой</span>
-                                    <span class="settings-note">(если были)</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-note recovery-note">
-                            <i class="fas fa-history"></i>
-                            <div class="note-content">
-                                <p><strong>Старые заказы</strong> с этой валютой сохранятся в истории, но</p>
-                                <p class="warning-text"><i class="fas fa-exclamation-circle"></i> активные заказы со статусом "Новый" могут потребовать корректировки</p>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-path recovery-path">
-                            <i class="fas fa-map-signs"></i>
-                            <code>База данных → Валюты → Добавить валюту</code>
-                        </div>
-                    </div>
+              <div class="faq-item" data-category="currency">
+    <div class="faq-question">
+        <div class="faq-question-content">
+            <i class="fas fa-question-circle"></i>
+            <h3>Я случайно удалил важную валюту из списка. Как восстановить?</h3>
+        </div>
+        <i class="fas fa-chevron-down faq-toggle"></i>
+    </div>
+    <div class="faq-answer">
+        <div class="recovery-message">
+            <i class="fas fa-undo-alt"></i>
+            <p><strong>Просто добавьте ее заново</strong> через раздел <span class="highlight-path">База данных валют</span></p>
+        </div>
+        
+        <div class="warning-block">
+            <div class="warning-header">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span class="warning-title">Важно!</span>
+            </div>
+            <p>После добавления нужно будет <strong>заново настроить</strong> для нее:</p>
+        </div>
+        
+        <div class="settings-grid">
+            <div class="settings-item">
+                <div class="settings-icon red">
+                    <i class="fas fa-chart-line"></i>
                 </div>
-
-                <!-- Заказы -->
-                <div class="faq-item" data-category="orders">
-                    <div class="faq-question">
-                        <div class="faq-question-content">
-                            <i class="fas fa-question-circle"></i>
-                            <h3>Что означают статусы заказов?</h3>
-                        </div>
-                        <i class="fas fa-chevron-down faq-toggle"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="status-grid">
-                            <div class="status-item">
-                                <span class="status-badge">🟡</span>
-                                <span><strong>Новый</strong> — создан</span>
-                            </div>
-                            <div class="status-item">
-                                <span class="status-badge">🔵</span>
-                                <span><strong>В обработке</strong> — оператор работает</span>
-                            </div>
-                            <div class="status-item">
-                                <span class="status-badge">🟢</span>
-                                <span><strong>Подтверждён</strong> — в канале</span>
-                            </div>
-                            <div class="status-item">
-                                <span class="status-badge">✅</span>
-                                <span><strong>Выполнен</strong> — завершён</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item" data-category="orders">
-                    <div class="faq-question">
-                        <div class="faq-question-content">
-                            <i class="fas fa-question-circle"></i>
-                            <h3>Клиент оплатил заказ, но сделка сорвалась. Как правильно отразить это в системе?</h3>
-                        </div>
-                        <i class="fas fa-chevron-down faq-toggle"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Ни в коем случае не удаляйте заказ. Откройте его на редактирование (например, по ссылке из канала) и измените статус на ❌ Отменён. Это сохранит историю операции для отчетности и финансового анализа, показав, почему заказ не был выполнен, хотя и прошел статус "Подтверждён".</p>
-                    </div>
-                </div>
-
-                <!-- Канал -->
-                <div class="faq-item" data-category="channel">
-                    <div class="faq-question">
-                        <div class="faq-question-content">
-                            <i class="fas fa-question-circle"></i>
-                            <h3>Обязательно создавать канал?</h3>
-                        </div>
-                        <i class="fas fa-chevron-down faq-toggle"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Нет, это опционально. Но канал упрощает работу команды.</p>
-                        <div class="faq-tip">
-                            <i class="fas fa-lightbulb"></i>
-                            <span>С каналом все сотрудники видят заказы в реальном времени</span>
-                        </div>
-                    </div>
+                <div class="settings-content">
+                    <span class="settings-label">Курсы</span>
+                    <span class="settings-note">(они сбросятся)</span>
                 </div>
             </div>
+            
+            <div class="settings-item">
+                <div class="settings-icon blue">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <div class="settings-content">
+                    <span class="settings-label">Номиналы</span>
+                    <span class="settings-note">(если не использовали глобальную связку)</span>
+                </div>
+            </div>
+            
+            <div class="settings-item">
+                <div class="settings-icon purple">
+                    <i class="fas fa-smile"></i>
+                </div>
+                <div class="settings-content">
+                    <span class="settings-label">Эмодзи и дробная часть</span>
+                </div>
+            </div>
+            
+            <div class="settings-item">
+                <div class="settings-icon green">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div class="settings-content">
+                    <span class="settings-label">Кросс-пары с этой валютой</span>
+                    <span class="settings-note">(если были)</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-note recovery-note">
+            <i class="fas fa-history"></i>
+            <div class="note-content">
+                <p><strong>Старые заказы</strong> с этой валютой сохранятся в истории, но</p>
+                <p class="warning-text"><i class="fas fa-exclamation-circle"></i> активные заказы со статусом "Новый" могут потребовать корректировки</p>
+            </div>
+        </div>
+        
+        <div class="faq-path recovery-path">
+            <i class="fas fa-map-signs"></i>
+            <code>База данных → Валюты → Добавить валюту</code>
+        </div>
+    </div>
+</div>
+              
+              
+<!-- Заказы -->
+<div class="faq-item" data-category="orders">
+    <div class="faq-question">
+        <div class="faq-question-content">
+            <i class="fas fa-question-circle"></i>
+            <h3>Что означают статусы заказов?</h3>
+        </div>
+        <i class="fas fa-chevron-down faq-toggle"></i>
+    </div>
+    <div class="faq-answer">
+        <div class="status-grid">
+            <div class="status-item">
+                <span class="status-badge">🟡</span>
+                <span><strong>Новый</strong> — создан</span>
+            </div>
+            <div class="status-item">
+                <span class="status-badge">🔵</span>
+                <span><strong>В обработке</strong> — оператор работает</span>
+            </div>
+            <div class="status-item">
+                <span class="status-badge">🟢</span>
+                <span><strong>Подтверждён</strong> — в канале</span>
+            </div>
+            <div class="status-item">
+                <span class="status-badge">✅</span>
+                <span><strong>Выполнен</strong> — завершён</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="faq-item" data-category="orders">
+    <div class="faq-question">
+        <div class="faq-question-content">
+            <i class="fas fa-question-circle"></i>
+            <h3>Клиент оплатил заказ, но сделка сорвалась. Как правильно отразить это в системе?</h3>
+        </div>
+        <i class="fas fa-chevron-down faq-toggle"></i>
+    </div>
+    <div class="faq-answer">
+        <p>Ни в коем случае не удаляйте заказ. Откройте его на редактирование (например, по ссылке из канала) и измените статус на ❌ Отменён. Это сохранит историю операции для отчетности и финансового анализа, показав, почему заказ не был выполнен, хотя и прошел статус "Подтверждён".</p>
+    </div>
+</div>
+
+<!-- Канал -->
+<div class="faq-item" data-category="channel">
+    <div class="faq-question">
+        <div class="faq-question-content">
+            <i class="fas fa-question-circle"></i>
+            <h3>Обязательно создавать канал?</h3>
+        </div>
+        <i class="fas fa-chevron-down faq-toggle"></i>
+    </div>
+    <div class="faq-answer">
+        <p>Нет, это опционально. Но канал упрощает работу команды.</p>
+        <div class="faq-tip">
+            <i class="fas fa-lightbulb"></i>
+            <span>С каналом все сотрудники видят заказы в реальном времени</span>
+        </div>
+    </div>
+</div>
 
             <div class="faq-no-results" id="faqNoResults" style="display: none;">
                 <i class="fas fa-search"></i>
@@ -2029,7 +3223,7 @@
         </div>
     </footer>
 
-    <!-- Modal (один раз) -->
+    <!-- Modal -->
     <div class="modal" id="modal">
         <div class="modal-overlay"></div>
         <div class="modal-container">
@@ -2047,14 +3241,17 @@
                 <div class="modal-content">
                     <h3>Пошаговая инструкция</h3>
                     <ul class="modal-steps" id="modalSteps"></ul>
+                    
                     <div class="submodules" id="submodules"></div>
                 </div>
                 
                 <div class="modal-sidebar">
                     <h4>Полезная информация</h4>
+                    
                     <div class="sidebar-tip" id="sidebarTip"></div>
                     <div class="sidebar-warning" id="sidebarWarning"></div>
                     <div class="sidebar-path" id="sidebarPath"></div>
+                    
                     <div class="sidebar-tags" id="sidebarTags"></div>
                 </div>
             </div>
@@ -2093,99 +3290,99 @@
                 path: "Настройки → Обменник → Создать → Параметры",
                 tags: ["Создание", "Настройка", "Обменник"]
             },
-            users: {
-                title: "Шаг 3: Управление пользователями",
-                subtitle: "Пользователи и роли",
-                steps: [
-                    { number: "1", title: "Доступ к управлению", description: "Главное меню → Настройки → Обменник → Пользователи" },
-                    { number: "2", title: "Добавить пользователя", description: "Нажмите «Добавить пользователя» → отправьте @username (если уже заходил в бот) или Telegram ID.<br> (Telegram ID - В поиске Telegram найдите бота @myidbot, запустите его кнопкой Start, перешлите ему любой пост из вашего канала, профиля и скопируйте полученный id вместе со знаком «-» в начале или без.)" },
-                    { number: "3", title: "Подтверждение", description: "После успешного добавления бот пришлёт уведомление. По умолчанию роль — «Пользователь»" },
-                    { number: "4", title: "Изменить права", description: "Главное меню → Настройки → Обменник → Пользователи → Права пользователей" },
-                    { number: "5", title: "Выбор роли", description: "Нажмите → Редактировать → выберите роль: Владелец, Администратор, Оператор или Пользователь" },
-                    { number: "6", title: "Удаление доступа", description: "В том же меню нажмите → Удалить доступ, чтобы исключить пользователя" }
-                ],
-                tip: "Новый пользователь получает базовые права. Для расширения возможностей измените роль через меню прав.",
-                warning: "Администратор не может удалить Владельца или изменить его права.",
-                path: "Настройки → Обменник → Пользователи → Добавить / Права",
-                tags: ["Пользователи", "Роли", "Доступ", "Администрирование"],
-                submodules: [
-                    {
-                        id: "owner",
-                        title: "👑 Владелец",
-                        icon: "fas fa-crown",
-                        steps: [
-                            "Полный доступ ко всем функциям без ограничений",
-                            "Управление всеми пользователями и их правами",
-                            "Настройка обменного пункта и валют",
-                            "Подключение каналов и интеграций",
-                            "Просмотр всей аналитики и отчетов"
-                        ],
-                        tip: "Владелец — главная роль с максимальными привилегиями.",
-                        warning: "Только Владелец может передать свои права другому пользователю.",
-                        path: "Права доступа → Владелец"
-                    },
-                    {
-                        id: "admin",
-                        title: "🧘‍♂️ Администратор",
-                        icon: "fas fa-user-tie",
-                        steps: [
-                            "Все права Владельца, кроме возможности удалить Владельца или изменить его права",
-                            "Создание и управление заказами",
-                            "Выставление и изменение курсов валют",
-                            "Настройка базы валют и их параметров",
-                            "Управление пользователями (кроме Владельца)",
-                            "Подключение закрытого канала"
-                        ],
-                        tip: "Администратор может выполнять все операции, но не может заблокировать Владельца.",
-                        warning: "Администратор не может удалить Владельца или изменить его права.",
-                        path: "Права доступа → Администратор"
-                    },
-                    {
-                        id: "operator",
-                        title: "👨‍💻 Оператор",
-                        icon: "fas fa-user-cog",
-                        steps: [
-                            "Создание новых заказов",
-                            "Выставление и изменение курсов валют",
-                            "Просмотр курсов и настроек",
-                            "Работа с котировками",
-                            "Доступ к информации о проекте"
-                        ],
-                        tip: "Оператор управляет текущими операциями, но не меняет настройки системы.",
-                        warning: "Оператор не имеет доступа к управлению пользователями и настройкам валют.",
-                        path: "Права доступа → Оператор"
-                    },
-                    {
-                        id: "user",
-                        title: "🙋‍♂️ Пользователь",
-                        icon: "fas fa-user",
-                        steps: [
-                            "Создание новых заказов на покупку/продажу валюты",
-                            "Просмотр курсов валют",
-                            "Доступ к настройкам профиля",
-                            "Просмотр информации о проекте"
-                        ],
-                        tip: "Базовая роль для кассира — только создание заказов.",
-                        warning: "Пользователь не может изменять курсы и управлять заказами.",
-                        path: "Права доступа → Пользователь"
-                    },
-                    {
-                        id: "alternative",
-                        title: "💡 Альтернатива для кассира",
-                        icon: "fas fa-user-check",
-                        steps: [
-                            "Если нужно только редактировать заказы и менять статус:",
-                            "1. Добавьте сотрудника в закрытый канал для сотрудников",
-                            "2. НЕ добавляйте его в участники виртуального обменника",
-                            "3. Он сможет редактировать заказы по ссылкам из канала",
-                            "4. Создавать новые заказы он не сможет"
-                        ],
-                        tip: "Удобно для кассиров, которым не нужно создавать заказы.",
-                        warning: "Этот вариант работает только при наличии закрытого канала.",
-                        path: "Канал для сотрудников → Добавить участника"
-                    }
-                ]
-            },
+          users: {
+            title: "Шаг 3: Управление пользователями",
+            subtitle: "Пользователи и роли",
+            steps: [
+                { number: "1", title: "Доступ к управлению", description: "Главное меню → Настройки → Обменник → Пользователи" },
+                { number: "2", title: "Добавить пользователя", description: "Нажмите «Добавить пользователя» → отправьте @username (если уже заходил в бот) или Telegram ID.<br> (Telegram ID - В поиске Telegram найдите бота @myidbot, запустите его кнопкой Start, перешлите ему любой пост из вашего канала, профиля и скопируйте полученный id вместе со знаком «-» в начале или без.)" },
+                { number: "3", title: "Подтверждение", description: "После успешного добавления бот пришлёт уведомление. По умолчанию роль — «Пользователь»" },
+                { number: "4", title: "Изменить права", description: "Главное меню → Настройки → Обменник → Пользователи → Права пользователей" },
+                { number: "5", title: "Выбор роли", description: "Нажмите → Редактировать → выберите роль: Владелец, Администратор, Оператор или Пользователь" },
+                { number: "6", title: "Удаление доступа", description: "В том же меню нажмите → Удалить доступ, чтобы исключить пользователя" }
+            ],
+            tip: "Новый пользователь получает базовые права. Для расширения возможностей измените роль через меню прав.",
+            warning: "Администратор не может удалить Владельца или изменить его права.",
+            path: "Настройки → Обменник → Пользователи → Добавить / Права",
+            tags: ["Пользователи", "Роли", "Доступ", "Администрирование"],
+            submodules: [
+                {
+                    id: "owner",
+                    title: "👑 Владелец",
+                    icon: "fas fa-crown",
+                    steps: [
+                        "Полный доступ ко всем функциям без ограничений",
+                        "Управление всеми пользователями и их правами",
+                        "Настройка обменного пункта и валют",
+                        "Подключение каналов и интеграций",
+                        "Просмотр всей аналитики и отчетов"
+                    ],
+                    tip: "Владелец — главная роль с максимальными привилегиями.",
+                    warning: "Только Владелец может передать свои права другому пользователю.",
+                    path: "Права доступа → Владелец"
+                },
+                {
+                    id: "admin",
+                    title: "🧘‍♂️ Администратор",
+                    icon: "fas fa-user-tie",
+                    steps: [
+                        "Все права Владельца, кроме возможности удалить Владельца или изменить его права",
+                        "Создание и управление заказами",
+                        "Выставление и изменение курсов валют",
+                        "Настройка базы валют и их параметров",
+                        "Управление пользователями (кроме Владельца)",
+                        "Подключение закрытого канала"
+                    ],
+                    tip: "Администратор может выполнять все операции, но не может заблокировать Владельца.",
+                    warning: "Администратор не может удалить Владельца или изменить его права.",
+                    path: "Права доступа → Администратор"
+                },
+                {
+                    id: "operator",
+                    title: "👨‍💻 Оператор",
+                    icon: "fas fa-user-cog",
+                    steps: [
+                        "Создание новых заказов",
+                        "Выставление и изменение курсов валют",
+                        "Просмотр курсов и настроек",
+                        "Работа с котировками",
+                        "Доступ к информации о проекте"
+                    ],
+                    tip: "Оператор управляет текущими операциями, но не меняет настройки системы.",
+                    warning: "Оператор не имеет доступа к управлению пользователями и настройкам валют.",
+                    path: "Права доступа → Оператор"
+                },
+                {
+                    id: "user",
+                    title: "🙋‍♂️ Пользователь",
+                    icon: "fas fa-user",
+                    steps: [
+                        "Создание новых заказов на покупку/продажу валюты",
+                        "Просмотр курсов валют",
+                        "Доступ к настройкам профиля",
+                        "Просмотр информации о проекте"
+                    ],
+                    tip: "Базовая роль для кассира — только создание заказов.",
+                    warning: "Пользователь не может изменять курсы и управлять заказами.",
+                    path: "Права доступа → Пользователь"
+                },
+                {
+                    id: "alternative",
+                    title: "💡 Альтернатива для кассира",
+                    icon: "fas fa-user-check",
+                    steps: [
+                        "Если нужно только редактировать заказы и менять статус:",
+                        "1. Добавьте сотрудника в закрытый канал для сотрудников",
+                        "2. НЕ добавляйте его в участники виртуального обменника",
+                        "3. Он сможет редактировать заказы по ссылкам из канала",
+                        "4. Создавать новые заказы он не сможет"
+                    ],
+                    tip: "Удобно для кассиров, которым не нужно создавать заказы.",
+                    warning: "Этот вариант работает только при наличии закрытого канала.",
+                    path: "Канал для сотрудников → Добавить участника"
+                }
+            ]
+                },
             fractional: {
                 title: "Шаг 4: База валют и кросс-пары",
                 subtitle: "Настройка свойств валют для расчётов и отображения (не курс).",
@@ -2215,6 +3412,7 @@
                         description: "Все настроенные параметры можно увидеть в сводной информации по валютам. Для этого перейдите в главное меню : Настройки → Валютные пары."
                     },
                     {
+                      
                         number: "5",
                         title: "Оптимизация для кросс-пар",
                         description: "Для кросс-пар рекомендуется устанавливать более высокую точность (6-8 знаков) для корректных расчетов."
@@ -2325,7 +3523,7 @@
                     { number: "3", title: "Добавить в бот id", description: "Главное меню → Настройки → Обменник → ID канала → введите chat_id." },
                     { number: "4", title: "Настроить права", description: "Зайдите в созданный вами канал →  нажмите в верху на название канала → зайдите в  Administrators/Администраторы → Add Admin/ Добавить пользователя → введите username бота (@ratedesk_bot)→ Done/Создать." },
                     { number: "5", title: "Привязать группу", description: "Зайдите в созданный вами канал →  нажмите в верху на название канала → зайдите в  Channel Settings/Настройки канала → Discussion/Обсуждение  → Add/Создать группу → введите имя группы → Done/Создать" },
-                    { number: "6", title: "Отправка таблицы в канал", description: "Главное меню → Курсы валют → Отправить в канал.Если всё успешно, добавьте сотрудников в канал и чат для обсуждения. Для личного использования канал можно оставить без участников." }
+                   { number: "6", title: "Отправка таблицы в канал", description: "Главное меню → Курсы валют → Отправить в канал.Если всё успешно, добавьте сотрудников в канал и чат для обсуждения. Для личного использования канал можно оставить без участников." }
                 ],
                 tip: "Канал для уведомлений, группа для обсуждения деталей.",
                 warning: "Без правильного chat_id бот не сможет отправлять уведомления.",
@@ -2337,16 +3535,17 @@
                 subtitle: "Полный цикл работы со сделками",
                 steps: [
                     { number: "1", title: "Создать заказ", description: "Главное меню → Новый заказ → Выбрать валютную пару/кросс-пару. Кросс-пары всегда отображаются в нижней части таблицы." },
+                  
                     { number: "2", title: "Выбор режима расчёта", description: "Выберите пару из таблицы → затем выберите тип операции: «По сумме выдачи» (сколько отдаём) или «По сумме получения» (сколько получаем)." },
                     { number: "3", title: "Ввести данные", description: "Введите сумму для обмена, затем укажите имя клиента или номер телефона." },
-                    { number: "4", title: "Публикация", description: "При необходимости нажмите «В канал», чтобы поделиться результатом." },
+                   { number: "4", title: "Публикация", description: "При необходимости нажмите «В канал», чтобы поделиться результатом." },
                 ],
                 tip: "Используйте шаблоны для часто используемых реквизитов.",
                 warning: "Для создания заказа на покупку (клиент продает, обменный пункт покупает) кнопки расположены слева (🟢), для создания заказа на продажу (клиент покупает, обменный пункт продает) кнопки расположены справа (🔴).",
                 path: "Главное меню → Новый заказ → Выбор пары → Ввод данных",
                 tags: ["Заказы", "Сделки", "Операции"]
             },
-            status: {
+         status: {
                 title: "Шаг 10: Статусы заказов",
                 subtitle: "Статусы сделок («Новый», «Подтверждён», «Выполнен») — для контроля этапов заказа и быстрой реакции сотрудников.",
                 steps: [
@@ -2385,7 +3584,7 @@
                     { number: "3", title: "Через меню", description: "Главное меню → Заказы → Редактировать → введите номер заказа." },
                     { number: "4", title: "Из канала", description: "Нажмите ссылку под заказом в канале. Работает для всех сотрудников.Возможность редактирования через канал сохраняется до первого изменения заказа в основном боте." },
                     { number: "5", title: "Параметры", description: "Можно изменить: курс, сумму, реквизиты, статус, файлы." },
-                    { number: "6", title: "Автопересчет", description: "При изменении курса или суммы автоматический пересчет значений. После внесения изменений данные будут изменены в том числе и в канале автоматически." }
+                    { number: "6", title: "Автопересчет", description: "При изменении курса или суммы автоматический пересчет значений. После внесения изменений данные будет изменены в том числе и в канале автоматически." }
                 ],
                 tip: "Регулярно проверяйте заказы на наличие ошибок.",
                 warning: "После статуса 'Выполнен' редактирование недоступно.",
@@ -2578,7 +3777,6 @@
                 closeMobileMenu();
             }
         });
-
         // FAQ Module
         document.addEventListener('DOMContentLoaded', function() {
             initFAQ();

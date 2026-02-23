@@ -50,12 +50,11 @@
 
         /* ===== HEADER ===== */
         .header {
-            position: fixed; top: 0; left: 0; right: 0;
+            position: sticky; top: 0;
             height: var(--header-height);
-            background: rgba(10,10,26,0.97);
+            background: var(--bg-primary);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
-            will-change: transform;
         }
         .header::after {
             content: '';
@@ -105,7 +104,7 @@
 
         /* ===== MOBILE MENU ===== */
         .mobile-menu {
-            position: fixed; top: var(--header-height); left: 0; right: 0; bottom: 0;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             z-index: 999; pointer-events: none;
         }
         .mobile-menu.active { pointer-events: all; }
@@ -133,7 +132,7 @@
 
         /* ===== HERO ===== */
         .hero {
-            padding: calc(var(--header-height) + 3rem) 0 3rem;
+            padding: 3rem 0;
             text-align: center;
         }
         .hero-badge {
@@ -160,15 +159,83 @@
         }
 
         .info-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
             padding: 2rem;
             transition: var(--transition);
             display: flex;
             flex-direction: column;
+            position: relative;
+            border: 1px solid transparent;
+            /* Уникальный градиент для каждой карточки задаётся ниже */
+            background-origin: border-box;
         }
-        .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(54,209,220,0.3); }
+
+        /* Градиентный фон карточек */
+        .info-card:nth-child(1) {
+            background:
+                linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                linear-gradient(135deg, #FF6B35, #FF8A35) border-box;
+            background-color: transparent;
+            box-shadow: 0 0 32px rgba(255,107,53,0.08), inset 0 0 60px rgba(255,107,53,0.04);
+        }
+        .info-card:nth-child(1)::after {
+            content: '';
+            position: absolute; inset: 0;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg,
+                rgba(255,107,53,0.08) 0%,
+                transparent 60%
+            );
+            pointer-events: none;
+        }
+
+        .info-card:nth-child(2) {
+            background:
+                linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                linear-gradient(135deg, #36D1DC, #5DFDCB) border-box;
+            background-color: transparent;
+            box-shadow: 0 0 32px rgba(54,209,220,0.08), inset 0 0 60px rgba(54,209,220,0.04);
+        }
+        .info-card:nth-child(2)::after {
+            content: '';
+            position: absolute; inset: 0;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg,
+                rgba(54,209,220,0.08) 0%,
+                transparent 60%
+            );
+            pointer-events: none;
+        }
+
+        .info-card:nth-child(3) {
+            background:
+                linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                linear-gradient(135deg, #8b5cf6, #36D1DC) border-box;
+            background-color: transparent;
+            box-shadow: 0 0 32px rgba(139,92,246,0.08), inset 0 0 60px rgba(139,92,246,0.04);
+        }
+        .info-card:nth-child(3)::after {
+            content: '';
+            position: absolute; inset: 0;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg,
+                rgba(139,92,246,0.08) 0%,
+                transparent 60%
+            );
+            pointer-events: none;
+        }
+
+        /* Градиентный оверлей — строго ПОД контентом */
+        .info-card:nth-child(1)::after,
+        .info-card:nth-child(2)::after,
+        .info-card:nth-child(3)::after {
+            z-index: 0;
+        }
+        /* Весь контент карточки — над оверлеем */
+        .info-card > * { position: relative; z-index: 1; }
+        .info-card:nth-child(1):hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(255,107,53,0.2), 0 0 0 1px rgba(255,107,53,0.3); }
+        .info-card:nth-child(2):hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(54,209,220,0.2), 0 0 0 1px rgba(54,209,220,0.3); }
+        .info-card:nth-child(3):hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(139,92,246,0.2), 0 0 0 1px rgba(139,92,246,0.3); }
 
         .info-icon {
             width: 56px; height: 56px;
@@ -186,9 +253,19 @@
 
         .info-card h3 {
             font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;
-            background: var(--gradient-primary);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
+        .info-card:nth-child(1) h3 { background: linear-gradient(135deg, #FF6B35, #FF8A35); }
+        .info-card:nth-child(1) .info-icon { background: linear-gradient(135deg, rgba(255,107,53,0.25), rgba(255,138,53,0.15)); border-color: rgba(255,107,53,0.3); }
+        .info-card:nth-child(1) li::before { color: #FF6B35; }
+
+        .info-card:nth-child(2) h3 { background: linear-gradient(135deg, #36D1DC, #5DFDCB); }
+        .info-card:nth-child(2) .info-icon { background: linear-gradient(135deg, rgba(54,209,220,0.25), rgba(93,253,203,0.15)); border-color: rgba(54,209,220,0.3); }
+        .info-card:nth-child(2) li::before { color: #36D1DC; }
+
+        .info-card:nth-child(3) h3 { background: linear-gradient(135deg, #8b5cf6, #36D1DC); }
+        .info-card:nth-child(3) .info-icon { background: linear-gradient(135deg, rgba(139,92,246,0.25), rgba(54,209,220,0.15)); border-color: rgba(139,92,246,0.3); }
+        .info-card:nth-child(3) li::before { color: #8b5cf6; }
 
         .info-card ul { list-style: none; }
         .info-card li {
@@ -241,8 +318,6 @@
                 margin-bottom: 0;
                 text-align: center;
                 line-height: 1.2;
-                background: none;
-                -webkit-text-fill-color: var(--accent-orange);
             }
             /* Правая колонка: список */
             .info-card ul {
@@ -891,7 +966,7 @@
             .section-decoration { display: none; }
 
             /* Hero */
-            .hero { padding: calc(var(--header-height) + 1.5rem) 0 2rem; }
+            .hero { padding: 1.5rem 0 2rem; }
             .hero-title { font-size: 2rem; }
             .hero-subtitle { font-size: 1rem; }
             .hero-description { font-size: 0.92rem; }
@@ -1109,7 +1184,7 @@
             <div class="module-card" data-module="fractional">
                 <div class="module-number">3</div>
                 <div class="module-icon"><i class="fas fa-coins"></i></div>
-                <h3 class="module-title">Шаг 3: Настройка базы валют и кросс-пары</h3>
+                <h3 class="module-title">Шаг 3: База валют и кросс-пары</h3>
                 <p class="module-description">Создание и управление валютной базой, настройка кросс-валютных пар для торговли</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1578,17 +1653,17 @@ const moduleData = {
         tags: ["Заказы", "Сделки", "Операции"]
     },
     fractional: {
-       title: "Шаг 3: Настройка базы валют и кросс-пары",
+        title: "Шаг 3: База валют и кросс-пары",
         subtitle: "Создание и управление валютной базой, настройка кросс-валютных пар",
         steps: [
-            { number:"1", title:"Создание валютных пар", description:"Настройки → Валютные пары → База данных валют." },
-            { number:"2", title:"Добавить валюту", description:"Нажмите 'Добавить валюту' и введите код валюты вручную как в примере (USD, EUR, GBP, USD_white и т.д.) → Добавить RUB (ДА/НЕТ)→ Назад." },
-            { number:"3", title:"Создать кросс-пары", description:"Перейдите в Настройки → Валютные пары → Кросс-курсы → Добавить кросс-курс.Система автоматически сформирует и предложит название пары или можно указать свой вариант." },
-            { number:"4", title:"Настройки кросс-курсов", description:"После выбора пар, вы можете в этом же окне внести изменения, такие как: изменить название, удалить или добавить еще одну пару." },
-            { number:"5", title:"Оптимизация для кросс-пар", description:"Не выходя в главное меню, при необходимости можно отредактировать название. Задать название → в строке написать, например: USD/EUR(CASH)→ Главное меню." }
+            { number:"1", title:"Установить параметры отображения", description:"Настройки → Валютные пары → Кастомизация валют." },
+            { number:"2", title:"Выбрать конфигурацию", description:"Настройка из 4 блоков: Номиналы → Дробная часть → Emoji → Глобальные данные." },
+            { number:"3", title:"Настройки параметров", description:"Для каждой валюты:\n1. Номиналы — добавьте купюры.\n2. Дробная часть — от 2 до 8 знаков.\n3. Emoji — визуальное обозначение.\n4. Глобальные валюты — привязка к мировой базе." },
+            { number:"4", title:"Просмотр сводной информации", description:"Главное меню → Настройки → Валютные пары — все настроенные параметры." },
+            { number:"5", title:"Оптимизация для кросс-пар", description:"Для кросс-пар рекомендуется 6-8 знаков для корректных расчетов." }
         ],
-        tip: "Начните с добавления основных валют: национальная валюта, USD, EUR,  GBP. Кросс-пары формируются только на основе уже добавленных в систему валютных пар.",
-        warning: "При удалении валюты будут удалены все связанные с ней пары и исторические данные.",
+        tip: "Для фиатных валют (RUB, USD) — 2 знака, для криптовалют — 6-8.",
+        warning: "Изменение точности не повлияет на существующие заказы, только на новые.",
         path: "Настройки → Валютные пары → Кастомизация → Выбор валюты",
         tags: ["Валюты", "Кросс-пары", "База данных"]
     },
@@ -1805,8 +1880,7 @@ document.querySelectorAll('.mobile-nav-link').forEach(link => {
 function smoothScroll(target) {
     const el = document.querySelector(target);
     if (!el) return;
-    const offset = document.querySelector('.header').offsetHeight + 16;
-    window.scrollTo({ top: el.offsetTop - offset, behavior: 'smooth' });
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {

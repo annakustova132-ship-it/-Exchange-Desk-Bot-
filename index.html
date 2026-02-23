@@ -52,10 +52,10 @@
         .header {
             position: fixed; top: 0; left: 0; right: 0;
             height: var(--header-height);
-            background: rgba(10,10,26,0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(10,10,26,0.97);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
+            will-change: transform;
         }
         .header::after {
             content: '';
@@ -153,7 +153,7 @@
 
         /* ===== INFO CARDS — как на скрине 3 ===== */
         .info-section { padding: 3rem 0; background: var(--bg-secondary); }
-        .info-grid { display: grid; gap: 1.5rem; }
+        .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 
         .info-card {
             background: var(--bg-card);
@@ -202,6 +202,17 @@
             font-weight: 900; font-size: 1.1rem; line-height: 1.5;
         }
         .info-card strong { color: var(--text-primary); }
+
+        /* Мобильная адаптация — 3 колонки, компактнее */
+        @media (max-width: 767px) {
+            .info-grid { gap: 0.5rem; }
+            .info-card { padding: 0.85rem 0.7rem; border-radius: 10px; }
+            .info-icon { width: 36px; height: 36px; font-size: 1rem; border-radius: 8px; margin-bottom: 0.75rem; }
+            .info-card h3 { font-size: 0.82rem; margin-bottom: 0.5rem; }
+            .info-card li { font-size: 0.72rem; margin-bottom: 0.4rem; padding-left: 0.9rem; line-height: 1.4; }
+            .info-card li::before { font-size: 0.85rem; }
+            .info-card strong { font-size: 0.72rem; }
+        }
 
         /* ===== SECTIONS ===== */
         .section { padding: 4rem 0; }
@@ -757,7 +768,7 @@
 
         @media (min-width: 768px) {
             .logo-text { display: inline; }
-            .info-grid { grid-template-columns: repeat(3, 1fr); }
+            .info-grid { gap: 1rem; }
             .functions-grid { grid-template-columns: repeat(3, 1fr); }
             .footer-grid { grid-template-columns: repeat(2, 1fr); }
         }
@@ -846,10 +857,7 @@
             .module-description { font-size: 0.78rem; }
             .module-number { font-size: 2.8rem; }
 
-            /* Info */
-            .info-section { padding: 2rem 0; }
-            .info-card { padding: 1.5rem; }
-            .info-card h3 { font-size: 1.2rem; }
+            /* Info — handled by dedicated mobile block */
 
             /* PDF */
             .pdf-card { padding: 2rem 1.25rem; }
@@ -865,17 +873,10 @@
             .container { padding: 0 1rem; }
         }
 
-        /* Анимация fadeInUp для карточек */
-        @media (prefers-reduced-motion: no-preference) {
-            .function-card, .module-card, .info-card { animation: fadeInUp 0.5s ease backwards; }
-            @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-            .function-card:nth-child(1) { animation-delay: 0.05s; }
-            .function-card:nth-child(2) { animation-delay: 0.1s; }
-            .function-card:nth-child(3) { animation-delay: 0.15s; }
-            .function-card:nth-child(4) { animation-delay: 0.2s; }
-            .function-card:nth-child(5) { animation-delay: 0.25s; }
-            .function-card:nth-child(6) { animation-delay: 0.3s; }
-        }
+        /* Карточки без анимации при загрузке — убрано мерцание при скролле */
+        .function-card, .module-card, .info-card { opacity: 1; }
+        /* Плавный hover через transition вместо animation */
+        .function-card, .module-card, .info-card { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
     </style>
 </head>
 <body>
@@ -1526,17 +1527,17 @@ const moduleData = {
         tags: ["Заказы", "Сделки", "Операции"]
     },
     fractional: {
-                title: "Шаг 3: Настройка базы валют и кросс-пары",
+        title: "Шаг 3: База валют и кросс-пары",
         subtitle: "Создание и управление валютной базой, настройка кросс-валютных пар",
         steps: [
-            { number:"1", title:"Создание валютных пар", description:"Настройки → Валютные пары → База данных валют." },
-            { number:"2", title:"Добавить валюту", description:"Нажмите 'Добавить валюту' и введите код валюты вручную как в примере (USD, EUR, GBP, USD_white и т.д.) → Добавить RUB (ДА/НЕТ)→ Назад." },
-            { number:"3", title:"Создать кросс-пары", description:"Перейдите в Настройки → Валютные пары → Кросс-курсы → Добавить кросс-курс.Система автоматически сформирует и предложит название пары или можно указать свой вариант." },
-            { number:"4", title:"Настройки кросс-курсов", description:"После выбора пар, вы можете в этом же окне внести изменения, такие как: изменить название, удалить или добавить еще одну пару." },
-            { number:"5", title:"Оптимизация для кросс-пар", description:"Не выходя в главное меню, при необходимости можно отредактировать название. Задать название → в строке написать, например: USD/EUR(CASH)→ Главное меню." }
+            { number:"1", title:"Установить параметры отображения", description:"Настройки → Валютные пары → Кастомизация валют." },
+            { number:"2", title:"Выбрать конфигурацию", description:"Настройка из 4 блоков: Номиналы → Дробная часть → Emoji → Глобальные данные." },
+            { number:"3", title:"Настройки параметров", description:"Для каждой валюты:\n1. Номиналы — добавьте купюры.\n2. Дробная часть — от 2 до 8 знаков.\n3. Emoji — визуальное обозначение.\n4. Глобальные валюты — привязка к мировой базе." },
+            { number:"4", title:"Просмотр сводной информации", description:"Главное меню → Настройки → Валютные пары — все настроенные параметры." },
+            { number:"5", title:"Оптимизация для кросс-пар", description:"Для кросс-пар рекомендуется 6-8 знаков для корректных расчетов." }
         ],
-        tip: "Начните с добавления основных валют: национальная валюта, USD, EUR,  GBP. Кросс-пары формируются только на основе уже добавленных в систему валютных пар.",
-        warning: "При удалении валюты будут удалены все связанные с ней пары и исторические данные.",
+        tip: "Для фиатных валют (RUB, USD) — 2 знака, для криптовалют — 6-8.",
+        warning: "Изменение точности не повлияет на существующие заказы, только на новые.",
         path: "Настройки → Валютные пары → Кастомизация → Выбор валюты",
         tags: ["Валюты", "Кросс-пары", "База данных"]
     },

@@ -17,12 +17,12 @@
             --text-primary: #f0f0ff;
             --text-secondary: #b8b8d6;
             --text-muted: #8a8ab5;
-            --accent-orange: #FF6B35;
-            --accent-cyan: #36D1DC;
-            --accent-green: #5DFDCB;
+            --accent-orange: #FF5A1F;
+            --accent-cyan: #1EC8D8;
+            --accent-green: #3DFAB8;
             --accent-red: #ef4444;
-            --accent-purple: #8b5cf6;
-            --gradient-primary: linear-gradient(135deg, #FF6B35 0%, #36D1DC 50%, #5DFDCB 100%);
+            --accent-purple: #9b6dff;
+            --gradient-primary: linear-gradient(135deg, #FF5A1F 0%, #1EC8D8 55%, #3DFAB8 100%);
             --border-color: #2d2d5a;
             --shadow: 0 4px 12px rgba(0,0,0,0.3);
             --shadow-lg: 0 8px 24px rgba(0,0,0,0.2);
@@ -61,7 +61,7 @@
             content: '';
             position: absolute; bottom: 0; left: -100%; width: 100%; height: 2px;
             background: linear-gradient(90deg, transparent 0%, #FF6B35 25%, #36D1DC 50%, #5DFDCB 75%, transparent 100%);
-            animation: headerGlow 3s linear infinite;
+            
             pointer-events: none;
         }
         @keyframes headerGlow { 0% { transform: translateX(0); } 100% { transform: translateX(200%); } }
@@ -130,7 +130,14 @@
         .mobile-nav-link.download { margin-top: 1rem; background: var(--gradient-primary); color: #0a0a1a; font-weight: 700; }
         .mobile-nav-link i { font-size: 1.2rem; width: 24px; }
 
-        .hero { padding: 3rem 0; text-align: center; }
+        .hero { padding: 4rem 0 3rem; text-align: center; position: relative; overflow: hidden; }
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(54,209,220,0.08) 0%, transparent 70%),
+                        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255,107,53,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
         .hero-badge {
             display: inline-flex; align-items: center; gap: 0.5rem;
             background: rgba(255,107,53,0.1); color: var(--accent-orange);
@@ -138,13 +145,61 @@
             font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem;
             border: 1px solid rgba(255,107,53,0.2);
         }
-        .hero-title { font-size: 2.8rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
-        .hero-exchange { color: var(--accent-orange); }
-        .hero-desk { color: var(--accent-cyan); }
-        .hero-bot { color: var(--accent-green); display: block; margin-top: 0.25rem; }
-        .hero-subtitle { font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0.75rem; }
-        .hero-description { color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; font-size: 1rem; }
+        .hero-title {
+            font-size: 3.2rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem;
+        }
+        .hero-exchange {
+            color: var(--accent-orange);
+            text-shadow: 0 0 40px rgba(255,107,53,0.4);
+            animation: pulseOrange 3s ease-in-out infinite;
+        }
+        .hero-desk {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 40px rgba(54,209,220,0.4);
+            animation: pulseCyan 3s ease-in-out infinite 0.5s;
+        }
+        .hero-bot {
+            color: var(--accent-green); display: block; margin-top: 0.15rem;
+            text-shadow: 0 0 40px rgba(93,253,203,0.35);
+            animation: pulseGreen 3s ease-in-out infinite 1s;
+        }
+        @keyframes pulseOrange {
+            0%, 100% { text-shadow: 0 0 30px rgba(255,107,53,0.3); }
+            50% { text-shadow: 0 0 60px rgba(255,107,53,0.7), 0 0 120px rgba(255,107,53,0.2); }
+        }
+        @keyframes pulseCyan {
+            0%, 100% { text-shadow: 0 0 30px rgba(54,209,220,0.3); }
+            50% { text-shadow: 0 0 60px rgba(54,209,220,0.7), 0 0 120px rgba(54,209,220,0.2); }
+        }
+        @keyframes pulseGreen {
+            0%, 100% { text-shadow: 0 0 30px rgba(93,253,203,0.25); }
+            50% { text-shadow: 0 0 60px rgba(93,253,203,0.6), 0 0 120px rgba(93,253,203,0.15); }
+        }
+        .hero-divider {
+            width: 280px; height: 2px; margin: 1rem auto 1.25rem;
+            background: linear-gradient(90deg, transparent 0%, #FF5A1F 30%, #1EC8D8 70%, transparent 100%);
+            border-radius: 2px;
+        }
+        .hero-subtitle { font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0.75rem; font-weight: 500; }
+        .hero-description { color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; font-size: 1rem; line-height: 1.7; }
         .hero-btn { font-size: 1.05rem; }
+        .btn-pdf {
+            display: inline-flex; align-items: center; gap: 0.55rem;
+            background: rgba(26,26,58,0.9);
+            color: #e0e0ff;
+            padding: 0.75rem 1.5rem; border-radius: 12px;
+            text-decoration: none; font-weight: 700; font-size: 1.05rem;
+            border: 1px solid rgba(255,90,31,0.35);
+            cursor: pointer; transition: var(--transition); white-space: nowrap;
+            box-shadow: inset 0 0 0 0 rgba(255,90,31,0);
+        }
+        .btn-pdf i { color: #FF5A1F; font-size: 1.1rem; }
+        .btn-pdf:hover {
+            border-color: rgba(255,90,31,0.7);
+            background: rgba(255,90,31,0.08);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,90,31,0.2);
+        }
 
         .info-section { padding: 3rem 0; background: var(--bg-secondary); }
         .info-grid {
@@ -235,69 +290,84 @@
             display: inline-block;
             line-height: 1.15;
         }
+        .section-divider {
+            width: 200px; height: 2px; margin: 0.5rem auto 0.85rem;
+            background: linear-gradient(90deg, transparent 0%, #FF5A1F 30%, #1EC8D8 70%, transparent 100%);
+            border-radius: 2px;
+        }
+        /* для выровненных по левому краю заголовков */
+        .section-header-top .section-divider { margin-left: 0; }
         .section-subtitle { color: var(--text-secondary); font-size: 1rem; }
 
         .functions-list {
-            display: flex; flex-direction: column; gap: 0.65rem;
-            max-width: 760px; margin: 0 auto;
-        }
-        .functions-list {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
+            gap: 1.25rem;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         .function-row {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            gap: 0.5rem;
-            padding: 1.4rem;
-            border-radius: 16px;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 1.5rem 1.75rem;
+            border-radius: 20px;
             cursor: pointer;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
         }
-        .function-row:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 28px rgba(0,0,0,0.3);
-            border-color: var(--accent-cyan);
-        }
+        .function-row:nth-child(1) { border-color: rgba(255,107,53,0.3); }
+        .function-row:nth-child(2) { border-color: rgba(54,209,220,0.3); }
+        .function-row:nth-child(3) { border-color: rgba(139,92,246,0.3); }
+        .function-row:nth-child(4) { border-color: rgba(93,253,203,0.3); }
+        .function-row:nth-child(5) { border-color: rgba(255,107,53,0.3); }
+        .function-row:nth-child(6) { border-color: rgba(54,209,220,0.3); }
+        .function-row:nth-child(1):hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(255,107,53,0.2); border-color: rgba(255,107,53,0.7); }
+        .function-row:nth-child(2):hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(54,209,220,0.2); border-color: rgba(54,209,220,0.7); }
+        .function-row:nth-child(3):hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(139,92,246,0.2); border-color: rgba(139,92,246,0.7); }
+        .function-row:nth-child(4):hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(93,253,203,0.2); border-color: rgba(93,253,203,0.7); }
+        .function-row:nth-child(5):hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(255,107,53,0.2); border-color: rgba(255,107,53,0.7); }
+        .function-row:nth-child(6):hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(54,209,220,0.2); border-color: rgba(54,209,220,0.7); }
         .function-row-icon {
-            width: 46px; height: 46px; border-radius: 12px;
+            width: 64px; height: 64px; border-radius: 18px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem;
-            background: linear-gradient(135deg, rgba(54,209,220,0.15), rgba(91,134,229,0.1));
-            color: var(--accent-cyan);
-            border: 1px solid rgba(54,209,220,0.25);
-            margin-bottom: 0.25rem;
+            font-size: 1.7rem; margin-bottom: 1.1rem; flex-shrink: 0;
         }
+        .function-row:nth-child(1) .function-row-icon { background: rgba(255,107,53,0.12); border: 1px solid rgba(255,107,53,0.35); color: #FF8A35; }
+        .function-row:nth-child(2) .function-row-icon { background: rgba(54,209,220,0.12); border: 1px solid rgba(54,209,220,0.35); color: #36D1DC; }
+        .function-row:nth-child(3) .function-row-icon { background: rgba(139,92,246,0.12); border: 1px solid rgba(139,92,246,0.35); color: #a78bfa; }
+        .function-row:nth-child(4) .function-row-icon { background: rgba(93,253,203,0.12); border: 1px solid rgba(93,253,203,0.35); color: #5DFDCB; }
+        .function-row:nth-child(5) .function-row-icon { background: rgba(255,107,53,0.12); border: 1px solid rgba(255,107,53,0.35); color: #FF8A35; }
+        .function-row:nth-child(6) .function-row-icon { background: rgba(54,209,220,0.12); border: 1px solid rgba(54,209,220,0.35); color: #36D1DC; }
         .function-row-title {
-            font-size: 0.97rem; font-weight: 700;
-            color: var(--text-primary); line-height: 1.3;
+            font-size: 1.05rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.6rem;
         }
-        .function-row-badge {
-            display: inline-block;
-            font-size: 0.67rem; font-weight: 600;
-            color: var(--accent-cyan);
-            background: rgba(54,209,220,0.1);
-            border: 1px solid rgba(54,209,220,0.2);
-            border-radius: 20px; padding: 0.12rem 0.55rem;
-            text-transform: uppercase; letter-spacing: 0.04em;
-        }
+        .function-row:nth-child(1) .function-row-title { color: #FF8A35; }
+        .function-row:nth-child(2) .function-row-title { color: #36D1DC; }
+        .function-row:nth-child(3) .function-row-title { color: #a78bfa; }
+        .function-row:nth-child(4) .function-row-title { color: #5DFDCB; }
+        .function-row:nth-child(5) .function-row-title { color: #FF8A35; }
+        .function-row:nth-child(6) .function-row-title { color: #36D1DC; }
+        .function-row-badge { display: none; }
         .function-row-desc {
-            font-size: 0.85rem; color: var(--text-secondary);
-            line-height: 1.6; margin: 0.25rem 0 0;
+            font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65; margin: 0;
         }
-        @media (max-width: 768px) {
-            .functions-list { grid-template-columns: 1fr; }
+        @media (max-width: 900px) {
+            .functions-list { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 560px) {
+            .functions-list { grid-template-columns: 1fr; gap: 0.85rem; }
+            .function-row { padding: 1.4rem 1.2rem; flex-direction: row; text-align: left; align-items: flex-start; gap: 1rem; }
+            .function-row-icon { width: 50px; height: 50px; font-size: 1.3rem; margin-bottom: 0; border-radius: 13px; }
         }
 
         .func-modal {
             display: none; position: fixed; inset: 0;
-            background: rgba(10,10,26,0.92); backdrop-filter: blur(12px);
+            background: rgba(10,10,26,0.92);
             z-index: 3000; align-items: center; justify-content: center;
-            padding: 1rem; animation: fadeIn 0.2s ease;
+            padding: 1rem;
         }
         .func-modal-content {
             background: var(--bg-card); border-radius: var(--radius-lg);
@@ -328,9 +398,6 @@
         .func-modal-desc { color: var(--text-secondary); font-size: 0.97rem; line-height: 1.75; }
 
         @media (max-width: 767px) {
-            .function-row { border-radius: 14px; }
-            .function-row-icon { width: 42px; height: 42px; font-size: 1.1rem; border-radius: 11px; }
-            .function-row-title { font-size: 0.95rem; }
             .func-modal-content { padding: 1.5rem 1.1rem; }
             .func-modal-title { font-size: 1.05rem; }
         }
@@ -414,9 +481,9 @@
 
         .module-modal {
             display: none; position: fixed; inset: 0;
-            background: var(--bg-overlay); backdrop-filter: blur(10px);
+            background: rgba(10,10,26,0.88);
             z-index: 2000; align-items: center; justify-content: center;
-            padding: 1rem; animation: fadeIn 0.25s ease;
+            padding: 1rem;
         }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -763,7 +830,7 @@
         .footer::before {
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 2px;
             background: linear-gradient(90deg, transparent 0%, #FF6B35 25%, #36D1DC 50%, #5DFDCB 75%, transparent 100%);
-            animation: scanline 3s linear infinite;
+            display: none;
             pointer-events: none;
         }
         @keyframes scanline { 0% { transform: translateX(0); } 100% { transform: translateX(200%); } }
@@ -878,7 +945,7 @@
             <a href="#faq" class="nav-link">FAQ</a>
             <a href="#support" class="nav-link">Поддержка</a>
         </nav>
-        <a href="#pdf" class="cta-button desktop-btn"><i class="fas fa-download"></i> Скачать</a>
+
         <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню"><i class="fas fa-bars"></i></button>
     </div>
 </header>
@@ -890,7 +957,7 @@
         <a href="#modules" class="mobile-nav-link"><i class="fas fa-list-ol"></i><span>Настройки</span></a>
         <a href="#faq" class="mobile-nav-link"><i class="fas fa-question-circle"></i><span>FAQ</span></a>
         <a href="#support" class="mobile-nav-link"><i class="fas fa-headset"></i><span>Поддержка</span></a>
-        <a href="#pdf" class="mobile-nav-link download"><i class="fas fa-download"></i><span>Скачать инструкцию</span></a>
+
     </nav>
 </div>
 
@@ -902,9 +969,15 @@
             <span class="hero-desk">Desk</span>
             <span class="hero-bot">Bot</span>
         </h1>
+        <div class="hero-divider"></div>
         <p class="hero-subtitle">Telegram-бот для автоматизации обменных операций</p>
         <p class="hero-description">Мультипользовательская система управления обменными пунктами. Изолированные базы данных, кросс-валютные пары и полный цикл сделок в одном решении.</p>
-        <a href="#modules" class="cta-button hero-btn"><i class="fas fa-play-circle"></i> Начать изучение</a>
+        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+            <a href="#modules" class="cta-button hero-btn"><i class="fas fa-play-circle"></i> Начать изучение</a>
+            <a href="https://annakustova132-ship-it.github.io/-Exchange-Desk-Bot-/Exchange_Desk_Bot.pdf" download class="cta-button hero-btn">
+                <i class="fas fa-file-pdf"></i> Скачать PDF
+            </a>
+        </div>
     </div>
 </section>
 
@@ -953,6 +1026,7 @@
     <div class="container">
         <div class="section-header" style="text-align:center;">
             <h2 class="section-title">Основные функции бота</h2>
+            <div class="section-divider"></div>
             <p class="section-subtitle">Все возможности и инструменты для управления обменным пунктом</p>
         </div>
         <div class="functions-list">
@@ -1011,6 +1085,7 @@
     <div class="container">
         <div class="section-header" style="text-align:center;">
             <h2 class="section-title">Пошаговая настройка</h2>
+            <div class="section-divider"></div>
             <p class="section-subtitle">12 шагов для профессиональной работы</p>
         </div>
         <div class="modules-grid">
@@ -1142,6 +1217,7 @@
     <div class="container">
         <div class="section-header" style="text-align:center;">
             <h2 class="section-title">FAQ</h2>
+            <div class="section-divider"></div>
             <p class="section-subtitle">Ответы на популярные вопросы</p>
             <div class="faq-search-container">
                 <i class="fas fa-search faq-search-icon"></i>
@@ -1320,18 +1396,6 @@
     </div>
 </section>
 
-<section id="pdf" class="section">
-    <div class="container">
-        <div class="pdf-card">
-            <span class="pdf-icon"><i class="fas fa-file-pdf"></i></span>
-            <h3>Полная инструкция в PDF</h3>
-            <p>Скачайте полное руководство с детальными инструкциями по всем модулям, скриншотами и примерами использования</p>
-            <a href="Exchange_Desk_Bot.pdf" class="cta-button" download target="_blank">
-                <i class="fas fa-download"></i> Скачать (PDF, 2.1 MB)
-            </a>
-        </div>
-    </div>
-</section>
 
 <footer id="support" class="footer">
     <div class="container">
@@ -1351,7 +1415,7 @@
             <div class="footer-col">
                 <h3>Ресурсы</h3>
                 <ul>
-                    <li><a href="#pdf"><i class="fas fa-file-pdf"></i> Инструкция</a></li>
+                    <li><a href="https://annakustova132-ship-it.github.io/-Exchange-Desk-Bot-/Exchange_Desk_Bot.pdf" download><i class="fas fa-file-pdf"></i> Инструкция PDF</a></li>
                     <li><a href="#"><i class="fas fa-play-circle"></i> Видеоуроки</a></li>
                     <li><a href="#"><i class="fas fa-rss"></i> Блог</a></li>
                 </ul>
@@ -1408,7 +1472,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
 // ===== БАЗОВЫЙ URL =====
-const BASE = "Exchange_Desk_Bot_manual.html";
+const BASE = "https://annakustova132-ship-it.github.io/-Exchange-Desk-Bot-/Exchange_Desk_Bot_manual.html";
 
 const moduleData = {
     start: {
@@ -1424,7 +1488,7 @@ const moduleData = {
         tip: "Сохраните свой Telegram ID — он понадобится для восстановления доступа.",
         warning: "Без согласия с условиями работа с ботом невозможна.",
         path: "Приветствие → Согласие → Выбор действия",
-        tags: ["Начало", "Регистрация", "Основное"]
+       
     },
     exchange: {
         title: "Шаг 2: Создание обменного пункта",
@@ -1440,7 +1504,7 @@ const moduleData = {
         tip: "Используйте понятные названия для нескольких обменных пунктов.",
         warning: "После создания изменить базовую валюту нельзя без пересоздания.",
         path: "Настройки → Обменник → Создать → Параметры",
-        tags: ["Создание", "Настройка", "Обменник"]
+        
     },
     users: {
         title: "Шаг 7: Создание заказов",
@@ -1455,7 +1519,7 @@ const moduleData = {
         tip: "Кросс-пары всегда отображаются в нижней части таблицы.",
         warning: "Зелёные кнопки (🟢) — пункт покупает; красные кнопки (🔴) — пункт продаёт.",
         path: "Главное меню → Новый заказ → Выбор пары → Ввод данных",
-        tags: ["Заказы", "Сделки", "Операции"]
+        
     },
     fractional: {
         title: "Шаг 3: Настройка базы валют и кросс-пары",
@@ -1471,7 +1535,7 @@ const moduleData = {
         tip: "Начните с добавления основных валют: национальная валюта, USD, EUR, GBP. Кросс-пары формируются только на основе уже добавленных в систему валютных пар.",
         warning: "При удалении валюты будут удалены все связанные с ней пары и исторические данные.",
         path: "Настройки → Валютные пары → Кастомизация → Выбор валюты",
-        tags: ["Валюты", "Кросс-пары", "База данных"]
+        
     },
     fraction: {
         title: "Шаг 4: Конфигурация валютных параметров",
@@ -1486,7 +1550,7 @@ const moduleData = {
         tip: "Настройте параметры для каждой валюты индивидуально.",
         warning: "Изменения влияют только на новые расчеты.",
         path: "Настройки → Валютные пары → Кастомизация → Параметры",
-        tags: ["Кастомизация", "Параметры", "Настройка"],
+       
         submodules: [
             {
                 id: "nominals",
@@ -1564,7 +1628,7 @@ const moduleData = {
         tip: "Устанавливайте разумный спред для покрытия расходов.",
         warning: "Перед началом торгов должны быть созданы обменник и база валют.",
         path: "Главное меню → Выставление котировок → Настройка",
-        tags: ["Курсы", "Котировки", "Финансы"]
+        
     },
     channel: {
         title: "Шаг 6: Канал для сотрудников",
@@ -1581,7 +1645,7 @@ const moduleData = {
         tip: "Канал для уведомлений, группа для обсуждения деталей заказа.",
         warning: "Без правильного chat_id бот не сможет отправлять уведомления.",
         path: "Создать канал → chat_id → Настройки → ID канала",
-        tags: ["Канал", "Коммуникация", "Уведомления"]
+       
     },
     orders: {
         title: "Шаг 8: Статусы заказов",
@@ -1597,7 +1661,7 @@ const moduleData = {
         tip: "Регулярно обновляйте статусы для актуальной отчетности.",
         warning: "Статус «Выполнен» делает заказ недоступным для редактирования.",
         path: "Главное меню → Заказы → Редактировать → Статус",
-        tags: ["Статусы", "Управление", "Контроль"]
+       
     },
     status: {
         title: "Шаг 10: Редактирование заказов",
@@ -1614,7 +1678,7 @@ const moduleData = {
         tip: "Регулярно проверяйте заказы на наличие ошибок.",
         warning: "После статуса «Выполнен» редактирование недоступно.",
         path: "Выбор способа → Открытие → Редактировать → Изменение → Сохранить",
-        tags: ["Заказы", "Редактирование", "Корректировка"]
+        
     },
     cross: {
         title: "Шаг 11: Управление пользователями",
@@ -1631,7 +1695,7 @@ const moduleData = {
         tip: "Новый пользователь получает базовые права. Для расширения измените роль.",
         warning: "Администратор не может удалить Владельца или изменить его права.",
         path: "Настройки → Обменник → Пользователи → Добавить / Права",
-        tags: ["Пользователи", "Роли", "Доступ"]
+      
     },
     "edit-orders": {
         title: "Шаг 9: Работа с кросс-парами",
@@ -1647,7 +1711,7 @@ const moduleData = {
         tip: "Для кросс-пар используйте точность 6-8 знаков для корректных расчетов.",
         warning: "Редактирование кросс-пар находится в разработке.",
         path: "Новый заказ → Кросс-пара → Сумма → Округление",
-        tags: ["Кросс-пары", "Округление", "В разработке"]
+       
     },
     export: {
         title: "Шаг 12: Выгрузка данных",
@@ -1663,7 +1727,7 @@ const moduleData = {
         tip: "Регулярно выгружайте данные для резервного копирования.",
         warning: "Расширенная бухгалтерия в разработке.",
         path: "Главное меню → Заказы → Экспорт → Формат → Скачать",
-        tags: ["Экспорт", "Отчеты", "Бухгалтерия"]
+       
     }
 };
 

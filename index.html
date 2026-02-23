@@ -241,38 +241,56 @@
             display: flex; flex-direction: column; gap: 0.65rem;
             max-width: 760px; margin: 0 auto;
         }
+        .functions-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
         .function-row {
-            display: flex; align-items: center; gap: 1.1rem;
-            padding: 1rem 1.4rem; border-radius: var(--radius-md);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+            padding: 1.4rem;
+            border-radius: 16px;
             cursor: pointer;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
         .function-row:hover {
-            background: var(--bg-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.3);
             border-color: var(--accent-cyan);
-            transform: translateX(4px);
         }
         .function-row-icon {
-            width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+            width: 46px; height: 46px; border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.15rem;
-            background: rgba(54,209,220,0.1);
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, rgba(54,209,220,0.15), rgba(91,134,229,0.1));
             color: var(--accent-cyan);
-            border: 1px solid rgba(54,209,220,0.2);
+            border: 1px solid rgba(54,209,220,0.25);
+            margin-bottom: 0.25rem;
         }
         .function-row-title {
-            flex: 1; font-size: 1rem; font-weight: 600;
-            color: var(--text-primary);
+            font-size: 0.97rem; font-weight: 700;
+            color: var(--text-primary); line-height: 1.3;
         }
-        .function-row-arrow {
-            color: var(--text-muted); font-size: 0.8rem;
-            transition: transform 0.2s ease, color 0.2s ease;
-        }
-        .function-row:hover .function-row-arrow {
-            transform: translateX(3px);
+        .function-row-badge {
+            display: inline-block;
+            font-size: 0.67rem; font-weight: 600;
             color: var(--accent-cyan);
+            background: rgba(54,209,220,0.1);
+            border: 1px solid rgba(54,209,220,0.2);
+            border-radius: 20px; padding: 0.12rem 0.55rem;
+            text-transform: uppercase; letter-spacing: 0.04em;
+        }
+        .function-row-desc {
+            font-size: 0.85rem; color: var(--text-secondary);
+            line-height: 1.6; margin: 0.25rem 0 0;
+        }
+        @media (max-width: 768px) {
+            .functions-list { grid-template-columns: 1fr; }
         }
 
         .func-modal {
@@ -310,9 +328,9 @@
         .func-modal-desc { color: var(--text-secondary); font-size: 0.97rem; line-height: 1.75; }
 
         @media (max-width: 767px) {
-            .function-row { padding: 0.85rem 1rem; gap: 0.85rem; }
-            .function-row-icon { width: 36px; height: 36px; font-size: 1rem; border-radius: 8px; }
-            .function-row-title { font-size: 0.92rem; }
+            .function-row { border-radius: 14px; }
+            .function-row-icon { width: 42px; height: 42px; font-size: 1.1rem; border-radius: 11px; }
+            .function-row-title { font-size: 0.95rem; }
             .func-modal-content { padding: 1.5rem 1.1rem; }
             .func-modal-title { font-size: 1.05rem; }
         }
@@ -940,33 +958,39 @@
         <div class="functions-list">
             <div class="function-row" data-func="users">
                 <div class="function-row-icon"><i class="fas fa-user-plus"></i></div>
-                <span class="function-row-title">Управление пользователями</span>
-                <i class="fas fa-chevron-right function-row-arrow"></i>
+                <div class="function-row-title">Управление пользователями</div>
+                <span class="function-row-badge">Роли и доступ</span>
+                <p class="function-row-desc">Добавление сотрудников, назначение ролей — от владельца до базового пользователя. Гибкий контроль прав доступа.</p>
             </div>
             <div class="function-row" data-func="currencies">
                 <div class="function-row-icon"><i class="fas fa-coins"></i></div>
-                <span class="function-row-title">Настройка валют</span>
-                <i class="fas fa-chevron-right function-row-arrow"></i>
+                <div class="function-row-title">Настройка валют</div>
+                <span class="function-row-badge">База данных</span>
+                <p class="function-row-desc">Своя база валют, кросс-пары, номиналы купюр и дробные части. Поддержка глобальной базы с автообновлением.</p>
             </div>
             <div class="function-row" data-func="analytics">
                 <div class="function-row-icon"><i class="fas fa-chart-bar"></i></div>
-                <span class="function-row-title">Аналитика и отчеты</span>
-                <i class="fas fa-chevron-right function-row-arrow"></i>
+                <div class="function-row-title">Аналитика и отчёты</div>
+                <span class="function-row-badge">Excel / CSV</span>
+                <p class="function-row-desc">Выгрузка заказов с фильтрацией по дате, статусу и валюте. Финансовые отчёты для бухгалтерии и Google Sheets.</p>
             </div>
             <div class="function-row" data-func="security">
                 <div class="function-row-icon"><i class="fas fa-shield-alt"></i></div>
-                <span class="function-row-title">Безопасность</span>
-                <i class="fas fa-chevron-right function-row-arrow"></i>
+                <div class="function-row-title">Безопасность</div>
+                <span class="function-row-badge">Изоляция данных</span>
+                <p class="function-row-desc">Полная изоляция баз между обменниками. Разграничение прав по ролям и журнал операций для аудита.</p>
             </div>
             <div class="function-row" data-func="communication">
                 <div class="function-row-icon"><i class="fas fa-comments"></i></div>
-                <span class="function-row-title">Коммуникация</span>
-                <i class="fas fa-chevron-right function-row-arrow"></i>
+                <div class="function-row-title">Коммуникация</div>
+                <span class="function-row-badge">Канал + группа</span>
+                <p class="function-row-desc">Закрытый канал для сотрудников, публикация заказов в реальном времени и мгновенные уведомления о статусах.</p>
             </div>
             <div class="function-row" data-func="automation">
                 <div class="function-row-icon"><i class="fas fa-sync-alt"></i></div>
-                <span class="function-row-title">Автоматизация</span>
-                <i class="fas fa-chevron-right function-row-arrow"></i>
+                <div class="function-row-title">Автоматизация</div>
+                <span class="function-row-badge">Умные расчёты</span>
+                <p class="function-row-desc">Автоматический расчёт и округление сумм, пересчёт при смене курса и уведомления при изменении статуса заказа.</p>
             </div>
         </div>
     </div>
@@ -1335,7 +1359,7 @@
             <div class="footer-col">
                 <h3>Контакты</h3>
                 <ul>
-                    <li><a href="#"><i class="fas fa-envelope"></i> info@exchangedesk.bot</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="325b5c545d72574a515a535c5557565741591c505d46">[email&#160;protected]</span></a></li>
                     <li><a href="#"><i class="fas fa-paper-plane"></i> @exchangedesk</a></li>
                 </ul>
             </div>
@@ -1380,9 +1404,11 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
 </button>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+document.addEventListener("DOMContentLoaded", function() {
+
 // ===== БАЗОВЫЙ URL =====
-const BASE = "https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html";
+const BASE = "Exchange_Desk_Bot_manual.html";
 
 const moduleData = {
     start: {
@@ -1821,9 +1847,14 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal
 (function() {
     const btn = document.getElementById('scrollTopBtn');
     if (!btn) return;
-    window.addEventListener('scroll', () => { btn.classList.toggle('visible', window.scrollY > 300); }, { passive: true });
+    window.addEventListener('scroll', () => {
+        btn.style.opacity = window.scrollY > 400 ? '1' : '0';
+        btn.style.pointerEvents = window.scrollY > 400 ? 'auto' : 'none';
+    });
     btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
+
+});
 </script>
 </body>
 </html>

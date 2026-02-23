@@ -1946,7 +1946,11 @@ document.querySelectorAll('.module-link').forEach(link => {
     link.addEventListener('click', e => { e.stopPropagation(); openModal(link.closest('.module-card').dataset.module); });
 });
 document.querySelectorAll('.module-ref-link').forEach(link => {
-    link.addEventListener('click', e => e.stopPropagation());
+    link.addEventListener('click', e => {
+        e.stopPropagation();
+        e.preventDefault();
+        window.open(link.href, '_blank');
+    });
 });
 
 // ===== FUNCTION ROWS MODAL =====

@@ -36,7 +36,7 @@
             --bg-overlay: rgba(10,10,26,0.97);
         }
 
-        html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: var(--header-height); }
+        html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 16px); }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -48,12 +48,14 @@
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing); }
 
-        /* ===== HEADER ===== */
+        /* ===== HEADER — полупрозрачный с blur, не перекрывает контент ===== */
         .header {
             position: sticky; top: 0;
             height: var(--header-height);
-            background: var(--bg-primary);
-            border-bottom: 1px solid var(--border-color);
+            background: rgba(10, 10, 26, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(45, 45, 90, 0.6);
             z-index: 1000;
         }
         .header::after {
@@ -131,10 +133,7 @@
         .mobile-nav-link i { font-size: 1.2rem; width: 24px; }
 
         /* ===== HERO ===== */
-        .hero {
-            padding: 3rem 0;
-            text-align: center;
-        }
+        .hero { padding: 3rem 0; text-align: center; }
         .hero-badge {
             display: inline-flex; align-items: center; gap: 0.5rem;
             background: rgba(255,107,53,0.1); color: var(--accent-orange);
@@ -150,7 +149,7 @@
         .hero-description { color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; font-size: 1rem; }
         .hero-btn { font-size: 1.05rem; }
 
-        /* ===== INFO CARDS — как на скрине 3 ===== */
+        /* ===== INFO CARDS — исправленный текст ===== */
         .info-section { padding: 3rem 0; background: var(--bg-secondary); }
         .info-grid {
             display: grid;
@@ -166,179 +165,74 @@
             flex-direction: column;
             position: relative;
             border: 1px solid transparent;
-            /* Уникальный градиент для каждой карточки задаётся ниже */
             background-origin: border-box;
         }
 
-        /* Градиентный фон карточек */
         .info-card:nth-child(1) {
             background:
                 linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
                 linear-gradient(135deg, #FF6B35, #FF8A35) border-box;
-            background-color: transparent;
-            box-shadow: 0 0 32px rgba(255,107,53,0.08), inset 0 0 60px rgba(255,107,53,0.04);
+            box-shadow: 0 0 24px rgba(255,107,53,0.1);
         }
-        .info-card:nth-child(1)::after {
-            content: '';
-            position: absolute; inset: 0;
-            border-radius: var(--radius-lg);
-            background: linear-gradient(135deg,
-                rgba(255,107,53,0.08) 0%,
-                transparent 60%
-            );
-            pointer-events: none;
-        }
-
         .info-card:nth-child(2) {
             background:
                 linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
                 linear-gradient(135deg, #36D1DC, #5DFDCB) border-box;
-            background-color: transparent;
-            box-shadow: 0 0 32px rgba(54,209,220,0.08), inset 0 0 60px rgba(54,209,220,0.04);
+            box-shadow: 0 0 24px rgba(54,209,220,0.1);
         }
-        .info-card:nth-child(2)::after {
-            content: '';
-            position: absolute; inset: 0;
-            border-radius: var(--radius-lg);
-            background: linear-gradient(135deg,
-                rgba(54,209,220,0.08) 0%,
-                transparent 60%
-            );
-            pointer-events: none;
-        }
-
         .info-card:nth-child(3) {
             background:
                 linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
                 linear-gradient(135deg, #8b5cf6, #36D1DC) border-box;
-            background-color: transparent;
-            box-shadow: 0 0 32px rgba(139,92,246,0.08), inset 0 0 60px rgba(139,92,246,0.04);
-        }
-        .info-card:nth-child(3)::after {
-            content: '';
-            position: absolute; inset: 0;
-            border-radius: var(--radius-lg);
-            background: linear-gradient(135deg,
-                rgba(139,92,246,0.08) 0%,
-                transparent 60%
-            );
-            pointer-events: none;
+            box-shadow: 0 0 24px rgba(139,92,246,0.1);
         }
 
-        /* Градиентный оверлей — строго ПОД контентом */
-        .info-card:nth-child(1)::after,
-        .info-card:nth-child(2)::after,
-        .info-card:nth-child(3)::after {
-            z-index: 0;
-        }
-        /* Весь контент карточки — над оверлеем */
-        .info-card > * { position: relative; z-index: 1; }
-        .info-card:nth-child(1):hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(255,107,53,0.2), 0 0 0 1px rgba(255,107,53,0.3); }
-        .info-card:nth-child(2):hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(54,209,220,0.2), 0 0 0 1px rgba(54,209,220,0.3); }
-        .info-card:nth-child(3):hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(139,92,246,0.2), 0 0 0 1px rgba(139,92,246,0.3); }
+        .info-card:nth-child(1):hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(255,107,53,0.25); }
+        .info-card:nth-child(2):hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(54,209,220,0.25); }
+        .info-card:nth-child(3):hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(139,92,246,0.25); }
 
+        /* Иконка с градиентом */
         .info-icon {
             width: 56px; height: 56px;
             display: flex; align-items: center; justify-content: center;
-            border-radius: 14px; font-size: 1.4rem; margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, rgba(255,107,53,0.3) 0%, rgba(54,209,220,0.3) 100%);
-            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px; font-size: 1.4rem; margin-bottom: 1rem;
             flex-shrink: 0;
         }
-        .info-icon i {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .info-card:nth-child(1) .info-icon { background: rgba(255,107,53,0.15); border: 1px solid rgba(255,107,53,0.3); }
+        .info-card:nth-child(2) .info-icon { background: rgba(54,209,220,0.15); border: 1px solid rgba(54,209,220,0.3); }
+        .info-card:nth-child(3) .info-icon { background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); }
 
-        .info-card h3 {
-            font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .info-card:nth-child(1) h3 { background: linear-gradient(135deg, #FF6B35, #FF8A35); }
-        .info-card:nth-child(1) .info-icon { background: linear-gradient(135deg, rgba(255,107,53,0.25), rgba(255,138,53,0.15)); border-color: rgba(255,107,53,0.3); }
-        .info-card:nth-child(1) li::before { color: #FF6B35; }
+        /* Иконка с нужным цветом */
+        .info-card:nth-child(1) .info-icon i { color: #FF8A35; }
+        .info-card:nth-child(2) .info-icon i { color: #36D1DC; }
+        .info-card:nth-child(3) .info-icon i { color: #a78bfa; }
 
-        .info-card:nth-child(2) h3 { background: linear-gradient(135deg, #36D1DC, #5DFDCB); }
-        .info-card:nth-child(2) .info-icon { background: linear-gradient(135deg, rgba(54,209,220,0.25), rgba(93,253,203,0.15)); border-color: rgba(54,209,220,0.3); }
-        .info-card:nth-child(2) li::before { color: #36D1DC; }
+        /* ===== ЗАГОЛОВКИ ИНФОКАРТ — с цветным акцентом, НЕ градиент ===== */
+        .info-card:nth-child(1) h3 { color: #FF8A35; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
+        .info-card:nth-child(2) h3 { color: #36D1DC; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
+        .info-card:nth-child(3) h3 { color: #a78bfa; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
 
-        .info-card:nth-child(3) h3 { background: linear-gradient(135deg, #8b5cf6, #36D1DC); }
-        .info-card:nth-child(3) .info-icon { background: linear-gradient(135deg, rgba(139,92,246,0.25), rgba(54,209,220,0.15)); border-color: rgba(139,92,246,0.3); }
-        .info-card:nth-child(3) li::before { color: #8b5cf6; }
-
+        /* ===== ТЕКСТ СПИСКОВ — нормальный, читаемый ===== */
         .info-card ul { list-style: none; }
         .info-card li {
             color: var(--text-secondary);
             margin-bottom: 0.75rem;
             padding-left: 1.25rem;
             position: relative;
-            line-height: 1.5;
+            line-height: 1.55;
+            font-size: 0.95rem;
         }
-        .info-card li::before {
-            content: '•';
-            position: absolute; left: 0;
-            color: var(--accent-orange);
-            font-weight: 900; font-size: 1.1rem; line-height: 1.5;
-        }
-        .info-card strong { color: var(--text-primary); }
+        .info-card:nth-child(1) li::before { content: '•'; position: absolute; left: 0; color: #FF6B35; font-weight: 900; font-size: 1.1rem; line-height: 1.5; }
+        .info-card:nth-child(2) li::before { content: '•'; position: absolute; left: 0; color: #36D1DC; font-weight: 900; font-size: 1.1rem; line-height: 1.5; }
+        .info-card:nth-child(3) li::before { content: '•'; position: absolute; left: 0; color: #8b5cf6; font-weight: 900; font-size: 1.1rem; line-height: 1.5; }
 
-        /* Мобильная: 1 колонка, горизонтальная карточка */
-        @media (max-width: 767px) {
-            .info-section { padding: 1.5rem 0; }
-            .info-grid {
-                grid-template-columns: 1fr;
-                gap: 0.65rem;
-            }
-            .info-card {
-                flex-direction: row;
-                align-items: flex-start;
-                gap: 1rem;
-                padding: 1rem 1.1rem;
-                border-radius: 12px;
-            }
-            /* Левая колонка: иконка + заголовок */
-            .info-card-left {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                flex-shrink: 0;
-                width: 60px;
-                gap: 0.4rem;
-            }
-            .info-icon {
-                width: 40px; height: 40px;
-                font-size: 1.1rem;
-                border-radius: 10px;
-                margin-bottom: 0;
-            }
-            .info-card h3 {
-                font-size: 0.72rem;
-                font-weight: 700;
-                margin-bottom: 0;
-                text-align: center;
-                line-height: 1.2;
-            }
-            /* Правая колонка: список */
-            .info-card ul {
-                flex: 1;
-                margin: 0;
-            }
-            .info-card li {
-                font-size: 0.82rem;
-                line-height: 1.45;
-                margin-bottom: 0.4rem;
-                padding-left: 1rem;
-            }
-            .info-card li::before { font-size: 0.9rem; }
-            .info-card strong { font-size: 0.82rem; }
-        }
+        /* ===== STRONG внутри li — белый, читаемый ===== */
+        .info-card li strong { color: #f0f0ff; font-weight: 600; }
 
-        /* ===== SECTIONS ===== */
+        /* ===== СЕКЦИИ ===== */
         .section { padding: 4rem 0; }
         .section-dark { background: var(--bg-secondary); }
 
-        /* Заголовок раздела функций — как на скрине 2 */
         .section-header { margin-bottom: 3rem; }
         .section-header-top {
             display: flex; align-items: flex-start; justify-content: space-between;
@@ -349,10 +243,10 @@
             background: var(--gradient-primary);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
             display: inline-block;
+            line-height: 1.15;
         }
         .section-subtitle { color: var(--text-secondary); font-size: 1rem; }
 
-        /* Декоративный элемент справа от заголовка (линия + точки как на скрине 2) */
         .section-decoration {
             display: flex; flex-direction: column; align-items: flex-end; gap: 6px; padding-top: 6px;
         }
@@ -361,12 +255,8 @@
             background: linear-gradient(90deg, var(--accent-orange), var(--accent-cyan));
             border-radius: 2px;
         }
-        .section-decoration .deco-dots {
-            display: flex; gap: 5px;
-        }
-        .section-decoration .deco-dots span {
-            width: 7px; height: 7px; border-radius: 50%;
-        }
+        .section-decoration .deco-dots { display: flex; gap: 5px; }
+        .section-decoration .deco-dots span { width: 7px; height: 7px; border-radius: 50%; }
         .section-decoration .deco-dots span:nth-child(1) { background: var(--accent-orange); }
         .section-decoration .deco-dots span:nth-child(2) { background: var(--accent-cyan); }
         .section-decoration .deco-dots span:nth-child(3) { background: var(--accent-green); }
@@ -383,42 +273,89 @@
             margin-right: 0.2rem;
         }
 
-        /* ===== FUNCTION CARDS — как на скрине 2 ===== */
+        /* ===== FUNCTION CARDS — 3 колонки, 2 ряда с градиентным оформлением ===== */
         .functions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
         }
+
+        /* Каждая из 6 карточек — уникальный градиентный бордер */
         .function-card {
-            background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary));
-            border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
             padding: 2rem 1.75rem;
             transition: var(--transition);
             display: flex; flex-direction: column; align-items: center;
             text-align: center;
             position: relative; overflow: hidden;
+            border: 1px solid transparent;
+            background-origin: border-box;
         }
-        .function-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-cyan));
-        }
-        .function-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(54,209,220,0.4); }
 
-        /* Иконка функции — крупная, по центру, с градиентным цветом */
+        .function-card:nth-child(1) {
+            background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                        linear-gradient(135deg, #FF6B35, #FF8A35) border-box;
+            box-shadow: 0 0 20px rgba(255,107,53,0.08);
+        }
+        .function-card:nth-child(2) {
+            background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                        linear-gradient(135deg, #36D1DC, #5DFDCB) border-box;
+            box-shadow: 0 0 20px rgba(54,209,220,0.08);
+        }
+        .function-card:nth-child(3) {
+            background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                        linear-gradient(135deg, #8b5cf6, #36D1DC) border-box;
+            box-shadow: 0 0 20px rgba(139,92,246,0.08);
+        }
+        .function-card:nth-child(4) {
+            background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                        linear-gradient(135deg, #5DFDCB, #36D1DC) border-box;
+            box-shadow: 0 0 20px rgba(93,253,203,0.08);
+        }
+        .function-card:nth-child(5) {
+            background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                        linear-gradient(135deg, #FF6B35, #8b5cf6) border-box;
+            box-shadow: 0 0 20px rgba(255,107,53,0.08);
+        }
+        .function-card:nth-child(6) {
+            background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                        linear-gradient(135deg, #36D1DC, #FF6B35) border-box;
+            box-shadow: 0 0 20px rgba(54,209,220,0.08);
+        }
+
+        .function-card:nth-child(1):hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(255,107,53,0.22); }
+        .function-card:nth-child(2):hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(54,209,220,0.22); }
+        .function-card:nth-child(3):hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(139,92,246,0.22); }
+        .function-card:nth-child(4):hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(93,253,203,0.22); }
+        .function-card:nth-child(5):hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(255,107,53,0.22); }
+        .function-card:nth-child(6):hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(54,209,220,0.22); }
+
+        /* Иконки функций — уникальные цвета */
         .function-icon {
             font-size: 2rem; margin-bottom: 1.25rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .function-card h3 {
-            font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .function-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; text-align: center; }
+        .function-card:nth-child(1) .function-icon { color: #FF8A35; }
+        .function-card:nth-child(2) .function-icon { color: #36D1DC; }
+        .function-card:nth-child(3) .function-icon { color: #a78bfa; }
+        .function-card:nth-child(4) .function-icon { color: #5DFDCB; }
+        .function-card:nth-child(5) .function-icon { color: #FF6B35; }
+        .function-card:nth-child(6) .function-icon { color: #36D1DC; }
 
-        /* ===== MODULE CARDS — как на скрине 1 ===== */
+        /* Заголовки функций — цветные, НЕ градиент ===== */
+        .function-card h3 {
+            font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+        .function-card:nth-child(1) h3 { color: #FF8A35; }
+        .function-card:nth-child(2) h3 { color: #36D1DC; }
+        .function-card:nth-child(3) h3 { color: #a78bfa; }
+        .function-card:nth-child(4) h3 { color: #5DFDCB; }
+        .function-card:nth-child(5) h3 { color: #FF8A35; }
+        .function-card:nth-child(6) h3 { color: #36D1DC; }
+
+        .function-card p { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; text-align: center; }
+
+        /* ===== MODULE CARDS ===== */
         .modules-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -445,7 +382,6 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* Большой полупрозрачный номер сзади */
         .module-number {
             position: absolute; top: 0.5rem; right: 0.75rem;
             font-size: 3.5rem; font-weight: 800;
@@ -454,7 +390,6 @@
             user-select: none;
         }
 
-        /* Иконка с градиентом */
         .module-icon {
             font-size: 1.5rem; margin-bottom: 0.9rem;
             background: var(--gradient-primary);
@@ -525,9 +460,10 @@
         .modal-subtitle { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.4; }
         .modal-close {
             background: var(--bg-secondary); border: 1px solid var(--border-color);
-            color: var(--text-secondary); width: 36px; height: 36px; min-width: 36px;
+            color: var(--text-secondary); width: 40px; height: 40px; min-width: 40px;
             border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;
             cursor: pointer; transition: var(--transition); flex-shrink: 0;
+            position: relative; z-index: 20;
         }
         .modal-close:hover { background: var(--bg-hover); color: var(--text-primary); }
 
@@ -539,14 +475,12 @@
 
         .modal-section-title { font-size: 1.1rem; margin-bottom: 1.25rem; color: var(--text-primary); font-weight: 600; }
 
-        /* ===== TIMELINE STEPS ===== */
         .modal-steps { list-style: none; }
         .modal-steps li {
             margin-bottom: 1.5rem;
             padding-left: 2.75rem;
             position: relative;
         }
-        /* Вертикальная линия */
         .modal-steps li::before {
             content: '';
             position: absolute; left: 12px; top: 14px;
@@ -554,7 +488,6 @@
             background: linear-gradient(180deg, rgba(255,107,53,0.5), rgba(54,209,220,0.15));
         }
         .modal-steps li:last-child::before { display: none; }
-        /* Оранжевая точка */
         .modal-steps li::after {
             content: '';
             position: absolute; left: 6px; top: 5px;
@@ -564,7 +497,6 @@
             box-shadow: 0 0 0 2px rgba(255,107,53,0.25);
             z-index: 2;
         }
-        /* Номер шага */
         .step-number {
             display: inline-flex; align-items: center; justify-content: center;
             background: linear-gradient(135deg, #FF6B35, #FF8A35);
@@ -575,12 +507,10 @@
         .step-title { font-weight: 600; font-size: 0.98rem; display: inline; }
         .step-description { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; margin-top: 0.4rem; white-space: pre-line; }
 
-        /* Анимация появления шагов — управляется через JS */
         .modal-steps li { opacity: 1; transform: none; }
         .modal-steps li.step-animate { opacity: 0; transform: translateX(-8px); transition: opacity 0.3s ease, transform 0.3s ease; }
         .modal-steps li.step-visible { opacity: 1; transform: translateX(0); }
 
-        /* ===== SIDEBAR ===== */
         .modal-sidebar {
             background: var(--bg-secondary); border-radius: var(--radius-md);
             padding: 1.25rem; border: 1px solid var(--border-color);
@@ -612,7 +542,6 @@
         }
         .tag:hover { background: rgba(255,255,255,0.08); color: white; }
 
-        /* ===== SUBMODULES ===== */
         .submodules { margin-top: 2.5rem; }
         .submodules h3 { font-size: 1.1rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
         .submodule-grid { display: grid; gap: 1rem; }
@@ -776,7 +705,6 @@
         }
         .faq-show-all:hover { background: var(--bg-card); color: var(--text-primary); border-color: var(--accent-cyan); }
 
-        /* ===== TELEGRAM EXPLANATION (in FAQ) ===== */
         .telegram-explanation {
             background: linear-gradient(135deg, rgba(0,136,204,0.1), rgba(0,136,204,0.05));
             border-radius: 10px; padding: 1rem 1.1rem; margin-bottom: 1rem;
@@ -810,7 +738,6 @@
         .examples li { font-family: monospace; color: #FF6B35; font-size: 0.9rem; }
         .examples-note { margin: 0.5rem 0 0; font-size: 0.88rem; font-style: italic; }
 
-        /* Блоки в ответах FAQ */
         .color-difference { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.85rem 0; }
         .color-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem; }
         .color-badge { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; margin-bottom: 0.5rem; }
@@ -889,7 +816,6 @@
         @media (min-width: 768px) {
             .logo-text { display: inline; }
             .info-grid { gap: 1rem; }
-            .functions-grid { grid-template-columns: repeat(3, 1fr); }
             .footer-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
@@ -903,15 +829,78 @@
             .submodule-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
+        /* Functions grid responsive */
+        @media (max-width: 767px) {
+            .functions-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem;
+            }
+            .function-card {
+                padding: 1.25rem 1rem;
+            }
+            .function-icon { font-size: 1.6rem; margin-bottom: 0.85rem; }
+            .function-card h3 { font-size: 0.9rem; margin-bottom: 0.5rem; }
+            .function-card p { font-size: 0.82rem; line-height: 1.5; }
+        }
+
+        @media (max-width: 400px) {
+            .functions-grid { grid-template-columns: 1fr; }
+        }
+
         /* Modules grid responsive */
         @media (max-width: 1199px) { .modules-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 899px) { .modules-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 599px) { .modules-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; } }
         @media (max-width: 420px) { .modules-grid { grid-template-columns: 1fr; } }
 
-        /* ===== MOBILE MODAL — ключевые правки ===== */
+        /* Info cards mobile */
+        @media (max-width: 767px) {
+            .info-section { padding: 1.5rem 0; }
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 0.65rem;
+            }
+            .info-card {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 1rem;
+                padding: 1rem 1.1rem;
+                border-radius: 12px;
+            }
+            .info-card-left {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                flex-shrink: 0;
+                width: 60px;
+                gap: 0.4rem;
+            }
+            .info-icon {
+                width: 40px; height: 40px;
+                font-size: 1.1rem;
+                border-radius: 10px;
+                margin-bottom: 0;
+            }
+            .info-card h3 {
+                font-size: 0.72rem;
+                font-weight: 700;
+                margin-bottom: 0;
+                text-align: center;
+                line-height: 1.2;
+            }
+            .info-card ul { flex: 1; margin: 0; }
+            .info-card li {
+                font-size: 0.82rem;
+                line-height: 1.45;
+                margin-bottom: 0.4rem;
+                padding-left: 1rem;
+            }
+            .info-card li::before { font-size: 0.9rem; }
+            .info-card li strong { font-size: 0.82rem; }
+        }
+
+        /* ===== MOBILE MODAL ===== */
         @media (max-width: 768px) {
-            /* Модал — полноэкранный снизу вверх */
             .module-modal { padding: 0; align-items: flex-end; }
             .module-modal-content {
                 border-radius: var(--radius-lg) var(--radius-lg) 0 0;
@@ -920,66 +909,60 @@
             }
             @keyframes slideUpMobile { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
-            /* Шапка модала */
             .modal-header { padding: 1rem 1.1rem; }
             .modal-title { font-size: 1.1rem; }
             .modal-subtitle { font-size: 0.82rem; }
+            /* Кнопка закрытия — всегда видима на мобиле */
+            .modal-close {
+                width: 44px; height: 44px; min-width: 44px;
+                background: rgba(255,107,53,0.15);
+                border-color: rgba(255,107,53,0.4);
+                color: var(--accent-orange);
+                font-size: 1.1rem;
+            }
 
-            /* Body — одна колонка, сайдбар снизу */
             .modal-body {
                 grid-template-columns: 1fr; gap: 1rem; padding: 1rem 1.1rem;
             }
             .modal-sidebar { position: static; order: 2; }
             .modal-steps-container { order: 1; }
 
-            /* Шаги — увеличенные отступы для пальцев */
-            .modal-steps li {
-                padding-left: 2.5rem; margin-bottom: 1.25rem;
-            }
+            .modal-steps li { padding-left: 2.5rem; margin-bottom: 1.25rem; }
             .modal-steps li::before { left: 10px; }
             .modal-steps li::after { left: 4px; width: 12px; height: 12px; }
             .step-number { width: 20px; height: 20px; font-size: 0.72rem; }
             .step-title { font-size: 0.92rem; }
             .step-description { font-size: 0.85rem; }
 
-            /* Сайдбар компактнее */
             .sidebar-tip, .sidebar-warning, .sidebar-path { padding: 0.75rem; font-size: 0.84rem; }
 
-            /* FAQ */
             .faq-question { padding: 0.95rem 1rem; }
             .faq-question-content h3 { font-size: 0.95rem; }
             .faq-item.active .faq-answer { padding: 1rem; }
             .faq-categories { gap: 0.4rem; }
             .faq-category { padding: 0.4rem 0.85rem; font-size: 0.82rem; }
 
-            /* Settings grid 1 col on small */
             .settings-grid { grid-template-columns: 1fr; }
             .status-grid { grid-template-columns: 1fr; }
             .color-difference { grid-template-columns: 1fr; }
             .format-showcase { flex-direction: column; }
             .format-arrow { flex-direction: row; }
 
-            /* Section */
             .section { padding: 2.5rem 0; }
             .section-title { font-size: 1.75rem; }
             .section-header-top { flex-direction: column; }
             .section-decoration { display: none; }
 
-            /* Hero */
             .hero { padding: 1.5rem 0 2rem; }
             .hero-title { font-size: 2rem; }
             .hero-subtitle { font-size: 1rem; }
             .hero-description { font-size: 0.92rem; }
 
-            /* Module cards compact */
             .module-card { padding: 1.1rem; min-height: auto; }
             .module-title { font-size: 0.92rem; }
             .module-description { font-size: 0.78rem; }
             .module-number { font-size: 2.8rem; }
 
-            /* Info — handled by dedicated mobile block */
-
-            /* PDF */
             .pdf-card { padding: 2rem 1.25rem; }
             .pdf-card h3 { font-size: 1.4rem; }
         }
@@ -993,9 +976,7 @@
             .container { padding: 0 1rem; }
         }
 
-        /* Карточки без анимации при загрузке — убрано мерцание при скролле */
         .function-card, .module-card, .info-card { opacity: 1; }
-        /* Плавный hover через transition вместо animation */
         .function-card, .module-card, .info-card { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
     </style>
 </head>
@@ -1027,7 +1008,7 @@
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <nav class="mobile-menu-content">
-        <a href="#functions" class="mobile-nav-link"><i class="fas fa-cogs"></i><span>Функции</span></a>
+        <a href="#functions" class="mobile-nav-link"><i class="fas fa-bolt"></i><span>Функции</span></a>
         <a href="#modules" class="mobile-nav-link"><i class="fas fa-list-ol"></i><span>Настройки</span></a>
         <a href="#faq" class="mobile-nav-link"><i class="fas fa-question-circle"></i><span>FAQ</span></a>
         <a href="#support" class="mobile-nav-link"><i class="fas fa-headset"></i><span>Поддержка</span></a>
@@ -1046,11 +1027,11 @@
         </h1>
         <p class="hero-subtitle">Telegram-бот для автоматизации обменных операций</p>
         <p class="hero-description">Мультипользовательская система управления обменными пунктами. Изолированные базы данных, кросс-валютные пары и полный цикл сделок в одном решении.</p>
-        <a href="#modules" class="cta-button hero-btn"><i class="fas fa-play-circle"></i> Начать изучение</a>
+        <a href="#functions" class="cta-button hero-btn"><i class="fas fa-play-circle"></i> Начать изучение</a>
     </div>
 </section>
 
-<!-- Info Cards (скрин 3) -->
+<!-- Info Cards -->
 <section class="info-section">
     <div class="container">
         <div class="info-grid">
@@ -1092,19 +1073,11 @@
     </div>
 </section>
 
-<!-- Functions (скрин 2) -->
+<!-- Functions -->
 <section id="functions" class="section">
     <div class="container">
-        <div class="section-header">
-            <div class="section-header-top">
-                <div>
-                    <h2 class="section-title">Основные функции бота</h2>
-                </div>
-                <div class="section-decoration">
-                    <div class="deco-line"></div>
-                    <div class="deco-dots"><span></span><span></span><span></span></div>
-                </div>
-            </div>
+        <div class="section-header" style="text-align:center;">
+            <h2 class="section-title">Основные функции бота</h2>
             <p class="section-subtitle">Все возможности и инструменты для управления обменным пунктом</p>
         </div>
         <div class="functions-grid">
@@ -1139,26 +1112,15 @@
                 <p>Автоматические расчеты, округление сумм, уведомления об изменении статусов.</p>
             </div>
         </div>
-        <div style="text-align:center; margin-top: 2.5rem;">
-            <a href="#modules" class="cta-button">Начать изучение</a>
-        </div>
     </div>
 </section>
 
-<!-- Modules (скрин 1) -->
+<!-- Modules -->
 <section id="modules" class="section section-dark">
     <div class="container">
-        <div class="section-header">
-            <div class="section-header-top">
-                <div>
-                    <h2 class="section-title">Пошаговая настройка</h2>
-                    <p class="section-subtitle">12 шагов для профессиональной работы</p>
-                </div>
-                <div class="stats">
-                    <div class="stat-badge"><span class="stat-number">12</span> шагов</div>
-                    <div class="stat-badge"><span class="stat-number">6</span> функций</div>
-                </div>
-            </div>
+        <div class="section-header" style="text-align:center;">
+            <h2 class="section-title">Пошаговая настройка</h2>
+            <p class="section-subtitle">12 шагов для профессиональной работы</p>
         </div>
         <div class="modules-grid">
             <div class="module-card" data-module="start">
@@ -1184,7 +1146,7 @@
             <div class="module-card" data-module="fractional">
                 <div class="module-number">3</div>
                 <div class="module-icon"><i class="fas fa-coins"></i></div>
-                <h3 class="module-title">Шаг 3: База валют и кросс-пары</h3>
+                <h3 class="module-title">Шаг 3: Настройка базы валют и кросс-пары</h3>
                 <p class="module-description">Создание и управление валютной базой, настройка кросс-валютных пар для торговли</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1562,7 +1524,7 @@
             <div class="footer-col">
                 <h3>Контакты</h3>
                 <ul>
-                    <li><a href="#"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="88fbfdf8f8e7fafcc8edf0ebe0e9e6efedecedfbe3a6eae7fc">[email&#160;protected]</span></a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> support@exchangedesk.bot</a></li>
                     <li><a href="#"><i class="fas fa-paper-plane"></i> @exchangedesk</a></li>
                 </ul>
             </div>
@@ -1606,8 +1568,7 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
 </button>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ===== MODULE DATA =====
+<script>
 const moduleData = {
     start: {
         title: "Шаг 1: Начало работы",
@@ -1653,17 +1614,17 @@ const moduleData = {
         tags: ["Заказы", "Сделки", "Операции"]
     },
     fractional: {
-        title: "Шаг 3: База валют и кросс-пары",
+         title: "Шаг 3: Настройка базы валют и кросс-пары",
         subtitle: "Создание и управление валютной базой, настройка кросс-валютных пар",
         steps: [
-            { number:"1", title:"Установить параметры отображения", description:"Настройки → Валютные пары → Кастомизация валют." },
-            { number:"2", title:"Выбрать конфигурацию", description:"Настройка из 4 блоков: Номиналы → Дробная часть → Emoji → Глобальные данные." },
-            { number:"3", title:"Настройки параметров", description:"Для каждой валюты:\n1. Номиналы — добавьте купюры.\n2. Дробная часть — от 2 до 8 знаков.\n3. Emoji — визуальное обозначение.\n4. Глобальные валюты — привязка к мировой базе." },
-            { number:"4", title:"Просмотр сводной информации", description:"Главное меню → Настройки → Валютные пары — все настроенные параметры." },
-            { number:"5", title:"Оптимизация для кросс-пар", description:"Для кросс-пар рекомендуется 6-8 знаков для корректных расчетов." }
+            { number:"1", title:"Создание валютных пар", description:"Настройки → Валютные пары → База данных валют." },
+            { number:"2", title:"Добавить валюту", description:"Нажмите 'Добавить валюту' и введите код валюты вручную как в примере (USD, EUR, GBP, USD_white и т.д.) → Добавить RUB (ДА/НЕТ)→ Назад." },
+            { number:"3", title:"Создать кросс-пары", description:"Перейдите в Настройки → Валютные пары → Кросс-курсы → Добавить кросс-курс.Система автоматически сформирует и предложит название пары или можно указать свой вариант." },
+            { number:"4", title:"Настройки кросс-курсов", description:"После выбора пар, вы можете в этом же окне внести изменения, такие как: изменить название, удалить или добавить еще одну пару." },
+            { number:"5", title:"Оптимизация для кросс-пар", description:"Не выходя в главное меню, при необходимости можно отредактировать название. Задать название → в строке написать, например: USD/EUR(CASH)→ Главное меню." }
         ],
-        tip: "Для фиатных валют (RUB, USD) — 2 знака, для криптовалют — 6-8.",
-        warning: "Изменение точности не повлияет на существующие заказы, только на новые.",
+        tip: "Начните с добавления основных валют: национальная валюта, USD, EUR,  GBP. Кросс-пары формируются только на основе уже добавленных в систему валютных пар.",
+        warning: "При удалении валюты будут удалены все связанные с ней пары и исторические данные.",
         path: "Настройки → Валютные пары → Кастомизация → Выбор валюты",
         tags: ["Валюты", "Кросс-пары", "База данных"]
     },
@@ -1853,19 +1814,13 @@ const moduleData = {
     }
 };
 
-// ===== MOBILE MENU =====
+// Mobile Menu
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
 
-function toggleMobileMenu() {
-    mobileMenu.classList.toggle('active');
-    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-}
-function closeMobileMenu() {
-    mobileMenu.classList.remove('active');
-    document.body.style.overflow = '';
-}
+function toggleMobileMenu() { mobileMenu.classList.toggle('active'); document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : ''; }
+function closeMobileMenu() { mobileMenu.classList.remove('active'); document.body.style.overflow = ''; }
 mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 document.querySelectorAll('.mobile-nav-link').forEach(link => {
@@ -1876,7 +1831,6 @@ document.querySelectorAll('.mobile-nav-link').forEach(link => {
     });
 });
 
-// ===== SMOOTH SCROLL =====
 function smoothScroll(target) {
     const el = document.querySelector(target);
     if (!el) return;
@@ -1890,17 +1844,15 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 });
 window.addEventListener('resize', () => { if (window.innerWidth >= 1024) closeMobileMenu(); });
 
-// ===== MODAL =====
+// Modal
 const modal = document.getElementById('modal');
 const modalClose = document.getElementById('modalClose');
 
 function openModal(moduleId) {
     const data = moduleData[moduleId];
     if (!data) return;
-
     document.getElementById('modalTitle').textContent = data.title;
     document.getElementById('modalSubtitle').textContent = data.subtitle;
-
     const stepsContainer = document.getElementById('modalSteps');
     stepsContainer.innerHTML = data.steps.map(step => `
         <li class="step-animate">
@@ -1909,18 +1861,14 @@ function openModal(moduleId) {
             <p class="step-description">${step.description}</p>
         </li>
     `).join('');
-    // Запускаем анимацию шагов последовательно через JS
     const stepItems = stepsContainer.querySelectorAll('li');
-    stepItems.forEach((li, i) => {
-        setTimeout(() => li.classList.add('step-visible'), 50 + i * 60);
-    });
+    stepItems.forEach((li, i) => { setTimeout(() => li.classList.add('step-visible'), 50 + i * 60); });
 
     document.getElementById('sidebarTip').innerHTML = `<strong><i class="fas fa-lightbulb" style="color:#36D1DC;margin-right:0.4rem;"></i> Совет:</strong><br>${data.tip}`;
     document.getElementById('sidebarWarning').innerHTML = `<strong><i class="fas fa-exclamation-triangle" style="color:#FF6B35;margin-right:0.4rem;"></i> Важно:</strong><br>${data.warning}`;
     document.getElementById('sidebarPath').innerHTML = `<i class="fas fa-route" style="margin-right:0.5rem;"></i>${data.path}`;
-
     const tagsContainer = document.getElementById('sidebarTags');
-    tagsContainer.innerHTML = data.tags.map(t => `<span class="tag">${t}</span>`).join('');
+    tagsContainer.innerHTML = data.tags ? data.tags.map(t => `<span class="tag">${t}</span>`).join('') : '';
 
     const submodulesContainer = document.getElementById('submodules');
     if (data.submodules && data.submodules.length) {
@@ -1957,50 +1905,29 @@ function openModal(moduleId) {
 
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    // Reset scroll
-    setTimeout(() => {
-        const body = modal.querySelector('.modal-body');
-        if (body) body.scrollTop = 0;
-    }, 10);
+    setTimeout(() => { const body = modal.querySelector('.modal-body'); if (body) body.scrollTop = 0; }, 10);
 }
 
-function closeModal() {
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-}
-
+function closeModal() { modal.style.display = 'none'; document.body.style.overflow = ''; }
 modalClose.addEventListener('click', closeModal);
 modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.style.display === 'flex') closeModal(); });
 
-// Module cards & links — click to open
-document.querySelectorAll('.module-card').forEach(card => {
-    card.addEventListener('click', () => openModal(card.dataset.module));
-});
+document.querySelectorAll('.module-card').forEach(card => { card.addEventListener('click', () => openModal(card.dataset.module)); });
 document.querySelectorAll('.module-link').forEach(link => {
-    link.addEventListener('click', e => {
-        e.stopPropagation();
-        openModal(link.closest('.module-card').dataset.module);
-    });
+    link.addEventListener('click', e => { e.stopPropagation(); openModal(link.closest('.module-card').dataset.module); });
 });
 
-// ===== FAQ =====
+// FAQ
 (function initFAQ() {
     const faqItems = document.querySelectorAll('.faq-item');
     const faqCategories = document.querySelectorAll('.faq-category');
     const faqSearch = document.getElementById('faqSearch');
     const faqShowAll = document.getElementById('faqShowAll');
     const faqNoResults = document.getElementById('faqNoResults');
-    const faqGrid = document.getElementById('faqGrid');
     let allExpanded = false;
 
-    faqItems.forEach(item => {
-        item.querySelector('.faq-question').addEventListener('click', () => {
-            item.classList.toggle('active');
-            updateBtn();
-        });
-    });
-
+    faqItems.forEach(item => { item.querySelector('.faq-question').addEventListener('click', () => { item.classList.toggle('active'); updateBtn(); }); });
     faqCategories.forEach(cat => {
         cat.addEventListener('click', () => {
             faqCategories.forEach(c => c.classList.remove('active'));
@@ -2008,7 +1935,6 @@ document.querySelectorAll('.module-link').forEach(link => {
             filter(cat.dataset.category, faqSearch ? faqSearch.value.toLowerCase() : '');
         });
     });
-
     if (faqSearch) {
         let t;
         faqSearch.addEventListener('input', () => {
@@ -2018,14 +1944,9 @@ document.querySelectorAll('.module-link').forEach(link => {
                 filter(active ? active.dataset.category : 'all', faqSearch.value.toLowerCase());
             }, 250);
         });
-        faqSearch.addEventListener('keydown', e => {
-            if (e.key === 'Escape') { faqSearch.value = ''; filter('all', ''); }
-        });
+        faqSearch.addEventListener('keydown', e => { if (e.key === 'Escape') { faqSearch.value = ''; filter('all', ''); } });
     }
-
-    if (faqShowAll) {
-        faqShowAll.addEventListener('click', () => toggleAll(!allExpanded));
-    }
+    if (faqShowAll) faqShowAll.addEventListener('click', () => toggleAll(!allExpanded));
 
     function filter(cat, search) {
         let visible = 0;
@@ -2033,15 +1954,8 @@ document.querySelectorAll('.module-link').forEach(link => {
             if (item.id === 'faqNoResults') return;
             const catMatch = cat === 'all' || item.dataset.category === cat;
             const searchMatch = !search || item.innerText.toLowerCase().includes(search);
-            if (catMatch && searchMatch) {
-                item.style.display = '';
-                visible++;
-                item.style.animation = 'none';
-                item.offsetHeight;
-                item.style.animation = 'faqFadeIn 0.35s ease forwards';
-            } else {
-                item.style.display = 'none';
-            }
+            if (catMatch && searchMatch) { item.style.display = ''; visible++; item.style.animation = 'none'; item.offsetHeight; item.style.animation = 'faqFadeIn 0.35s ease forwards'; }
+            else { item.style.display = 'none'; }
         });
         faqNoResults.style.display = visible === 0 ? 'block' : 'none';
         updateBtn();
@@ -2049,14 +1963,8 @@ document.querySelectorAll('.module-link').forEach(link => {
 
     function toggleAll(expand) {
         allExpanded = expand;
-        faqItems.forEach(item => {
-            if (item.id !== 'faqNoResults' && item.style.display !== 'none') {
-                item.classList.toggle('active', expand);
-            }
-        });
-        if (faqShowAll) faqShowAll.innerHTML = expand
-            ? '<i class="fas fa-chevron-up"></i> Свернуть все'
-            : '<i class="fas fa-chevron-down"></i> Развернуть все';
+        faqItems.forEach(item => { if (item.id !== 'faqNoResults' && item.style.display !== 'none') item.classList.toggle('active', expand); });
+        if (faqShowAll) faqShowAll.innerHTML = expand ? '<i class="fas fa-chevron-up"></i> Свернуть все' : '<i class="fas fa-chevron-down"></i> Развернуть все';
     }
 
     function updateBtn() {
@@ -2064,19 +1972,15 @@ document.querySelectorAll('.module-link').forEach(link => {
         const vis = Array.from(faqItems).filter(i => i.id !== 'faqNoResults' && i.style.display !== 'none');
         const act = vis.filter(i => i.classList.contains('active'));
         allExpanded = vis.length > 0 && act.length === vis.length;
-        faqShowAll.innerHTML = allExpanded
-            ? '<i class="fas fa-chevron-up"></i> Свернуть все'
-            : '<i class="fas fa-chevron-down"></i> Развернуть все';
+        faqShowAll.innerHTML = allExpanded ? '<i class="fas fa-chevron-up"></i> Свернуть все' : '<i class="fas fa-chevron-down"></i> Развернуть все';
     }
 })();
 
-// ===== SCROLL TOP =====
+// Scroll top
 (function() {
     const btn = document.getElementById('scrollTopBtn');
     if (!btn) return;
-    window.addEventListener('scroll', () => {
-        btn.classList.toggle('visible', window.scrollY > 300);
-    }, { passive: true });
+    window.addEventListener('scroll', () => { btn.classList.toggle('visible', window.scrollY > 300); }, { passive: true });
     btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
 </script>

@@ -401,6 +401,14 @@
             .func-modal-content { padding: 1.5rem 1.1rem; }
             .func-modal-title { font-size: 1.05rem; }
         }
+        @media (max-width: 768px) {
+            .func-modal { align-items: flex-end; padding: 0; }
+            .func-modal-content {
+                border-radius: 20px 20px 0 0; max-width: 100%; width: 100%;
+                padding: 1.5rem 1.25rem 2rem;
+                animation: slideUpMobile 0.3s cubic-bezier(0.4,0,0.2,1);
+            }
+        }
 
         .modules-grid {
             display: grid;
@@ -520,6 +528,7 @@
             border: 1px solid rgba(54,209,220,0.25);
             padding: 0.3rem 0.75rem; border-radius: 20px;
             transition: background 0.2s ease, border-color 0.2s ease;
+            cursor: pointer; font-family: inherit;
         }
         .modal-doc-link:hover { background: rgba(54,209,220,0.16); border-color: rgba(54,209,220,0.5); }
         .modal-close {
@@ -877,14 +886,30 @@
         @media (max-width: 420px) { .modules-grid { grid-template-columns: 1fr; } }
 
         @media (max-width: 767px) {
+            /* Info cards (Для кого / Что делает / Как начать) */
             .info-section { padding: 1.5rem 0; }
-            .info-grid { grid-template-columns: 1fr; gap: 0.65rem; }
-            .info-card { flex-direction: row; align-items: flex-start; gap: 1rem; padding: 1rem 1.1rem; border-radius: 12px; }
-            .info-card-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 60px; gap: 0.4rem; }
-            .info-icon { width: 40px; height: 40px; font-size: 1.1rem; border-radius: 10px; margin-bottom: 0; }
-            .info-card h3 { font-size: 0.72rem; font-weight: 700; margin-bottom: 0; text-align: center; line-height: 1.2; }
-            .info-card ul { flex: 1; margin: 0; }
-            .info-card li { font-size: 0.82rem; line-height: 1.45; margin-bottom: 0.4rem; padding-left: 1rem; }
+            .info-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+            .info-card { flex-direction: column; align-items: flex-start; padding: 1.25rem; border-radius: 14px; }
+            .info-card-left { display: flex; flex-direction: row; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; width: 100%; }
+            .info-icon { width: 44px; height: 44px; font-size: 1.1rem; border-radius: 11px; margin-bottom: 0; flex-shrink: 0; }
+            .info-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0; text-align: left; line-height: 1.2; }
+            .info-card ul { width: 100%; margin: 0; }
+            .info-card li { font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.45rem; padding-left: 1rem; }
+
+            /* Функции — 2 колонки на мобиле */
+            .functions-list { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+            .function-row { padding: 1.25rem 0.9rem 1.1rem; flex-direction: column; text-align: center; align-items: center; }
+            .function-row-icon { width: 50px; height: 50px; font-size: 1.3rem; margin-bottom: 0.75rem; }
+            .function-row-title { font-size: 0.9rem; }
+            .function-row-desc { font-size: 0.8rem; }
+
+            /* Кнопки hero — в ряд одинакового размера */
+            .hero-buttons { flex-direction: row !important; gap: 0.65rem !important; }
+            .hero-buttons .cta-button, .hero-buttons .cta-button { flex: 1; justify-content: center; font-size: 0.92rem; padding: 0.7rem 0.75rem; }
+        }
+
+        @media (max-width: 400px) {
+            .functions-list { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
@@ -972,7 +997,7 @@
         <div class="hero-divider"></div>
         <p class="hero-subtitle">Telegram-бот для автоматизации обменных операций</p>
         <p class="hero-description">Мультипользовательская система управления обменными пунктами. Изолированные базы данных, кросс-валютные пары и полный цикл сделок в одном решении.</p>
-        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <div class="hero-buttons" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
             <a href="#modules" class="cta-button hero-btn"><i class="fas fa-play-circle"></i> Начать изучение</a>
             <a href="https://annakustova132-ship-it.github.io/-Exchange-Desk-Bot-/Exchange_Desk_Bot.pdf" download class="cta-button hero-btn">
                 <i class="fas fa-file-pdf"></i> Скачать PDF
@@ -1078,6 +1103,11 @@
             <div><div class="func-modal-title" id="funcModalTitle"></div></div>
         </div>
         <p class="func-modal-desc" id="funcModalDesc"></p>
+        <div style="margin-top:1.25rem;">
+            <button class="modal-doc-link" id="funcDocLink" onclick="if(this.dataset.href) window.open(this.dataset.href,'_blank')" data-href="">
+                <i class="fas fa-book-open"></i> Подробнее в инструкции
+            </button>
+        </div>
     </div>
 </div>
 
@@ -1488,7 +1518,7 @@ const moduleData = {
         tip: "Сохраните свой Telegram ID — он понадобится для восстановления доступа.",
         warning: "Без согласия с условиями работа с ботом невозможна.",
         path: "Приветствие → Согласие → Выбор действия",
-       
+   
     },
     exchange: {
         title: "Шаг 2: Создание обменного пункта",
@@ -1519,7 +1549,7 @@ const moduleData = {
         tip: "Кросс-пары всегда отображаются в нижней части таблицы.",
         warning: "Зелёные кнопки (🟢) — пункт покупает; красные кнопки (🔴) — пункт продаёт.",
         path: "Главное меню → Новый заказ → Выбор пары → Ввод данных",
-        
+       
     },
     fractional: {
         title: "Шаг 3: Настройка базы валют и кросс-пары",
@@ -1535,7 +1565,7 @@ const moduleData = {
         tip: "Начните с добавления основных валют: национальная валюта, USD, EUR, GBP. Кросс-пары формируются только на основе уже добавленных в систему валютных пар.",
         warning: "При удалении валюты будут удалены все связанные с ней пары и исторические данные.",
         path: "Настройки → Валютные пары → Кастомизация → Выбор валюты",
-        
+      
     },
     fraction: {
         title: "Шаг 4: Конфигурация валютных параметров",
@@ -1628,7 +1658,7 @@ const moduleData = {
         tip: "Устанавливайте разумный спред для покрытия расходов.",
         warning: "Перед началом торгов должны быть созданы обменник и база валют.",
         path: "Главное меню → Выставление котировок → Настройка",
-        
+       
     },
     channel: {
         title: "Шаг 6: Канал для сотрудников",
@@ -1645,7 +1675,7 @@ const moduleData = {
         tip: "Канал для уведомлений, группа для обсуждения деталей заказа.",
         warning: "Без правильного chat_id бот не сможет отправлять уведомления.",
         path: "Создать канал → chat_id → Настройки → ID канала",
-       
+        
     },
     orders: {
         title: "Шаг 8: Статусы заказов",
@@ -1661,7 +1691,7 @@ const moduleData = {
         tip: "Регулярно обновляйте статусы для актуальной отчетности.",
         warning: "Статус «Выполнен» делает заказ недоступным для редактирования.",
         path: "Главное меню → Заказы → Редактировать → Статус",
-       
+        
     },
     status: {
         title: "Шаг 10: Редактирование заказов",
@@ -1678,7 +1708,7 @@ const moduleData = {
         tip: "Регулярно проверяйте заказы на наличие ошибок.",
         warning: "После статуса «Выполнен» редактирование недоступно.",
         path: "Выбор способа → Открытие → Редактировать → Изменение → Сохранить",
-        
+
     },
     cross: {
         title: "Шаг 11: Управление пользователями",
@@ -1695,7 +1725,7 @@ const moduleData = {
         tip: "Новый пользователь получает базовые права. Для расширения измените роль.",
         warning: "Администратор не может удалить Владельца или изменить его права.",
         path: "Настройки → Обменник → Пользователи → Добавить / Права",
-      
+        
     },
     "edit-orders": {
         title: "Шаг 9: Работа с кросс-парами",
@@ -1711,7 +1741,7 @@ const moduleData = {
         tip: "Для кросс-пар используйте точность 6-8 знаков для корректных расчетов.",
         warning: "Редактирование кросс-пар находится в разработке.",
         path: "Новый заказ → Кросс-пара → Сумма → Округление",
-       
+        tags: ["Кросс-пары", "Округление", "В разработке"]
     },
     export: {
         title: "Шаг 12: Выгрузка данных",
@@ -1727,7 +1757,7 @@ const moduleData = {
         tip: "Регулярно выгружайте данные для резервного копирования.",
         warning: "Расширенная бухгалтерия в разработке.",
         path: "Главное меню → Заказы → Экспорт → Формат → Скачать",
-       
+        
     }
 };
 
@@ -1836,12 +1866,18 @@ const funcInfo = {
 };
 const funcModal = document.getElementById('funcModal');
 const funcModalClose = document.getElementById('funcModalClose');
+const funcLinks = { users:'#user-management', currencies:'#currencies', analytics:'#analytics', security:'#security', communication:'#communication', automation:'#automation' };
 function openFuncModal(key) {
     const d = funcInfo[key]; if (!d) return;
     const icon = document.getElementById('funcModalIcon');
     icon.innerHTML = '<i class="' + d.icon + '"></i>';
     document.getElementById('funcModalTitle').textContent = d.title;
     document.getElementById('funcModalDesc').textContent = d.desc;
+    const docLink = document.getElementById('funcDocLink');
+    if (docLink) {
+        const url = 'https://annakustova132-ship-it.github.io/-Exchange-Desk-Bot-/Exchange_Desk_Bot_manual.html' + (funcLinks[key] || '');
+        docLink.dataset.href = url;
+    }
     funcModal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }

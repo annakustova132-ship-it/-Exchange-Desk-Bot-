@@ -153,7 +153,11 @@
 
         /* ===== INFO CARDS — как на скрине 3 ===== */
         .info-section { padding: 3rem 0; background: var(--bg-secondary); }
-        .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
 
         .info-card {
             background: var(--bg-card);
@@ -161,32 +165,31 @@
             border-radius: var(--radius-lg);
             padding: 2rem;
             transition: var(--transition);
+            display: flex;
+            flex-direction: column;
         }
         .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(54,209,220,0.3); }
 
-        /* Иконка — квадрат с градиентным фоном как на скрине 3 */
         .info-icon {
             width: 56px; height: 56px;
             display: flex; align-items: center; justify-content: center;
             border-radius: 14px; font-size: 1.4rem; margin-bottom: 1.5rem;
             background: linear-gradient(135deg, rgba(255,107,53,0.3) 0%, rgba(54,209,220,0.3) 100%);
             border: 1px solid rgba(255,255,255,0.1);
-            position: relative; overflow: hidden;
+            flex-shrink: 0;
         }
         .info-icon i {
             background: var(--gradient-primary);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; position: relative; z-index: 1;
+            background-clip: text;
         }
 
-        /* Заголовок карточки — с градиентом */
         .info-card h3 {
             font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem;
             background: var(--gradient-primary);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
 
-        /* Список с цветными точками (как на скрине 3) */
         .info-card ul { list-style: none; }
         .info-card li {
             color: var(--text-secondary);
@@ -203,15 +206,55 @@
         }
         .info-card strong { color: var(--text-primary); }
 
-        /* Мобильная адаптация — 3 колонки, компактнее */
+        /* Мобильная адаптация — 3 в ряд, компактно и читаемо */
         @media (max-width: 767px) {
-            .info-grid { gap: 0.5rem; }
-            .info-card { padding: 0.85rem 0.7rem; border-radius: 10px; }
-            .info-icon { width: 36px; height: 36px; font-size: 1rem; border-radius: 8px; margin-bottom: 0.75rem; }
-            .info-card h3 { font-size: 0.82rem; margin-bottom: 0.5rem; }
-            .info-card li { font-size: 0.72rem; margin-bottom: 0.4rem; padding-left: 0.9rem; line-height: 1.4; }
-            .info-card li::before { font-size: 0.85rem; }
-            .info-card strong { font-size: 0.72rem; }
+            .info-section { padding: 1.5rem 0; }
+            .info-grid { gap: 0.4rem; }
+            .info-card {
+                padding: 0.75rem 0.6rem;
+                border-radius: 10px;
+                gap: 0;
+            }
+            .info-icon {
+                width: 32px; height: 32px;
+                font-size: 0.9rem;
+                border-radius: 7px;
+                margin-bottom: 0.6rem;
+            }
+            .info-card h3 {
+                font-size: 0.78rem;
+                font-weight: 700;
+                margin-bottom: 0.45rem;
+                line-height: 1.2;
+                /* Убираем clip на мобильном — оставляем просто оранжевый цвет */
+                background: none;
+                -webkit-text-fill-color: var(--accent-orange);
+                color: var(--accent-orange);
+            }
+            .info-card ul { margin: 0; }
+            .info-card li {
+                font-size: 0.68rem;
+                line-height: 1.35;
+                margin-bottom: 0.35rem;
+                padding-left: 0.8rem;
+                color: var(--text-secondary);
+            }
+            .info-card li::before {
+                font-size: 0.75rem;
+                line-height: 1.35;
+            }
+            .info-card strong {
+                font-size: 0.68rem;
+                color: var(--text-primary);
+            }
+        }
+
+        @media (max-width: 380px) {
+            .info-grid { gap: 0.3rem; }
+            .info-card { padding: 0.6rem 0.5rem; }
+            .info-card h3 { font-size: 0.72rem; }
+            .info-card li { font-size: 0.63rem; }
+            .info-card strong { font-size: 0.63rem; }
         }
 
         /* ===== SECTIONS ===== */
@@ -1527,7 +1570,7 @@ const moduleData = {
         tags: ["Заказы", "Сделки", "Операции"]
     },
     fractional: {
-       title: "Шаг 3: Настройка базы валют и кросс-пары",
+        title: "Шаг 3: Настройка базы валют и кросс-пары",
         subtitle: "Создание и управление валютной базой, настройка кросс-валютных пар",
         steps: [
             { number:"1", title:"Создание валютных пар", description:"Настройки → Валютные пары → База данных валют." },

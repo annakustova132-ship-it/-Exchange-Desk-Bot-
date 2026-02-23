@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exchange Desk Bot | Инструкция</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #12122b;
+            --bg-card: #1a1a3a;
+            --bg-hover: #24244a;
+            --text-primary: #f0f0ff;
+            --text-secondary: #b8b8d6;
+            --text-muted: #8a8ab5;
+            --accent-orange: #FF6B35;
+            --accent-cyan: #36D1DC;
+            --accent-green: #5DFDCB;
+            --accent-red: #ef4444;
+            --accent-purple: #8b5cf6;
+            --gradient-primary: linear-gradient(135deg, #FF6B35 0%, #36D1DC 50%, #5DFDCB 100%);
+            --border-color: #2d2d5a;
+            --shadow: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.2);
+            --header-height: 70px;
+            --spacing: 1.5rem;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 6px;
+            --border-light: rgba(255,255,255,0.1);
+            --bg-overlay: rgba(10,10,26,0.97);
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 16px); }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing); }
+
+        .header {
+            position: sticky; top: 0;
+            height: var(--header-height);
+            background: rgba(10, 10, 26, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(45, 45, 90, 0.6);
+            z-index: 1000;
+        }
+        .header::after {
+            content: '';
+            position: absolute; bottom: 0; left: -100%; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #FF6B35 25%, #36D1DC 50%, #5DFDCB 75%, transparent 100%);
+            animation: headerGlow 3s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes headerGlow { 0% { transform: translateX(0); } 100% { transform: translateX(200%); } }
+
+        .header-container {
+            max-width: 1200px; margin: 0 auto;
+            padding: 0 var(--spacing); height: 100%;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-primary); }
+        .logo-icon {
+            width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--gradient-primary); border-radius: 10px; font-size: 1.2rem;
+        }
+        .logo-text { font-weight: 700; font-size: 1.2rem; display: none; }
+        .logo-exchange { color: var(--accent-orange); }
+        .logo-desk { color: var(--accent-cyan); }
+        .logo-bot { color: var(--text-primary); }
+
+        .desktop-nav { display: none; gap: 2rem; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: var(--transition); }
+        .nav-link:hover { color: var(--text-primary); }
+
+        .cta-button {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--gradient-primary); color: #0a0a1a;
+            padding: 0.75rem 1.5rem; border-radius: 12px;
+            text-decoration: none; font-weight: 700; border: none;
+            cursor: pointer; transition: var(--transition); white-space: nowrap;
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+        .desktop-btn { display: none; }
+
+        .mobile-menu-btn {
+            width: 44px; height: 44px;
+            display: flex; align-items: center; justify-content: center;
+            background: transparent; border: none;
+            color: var(--text-primary); font-size: 1.5rem; cursor: pointer;
+        }
+
+        .mobile-menu {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 999; pointer-events: none;
+        }
+        .mobile-menu.active { pointer-events: all; }
+        .mobile-menu-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
+            opacity: 0; transition: var(--transition);
+        }
+        .mobile-menu.active .mobile-menu-overlay { opacity: 1; }
+        .mobile-menu-content {
+            position: absolute; top: 0; left: 0; width: 280px; height: 100%;
+            background: var(--bg-secondary); border-right: 1px solid var(--border-color);
+            padding: 2rem var(--spacing);
+            transform: translateX(-100%); transition: var(--transition); overflow-y: auto;
+        }
+        .mobile-menu.active .mobile-menu-content { transform: translateX(0); }
+        .mobile-nav-link {
+            display: flex; align-items: center; gap: 1rem; padding: 1rem;
+            color: var(--text-secondary); text-decoration: none;
+            border-radius: 8px; margin-bottom: 0.5rem; transition: var(--transition);
+        }
+        .mobile-nav-link:hover { background: var(--bg-hover); color: var(--text-primary); }
+        .mobile-nav-link.download { margin-top: 1rem; background: var(--gradient-primary); color: #0a0a1a; font-weight: 700; }
+        .mobile-nav-link i { font-size: 1.2rem; width: 24px; }
+
+        .hero { padding: 3rem 0; text-align: center; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(255,107,53,0.1); color: var(--accent-orange);
+            padding: 0.5rem 1rem; border-radius: 20px;
+            font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem;
+            border: 1px solid rgba(255,107,53,0.2);
+        }
+        .hero-title { font-size: 2.8rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
+        .hero-exchange { color: var(--accent-orange); }
+        .hero-desk { color: var(--accent-cyan); }
+        .hero-bot { color: var(--accent-green); display: block; margin-top: 0.25rem; }
+        .hero-subtitle { font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0.75rem; }
+        .hero-description { color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; font-size: 1rem; }
+        .hero-btn { font-size: 1.05rem; }
+
+        .info-section { padding: 3rem 0; background: var(--bg-secondary); }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        .info-card {
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid transparent;
+            background-origin: border-box;
+        }
+
+        .info-card:nth-child(1) {
+            background:
+                linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                linear-gradient(135deg, #FF6B35, #FF8A35) border-box;
+            box-shadow: 0 0 24px rgba(255,107,53,0.1);
+        }
+        .info-card:nth-child(2) {
+            background:
+                linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                linear-gradient(135deg, #36D1DC, #5DFDCB) border-box;
+            box-shadow: 0 0 24px rgba(54,209,220,0.1);
+        }
+        .info-card:nth-child(3) {
+            background:
+                linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                linear-gradient(135deg, #8b5cf6, #36D1DC) border-box;
+            box-shadow: 0 0 24px rgba(139,92,246,0.1);
+        }
+
+        .info-card:nth-child(1):hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(255,107,53,0.25); }
+        .info-card:nth-child(2):hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(54,209,220,0.25); }
+        .info-card:nth-child(3):hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(139,92,246,0.25); }
+
+        .info-icon {
+            width: 56px; height: 56px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 14px; font-size: 1.4rem; margin-bottom: 1rem;
+            flex-shrink: 0;
+        }
+        .info-card:nth-child(1) .info-icon { background: rgba(255,107,53,0.15); border: 1px solid rgba(255,107,53,0.3); }
+        .info-card:nth-child(2) .info-icon { background: rgba(54,209,220,0.15); border: 1px solid rgba(54,209,220,0.3); }
+        .info-card:nth-child(3) .info-icon { background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); }
+
+        .info-card:nth-child(1) .info-icon i { color: #FF8A35; }
+        .info-card:nth-child(2) .info-icon i { color: #36D1DC; }
+        .info-card:nth-child(3) .info-icon i { color: #a78bfa; }
+
+        .info-card:nth-child(1) h3 { color: #FF8A35; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
+        .info-card:nth-child(2) h3 { color: #36D1DC; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
+        .info-card:nth-child(3) h3 { color: #a78bfa; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
+
+        .info-card ul { list-style: none; }
+        .info-card li {
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            padding-left: 1.25rem;
+            position: relative;
+            line-height: 1.55;
+            font-size: 0.95rem;
+        }
+        .info-card:nth-child(1) li::before { content: '•'; position: absolute; left: 0; color: #FF6B35; font-weight: 900; font-size: 1.1rem; line-height: 1.5; }
+        .info-card:nth-child(2) li::before { content: '•'; position: absolute; left: 0; color: #36D1DC; font-weight: 900; font-size: 1.1rem; line-height: 1.5; }
+        .info-card:nth-child(3) li::before { content: '•'; position: absolute; left: 0; color: #8b5cf6; font-weight: 900; font-size: 1.1rem; line-height: 1.5; }
+
+        .info-card li strong { color: #f0f0ff; font-weight: 600; }
+
+        .section { padding: 4rem 0; }
+        .section-dark { background: var(--bg-secondary); }
+
+        .section-header { margin-bottom: 3rem; }
+        .section-header-top {
+            display: flex; align-items: flex-start; justify-content: space-between;
+            flex-wrap: wrap; gap: 1rem; margin-bottom: 0.5rem;
+        }
+        .section-title {
+            font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            display: inline-block;
+            line-height: 1.15;
+        }
+        .section-subtitle { color: var(--text-secondary); font-size: 1rem; }
+
+        .functions-list {
+            display: flex; flex-direction: column; gap: 0.65rem;
+            max-width: 760px; margin: 0 auto;
+        }
+        .function-row {
+            display: flex; align-items: center; gap: 1.1rem;
+            padding: 1rem 1.4rem; border-radius: var(--radius-md);
+            cursor: pointer;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+        .function-row:hover {
+            background: var(--bg-hover);
+            border-color: var(--accent-cyan);
+            transform: translateX(4px);
+        }
+        .function-row-icon {
+            width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.15rem;
+            background: rgba(54,209,220,0.1);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(54,209,220,0.2);
+        }
+        .function-row-title {
+            flex: 1; font-size: 1rem; font-weight: 600;
+            color: var(--text-primary);
+        }
+        .function-row-arrow {
+            color: var(--text-muted); font-size: 0.8rem;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+        .function-row:hover .function-row-arrow {
+            transform: translateX(3px);
+            color: var(--accent-cyan);
+        }
+
+        .func-modal {
+            display: none; position: fixed; inset: 0;
+            background: rgba(10,10,26,0.92); backdrop-filter: blur(12px);
+            z-index: 3000; align-items: center; justify-content: center;
+            padding: 1rem; animation: fadeIn 0.2s ease;
+        }
+        .func-modal-content {
+            background: var(--bg-card); border-radius: var(--radius-lg);
+            border: 1px solid var(--accent-cyan);
+            box-shadow: 0 0 30px rgba(54,209,220,0.1);
+            width: 100%; max-width: 520px; padding: 2rem;
+            position: relative; animation: slideUp 0.25s cubic-bezier(0.4,0,0.2,1);
+        }
+        .func-modal-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; padding-right: 2.5rem; }
+        .func-modal-icon {
+            width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+            background: rgba(54,209,220,0.1);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(54,209,220,0.25);
+        }
+        .func-modal-title { font-size: 1.2rem; font-weight: 700; line-height: 1.3; color: var(--text-primary); }
+        .func-modal-close {
+            position: absolute; top: 1rem; right: 1rem;
+            width: 38px; height: 38px; border-radius: 8px;
+            background: var(--bg-secondary); border: 1px solid var(--border-color);
+            color: var(--text-muted); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+        }
+        .func-modal-close:hover { background: var(--bg-hover); color: var(--text-primary); }
+        .func-modal-desc { color: var(--text-secondary); font-size: 0.97rem; line-height: 1.75; }
+
+        @media (max-width: 767px) {
+            .function-row { padding: 0.85rem 1rem; gap: 0.85rem; }
+            .function-row-icon { width: 36px; height: 36px; font-size: 1rem; border-radius: 8px; }
+            .function-row-title { font-size: 0.92rem; }
+            .func-modal-content { padding: 1.5rem 1.1rem; }
+            .func-modal-title { font-size: 1.05rem; }
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.1rem;
+        }
+        .module-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.4rem;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative; overflow: hidden;
+            min-height: 200px;
+            display: flex; flex-direction: column;
+        }
+        .module-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: var(--gradient-primary);
+        }
+        .module-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(54,209,220,0.5);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .module-number {
+            position: absolute; top: 0.5rem; right: 0.75rem;
+            font-size: 3.5rem; font-weight: 800;
+            color: rgba(255,255,255,0.04);
+            line-height: 1; pointer-events: none;
+            user-select: none;
+        }
+
+        .module-icon {
+            font-size: 1.5rem; margin-bottom: 0.9rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; display: inline-block;
+        }
+        .module-title {
+            font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .module-description {
+            color: var(--text-secondary); margin-bottom: 0.85rem;
+            font-size: 0.82rem; line-height: 1.5; flex-grow: 1;
+        }
+        .module-actions {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: auto; flex-wrap: wrap; gap: 0.5rem;
+        }
+        .module-ref-link {
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-left: 0.4rem; color: var(--accent-cyan);
+            font-size: 0.72rem; opacity: 0.6;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            vertical-align: middle; text-decoration: none;
+        }
+        .module-ref-link:hover { opacity: 1; transform: translateY(-1px); }
+        .module-link {
+            color: #FF6B35; text-decoration: none; font-weight: 600; font-size: 0.8rem;
+            display: flex; align-items: center; gap: 0.4rem;
+            background: rgba(255,107,53,0.1);
+            padding: 0.4rem 0.75rem; border-radius: var(--radius-sm);
+            transition: var(--transition); white-space: nowrap;
+        }
+        .module-link:hover { background: rgba(255,107,53,0.2); }
+        .module-status {
+            display: flex; align-items: center; gap: 0.3rem;
+            font-size: 0.72rem; padding: 0.22rem 0.55rem;
+            border-radius: 50px; white-space: nowrap;
+        }
+        .status-active { background: rgba(16,185,129,0.1); color: #5DFDCB; }
+        .status-beta { background: rgba(245,158,11,0.1); color: var(--accent-orange); }
+
+        .module-modal {
+            display: none; position: fixed; inset: 0;
+            background: var(--bg-overlay); backdrop-filter: blur(10px);
+            z-index: 2000; align-items: center; justify-content: center;
+            padding: 1rem; animation: fadeIn 0.25s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .module-modal-content {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg); border: 1px solid var(--border-color);
+            width: 100%; max-width: 960px; max-height: 92vh;
+            overflow: hidden; position: relative;
+            animation: slideUp 0.3s cubic-bezier(0.4,0,0.2,1);
+            display: flex; flex-direction: column;
+        }
+        @keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .modal-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: flex-start;
+            position: sticky; top: 0; background: var(--bg-card); z-index: 10;
+            flex-shrink: 0; gap: 1rem;
+        }
+        .modal-title {
+            font-size: 1.35rem; font-weight: 700; margin-bottom: 0.2rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            line-height: 1.3;
+        }
+        .modal-subtitle { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.4; }
+        .modal-doc-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            margin-top: 0.6rem;
+            font-size: 0.82rem; font-weight: 600;
+            color: var(--accent-cyan); text-decoration: none;
+            background: rgba(54,209,220,0.08);
+            border: 1px solid rgba(54,209,220,0.25);
+            padding: 0.3rem 0.75rem; border-radius: 20px;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+        .modal-doc-link:hover { background: rgba(54,209,220,0.16); border-color: rgba(54,209,220,0.5); }
+        .modal-close {
+            background: var(--bg-secondary); border: 1px solid var(--border-color);
+            color: var(--text-secondary); width: 40px; height: 40px; min-width: 40px;
+            border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: var(--transition); flex-shrink: 0;
+            position: relative; z-index: 20;
+        }
+        .modal-close:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+        .modal-body {
+            padding: 1.5rem; display: grid;
+            grid-template-columns: 1fr 280px; gap: 1.5rem;
+            flex: 1; overflow-y: auto; min-height: 0;
+        }
+
+        .modal-section-title { font-size: 1.1rem; margin-bottom: 1.25rem; color: var(--text-primary); font-weight: 600; }
+
+        .modal-steps { list-style: none; }
+        .modal-steps li {
+            margin-bottom: 1.5rem;
+            padding-left: 2.75rem;
+            position: relative;
+        }
+        .modal-steps li::before {
+            content: '';
+            position: absolute; left: 12px; top: 14px;
+            width: 2px; bottom: -1.5rem;
+            background: linear-gradient(180deg, rgba(255,107,53,0.5), rgba(54,209,220,0.15));
+        }
+        .modal-steps li:last-child::before { display: none; }
+        .modal-steps li::after {
+            content: '';
+            position: absolute; left: 6px; top: 5px;
+            width: 14px; height: 14px; border-radius: 50%;
+            background: linear-gradient(135deg, #FF6B35, #FF8A35);
+            border: 2px solid var(--bg-card);
+            box-shadow: 0 0 0 2px rgba(255,107,53,0.25);
+            z-index: 2;
+        }
+        .step-number {
+            display: inline-flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #FF6B35, #FF8A35);
+            color: white; width: 22px; height: 22px; border-radius: 50%;
+            font-weight: 700; font-size: 0.75rem; margin-right: 0.6rem;
+            vertical-align: middle; position: relative; z-index: 3;
+        }
+        .step-title { font-weight: 600; font-size: 0.98rem; display: inline; }
+        .step-description { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; margin-top: 0.4rem; white-space: pre-line; }
+
+        .modal-steps li { opacity: 1; transform: none; }
+        .modal-steps li.step-animate { opacity: 0; transform: translateX(-8px); transition: opacity 0.3s ease, transform 0.3s ease; }
+        .modal-steps li.step-visible { opacity: 1; transform: translateX(0); }
+
+        .modal-sidebar {
+            background: var(--bg-secondary); border-radius: var(--radius-md);
+            padding: 1.25rem; border: 1px solid var(--border-color);
+            height: fit-content; position: sticky; top: 1rem;
+        }
+        .sidebar-title {
+            font-size: 0.95rem; font-weight: 700; margin-bottom: 0.85rem;
+            padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .sidebar-tip, .sidebar-warning, .sidebar-path {
+            padding: 0.85rem; border-radius: 8px; margin-bottom: 0.85rem;
+            font-size: 0.88rem; line-height: 1.5;
+        }
+        .sidebar-tip { background: rgba(54,130,246,0.08); border: 1px solid rgba(54,130,246,0.2); color: #93c5fd; }
+        .sidebar-tip strong, .sidebar-warning strong { display: block; margin-bottom: 0.35rem; }
+        .sidebar-warning { background: rgba(156,163,175,0.08); border: 1px solid rgba(156,163,175,0.2); color: #d1d5db; }
+        .sidebar-path {
+            background: rgba(139,92,246,0.08); border: 1px solid rgba(139,92,246,0.2);
+            color: #a78bfa; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
+            word-break: break-all;
+        }
+        .sidebar-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+        .tag {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7); padding: 0.3rem 0.7rem;
+            border-radius: 6px; font-size: 0.82rem; font-weight: 500; transition: var(--transition);
+        }
+        .tag:hover { background: rgba(255,255,255,0.08); color: white; }
+
+        .submodules { margin-top: 2.5rem; }
+        .submodules h3 { font-size: 1.1rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+        .submodule-grid { display: grid; gap: 1rem; }
+        .submodule-card {
+            background: var(--bg-secondary); border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 1.25rem; cursor: pointer; transition: var(--transition);
+        }
+        .submodule-card:hover { border-color: rgba(54,209,220,0.35); }
+        .submodule-card.active { background: var(--bg-hover); border-color: rgba(54,209,220,0.4); }
+        .submodule-header { display: flex; align-items: center; gap: 0.85rem; }
+        .submodule-icon {
+            width: 36px; height: 36px;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--gradient-primary); border-radius: 8px; font-size: 1rem; flex-shrink: 0;
+        }
+        .submodule-card h5 { flex: 1; font-size: 1rem; }
+        .submodule-toggle { color: var(--text-muted); transition: var(--transition); }
+        .submodule-card.active .submodule-toggle { transform: rotate(180deg); }
+        .submodule-content { max-height: 0; overflow: hidden; transition: var(--transition); }
+        .submodule-card.active .submodule-content { max-height: 800px; margin-top: 1.25rem; }
+        .submodule-steps { list-style: none; padding-left: 1.25rem; }
+        .submodule-steps li {
+            color: var(--text-secondary); margin-bottom: 0.6rem;
+            position: relative; font-size: 0.9rem;
+        }
+        .submodule-steps li::before { content: '•'; position: absolute; left: -1.25rem; color: var(--accent-cyan); }
+        .submodule-info { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color); font-size: 0.88rem; }
+        .submodule-info p { margin-bottom: 0.6rem; display: flex; align-items: flex-start; gap: 0.5rem; color: var(--text-secondary); }
+        .submodule-info strong { color: var(--text-primary); }
+
+        .pdf-card {
+            background: var(--bg-card); border: 2px dashed var(--border-color);
+            border-radius: var(--radius-lg); padding: 3rem 2rem; text-align: center;
+            transition: var(--transition);
+        }
+        .pdf-card:hover { border-color: var(--accent-cyan); box-shadow: 0 0 30px rgba(54,209,220,0.1); }
+        .pdf-icon {
+            font-size: 3.5rem; margin-bottom: 1.5rem; display: block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            animation: bounce 2s ease infinite;
+        }
+        @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        .pdf-card h3 { font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; }
+        .pdf-card p { color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; }
+
+        .faq-search-container { position: relative; max-width: 400px; margin: 1.5rem auto 0; }
+        .faq-search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+        .faq-search {
+            width: 100%; padding: 0.75rem 1rem 0.75rem 2.5rem;
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 12px; color: var(--text-primary); font-size: 1rem; transition: var(--transition);
+        }
+        .faq-search:focus { outline: none; border-color: var(--accent-cyan); box-shadow: 0 0 0 3px rgba(54,209,220,0.1); }
+        .faq-search::placeholder { color: var(--text-muted); }
+
+        .faq-categories { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin: 1.5rem 0 2rem; }
+        .faq-category {
+            padding: 0.5rem 1.1rem; background: var(--bg-card);
+            border: 1px solid var(--border-color); border-radius: 30px;
+            color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;
+            cursor: pointer; transition: var(--transition);
+        }
+        .faq-category:hover { background: var(--bg-hover); color: var(--text-primary); border-color: var(--accent-cyan); }
+        .faq-category.active {
+            background: var(--bg-hover); color: var(--accent-cyan);
+            border-color: var(--accent-cyan); font-weight: 600;
+            box-shadow: 0 0 10px rgba(54,209,220,0.15);
+        }
+
+        .faq-grid { display: flex; flex-direction: column; gap: 0.85rem; max-width: 900px; margin: 0 auto; }
+
+        .faq-item {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition);
+            opacity: 0; transform: translateY(8px);
+            animation: faqFadeIn 0.35s ease forwards;
+        }
+        @keyframes faqFadeIn { to { opacity: 1; transform: translateY(0); } }
+        .faq-item:nth-child(1) { animation-delay: 0.05s; }
+        .faq-item:nth-child(2) { animation-delay: 0.1s; }
+        .faq-item:nth-child(3) { animation-delay: 0.15s; }
+        .faq-item:nth-child(4) { animation-delay: 0.2s; }
+        .faq-item:nth-child(5) { animation-delay: 0.25s; }
+        .faq-item:nth-child(6) { animation-delay: 0.3s; }
+        .faq-item:nth-child(7) { animation-delay: 0.35s; }
+        .faq-item:hover { border-color: rgba(54,209,220,0.35); box-shadow: var(--shadow); }
+        .faq-item.active { border-color: var(--accent-cyan); }
+
+        .faq-question {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1.1rem 1.4rem; cursor: pointer; user-select: none; transition: var(--transition);
+        }
+        .faq-question:hover { background: var(--bg-secondary); }
+        .faq-question-content { display: flex; align-items: center; gap: 0.9rem; flex: 1; }
+        .faq-question-content i { font-size: 1.1rem; color: var(--accent-orange); width: 20px; flex-shrink: 0; }
+        .faq-question-content h3 { font-size: 1rem; font-weight: 600; color: var(--text-primary); margin: 0; }
+        .faq-toggle { color: var(--text-muted); transition: var(--transition); flex-shrink: 0; }
+        .faq-item.active .faq-toggle { transform: rotate(180deg); color: var(--accent-cyan); }
+
+        .faq-answer {
+            max-height: 0; padding: 0 1.4rem;
+            overflow: hidden; transition: all 0.3s ease;
+            background: var(--bg-secondary);
+        }
+        .faq-item.active .faq-answer { max-height: 3000px; padding: 1.25rem 1.4rem; border-top: 1px solid var(--border-color); }
+        .faq-answer p { color: var(--text-secondary); margin-bottom: 0.85rem; line-height: 1.6; }
+        .faq-answer ul, .faq-answer ol { margin: 0.5rem 0 0.85rem; padding-left: 1.4rem; }
+        .faq-answer li { color: var(--text-secondary); margin-bottom: 0.4rem; }
+        .faq-answer li i { color: var(--accent-green); margin-right: 0.4rem; }
+        .faq-answer a { color: var(--accent-cyan); text-decoration: none; border-bottom: 1px dashed; }
+        .faq-answer a:hover { color: var(--accent-green); }
+        .faq-answer code {
+            background: var(--bg-hover); color: var(--accent-cyan);
+            padding: 0.15rem 0.4rem; border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.88rem;
+        }
+
+        .faq-note, .faq-tip, .faq-warning, .faq-path {
+            display: flex; align-items: flex-start; gap: 0.75rem;
+            padding: 0.85rem 1rem; border-radius: 10px; margin-top: 0.85rem; font-size: 0.9rem;
+        }
+        .faq-note i, .faq-tip i, .faq-warning i, .faq-path i { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+        .faq-note { background: rgba(54,209,220,0.1); border: 1px solid rgba(54,209,220,0.2); }
+        .faq-note i { color: var(--accent-cyan); }
+        .faq-tip { background: rgba(93,253,203,0.1); border: 1px solid rgba(93,253,203,0.2); }
+        .faq-tip i { color: var(--accent-green); }
+        .faq-warning { background: rgba(255,107,53,0.1); border: 1px solid rgba(255,107,53,0.2); }
+        .faq-warning i { color: var(--accent-orange); }
+        .faq-path { background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.2); font-family: 'JetBrains Mono', monospace; }
+        .faq-path i { color: #a78bfa; }
+        .faq-path code { color: var(--text-primary); background: transparent; padding: 0; }
+
+        .faq-steps { list-style: none; padding: 0 !important; }
+        .faq-steps li { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.85rem; color: var(--text-secondary); }
+        .step-badge {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 24px; height: 24px; min-width: 24px; background: var(--gradient-primary);
+            border-radius: 50%; color: #0a0a1a; font-weight: 700; font-size: 0.8rem;
+        }
+        .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 0.85rem; margin: 0.85rem 0; }
+        .status-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: var(--bg-card); border-radius: 8px; }
+        .status-badge { font-size: 1.1rem; width: 22px; text-align: center; }
+
+        .faq-no-results {
+            text-align: center; padding: 3rem; background: var(--bg-card);
+            border: 1px solid var(--border-color); border-radius: var(--radius-lg); display: none;
+        }
+        .faq-no-results i { font-size: 2.5rem; color: var(--text-muted); display: block; margin-bottom: 1rem; }
+        .faq-no-results h3 { color: var(--text-primary); margin-bottom: 0.5rem; }
+        .faq-no-results p { color: var(--text-secondary); }
+
+        .faq-footer { text-align: center; margin-top: 1.5rem; }
+        .faq-show-all {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.65rem 1.4rem; background: transparent;
+            border: 1px solid var(--border-color); border-radius: 30px;
+            color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;
+            cursor: pointer; transition: var(--transition);
+        }
+        .faq-show-all:hover { background: var(--bg-card); color: var(--text-primary); border-color: var(--accent-cyan); }
+
+        .telegram-explanation {
+            background: linear-gradient(135deg, rgba(0,136,204,0.1), rgba(0,136,204,0.05));
+            border-radius: 10px; padding: 1rem 1.1rem; margin-bottom: 1rem;
+            border-left: 4px solid #0088cc;
+        }
+        .explanation-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; color: #0088cc; font-weight: 600; }
+        .format-showcase { display: flex; align-items: center; gap: 1rem; margin: 1.25rem 0; flex-wrap: wrap; }
+        .format-card {
+            flex: 1; min-width: 180px; display: flex; align-items: flex-start; gap: 0.75rem;
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 10px; padding: 1rem; transition: var(--transition);
+        }
+        .format-card.correct { border-left: 4px solid #28a745; }
+        .format-card.incorrect { border-left: 4px solid #dc3545; opacity: 0.8; background: rgba(220,53,69,0.05); }
+        .format-card.result { border-left: 4px solid #36D1DC; }
+        .format-icon { font-size: 1.2rem; flex-shrink: 0; }
+        .format-card.correct .format-icon { color: #28a745; }
+        .format-card.incorrect .format-icon { color: #dc3545; }
+        .format-card.result .format-icon { color: #36D1DC; }
+        .format-label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--text-primary); }
+        .code-demo { background: var(--bg-secondary); padding: 0.5rem 0.75rem; border-radius: 6px; margin-bottom: 0.5rem; font-family: monospace; border: 1px solid var(--border-color); }
+        .code-demo.wrong { background: rgba(220,53,69,0.1); border-color: rgba(220,53,69,0.3); }
+        .code-demo code { color: #FF6B35; font-size: 0.88rem; }
+        .format-desc { font-size: 0.82rem; color: var(--text-muted); margin: 0; }
+        .format-arrow { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); font-size: 0.75rem; }
+        .format-arrow i { font-size: 1.3rem; }
+        .tags-demo { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .currency-tag { background: var(--bg-secondary); border: 1px solid #36D1DC; color: #36D1DC; padding: 0.2rem 0.65rem; border-radius: 20px; font-size: 0.82rem; }
+
+        .color-difference { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.85rem 0; }
+        .color-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem; }
+        .color-badge { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .color-badge.green i { color: #28a745; }
+        .color-badge.red i { color: #dc3545; }
+
+        .info-message { display: flex; align-items: flex-start; gap: 0.75rem; background: rgba(54,209,220,0.08); border: 1px solid rgba(54,209,220,0.2); border-radius: 10px; padding: 0.85rem 1rem; margin: 0.85rem 0; }
+        .info-message i { color: var(--accent-cyan); flex-shrink: 0; margin-top: 2px; }
+
+        .recovery-message { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; padding: 0.85rem 1rem; margin: 0.85rem 0; display: flex; align-items: flex-start; gap: 0.75rem; }
+        .recovery-message i { color: #5DFDCB; flex-shrink: 0; }
+        .warning-block { background: rgba(255,107,53,0.08); border: 1px solid rgba(255,107,53,0.2); border-radius: 10px; padding: 0.85rem 1rem; margin: 0.85rem 0; }
+        .warning-header { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--accent-orange); margin-bottom: 0.4rem; }
+        .settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin: 0.85rem 0; }
+        .settings-item { display: flex; align-items: center; gap: 0.65rem; padding: 0.6rem 0.85rem; background: var(--bg-card); border-radius: 8px; }
+        .settings-icon { width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+        .settings-icon.red { background: rgba(239,68,68,0.1); color: var(--accent-red); }
+        .settings-icon.blue { background: rgba(54,209,220,0.1); color: var(--accent-cyan); }
+        .settings-icon.purple { background: rgba(139,92,246,0.1); color: var(--accent-purple); }
+        .settings-icon.green { background: rgba(16,185,129,0.1); color: var(--accent-green); }
+        .settings-content { display: flex; flex-direction: column; }
+        .settings-label { font-size: 0.85rem; font-weight: 600; }
+        .settings-note { font-size: 0.75rem; color: var(--text-muted); }
+        .highlight-path { background: rgba(139,92,246,0.12); padding: 0.1rem 0.4rem; border-radius: 4px; color: #a78bfa; }
+
+        .footer {
+            position: relative; background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color); padding: 3rem 0 1.5rem;
+            overflow: hidden;
+        }
+        .footer::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #FF6B35 25%, #36D1DC 50%, #5DFDCB 75%, transparent 100%);
+            animation: scanline 3s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes scanline { 0% { transform: translateX(0); } 100% { transform: translateX(200%); } }
+
+        .footer-grid { display: grid; gap: 2rem; margin-bottom: 2rem; }
+        .footer-col h3 { font-size: 1.1rem; margin-bottom: 0.85rem; }
+        .footer-col p { color: var(--text-secondary); font-size: 0.9rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.6rem; }
+        .footer-col a { color: var(--text-secondary); text-decoration: none; transition: var(--transition); display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+        .footer-col a:hover { color: var(--text-primary); }
+        .footer-bottom { padding-top: 1.5rem; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+        .version { margin-top: 0.4rem; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600; }
+
+        .scroll-top-btn {
+            display: none; position: fixed; bottom: 24px; right: 20px; z-index: 9999;
+            width: 48px; height: 48px; border-radius: 50%; border: none; cursor: pointer;
+            background: linear-gradient(135deg, #FF6B35, #36D1DC); color: #fff;
+            align-items: center; justify-content: center;
+            box-shadow: 0 4px 16px rgba(54,209,220,0.35);
+            opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease; transform: translateY(12px);
+        }
+        .scroll-top-btn.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
+
+        @media (min-width: 768px) {
+            .logo-text { display: inline; }
+            .info-grid { gap: 1rem; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-menu-btn { display: none; }
+            .desktop-nav { display: flex; }
+            .desktop-btn { display: inline-flex; }
+            .scroll-top-btn { display: flex; }
+            .hero-title { font-size: 3.5rem; }
+            .footer-grid { grid-template-columns: repeat(4, 1fr); }
+            .submodule-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 1199px) { .modules-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 899px) { .modules-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 599px) { .modules-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; } }
+        @media (max-width: 420px) { .modules-grid { grid-template-columns: 1fr; } }
+
+        @media (max-width: 767px) {
+            .info-section { padding: 1.5rem 0; }
+            .info-grid { grid-template-columns: 1fr; gap: 0.65rem; }
+            .info-card { flex-direction: row; align-items: flex-start; gap: 1rem; padding: 1rem 1.1rem; border-radius: 12px; }
+            .info-card-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 60px; gap: 0.4rem; }
+            .info-icon { width: 40px; height: 40px; font-size: 1.1rem; border-radius: 10px; margin-bottom: 0; }
+            .info-card h3 { font-size: 0.72rem; font-weight: 700; margin-bottom: 0; text-align: center; line-height: 1.2; }
+            .info-card ul { flex: 1; margin: 0; }
+            .info-card li { font-size: 0.82rem; line-height: 1.45; margin-bottom: 0.4rem; padding-left: 1rem; }
+        }
+
+        @media (max-width: 768px) {
+            .module-modal { padding: 0; align-items: flex-end; }
+            .module-modal-content { border-radius: var(--radius-lg) var(--radius-lg) 0 0; max-height: 92vh; max-width: 100%; width: 100%; animation: slideUpMobile 0.35s cubic-bezier(0.4,0,0.2,1); }
+            @keyframes slideUpMobile { from { transform: translateY(100%); } to { transform: translateY(0); } }
+            .modal-header { padding: 1rem 1.1rem; }
+            .modal-title { font-size: 1.1rem; }
+            .modal-subtitle { font-size: 0.82rem; }
+            .modal-close { width: 44px; height: 44px; min-width: 44px; background: rgba(255,107,53,0.15); border-color: rgba(255,107,53,0.4); color: var(--accent-orange); font-size: 1.1rem; }
+            .modal-body { grid-template-columns: 1fr; gap: 1rem; padding: 1rem 1.1rem; }
+            .modal-sidebar { position: static; order: 2; }
+            .modal-steps-container { order: 1; }
+            .section { padding: 2.5rem 0; }
+            .section-title { font-size: 1.75rem; }
+            .hero { padding: 1.5rem 0 2rem; }
+            .hero-title { font-size: 2rem; }
+            .module-card { padding: 1.1rem; min-height: auto; }
+            .settings-grid { grid-template-columns: 1fr; }
+            .color-difference { grid-template-columns: 1fr; }
+            .format-showcase { flex-direction: column; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 1.75rem; }
+            .module-card { padding: 1rem; }
+            .container { padding: 0 1rem; }
+        }
+
+        details {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 5px 10px;
+            margin: 0 0 6px;
+        }
+        summary { cursor: pointer; color: var(--accent-cyan); font-weight: 600; list-style: none; }
+        summary::before { content: '▶ '; font-size: 0.72em; color: var(--accent-orange); }
+        details[open] summary::before { content: '▼ '; }
+        details > *:not(summary) { margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+        <a href="#" class="logo">
+            <div class="logo-icon"><i class="fas fa-exchange-alt"></i></div>
+            <span class="logo-text">
+                <span class="logo-exchange">Exchange</span>
+                <span class="logo-desk">Desk</span>
+                <span class="logo-bot">Bot</span>
+            </span>
+        </a>
+        <nav class="desktop-nav">
+            <a href="#functions" class="nav-link">Функции</a>
+            <a href="#modules" class="nav-link">Настройка</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+            <a href="#support" class="nav-link">Поддержка</a>
+        </nav>
+        <a href="#pdf" class="cta-button desktop-btn"><i class="fas fa-download"></i> Скачать</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню"><i class="fas fa-bars"></i></button>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <nav class="mobile-menu-content">
+        <a href="#functions" class="mobile-nav-link"><i class="fas fa-bolt"></i><span>Функции</span></a>
+        <a href="#modules" class="mobile-nav-link"><i class="fas fa-list-ol"></i><span>Настройки</span></a>
+        <a href="#faq" class="mobile-nav-link"><i class="fas fa-question-circle"></i><span>FAQ</span></a>
+        <a href="#support" class="mobile-nav-link"><i class="fas fa-headset"></i><span>Поддержка</span></a>
+        <a href="#pdf" class="mobile-nav-link download"><i class="fas fa-download"></i><span>Скачать инструкцию</span></a>
+    </nav>
+</div>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-badge"><i class="fas fa-bolt"></i> Полное руководство</div>
+        <h1 class="hero-title">
+            <span class="hero-exchange">Exchange</span>
+            <span class="hero-desk">Desk</span>
+            <span class="hero-bot">Bot</span>
+        </h1>
+        <p class="hero-subtitle">Telegram-бот для автоматизации обменных операций</p>
+        <p class="hero-description">Мультипользовательская система управления обменными пунктами. Изолированные базы данных, кросс-валютные пары и полный цикл сделок в одном решении.</p>
+        <a href="#modules" class="cta-button hero-btn"><i class="fas fa-play-circle"></i> Начать изучение</a>
+    </div>
+</section>
+
+<section class="info-section">
+    <div class="container">
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-card-left">
+                    <div class="info-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Для кого?</h3>
+                </div>
+                <ul>
+                    <li><strong>Владельцы обменников</strong> и криптобирж</li>
+                    <li><strong>Финтех-стартапы,</strong> предприниматели в сфере финансов</li>
+                    <li>Для тех, кто хочет <strong>автоматизировать рутинные операции</strong> и масштабировать бизнес</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <div class="info-card-left">
+                    <div class="info-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Что делает?</h3>
+                </div>
+                <ul>
+                    <li>Автоматизирует <strong>создание заказов,</strong> управление курсами</li>
+                    <li>Работа с <strong>кросс-парами,</strong> выгрузка отчетов</li>
+                    <li>Сокращает время на обработку операций <strong>с 10 минут до 30 секунд</strong></li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <div class="info-card-left">
+                    <div class="info-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Как начать?</h3>
+                </div>
+                <ul>
+                    <li><strong>1.</strong> Напишите боту <strong>@exchangebot</strong></li>
+                    <li><strong>2.</strong> Зарегистрируйтесь <strong>за 2 минуты</strong></li>
+                    <li><strong>3.</strong> Настройте базовые параметры</li>
+                    <li><strong>4.</strong> Начните работу! <strong>Первые сделки через 15 минут</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="functions" class="section">
+    <div class="container">
+        <div class="section-header" style="text-align:center;">
+            <h2 class="section-title">Основные функции бота</h2>
+            <p class="section-subtitle">Все возможности и инструменты для управления обменным пунктом</p>
+        </div>
+        <div class="functions-list">
+            <div class="function-row" data-func="users">
+                <div class="function-row-icon"><i class="fas fa-user-plus"></i></div>
+                <span class="function-row-title">Управление пользователями</span>
+                <i class="fas fa-chevron-right function-row-arrow"></i>
+            </div>
+            <div class="function-row" data-func="currencies">
+                <div class="function-row-icon"><i class="fas fa-coins"></i></div>
+                <span class="function-row-title">Настройка валют</span>
+                <i class="fas fa-chevron-right function-row-arrow"></i>
+            </div>
+            <div class="function-row" data-func="analytics">
+                <div class="function-row-icon"><i class="fas fa-chart-bar"></i></div>
+                <span class="function-row-title">Аналитика и отчеты</span>
+                <i class="fas fa-chevron-right function-row-arrow"></i>
+            </div>
+            <div class="function-row" data-func="security">
+                <div class="function-row-icon"><i class="fas fa-shield-alt"></i></div>
+                <span class="function-row-title">Безопасность</span>
+                <i class="fas fa-chevron-right function-row-arrow"></i>
+            </div>
+            <div class="function-row" data-func="communication">
+                <div class="function-row-icon"><i class="fas fa-comments"></i></div>
+                <span class="function-row-title">Коммуникация</span>
+                <i class="fas fa-chevron-right function-row-arrow"></i>
+            </div>
+            <div class="function-row" data-func="automation">
+                <div class="function-row-icon"><i class="fas fa-sync-alt"></i></div>
+                <span class="function-row-title">Автоматизация</span>
+                <i class="fas fa-chevron-right function-row-arrow"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="func-modal" id="funcModal">
+    <div class="func-modal-content" id="funcModalContent">
+        <button class="func-modal-close" id="funcModalClose"><i class="fas fa-times"></i></button>
+        <div class="func-modal-header">
+            <div class="func-modal-icon" id="funcModalIcon"></div>
+            <div><div class="func-modal-title" id="funcModalTitle"></div></div>
+        </div>
+        <p class="func-modal-desc" id="funcModalDesc"></p>
+    </div>
+</div>
+
+<section id="modules" class="section section-dark">
+    <div class="container">
+        <div class="section-header" style="text-align:center;">
+            <h2 class="section-title">Пошаговая настройка</h2>
+            <p class="section-subtitle">12 шагов для профессиональной работы</p>
+        </div>
+        <div class="modules-grid">
+            <div class="module-card" data-module="start">
+                <div class="module-number">1</div>
+                <div class="module-icon"><i class="fas fa-rocket"></i></div>
+                <h3 class="module-title">Шаг 1: Начало работы <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#о-боте" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Первые шаги: регистрация в системе, согласие с условиями, получение Telegram ID</p>
+                <div class="module-actions">
+                    <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
+                    <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
+                </div>
+            </div>
+            <div class="module-card" data-module="exchange">
+                <div class="module-number">2</div>
+                <div class="module-icon"><i class="fas fa-building"></i></div>
+                <h3 class="module-title">Шаг 2: Создание обменного пункта <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#создание-и-настройка-обменного-пункта" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Настройка виртуального обменного пункта: уникальное название, базовая валюта, часовой пояс</p>
+                <div class="module-actions">
+                    <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
+                    <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
+                </div>
+            </div>
+            <div class="module-card" data-module="fractional">
+                <div class="module-number">3</div>
+                <div class="module-icon"><i class="fas fa-coins"></i></div>
+                <h3 class="module-title">Шаг 3: Настройка базы валют и кросс-пары <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#настройка-валют-и-валютных-пар" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Создание и управление валютной базой, настройка кросс-валютных пар для торговли</p>
+                <div class="module-actions">
+                    <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
+                    <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
+                </div>
+            </div>
+            <div class="module-card" data-module="fraction">
+                <div class="module-number">4</div>
+                <div class="module-icon"><i class="fas fa-divide"></i></div>
+                <h3 class="module-title">Шаг 4: Конфигурация валютных параметров <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#настройка-номиналов-купюр" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Детальная настройка отображения и поведения каждой валюты в системе</p>
+                <div class="module-actions">
+                    <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
+                    <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
+                </div>
+            </div>
+            <div class="module-card" data-module="rates">
+                <div class="module-number">5</div>
+                <div class="module-icon"><i class="fas fa-chart-line"></i></div>
+                <h3 class="module-title">Шаг 5: Управление курсами <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#выставление-курсов-и-котировок" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Выставление и корректировка курсов покупки/продажи для всех валютных пар</p>
+                <div class="module-actions">
+                    <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
+                    <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
+                </div>
+            </div>
+            <div class="module-card" data-module="channel">
+                <div class="module-number">6</div>
+                <div class="module-icon"><i class="fas fa-broadcast-tower"></i></div>
+                <h3 class="module-title">Шаг 6: Канал для сотрудников <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#настройка-канала-для-сотрудников" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Настройка закрытого канала для внутренней работы с заказами и коммуникации</p>
+                <div class="module-actions">
+                    <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
+                    <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
+                </div>
+            </div>
+            <div class="module-card" data-module="users">
+                <div class="module-number">7</div>
+                <div class="module-icon"><i class="fas fa-user-group"></i></div>
+                <h3 class="module-title">Шаг 7: Создание заказов <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#создание-и-управление-заказами" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Полный цикл работы со сделками: создание, редактирование, выполнение заказов</p>
+                <div class="module-actions">
+                    <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
+                    <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
+                </div>
+            </div>
+            <div class="module-card" data-module="orders">
+                <div class="module-number">8</div>
+                <div class="module-icon"><i class="fas fa-file-invoice"></i></div>
+                <h3 class="module-title">Шаг 8: Статусы заказов <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#статусы-заказов" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Управление статусами сделок: новый, подтвержден, выполнен, отменен</p>
+                <div class="module-actions">
+                    <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
+                    <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
+                </div>
+            </div>
+            <div class="module-card" data-module="edit-orders">
+                <div class="module-number">9</div>
+                <div class="module-icon"><i class="fas fa-edit"></i></div>
+                <h3 class="module-title">Шаг 9: Работа с кросс-парами <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#работа-с-кросс-парами" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Особенности создания и редактирования заказов на кросс-валютные пары</p>
+                <div class="module-actions">
+                    <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
+                    <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
+                </div>
+            </div>
+            <div class="module-card" data-module="status">
+                <div class="module-number">10</div>
+                <div class="module-icon"><i class="fas fa-tasks"></i></div>
+                <h3 class="module-title">Шаг 10: Редактирование заказов <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#редактирование-заказов" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Изменение параметров заказов, корректировка сумм, обновление реквизитов и статусов</p>
+                <div class="module-actions">
+                    <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
+                    <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
+                </div>
+            </div>
+            <div class="module-card" data-module="cross">
+                <div class="module-number">11</div>
+                <div class="module-icon"><i class="fas fa-exchange-alt"></i></div>
+                <h3 class="module-title">Шаг 11: Управление пользователями <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#управление-пользователями-и-роли" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Добавление сотрудников, назначение ролей, управление правами доступа</p>
+                <div class="module-actions">
+                    <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
+                    <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
+                </div>
+            </div>
+            <div class="module-card" data-module="export">
+                <div class="module-number">12</div>
+                <div class="module-icon"><i class="fas fa-file-export"></i></div>
+                <h3 class="module-title">Шаг 12: Выгрузка данных <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#выгрузка-таблицы-с-заказами" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Экспорт заказов в Excel-таблицы для бухгалтерского учета и анализа</p>
+                <div class="module-actions">
+                    <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
+                    <span class="module-status status-beta"><i class="fas fa-code-branch"></i> В разработке</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="faq" class="section section-dark">
+    <div class="container">
+        <div class="section-header" style="text-align:center;">
+            <h2 class="section-title">FAQ</h2>
+            <p class="section-subtitle">Ответы на популярные вопросы</p>
+            <div class="faq-search-container">
+                <i class="fas fa-search faq-search-icon"></i>
+                <input type="text" class="faq-search" id="faqSearch" placeholder="Поиск по вопросам...">
+            </div>
+        </div>
+        <div class="faq-categories" id="faqCategories">
+            <button class="faq-category active" data-category="all">Все вопросы</button>
+            <button class="faq-category" data-category="general">Общие</button>
+            <button class="faq-category" data-category="currency">Валюты</button>
+            <button class="faq-category" data-category="orders">Заказы</button>
+            <button class="faq-category" data-category="channel">Канал</button>
+        </div>
+        <div class="faq-grid" id="faqGrid">
+            <div class="faq-item" data-category="general">
+                <div class="faq-question">
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Можно ли работать в нескольких обменных пунктах?</h3></div>
+                    <i class="fas fa-chevron-down faq-toggle"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Да! Один пользователь может:</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Быть владельцем своего обменного пункта</li>
+                        <li><i class="fas fa-check"></i> Работать оператором в чужом обменнике</li>
+                    </ul>
+                    <div class="faq-note"><i class="fas fa-info-circle"></i><span>Данные разных обменников полностью изолированы.</span></div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="general">
+                <div class="faq-question">
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Что делать, если бот не отвечает?</h3></div>
+                    <i class="fas fa-chevron-down faq-toggle"></i>
+                </div>
+                <div class="faq-answer">
+                    <ol class="faq-steps">
+                        <li><span class="step-badge">1</span> Проверьте интернет-соединение</li>
+                        <li><span class="step-badge">2</span> Перезапустите Telegram</li>
+                        <li><span class="step-badge">3</span> Отправьте команду <code>/start</code></li>
+                    </ol>
+                    <div class="faq-warning"><i class="fas fa-exclamation-triangle"></i><span>Если проблема сохраняется — свяжитесь с владельцем</span></div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="general">
+                <div class="faq-question">
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>В чем разница между зелеными и красными кнопками при создании заказа?</h3></div>
+                    <i class="fas fa-chevron-down faq-toggle"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="color-difference">
+                        <div class="color-item">
+                            <div class="color-badge green"><i class="fas fa-arrow-down"></i><span>🟢 Зеленая кнопка</span></div>
+                            <p>— обменный пункт <strong>покупает</strong> валюту у клиента</p>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-badge red"><i class="fas fa-arrow-up"></i><span>🔴 Красная кнопка</span></div>
+                            <p>— обменный пункт <strong>продает</strong> валюту клиенту</p>
+                        </div>
+                    </div>
+                    <div class="faq-note"><i class="fas fa-info-circle"></i><span>Зеленый = входящий поток в пункт, красный = исходящий из пункта.</span></div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="general">
+                <div class="faq-question">
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Как обновить таблицу котировок?</h3></div>
+                    <i class="fas fa-chevron-down faq-toggle"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="info-message"><i class="fas fa-sync-alt"></i><p>Таблица показывает <strong>последние установленные курсы</strong>. Чтобы обновить — нажмите кнопку <strong>📝 Курсы валют</strong> в главном меню.</p></div>
+                    <div class="faq-tip"><i class="fas fa-lightbulb"></i><span>После изменения курсов вызовите таблицу снова — она всегда покажет актуальные данные.</span></div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="general">
+                <div class="faq-question">
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Почему при вводе списка валют нужно писать через запятую?</h3></div>
+                    <i class="fas fa-chevron-down faq-toggle"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="telegram-explanation">
+                        <div class="explanation-header"><i class="fab fa-telegram-plane"></i><span>Особенность Telegram</span></div>
+                        <p>Telegram обрабатывает сообщение как <strong>одну строку</strong>. Формат через запятую — стандартный способ передачи списка.</p>
+                    </div>
+                    <div class="format-showcase">
+                        <div class="format-card correct">
+                            <div class="format-icon"><i class="fas fa-check-circle"></i></div>
+                            <div><span class="format-label">✅ Правильно</span><div class="code-demo"><code>USD, EUR, GBP, CHF</code></div></div>
+                        </div>
+                        <div class="format-arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+                        <div class="format-card result">
+                            <div class="format-icon"><i class="fas fa-list"></i></div>
+                            <div><span class="format-label">📋 Результат</span><div class="tags-demo"><span class="currency-tag">USD</span><span class="currency-tag">EUR</span><span class="currency-tag">GBP</span></div></div>
+                        </div>
+                    </div>
+                    <div class="faq-tip"><i class="fas fa-lightbulb"></i><span>Пробелы необязательны — USD,EUR,GBP тоже работает</span></div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="currency">
+                <div class="faq-question">
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Зачем нужна глобальная база номиналов?</h3></div>
+                    <i class="fas fa-chevron-down faq-toggle"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Глобальная база автоматически подгружает все существующие номиналы купюр для валюты.</p>
+                    <div class="faq-tip"><i class="fas fa-lightbulb"></i><span>Достаточно один раз настроить — и все номиналы появятся автоматически</span></div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="currency">
+                <div class="faq-question">
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Как изменить дробную часть?</h3></div>
+                    <i class="fas fa-chevron-down faq-toggle"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-path"><i class="fas fa-map-signs"></i><code>Настройки → Валютные пары → Кастомизация → Дробная часть</code></div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="currency">
+                <div class="faq-question">
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Я случайно удалил важную валюту. Как восстановить?</h3></div>
+                    <i class="fas fa-chevron-down faq-toggle"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="recovery-message"><i class="fas fa-undo-alt"></i><p><strong>Просто добавьте её заново</strong> через раздел <span class="highlight-path">База данных валют</span></p></div>
+                    <div class="warning-block">
+                        <div class="warning-header"><i class="fas fa-exclamation-triangle"></i><span>После добавления нужно заново настроить:</span></div>
+                    </div>
+                    <div class="settings-grid">
+                        <div class="settings-item"><div class="settings-icon red"><i class="fas fa-chart-line"></i></div><div class="settings-content"><span class="settings-label">Курсы</span><span class="settings-note">(сбросятся)</span></div></div>
+                        <div class="settings-item"><div class="settings-icon blue"><i class="fas fa-coins"></i></div><div class="settings-content"><span class="settings-label">Номиналы</span><span class="settings-note">(без глобальной базы)</span></div></div>
+                        <div class="settings-item"><div class="settings-icon purple"><i class="fas fa-smile"></i></div><div class="settings-content"><span class="settings-label">Эмодзи и дробная часть</span></div></div>
+                        <div class="settings-item"><div class="settings-icon green"><i class="fas fa-exchange-alt"></i></div><div class="settings-content"><span class="settings-label">Кросс-пары</span></div></div>
+                    </div>
+                    <div class="faq-path"><i class="fas fa-map-signs"></i><code>База данных → Валюты → Добавить валюту</code></div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="orders">
+                <div class="faq-question">
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Что означают статусы заказов?</h3></div>
+                    <i class="fas fa-chevron-down faq-toggle"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="status-grid">
+                        <div class="status-item"><span class="status-badge">🟡</span><span><strong>Новый</strong> — создан</span></div>
+                        <div class="status-item"><span class="status-badge">🔵</span><span><strong>В обработке</strong> — оператор работает</span></div>
+                        <div class="status-item"><span class="status-badge">🟢</span><span><strong>Подтверждён</strong> — в канале</span></div>
+                        <div class="status-item"><span class="status-badge">✅</span><span><strong>Выполнен</strong> — завершён</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="orders">
+                <div class="faq-question">
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Клиент оплатил заказ, но сделка сорвалась. Как отразить?</h3></div>
+                    <i class="fas fa-chevron-down faq-toggle"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Ни в коем случае не удаляйте заказ. Откройте его на редактирование и измените статус на ❌ <strong>Отменён</strong>. Это сохранит историю операции для отчетности.</p>
+                </div>
+            </div>
+            <div class="faq-item" data-category="channel">
+                <div class="faq-question">
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Обязательно создавать канал?</h3></div>
+                    <i class="fas fa-chevron-down faq-toggle"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Нет, это опционально. Но канал упрощает работу команды.</p>
+                    <div class="faq-tip"><i class="fas fa-lightbulb"></i><span>С каналом все сотрудники видят заказы в реальном времени</span></div>
+                </div>
+            </div>
+            <div class="faq-no-results" id="faqNoResults">
+                <i class="fas fa-search"></i>
+                <h3>Ничего не найдено</h3>
+                <p>Попробуйте изменить поисковый запрос</p>
+            </div>
+        </div>
+        <div class="faq-footer">
+            <button class="faq-show-all" id="faqShowAll"><i class="fas fa-chevron-down"></i> Развернуть все</button>
+        </div>
+    </div>
+</section>
+
+<section id="pdf" class="section">
+    <div class="container">
+        <div class="pdf-card">
+            <span class="pdf-icon"><i class="fas fa-file-pdf"></i></span>
+            <h3>Полная инструкция в PDF</h3>
+            <p>Скачайте полное руководство с детальными инструкциями по всем модулям, скриншотами и примерами использования</p>
+            <a href="Exchange_Desk_Bot.pdf" class="cta-button" download target="_blank">
+                <i class="fas fa-download"></i> Скачать (PDF, 2.1 MB)
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer id="support" class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Exchange Desk Bot</h3>
+                <p>Telegram-бот для автоматизации обменных операций</p>
+            </div>
+            <div class="footer-col">
+                <h3>Разделы</h3>
+                <ul>
+                    <li><a href="#functions"><i class="fas fa-cogs"></i> Функции</a></li>
+                    <li><a href="#modules"><i class="fas fa-list-ol"></i> Настройки</a></li>
+                    <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Ресурсы</h3>
+                <ul>
+                    <li><a href="#pdf"><i class="fas fa-file-pdf"></i> Инструкция</a></li>
+                    <li><a href="#"><i class="fas fa-play-circle"></i> Видеоуроки</a></li>
+                    <li><a href="#"><i class="fas fa-rss"></i> Блог</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Контакты</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="325b5c545d72574a515a535c5557565741591c505d46">[email&#160;protected]</span></a></li>
+                    <li><a href="#"><i class="fas fa-paper-plane"></i> @exchangedesk</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Exchange Desk Bot. Все права защищены.</p>
+            <p class="version">Версия 2.1</p>
+        </div>
+    </div>
+</footer>
+
+<div class="module-modal" id="modal">
+    <div class="module-modal-content">
+        <div class="modal-header">
+            <div style="flex:1; min-width:0;">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-subtitle" id="modalSubtitle"></p>
+                <a class="modal-doc-link" id="modalDocLink" href="#" target="_blank">
+                    <i class="fas fa-book-open"></i> Подробнее в инструкции
+                </a>
+            </div>
+            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-steps-container">
+                <h3 class="modal-section-title">Пошаговая инструкция</h3>
+                <ul class="modal-steps" id="modalSteps"></ul>
+                <div class="submodules" id="submodules"></div>
+            </div>
+            <div class="modal-sidebar">
+                <h4 class="sidebar-title">Полезная информация</h4>
+                <div class="sidebar-tip" id="sidebarTip"></div>
+                <div class="sidebar-warning" id="sidebarWarning"></div>
+                <div class="sidebar-path" id="sidebarPath"></div>
+                <div class="sidebar-tags" id="sidebarTags"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ===== БАЗОВЫЙ URL =====
+const BASE = "Exchange_Desk_Bot_manual.html";
+
+const moduleData = {
+    start: {
+        title: "Шаг 1: Начало работы",
+        subtitle: "Первые шаги: регистрация, согласие с условиями, создание или подключение к обменнику",
+        docLink: BASE + "#о-боте",
+        steps: [
+            { number:"1", title:"Регистрация в системе", description:"При первом входе система предложит подписать условия использования." },
+            { number:"2", title:"Получение Telegram ID", description:"После регистрации бот отправит ваш уникальный Telegram ID. Сохраните его." },
+            { number:"3", title:"Подключение к обменнику", description:"Дождитесь приглашения от администратора и подтвердите подключение." },
+            { number:"4", title:"Создание обменного пункта", description:"Главное меню → Настройки → Обменник → Создать новый." }
+        ],
+        tip: "Сохраните свой Telegram ID — он понадобится для восстановления доступа.",
+        warning: "Без согласия с условиями работа с ботом невозможна.",
+        path: "Приветствие → Согласие → Выбор действия",
+        tags: ["Начало", "Регистрация", "Основное"]
+    },
+    exchange: {
+        title: "Шаг 2: Создание обменного пункта",
+        subtitle: "Настройка виртуального обменного пункта: название, базовая валюта, часовой пояс",
+        docLink: BASE + "#создание-и-настройка-обменного-пункта",
+        steps: [
+            { number:"1", title:"Открыть меню", description:"Главное меню → Настройки → Обменник → Создать новый." },
+            { number:"2", title:"Ввести название", description:"Придумайте уникальное название. Пример: «Обменник Москва Центр»." },
+            { number:"3", title:"Выбрать валюту", description:"Выберите базовую валюту (RUB, USD, EUR)." },
+            { number:"4", title:"Установить часовой пояс", description:"Выберите часовой пояс. Например: Europe/Moscow (UTC+3)." },
+            { number:"5", title:"Подтверждение", description:"Проверьте данные и подтвердите создание." }
+        ],
+        tip: "Используйте понятные названия для нескольких обменных пунктов.",
+        warning: "После создания изменить базовую валюту нельзя без пересоздания.",
+        path: "Настройки → Обменник → Создать → Параметры",
+        tags: ["Создание", "Настройка", "Обменник"]
+    },
+    users: {
+        title: "Шаг 7: Создание заказов",
+        subtitle: "Полный цикл работы со сделками и кросс-парами",
+        docLink: BASE + "#создание-и-управление-заказами",
+        steps: [
+            { number:"1", title:"Открыть меню заказов", description:"Главное меню → Новый заказ → Выбрать валютную пару/кросс-пару." },
+            { number:"2", title:"Выбор режима расчёта", description:"Выберите пару из таблицы → тип операции: «По сумме выдачи» или «По сумме получения»." },
+            { number:"3", title:"Ввести данные", description:"Введите сумму для обмена, затем имя клиента или номер телефона." },
+            { number:"4", title:"Публикация", description:"При необходимости нажмите «В канал», чтобы поделиться заказом." }
+        ],
+        tip: "Кросс-пары всегда отображаются в нижней части таблицы.",
+        warning: "Зелёные кнопки (🟢) — пункт покупает; красные кнопки (🔴) — пункт продаёт.",
+        path: "Главное меню → Новый заказ → Выбор пары → Ввод данных",
+        tags: ["Заказы", "Сделки", "Операции"]
+    },
+    fractional: {
+        title: "Шаг 3: Настройка базы валют и кросс-пары",
+        subtitle: "Создание и управление валютной базой, настройка кросс-валютных пар",
+        docLink: BASE + "#настройка-валют-и-валютных-пар",
+        steps: [
+            { number:"1", title:"Создание валютных пар", description:"Настройки → Валютные пары → База данных валют." },
+            { number:"2", title:"Добавить валюту", description:"Нажмите 'Добавить валюту' и введите код валюты вручную как в примере (USD, EUR, GBP, USD_white и т.д.) → Добавить RUB (ДА/НЕТ)→ Назад." },
+            { number:"3", title:"Создать кросс-пары", description:"Перейдите в Настройки → Валютные пары → Кросс-курсы → Добавить кросс-курс. Система автоматически сформирует и предложит название пары или можно указать свой вариант." },
+            { number:"4", title:"Настройки кросс-курсов", description:"После выбора пар, вы можете в этом же окне внести изменения, такие как: изменить название, удалить или добавить еще одну пару." },
+            { number:"5", title:"Оптимизация для кросс-пар", description:"Не выходя в главное меню, при необходимости можно отредактировать название. Задать название → в строке написать, например: USD/EUR(CASH)→ Главное меню." }
+        ],
+        tip: "Начните с добавления основных валют: национальная валюта, USD, EUR, GBP. Кросс-пары формируются только на основе уже добавленных в систему валютных пар.",
+        warning: "При удалении валюты будут удалены все связанные с ней пары и исторические данные.",
+        path: "Настройки → Валютные пары → Кастомизация → Выбор валюты",
+        tags: ["Валюты", "Кросс-пары", "База данных"]
+    },
+    fraction: {
+        title: "Шаг 4: Конфигурация валютных параметров",
+        subtitle: "Тонкая настройка параметров валюты: номиналы, дробная часть, emoji, глобальные данные",
+        docLink: BASE + "#настройка-номиналов-купюр",
+        steps: [
+            { number:"1", title:"Открыть параметры", description:"Главное меню → Настройки → Валютные пары → Кастомизация валют." },
+            { number:"2", title:"Выбрать конфигурацию", description:"4 параметра: Номиналы → Дробная часть → Emoji → Глобальные данные." },
+            { number:"3", title:"Настроить параметры", description:"Настройте каждый параметр индивидуально для каждой валюты." },
+            { number:"4", title:"Просмотр таблицы", description:"Главное меню → Курсы валют → выберите оформление:\n• Цветная картинка\n• Картинка ЧБ (белый фон)\n• Картинка БЧ (чёрный фон)" }
+        ],
+        tip: "Настройте параметры для каждой валюты индивидуально.",
+        warning: "Изменения влияют только на новые расчеты.",
+        path: "Настройки → Валютные пары → Кастомизация → Параметры",
+        tags: ["Кастомизация", "Параметры", "Настройка"],
+        submodules: [
+            {
+                id: "nominals",
+                title: "Номиналы валют",
+                icon: "fas fa-money-bill-wave",
+                steps: [
+                    "Открыть меню номиналов: Настройки → Валютные пары → Кастомизация валют → Номиналы валют.",
+                    "Выбрать валюту, для которой нужно настроить номиналы.",
+                    "Просмотреть глобальные номиналы или добавить свои собственные.",
+                    "Ввести номиналы через запятую. Например, для RUB: 50,100,200,500,1000,2000,5000.",
+                    "Учесть местные особенности: для разных стран могут быть разные номиналы."
+                ],
+                tip: "Используйте стандартные номиналы для упрощения расчетов с клиентами и кассирами.",
+                warning: "Неправильные номиналы могут усложнить расчеты и привести к ошибкам.",
+                path: "[Настройки] → [Валютные пары] → [Кастомизация валют] → [Номиналы валют] → Выбор валюты → Настройка номиналов"
+            },
+            {
+                id: "fractional",
+                title: "Дробные валюты",
+                icon: "fas fa-divide",
+                steps: [
+                    "Перейти в Настройки → Валютные пары → Кастомизация валют → Дробная часть.",
+                    "Выбрать валюту для настройки точности.",
+                    "Установить количество знаков после запятой от 2 до 8.",
+                    "Для фиатных валют (RUB, USD, EUR) рекомендуется использовать 2 знака.",
+                    "Для криптовалют установите 6-8 знаков для точных расчетов."
+                ],
+                tip: "Для кросс-пар рекомендуется устанавливать более высокую точность (6-8 знаков).",
+                warning: "Изменение точности влияет только на новые расчеты, но не на существующие заказы.",
+                path: "[Настройки] → [Валютные пары] → [Кастомизация валют] → [Дробная часть] → Выбор валюты → Установка точности"
+            },
+            {
+                id: "emojis",
+                title: "Эмодзи",
+                icon: "fas fa-smile",
+                steps: [
+                    "Открыть меню настройки emoji: Настройки → Валютные пары → Кастомизация валют → Emoji валют.",
+                    "Выбрать валюту для настройки.",
+                    "Ввести emoji или символ. Например: ♟ для USDT, флаги стран для фиатных валют.",
+                    "Проверить результат в таблице котировок.",
+                    "Использовать стандартные emoji для лучшей совместимости."
+                ],
+                tip: "Используйте emoji для лучшей визуализации валют в таблице котировок.",
+                warning: "Бот поддерживает только стандартные emoji, кастомные не работают.",
+                path: "[Настройки] → [Валютные пары] → [Кастомизация валют] → [Emoji валют] → Выбор валюты → Ввод emoji"
+            },
+            {
+                id: "global",
+                title: "Глобальные валюты",
+                icon: "fas fa-globe",
+                steps: [
+                    "Перейти в Настройки → Валютные пары → Кастомизация валют → Глобальные валюты.",
+                    "Выбрать валюту для привязки к глобальной базе.",
+                    "Активировать синхронизацию с глобальной базой данных.",
+                    "Настроить автообновление курсов из глобальных источников.",
+                    "Проверить корректность отображаемых данных."
+                ],
+                tip: "Используйте глобальную базу для автоматического обновления информации о валютах.",
+                warning: "При отключении синхронизации данные перестанут обновляться автоматически.",
+                path: "[Настройки] → [Валютные пары] → [Кастомизация валют] → [Глобальные валюты] → Выбор валюты → Настройка синхронизации"
+            }
+        ]
+    },
+    rates: {
+        title: "Шаг 5: Управление курсами",
+        subtitle: "Настройка и изменение курсов покупки и продажи валют",
+        docLink: BASE + "#выставление-курсов-и-котировок",
+        steps: [
+            { number:"1", title:"Открыть котировки", description:"Главное меню → Выставление котировок." },
+            { number:"2", title:"Пошаговая настройка", description:"Бот проведет по всем парам. Введите курс покупки и продажи. По завершению бот пришлет котировочную таблицу." },
+            { number:"3", title:"Корректировка курса", description:"Или выберите → Корректировка курса для отдельных пар." },
+            { number:"4", title:"Формат ввода", description:"Вводите как множитель: 1.01 = 101%, 0.99 = 99%." },
+            { number:"5", title:"Автообновление", description:"После сохранения бот обновит таблицу и отправит уведомления." }
+        ],
+        tip: "Устанавливайте разумный спред для покрытия расходов.",
+        warning: "Перед началом торгов должны быть созданы обменник и база валют.",
+        path: "Главное меню → Выставление котировок → Настройка",
+        tags: ["Курсы", "Котировки", "Финансы"]
+    },
+    channel: {
+        title: "Шаг 6: Канал для сотрудников",
+        subtitle: "Настройка закрытого канала для публикации заказов и коммуникации",
+        docLink: BASE + "#настройка-канала-для-сотрудников",
+        steps: [
+            { number:"1", title:"Создать канал", description:"Telegram → Новое сообщение → New Channel → Частный канал." },
+            { number:"2", title:"Получить chat_id", description:"Поиск → @myidbot → Start → перешлите пост из канала. Скопируйте ID со знаком «-»." },
+            { number:"3", title:"Добавить ID в бот", description:"Главное меню → Настройки → Обменник → ID канала → введите chat_id." },
+            { number:"4", title:"Настроить права бота", description:"Канал → Название → Администраторы → Добавить → @ratedesk_bot → Создать." },
+            { number:"5", title:"Привязать группу", description:"Канал → Название → Настройки → Discussion → Создать группу → Done." },
+            { number:"6", title:"Отправка таблицы в канал", description:"Главное меню → Курсы валют → Отправить в канал. Добавьте сотрудников." }
+        ],
+        tip: "Канал для уведомлений, группа для обсуждения деталей заказа.",
+        warning: "Без правильного chat_id бот не сможет отправлять уведомления.",
+        path: "Создать канал → chat_id → Настройки → ID канала",
+        tags: ["Канал", "Коммуникация", "Уведомления"]
+    },
+    orders: {
+        title: "Шаг 8: Статусы заказов",
+        subtitle: "Управление статусами сделок для контроля этапов и быстрой реакции",
+        docLink: BASE + "#статусы-заказов",
+        steps: [
+            { number:"1", title:"Открыть заказ", description:"Главное меню → Заказы → найдите нужный. Новым заказам автоматически присваивается статус «Новый»." },
+            { number:"2", title:"Редактирование статуса", description:"Нажмите → Редактировать под заказом (в канале или через основного бота)." },
+            { number:"3", title:"Изменить статус", description:"Меню редактирования → Изменить статус → Подтверждён/Выполнен → Подтвердите." },
+            { number:"4", title:"Автопереходы", description:"При прикреплении скриншота статус меняется на «Подтверждён» автоматически." },
+            { number:"5", title:"Ручное изменение", description:"Вы можете изменить статус в любой момент вручную." }
+        ],
+        tip: "Регулярно обновляйте статусы для актуальной отчетности.",
+        warning: "Статус «Выполнен» делает заказ недоступным для редактирования.",
+        path: "Главное меню → Заказы → Редактировать → Статус",
+        tags: ["Статусы", "Управление", "Контроль"]
+    },
+    status: {
+        title: "Шаг 10: Редактирование заказов",
+        subtitle: "Изменение параметров заказов, корректировка сумм и реквизитов",
+        docLink: BASE + "#редактирование-заказов",
+        steps: [
+            { number:"1", title:"Три способа редактирования", description:"• Из предпросмотра после создания\n• Через меню «Заказы»\n• По ссылке из канала сотрудников" },
+            { number:"2", title:"Из предпросмотра", description:"После создания → Редактировать → выберите параметр для изменения." },
+            { number:"3", title:"Через меню", description:"Главное меню → Заказы → Редактировать → введите номер заказа." },
+            { number:"4", title:"Из канала", description:"Нажмите ссылку под заказом в канале. Работает для всех сотрудников до первого изменения в боте." },
+            { number:"5", title:"Доступные параметры", description:"Курс, сумма, реквизиты, статус, прикреплённые файлы." },
+            { number:"6", title:"Автопересчет", description:"При изменении курса или суммы автоматический пересчет. Данные обновятся и в канале." }
+        ],
+        tip: "Регулярно проверяйте заказы на наличие ошибок.",
+        warning: "После статуса «Выполнен» редактирование недоступно.",
+        path: "Выбор способа → Открытие → Редактировать → Изменение → Сохранить",
+        tags: ["Заказы", "Редактирование", "Корректировка"]
+    },
+    cross: {
+        title: "Шаг 11: Управление пользователями",
+        subtitle: "Добавление сотрудников, назначение ролей, управление правами",
+        docLink: BASE + "#управление-пользователями-и-роли",
+        steps: [
+            { number:"1", title:"Доступ к управлению", description:"Главное меню → Настройки → Обменник → Пользователи." },
+            { number:"2", title:"Добавить пользователя", description:"Нажмите «Добавить пользователя» → отправьте @username или Telegram ID." },
+            { number:"3", title:"Подтверждение", description:"После добавления бот пришлёт уведомление. По умолчанию роль — «Пользователь»." },
+            { number:"4", title:"Изменить права", description:"Настройки → Обменник → Пользователи → Права пользователей." },
+            { number:"5", title:"Выбор роли", description:"Редактировать → выберите роль:\n• Владелец — полный доступ\n• Администратор — все кроме удаления владельца\n• Оператор — заказы и курсы\n• Пользователь — только заказы" },
+            { number:"6", title:"Удаление доступа", description:"В меню пользователя → Удалить доступ для исключения сотрудника." }
+        ],
+        tip: "Новый пользователь получает базовые права. Для расширения измените роль.",
+        warning: "Администратор не может удалить Владельца или изменить его права.",
+        path: "Настройки → Обменник → Пользователи → Добавить / Права",
+        tags: ["Пользователи", "Роли", "Доступ"]
+    },
+    "edit-orders": {
+        title: "Шаг 9: Работа с кросс-парами",
+        subtitle: "Особенности создания заказов с кросс-валютными парами",
+        docLink: BASE + "#работа-с-кросс-парами",
+        steps: [
+            { number:"1", title:"Отображение кросс-пар", description:"Кросс-пары (GBP/USD, BTC/USDT) всегда внизу списка при создании заказа." },
+            { number:"2", title:"Особенности расчета", description:"Часто возникают дробные суммы из-за мелких значений курса." },
+            { number:"3", title:"Три варианта округления", description:"1) Без сдачи — точная сумма\n2) Доплата клиента\n3) Доплата офиса" },
+            { number:"4", title:"Выбор номинала", description:"Бот предложит округлить до доступных номиналов (50 или 100 $)." },
+            { number:"5", title:"Ограничение", description:"Редактирование кросс-пар в разработке. Используйте отмену и новый заказ." }
+        ],
+        tip: "Для кросс-пар используйте точность 6-8 знаков для корректных расчетов.",
+        warning: "Редактирование кросс-пар находится в разработке.",
+        path: "Новый заказ → Кросс-пара → Сумма → Округление",
+        tags: ["Кросс-пары", "Округление", "В разработке"]
+    },
+    export: {
+        title: "Шаг 12: Выгрузка данных",
+        subtitle: "Экспорт заказов в Excel для бухгалтерского учета и анализа",
+        docLink: BASE + "#выгрузка-таблицы-с-заказами",
+        steps: [
+            { number:"1", title:"Доступ к выгрузке", description:"Главное меню → Заказы → Выгрузка → введите дату → Сохранить." },
+            { number:"2", title:"Выбор формата", description:"Поддержка CSV и Excel (.xlsx)." },
+            { number:"3", title:"Настройка фильтров", description:"Отфильтруйте по дате, статусу или валюте." },
+            { number:"4", title:"Генерация", description:"Бот создаст файл с автоматическим форматированием." },
+            { number:"5", title:"Скачивание", description:"Скачайте файл для работы в Excel или Google Sheets." }
+        ],
+        tip: "Регулярно выгружайте данные для резервного копирования.",
+        warning: "Расширенная бухгалтерия в разработке.",
+        path: "Главное меню → Заказы → Экспорт → Формат → Скачать",
+        tags: ["Экспорт", "Отчеты", "Бухгалтерия"]
+    }
+};
+
+// ===== MOBILE MENU =====
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+function toggleMobileMenu() { mobileMenu.classList.toggle('active'); document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : ''; }
+function closeMobileMenu() { mobileMenu.classList.remove('active'); document.body.style.overflow = ''; }
+mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        closeMobileMenu();
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) { e.preventDefault(); smoothScroll(href); }
+    });
+});
+function smoothScroll(target) {
+    const el = document.querySelector(target);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && href !== '#') { e.preventDefault(); smoothScroll(href); }
+    });
+});
+window.addEventListener('resize', () => { if (window.innerWidth >= 1024) closeMobileMenu(); });
+
+// ===== MODULES MODAL =====
+const modal = document.getElementById('modal');
+const modalClose = document.getElementById('modalClose');
+function openModal(moduleId) {
+    const data = moduleData[moduleId];
+    if (!data) return;
+    document.getElementById('modalTitle').textContent = data.title;
+    document.getElementById('modalSubtitle').textContent = data.subtitle;
+    const docLink = document.getElementById('modalDocLink');
+    if (data.docLink) { 
+        docLink.href = data.docLink; 
+        docLink.style.display = 'inline-flex'; 
+        console.log('Ссылка установлена:', data.docLink);
+    } else { 
+        docLink.style.display = 'none'; 
+    }
+    const stepsContainer = document.getElementById('modalSteps');
+    stepsContainer.innerHTML = data.steps.map(step => `
+        <li class="step-animate">
+            <span class="step-number">${step.number}</span>
+            <span class="step-title">${step.title}</span>
+            <p class="step-description">${step.description}</p>
+        </li>
+    `).join('');
+    stepsContainer.querySelectorAll('li').forEach((li, i) => {
+        setTimeout(() => li.classList.add('step-visible'), 50 + i * 60);
+    });
+    document.getElementById('sidebarTip').innerHTML = `<strong><i class="fas fa-lightbulb" style="color:#36D1DC;margin-right:0.4rem;"></i> Совет:</strong><br>${data.tip}`;
+    document.getElementById('sidebarWarning').innerHTML = `<strong><i class="fas fa-exclamation-triangle" style="color:#FF6B35;margin-right:0.4rem;"></i> Важно:</strong><br>${data.warning}`;
+    document.getElementById('sidebarPath').innerHTML = `<i class="fas fa-route" style="margin-right:0.5rem;"></i>${data.path}`;
+    document.getElementById('sidebarTags').innerHTML = data.tags ? data.tags.map(t => `<span class="tag">${t}</span>`).join('') : '';
+    const sub = document.getElementById('submodules');
+    if (data.submodules && data.submodules.length) {
+        sub.innerHTML = `<h3 class="modal-section-title"><i class="fas fa-layer-group"></i> Подробнее о настройках</h3>
+            <div class="submodule-grid">${data.submodules.map(s => `
+                <div class="submodule-card">
+                    <div class="submodule-header">
+                        <div class="submodule-icon"><i class="${s.icon}"></i></div>
+                        <h5>${s.title}</h5>
+                        <i class="fas fa-chevron-down submodule-toggle"></i>
+                    </div>
+                    <div class="submodule-content">
+                        <ol class="submodule-steps">${s.steps.map(x => `<li>${x}</li>`).join('')}</ol>
+                        <div class="submodule-info">
+                            <p><strong>💡</strong> ${s.tip}</p>
+                            <p><strong>⚠️</strong> ${s.warning}</p>
+                            <p><strong>📍 Путь:</strong> ${s.path}</p>
+                        </div>
+                    </div>
+                </div>`).join('')}
+            </div>`;
+        setTimeout(() => {
+            sub.querySelectorAll('.submodule-card').forEach(c => c.addEventListener('click', () => c.classList.toggle('active')));
+        }, 50);
+    } else { sub.innerHTML = ''; }
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => { const b = modal.querySelector('.modal-body'); if (b) b.scrollTop = 0; }, 10);
+}
+function closeModal() { modal.style.display = 'none'; document.body.style.overflow = ''; }
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+document.querySelectorAll('.module-card').forEach(card => card.addEventListener('click', () => openModal(card.dataset.module)));
+document.querySelectorAll('.module-link').forEach(link => {
+    link.addEventListener('click', e => { e.stopPropagation(); openModal(link.closest('.module-card').dataset.module); });
+});
+
+// ===== FUNCTION ROWS MODAL =====
+const funcInfo = {
+    users:        { title:"Управление пользователями", icon:"fas fa-user-plus",  desc:"Добавление сотрудников, назначение ролей (владелец, администратор, оператор, пользователь) и гибкий контроль доступа. Каждая роль имеет чётко ограниченный набор прав — от полного управления у владельца до работы только с заказами у базового пользователя." },
+    currencies:   { title:"Настройка валют",            icon:"fas fa-coins",      desc:"Создание собственной базы валют, добавление кросс-валютных пар, установка номиналов купюр и настройка дробных частей (от 2 до 8 знаков). Поддержка глобальной базы номиналов — автоматическая подгрузка стандартных купюр для любой валюты." },
+    analytics:    { title:"Аналитика и отчеты",         icon:"fas fa-chart-bar",  desc:"Выгрузка заказов в Excel и CSV с фильтрацией по дате, статусу и валюте. Статистика по сделкам, анализ оборота, финансовые отчёты для бухгалтерского учёта. Данные всегда доступны для импорта в Google Sheets или 1C." },
+    security:     { title:"Безопасность",               icon:"fas fa-shield-alt", desc:"Полная изоляция баз данных между обменными пунктами — сотрудники одного обменника не видят данные другого. Разграничение прав доступа по ролям, защита от несанкционированных действий и журнал операций для аудита." },
+    communication:{ title:"Коммуникация",               icon:"fas fa-comments",   desc:"Встроенный закрытый канал для сотрудников: публикация заказов в реальном времени, обсуждение деталей в привязанной группе, прикрепление скриншотов подтверждения оплаты. Все уведомления об изменении статусов приходят мгновенно." },
+    automation:   { title:"Автоматизация",              icon:"fas fa-sync-alt",   desc:"Автоматические расчёты при создании заказа, умное округление сумм до доступных номиналов, мгновенные уведомления при смене статуса. Пересчёт суммы происходит автоматически при редактировании курса — вручную ничего считать не нужно." }
+};
+const funcModal = document.getElementById('funcModal');
+const funcModalClose = document.getElementById('funcModalClose');
+function openFuncModal(key) {
+    const d = funcInfo[key]; if (!d) return;
+    const icon = document.getElementById('funcModalIcon');
+    icon.innerHTML = '<i class="' + d.icon + '"></i>';
+    document.getElementById('funcModalTitle').textContent = d.title;
+    document.getElementById('funcModalDesc').textContent = d.desc;
+    funcModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+function closeFuncModal() { funcModal.style.display = 'none'; document.body.style.overflow = ''; }
+document.querySelectorAll('.function-row').forEach(row => row.addEventListener('click', () => openFuncModal(row.dataset.func)));
+funcModalClose.addEventListener('click', closeFuncModal);
+funcModal.addEventListener('click', e => { if (e.target === funcModal) closeFuncModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeFuncModal(); } });
+
+// ===== FAQ =====
+(function() {
+    const items = document.querySelectorAll('.faq-item');
+    const cats = document.querySelectorAll('.faq-category');
+    const search = document.getElementById('faqSearch');
+    const showAll = document.getElementById('faqShowAll');
+    const noResults = document.getElementById('faqNoResults');
+    let allExpanded = false;
+    items.forEach(item => {
+        item.querySelector('.faq-question').addEventListener('click', () => { item.classList.toggle('active'); updateBtn(); });
+    });
+    cats.forEach(cat => {
+        cat.addEventListener('click', () => {
+            cats.forEach(c => c.classList.remove('active'));
+            cat.classList.add('active');
+            filter(cat.dataset.category, search ? search.value.toLowerCase() : '');
+        });
+    });
+    if (search) {
+        let t;
+        search.addEventListener('input', () => {
+            clearTimeout(t);
+            t = setTimeout(() => {
+                const active = document.querySelector('.faq-category.active');
+                filter(active ? active.dataset.category : 'all', search.value.toLowerCase());
+            }, 250);
+        });
+        search.addEventListener('keydown', e => { if (e.key === 'Escape') { search.value = ''; filter('all', ''); } });
+    }
+    if (showAll) showAll.addEventListener('click', () => toggleAll(!allExpanded));
+    function filter(cat, q) {
+        let visible = 0;
+        items.forEach(item => {
+            if (item.id === 'faqNoResults') return;
+            const cm = cat === 'all' || item.dataset.category === cat;
+            const sm = !q || item.innerText.toLowerCase().includes(q);
+            if (cm && sm) { item.style.display = ''; visible++; item.style.animation = 'none'; item.offsetHeight; item.style.animation = 'faqFadeIn 0.35s ease forwards'; }
+            else { item.style.display = 'none'; }
+        });
+        if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
+        updateBtn();
+    }
+    function toggleAll(expand) {
+        allExpanded = expand;
+        items.forEach(item => { if (item.id !== 'faqNoResults' && item.style.display !== 'none') item.classList.toggle('active', expand); });
+        if (showAll) showAll.innerHTML = expand ? '<i class="fas fa-chevron-up"></i> Свернуть все' : '<i class="fas fa-chevron-down"></i> Развернуть все';
+    }
+    function updateBtn() {
+        if (!showAll) return;
+        const vis = Array.from(items).filter(i => i.id !== 'faqNoResults' && i.style.display !== 'none');
+        const act = vis.filter(i => i.classList.contains('active'));
+        allExpanded = vis.length > 0 && act.length === vis.length;
+        showAll.innerHTML = allExpanded ? '<i class="fas fa-chevron-up"></i> Свернуть все' : '<i class="fas fa-chevron-down"></i> Развернуть все';
+    }
+})();
+
+// ===== SCROLL TOP =====
+(function() {
+    const btn = document.getElementById('scrollTopBtn');
+    if (!btn) return;
+    window.addEventListener('scroll', () =>

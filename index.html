@@ -59,11 +59,12 @@
         }
         .header::after {
             content: '';
-            position: absolute; bottom: 0; left: 0; width: 200%; height: 2px;
-            background: linear-gradient(90deg, transparent, #FF6B35, #36D1DC, #5DFDCB, transparent);
-            animation: headerGlow 4s linear infinite;
-        }
-        @keyframes headerGlow { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
+    position: absolute; bottom: 0; left: -100%; width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #FF6B35 25%, #36D1DC 50%, #5DFDCB 75%, transparent 100%);
+    animation: headerGlow 3s linear infinite;
+    pointer-events: none;
+}
+@keyframes headerGlow { 0% { transform: translateX(0); } 100% { transform: translateX(200%); } }
 
         .header-container {
             max-width: 1200px; margin: 0 auto;
@@ -727,11 +728,12 @@
             overflow: hidden;
         }
         .footer::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 200%; height: 2px;
-            background: linear-gradient(90deg, transparent, #FF6B35, #36D1DC, #5DFDCB, transparent);
-            animation: scanline 3s linear infinite;
-        }
-        @keyframes scanline { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #FF6B35 25%, #36D1DC 50%, #5DFDCB 75%, transparent 100%);
+    animation: scanline 3s linear infinite;
+    pointer-events: none;
+}
+@keyframes scanline { 0% { transform: translateX(0); } 100% { transform: translateX(200%); } }
 
         .footer-grid { display: grid; gap: 2rem; margin-bottom: 2rem; }
         .footer-col h3 { font-size: 1.1rem; margin-bottom: 0.85rem; }
@@ -1060,7 +1062,7 @@
             <div class="module-card" data-module="fractional">
                 <div class="module-number">3</div>
                 <div class="module-icon"><i class="fas fa-coins"></i></div>
-                <h3 class="module-title">Шаг 3: Настройка валют и кросс-пары</h3>
+                <h3 class="module-title">Шаг 3: Настройка базы валют и кросс-пары</h3>
                 <p class="module-description">Создание и управление валютной базой, настройка кросс-валютных пар для торговли</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1529,17 +1531,17 @@ const moduleData = {
         tags: ["Заказы", "Сделки", "Операции"]
     },
     fractional: {
-        title: "Шаг 3: База валют и кросс-пары",
+        title: "Шаг 3: Настройка базы валют и кросс-пары",
         subtitle: "Создание и управление валютной базой, настройка кросс-валютных пар",
         steps: [
-            { number:"1", title:"Установить параметры отображения", description:"Настройки → Валютные пары → Кастомизация валют." },
-            { number:"2", title:"Выбрать конфигурацию", description:"Настройка из 4 блоков: Номиналы → Дробная часть → Emoji → Глобальные данные." },
-            { number:"3", title:"Настройки параметров", description:"Для каждой валюты:\n1. Номиналы — добавьте купюры.\n2. Дробная часть — от 2 до 8 знаков.\n3. Emoji — визуальное обозначение.\n4. Глобальные валюты — привязка к мировой базе." },
-            { number:"4", title:"Просмотр сводной информации", description:"Главное меню → Настройки → Валютные пары — все настроенные параметры." },
-            { number:"5", title:"Оптимизация для кросс-пар", description:"Для кросс-пар рекомендуется 6-8 знаков для корректных расчетов." }
+            { number:"1", title:"Создание валютных пар", description:"Настройки → Валютные пары → База данных валют." },
+            { number:"2", title:"Добавить валюту", description:"Нажмите 'Добавить валюту' и введите код валюты вручную как в примере (USD, EUR, GBP, USD_white и т.д.) → Добавить RUB (ДА/НЕТ)→ Назад." },
+            { number:"3", title:"Создать кросс-пары", description:"Перейдите в Настройки → Валютные пары → Кросс-курсы → Добавить кросс-курс.Система автоматически сформирует и предложит название пары или можно указать свой вариант." },
+            { number:"4", title:"Настройки кросс-курсов", description:"После выбора пар, вы можете в этом же окне внести изменения, такие как: изменить название, удалить или добавить еще одну пару." },
+            { number:"5", title:"Оптимизация для кросс-пар", description:"Не выходя в главное меню, при необходимости можно отредактировать название. Задать название → в строке написать, например: USD/EUR(CASH)→ Главное меню." }
         ],
-        tip: "Для фиатных валют (RUB, USD) — 2 знака, для криптовалют — 6-8.",
-        warning: "Изменение точности не повлияет на существующие заказы, только на новые.",
+        tip: "Начните с добавления основных валют: национальная валюта, USD, EUR,  GBP. Кросс-пары формируются только на основе уже добавленных в систему валютных пар.",
+        warning: "При удалении валюты будут удалены все связанные с ней пары и исторические данные.",
         path: "Настройки → Валютные пары → Кастомизация → Выбор валюты",
         tags: ["Валюты", "Кросс-пары", "База данных"]
     },

@@ -467,6 +467,17 @@
             line-height: 1.3;
         }
         .modal-subtitle { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.4; }
+        .modal-doc-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            margin-top: 0.6rem;
+            font-size: 0.82rem; font-weight: 600;
+            color: var(--accent-cyan); text-decoration: none;
+            background: rgba(54,209,220,0.08);
+            border: 1px solid rgba(54,209,220,0.25);
+            padding: 0.3rem 0.75rem; border-radius: 20px;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+        .modal-doc-link:hover { background: rgba(54,209,220,0.16); border-color: rgba(54,209,220,0.5); }
         .modal-close {
             background: var(--bg-secondary); border: 1px solid var(--border-color);
             color: var(--text-secondary); width: 40px; height: 40px; min-width: 40px;
@@ -1134,7 +1145,7 @@
             <div class="module-card" data-module="start">
                 <div class="module-number">1</div>
                 <div class="module-icon"><i class="fas fa-rocket"></i></div>
-                <h3 class="module-title">Шаг 1: Начало работы <a class="module-ref-link" href="file:///Users/annaatie/Desktop/Exchange_Desk_Bot%20.html#%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%B2%D1%8B%D0%B5-%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 1: Начало работы <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/Exchange_Desk_Bot_.html#%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%B2%D1%8B%D0%B5-%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Первые шаги: регистрация в системе, согласие с условиями, получение Telegram ID</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1144,7 +1155,7 @@
             <div class="module-card" data-module="exchange">
                 <div class="module-number">2</div>
                 <div class="module-icon"><i class="fas fa-building"></i></div>
-                <h3 class="module-title">Шаг 2: Создание обменного пункта <a class="module-ref-link" href="file:///Users/annaatie/Desktop/Exchange_Desk_Bot%20.html#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BE%D0%B1%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BF%D1%83%D0%BD%D0%BA%D1%82%D0%B0" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 2: Создание обменного пункта <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/Exchange_Desk_Bot_.html#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BE%D0%B1%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BF%D1%83%D0%BD%D0%BA%D1%82%D0%B0" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Настройка виртуального обменного пункта: уникальное название, базовая валюта, часовой пояс</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1154,7 +1165,7 @@
             <div class="module-card" data-module="fractional">
                 <div class="module-number">3</div>
                 <div class="module-icon"><i class="fas fa-coins"></i></div>
-                <h3 class="module-title">Шаг 3: Настройка базы валют и кросс-пары <a class="module-ref-link" href="file:///Users/annaatie/Desktop/Exchange_Desk_Bot%20.html#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BE%D0%B1%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BF%D1%83%D0%BD%D0%BA%D1%82%D0%B0" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 3: База валют и кросс-пары <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/Exchange_Desk_Bot_.html#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BE%D0%B1%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BF%D1%83%D0%BD%D0%BA%D1%82%D0%B0" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Создание и управление валютной базой, настройка кросс-валютных пар для торговли</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1164,7 +1175,7 @@
             <div class="module-card" data-module="fraction">
                 <div class="module-number">4</div>
                 <div class="module-icon"><i class="fas fa-divide"></i></div>
-                <h3 class="module-title">Шаг 4: Конфигурация валютных параметров <a class="module-ref-link" href="file:///Users/annaatie/Desktop/Exchange_Desk_Bot%20.html#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BD%D0%BE%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB%D0%BE%D0%B2-%D0%BA%D1%83%D0%BF%D1%8E%D1%80" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 4: Конфигурация валютных параметров <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/Exchange_Desk_Bot_.html#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BD%D0%BE%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB%D0%BE%D0%B2-%D0%BA%D1%83%D0%BF%D1%8E%D1%80" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Этот раздел позволяет детально настроить отображение и поведение каждой валюты в системе</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1174,7 +1185,7 @@
             <div class="module-card" data-module="rates">
                 <div class="module-number">5</div>
                 <div class="module-icon"><i class="fas fa-chart-line"></i></div>
-                <h3 class="module-title">Шаг 5: Управление курсами <a class="module-ref-link" href="file:///Users/annaatie/Desktop/Exchange_Desk_Bot%20.html#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BD%D0%BE%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB%D0%BE%D0%B2-%D0%BA%D1%83%D0%BF%D1%8E%D1%80" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 5: Управление курсами <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/Exchange_Desk_Bot_.html#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BD%D0%BE%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB%D0%BE%D0%B2-%D0%BA%D1%83%D0%BF%D1%8E%D1%80" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Выставление и корректировка курсов покупки/продажи для всех валютных пар. Пошаговая настройка и автоматическое обновление</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1184,7 +1195,7 @@
             <div class="module-card" data-module="channel">
                 <div class="module-number">6</div>
                 <div class="module-icon"><i class="fas fa-broadcast-tower"></i></div>
-                <h3 class="module-title">Шаг 6: Канал для сотрудников <a class="module-ref-link" href="file:///Users/annaatie/Desktop/Exchange_Desk_Bot%20.html#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B0-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 6: Канал для сотрудников <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/Exchange_Desk_Bot_.html#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B0-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Настройка закрытого канала для внутренней работы с заказами и коммуникации между сотрудниками</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1194,7 +1205,7 @@
             <div class="module-card" data-module="users">
                 <div class="module-number">7</div>
                 <div class="module-icon"><i class="fas fa-user-group"></i></div>
-                <h3 class="module-title">Шаг 7: Создание заказов <a class="module-ref-link" href="file:///Users/annaatie/Desktop/Exchange_Desk_Bot%20.html#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D0%BC%D0%B8" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 7: Создание заказов <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/Exchange_Desk_Bot_.html#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D0%BC%D0%B8" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Полный цикл работы со сделками: создание, редактирование, выполнение заказов. Работа с кросс-парами и прикрепление скриншотов</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1204,7 +1215,7 @@
             <div class="module-card" data-module="orders">
                 <div class="module-number">8</div>
                 <div class="module-icon"><i class="fas fa-file-invoice"></i></div>
-                <h3 class="module-title">Шаг 8: Статусы заказов <a class="module-ref-link" href="file:///Users/annaatie/Desktop/Exchange_Desk_Bot%20.html#%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%D1%8B-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 8: Статусы заказов <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/Exchange_Desk_Bot_.html#%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%D1%8B-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Управление статусами сделок: новый, подтвержден, выполнен, отменен. Автоматические переходы и ручное изменение</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1214,7 +1225,7 @@
             <div class="module-card" data-module="edit-orders">
                 <div class="module-number">9</div>
                 <div class="module-icon"><i class="fas fa-edit"></i></div>
-                <h3 class="module-title">Шаг 9: Работа с кросс-парами <a class="module-ref-link" href="file:///Users/annaatie/Desktop/Exchange_Desk_Bot%20.html#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0-%D0%BD%D0%B0-%D0%BA%D1%80%D0%BE%D1%81%D1%81-%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%D0%BD%D1%83%D1%8E-%D0%BF%D0%B0%D1%80%D1%83" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 9: Работа с кросс-парами <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/Exchange_Desk_Bot_.html#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0-%D0%BD%D0%B0-%D0%BA%D1%80%D0%BE%D1%81%D1%81-%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%D0%BD%D1%83%D1%8E-%D0%BF%D0%B0%D1%80%D1%83" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Особенности создания и редактирования заказов на кросс-валютные пары. Три способа редактирования</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1224,7 +1235,7 @@
             <div class="module-card" data-module="status">
                 <div class="module-number">10</div>
                 <div class="module-icon"><i class="fas fa-tasks"></i></div>
-                <h3 class="module-title">Шаг 10: Редактирование заказов <a class="module-ref-link" href="file:///Users/annaatie/Desktop/Exchange_Desk_Bot%20.html#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 10: Редактирование заказов <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/Exchange_Desk_Bot_.html#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Изменение параметров заказов, корректировка сумм, обновление реквизитов и статусов. Три способа редактирования</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1234,7 +1245,7 @@
             <div class="module-card" data-module="cross">
                 <div class="module-number">11</div>
                 <div class="module-icon"><i class="fas fa-exchange-alt"></i></div>
-                <h3 class="module-title">Шаг 11: Управление пользователями <a class="module-ref-link" href="file:///Users/annaatie/Desktop/Exchange_Desk_Bot%20.html#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 11: Управление пользователями <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/Exchange_Desk_Bot_.html#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Добавление сотрудников, назначение ролей, управление правами доступа</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1244,7 +1255,7 @@
             <div class="module-card" data-module="export">
                 <div class="module-number">12</div>
                 <div class="module-icon"><i class="fas fa-file-export"></i></div>
-                <h3 class="module-title">Шаг 12: Выгрузка данных <a class="module-ref-link" href="file:///Users/annaatie/Desktop/Exchange_Desk_Bot%20.html#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 12: Выгрузка данных <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/Exchange_Desk_Bot_.html#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Экспорт заказов в Excel-таблицы для бухгалтерского учета и анализа</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1551,6 +1562,9 @@
             <div style="flex:1; min-width:0;">
                 <h2 class="modal-title" id="modalTitle"></h2>
                 <p class="modal-subtitle" id="modalSubtitle"></p>
+                <a class="modal-doc-link" id="modalDocLink" href="#" target="_blank">
+                    <i class="fas fa-book-open"></i> Подробнее в инструкции
+                </a>
             </div>
             <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
         </div>
@@ -1577,10 +1591,12 @@
 </button>
 
 <script>
+const BASE = "https://peaceful-empanada-5464b3.netlify.app/Exchange_Desk_Bot_.html";
 const moduleData = {
     start: {
         title: "Шаг 1: Начало работы",
         subtitle: "Первые шаги: регистрация, согласие с условиями, создание или подключение к обменнику",
+        docLink: BASE + "#%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%B9-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B8-%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%B0%D1%86%D0%B8%D1%8F",
         steps: [
             { number:"1", title:"Регистрация в системе", description:"При первом входе система предложит подписать условия использования." },
             { number:"2", title:"Получение Telegram ID", description:"После регистрации бот отправит ваш уникальный Telegram ID. Сохраните его." },
@@ -1595,6 +1611,7 @@ const moduleData = {
     exchange: {
         title: "Шаг 2: Создание обменного пункта",
         subtitle: "Настройка виртуального обменного пункта: название, базовая валюта, часовой пояс",
+        docLink: BASE + "#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BE%D0%B1%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BF%D1%83%D0%BD%D0%BA%D1%82%D0%B0",
         steps: [
             { number:"1", title:"Открыть меню", description:"Главное меню → Настройки → Обменник → Создать новый." },
             { number:"2", title:"Ввести название", description:"Придумайте уникальное название. Пример: «Обменник Москва Центр»." },
@@ -1610,6 +1627,7 @@ const moduleData = {
     users: {
         title: "Шаг 7: Создание заказов",
         subtitle: "Полный цикл работы со сделками и кросс-парами",
+        docLink: BASE + "#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D0%BC%D0%B8",
         steps: [
             { number:"1", title:"Открыть меню заказов", description:"Главное меню → Новый заказ → Выбрать валютную пару/кросс-пару." },
             { number:"2", title:"Выбор режима расчёта", description:"Выберите пару из таблицы → тип операции: «По сумме выдачи» или «По сумме получения»." },
@@ -1624,6 +1642,8 @@ const moduleData = {
     fractional: {
         title: "Шаг 3: Настройка базы валют и кросс-пары",
         subtitle: "Создание и управление валютной базой, настройка кросс-валютных пар",
+         docLink: BASE + "#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2%D0%B0%D0%BB%D1%8E%D1%82-%D0%B8-%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%D0%BD%D1%8B%D1%85-%D0%BF%D0%B0%D1%80",
+
         steps: [
             { number:"1", title:"Создание валютных пар", description:"Настройки → Валютные пары → База данных валют." },
             { number:"2", title:"Добавить валюту", description:"Нажмите 'Добавить валюту' и введите код валюты вручную как в примере (USD, EUR, GBP, USD_white и т.д.) → Добавить RUB (ДА/НЕТ)→ Назад." },
@@ -1634,11 +1654,13 @@ const moduleData = {
         tip: "Начните с добавления основных валют: национальная валюта, USD, EUR,  GBP. Кросс-пары формируются только на основе уже добавленных в систему валютных пар.",
         warning: "При удалении валюты будут удалены все связанные с ней пары и исторические данные.",
         path: "Настройки → Валютные пары → Кастомизация → Выбор валюты",
-        tags: ["Валюты", "Кросс-пары", "База данных"]
+        tags: ["Валюты", "Кросс-пары", "База данных”]
+
     },
     fraction: {
         title: "Шаг 4: Конфигурация валютных параметров",
         subtitle: "Тонкая настройка параметров валюты: номиналы, дробная часть, emoji, глобальные данные",
+        docLink: BASE + "#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BD%D0%BE%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB%D0%BE%D0%B2-%D0%BA%D1%83%D0%BF%D1%8E%D1%80",
         steps: [
             { number:"1", title:"Открыть параметры", description:"Главное меню → Настройки → Валютные пары → Кастомизация валют." },
             { number:"2", title:"Выбрать конфигурацию", description:"4 параметра: Номиналы → Дробная часть → Emoji → Глобальные данные." },
@@ -1715,6 +1737,7 @@ const moduleData = {
     rates: {
         title: "Шаг 5: Управление курсами",
         subtitle: "Настройка и изменение курсов покупки и продажи валют",
+        docLink: BASE + "#%D0%B2%D1%8B%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BA%D1%83%D1%80%D1%81%D0%BE%D0%B2-%D0%B8-%D0%BA%D0%BE%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BE%D0%BA",
         steps: [
             { number:"1", title:"Открыть котировки", description:"Главное меню → Выставление котировок." },
             { number:"2", title:"Пошаговая настройка", description:"Бот проведет по всем парам. Введите курс покупки и продажи. По завершению бот пришлет котировочную таблицу." },
@@ -1730,6 +1753,7 @@ const moduleData = {
     channel: {
         title: "Шаг 6: Канал для сотрудников",
         subtitle: "Настройка закрытого канала для публикации заказов и коммуникации",
+        docLink: BASE + "#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B0-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2",
         steps: [
             { number:"1", title:"Создать канал", description:"Telegram → Новое сообщение → New Channel → Частный канал." },
             { number:"2", title:"Получить chat_id", description:"Поиск → @myidbot → Start → перешлите пост из канала. Скопируйте ID со знаком «-»." },
@@ -1746,6 +1770,7 @@ const moduleData = {
     orders: {
         title: "Шаг 8: Статусы заказов",
         subtitle: "Управление статусами сделок для контроля этапов и быстрой реакции",
+        docLink: BASE + "#%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%D1%8B-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2",
         steps: [
             { number:"1", title:"Открыть заказ", description:"Главное меню → Заказы → найдите нужный. Новым заказам автоматически присваивается статус «Новый»." },
             { number:"2", title:"Редактирование статуса", description:"Нажмите → Редактировать под заказом (в канале или через основного бота)." },
@@ -1761,6 +1786,7 @@ const moduleData = {
     status: {
         title: "Шаг 10: Редактирование заказов",
         subtitle: "Изменение параметров заказов, корректировка сумм и реквизитов",
+        docLink: BASE + "#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2",
         steps: [
             { number:"1", title:"Три способа редактирования", description:"• Из предпросмотра после создания\n• Через меню «Заказы»\n• По ссылке из канала сотрудников" },
             { number:"2", title:"Из предпросмотра", description:"После создания → Редактировать → выберите параметр для изменения." },
@@ -1777,6 +1803,7 @@ const moduleData = {
     cross: {
         title: "Шаг 11: Управление пользователями",
         subtitle: "Добавление сотрудников, назначение ролей, управление правами",
+        docLink: BASE + "#%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F%D0%BC%D0%B8-%D0%B8-%D1%80%D0%BE%D0%BB%D0%B8",
         steps: [
             { number:"1", title:"Доступ к управлению", description:"Главное меню → Настройки → Обменник → Пользователи." },
             { number:"2", title:"Добавить пользователя", description:"Нажмите «Добавить пользователя» → отправьте @username или Telegram ID." },
@@ -1793,6 +1820,7 @@ const moduleData = {
     "edit-orders": {
         title: "Шаг 9: Работа с кросс-парами",
         subtitle: "Особенности создания заказов с кросс-валютными парами",
+        docLink: BASE + "#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0-%D0%BD%D0%B0-%D0%BA%D1%80%D0%BE%D1%81%D1%81-%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%D0%BD%D1%83%D1%8E-%D0%BF%D0%B0%D1%80%D1%83",
         steps: [
             { number:"1", title:"Отображение кросс-пар", description:"Кросс-пары (GBP/USD, BTC/USDT) всегда внизу списка при создании заказа." },
             { number:"2", title:"Особенности расчета", description:"Часто возникают дробные суммы из-за мелких значений курса." },
@@ -1808,6 +1836,7 @@ const moduleData = {
     export: {
         title: "Шаг 12: Выгрузка данных",
         subtitle: "Экспорт заказов в Excel для бухгалтерского учета и анализа",
+        docLink: BASE + "#%D0%B2%D1%8B%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0-%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B-%D1%81-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D0%BC%D0%B8",
         steps: [
             { number:"1", title:"Доступ к выгрузке", description:"Главное меню → Заказы → Выгрузка → введите дату → Сохранить." },
             { number:"2", title:"Выбор формата", description:"Поддержка CSV и Excel (.xlsx)." },
@@ -1857,6 +1886,15 @@ function openModal(moduleId) {
     if (!data) return;
     document.getElementById('modalTitle').textContent = data.title;
     document.getElementById('modalSubtitle').textContent = data.subtitle;
+
+    // Ссылка на инструкцию
+    const docLink = document.getElementById('modalDocLink');
+    if (data.docLink) {
+        docLink.href = data.docLink;
+        docLink.style.display = 'inline-flex';
+    } else {
+        docLink.style.display = 'none';
+    }
     const stepsContainer = document.getElementById('modalSteps');
     stepsContainer.innerHTML = data.steps.map(step => `
         <li class="step-animate">

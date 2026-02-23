@@ -48,7 +48,6 @@
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing); }
 
-        /* ===== HEADER — полупрозрачный с blur, не перекрывает контент ===== */
         .header {
             position: sticky; top: 0;
             height: var(--header-height);
@@ -104,7 +103,6 @@
             color: var(--text-primary); font-size: 1.5rem; cursor: pointer;
         }
 
-        /* ===== MOBILE MENU ===== */
         .mobile-menu {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             z-index: 999; pointer-events: none;
@@ -132,7 +130,6 @@
         .mobile-nav-link.download { margin-top: 1rem; background: var(--gradient-primary); color: #0a0a1a; font-weight: 700; }
         .mobile-nav-link i { font-size: 1.2rem; width: 24px; }
 
-        /* ===== HERO ===== */
         .hero { padding: 3rem 0; text-align: center; }
         .hero-badge {
             display: inline-flex; align-items: center; gap: 0.5rem;
@@ -149,7 +146,6 @@
         .hero-description { color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; font-size: 1rem; }
         .hero-btn { font-size: 1.05rem; }
 
-        /* ===== INFO CARDS — исправленный текст ===== */
         .info-section { padding: 3rem 0; background: var(--bg-secondary); }
         .info-grid {
             display: grid;
@@ -191,7 +187,6 @@
         .info-card:nth-child(2):hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(54,209,220,0.25); }
         .info-card:nth-child(3):hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(139,92,246,0.25); }
 
-        /* Иконка с градиентом */
         .info-icon {
             width: 56px; height: 56px;
             display: flex; align-items: center; justify-content: center;
@@ -202,17 +197,14 @@
         .info-card:nth-child(2) .info-icon { background: rgba(54,209,220,0.15); border: 1px solid rgba(54,209,220,0.3); }
         .info-card:nth-child(3) .info-icon { background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); }
 
-        /* Иконка с нужным цветом */
         .info-card:nth-child(1) .info-icon i { color: #FF8A35; }
         .info-card:nth-child(2) .info-icon i { color: #36D1DC; }
         .info-card:nth-child(3) .info-icon i { color: #a78bfa; }
 
-        /* ===== ЗАГОЛОВКИ ИНФОКАРТ — с цветным акцентом, НЕ градиент ===== */
         .info-card:nth-child(1) h3 { color: #FF8A35; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
         .info-card:nth-child(2) h3 { color: #36D1DC; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
         .info-card:nth-child(3) h3 { color: #a78bfa; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
 
-        /* ===== ТЕКСТ СПИСКОВ — нормальный, читаемый ===== */
         .info-card ul { list-style: none; }
         .info-card li {
             color: var(--text-secondary);
@@ -226,10 +218,8 @@
         .info-card:nth-child(2) li::before { content: '•'; position: absolute; left: 0; color: #36D1DC; font-weight: 900; font-size: 1.1rem; line-height: 1.5; }
         .info-card:nth-child(3) li::before { content: '•'; position: absolute; left: 0; color: #8b5cf6; font-weight: 900; font-size: 1.1rem; line-height: 1.5; }
 
-        /* ===== STRONG внутри li — белый, читаемый ===== */
         .info-card li strong { color: #f0f0ff; font-weight: 600; }
 
-        /* ===== СЕКЦИИ ===== */
         .section { padding: 4rem 0; }
         .section-dark { background: var(--bg-secondary); }
 
@@ -247,33 +237,6 @@
         }
         .section-subtitle { color: var(--text-secondary); font-size: 1rem; }
 
-        .section-decoration {
-            display: flex; flex-direction: column; align-items: flex-end; gap: 6px; padding-top: 6px;
-        }
-        .section-decoration .deco-line {
-            width: 60px; height: 2px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--accent-cyan));
-            border-radius: 2px;
-        }
-        .section-decoration .deco-dots { display: flex; gap: 5px; }
-        .section-decoration .deco-dots span { width: 7px; height: 7px; border-radius: 50%; }
-        .section-decoration .deco-dots span:nth-child(1) { background: var(--accent-orange); }
-        .section-decoration .deco-dots span:nth-child(2) { background: var(--accent-cyan); }
-        .section-decoration .deco-dots span:nth-child(3) { background: var(--accent-green); }
-
-        .stats { display: flex; gap: 1rem; }
-        .stat-badge {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 12px; padding: 0.6rem 1.1rem; font-size: 0.95rem;
-        }
-        .stat-number {
-            font-size: 1.4rem; font-weight: 700;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            margin-right: 0.2rem;
-        }
-
-        /* ===== FUNCTION LIST — строчки с иконкой, клик открывает модал ===== */
         .functions-list {
             display: flex; flex-direction: column; gap: 0.65rem;
             max-width: 760px; margin: 0 auto;
@@ -312,7 +275,6 @@
             color: var(--accent-cyan);
         }
 
-        /* Модал описания функции */
         .func-modal {
             display: none; position: fixed; inset: 0;
             background: rgba(10,10,26,0.92); backdrop-filter: blur(12px);
@@ -355,8 +317,6 @@
             .func-modal-title { font-size: 1.05rem; }
         }
 
-
-        /* ===== MODULE CARDS ===== */
         .modules-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -434,7 +394,6 @@
         .status-active { background: rgba(16,185,129,0.1); color: #5DFDCB; }
         .status-beta { background: rgba(245,158,11,0.1); color: var(--accent-orange); }
 
-        /* ===== MODAL ===== */
         .module-modal {
             display: none; position: fixed; inset: 0;
             background: var(--bg-overlay); backdrop-filter: blur(10px);
@@ -592,7 +551,6 @@
         .submodule-info p { margin-bottom: 0.6rem; display: flex; align-items: flex-start; gap: 0.5rem; color: var(--text-secondary); }
         .submodule-info strong { color: var(--text-primary); }
 
-        /* ===== PDF ===== */
         .pdf-card {
             background: var(--bg-card); border: 2px dashed var(--border-color);
             border-radius: var(--radius-lg); padding: 3rem 2rem; text-align: center;
@@ -609,7 +567,6 @@
         .pdf-card h3 { font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; }
         .pdf-card p { color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; }
 
-        /* ===== FAQ ===== */
         .faq-search-container { position: relative; max-width: 400px; margin: 1.5rem auto 0; }
         .faq-search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
         .faq-search {
@@ -629,10 +586,8 @@
         }
         .faq-category:hover { background: var(--bg-hover); color: var(--text-primary); border-color: var(--accent-cyan); }
         .faq-category.active {
-            background: var(--bg-hover);
-            color: var(--accent-cyan);
-            border-color: var(--accent-cyan);
-            font-weight: 600;
+            background: var(--bg-hover); color: var(--accent-cyan);
+            border-color: var(--accent-cyan); font-weight: 600;
             box-shadow: 0 0 10px rgba(54,209,220,0.15);
         }
 
@@ -756,17 +711,12 @@
         .format-arrow i { font-size: 1.3rem; }
         .tags-demo { display: flex; flex-wrap: wrap; gap: 0.4rem; }
         .currency-tag { background: var(--bg-secondary); border: 1px solid #36D1DC; color: #36D1DC; padding: 0.2rem 0.65rem; border-radius: 20px; font-size: 0.82rem; }
-        .examples { margin-top: 0.75rem; padding: 0.75rem; background: var(--bg-secondary); border-radius: 6px; }
-        .examples ul { margin: 0.4rem 0; padding-left: 1.2rem; }
-        .examples li { font-family: monospace; color: #FF6B35; font-size: 0.9rem; }
-        .examples-note { margin: 0.5rem 0 0; font-size: 0.88rem; font-style: italic; }
 
         .color-difference { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.85rem 0; }
         .color-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem; }
         .color-badge { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; margin-bottom: 0.5rem; }
         .color-badge.green i { color: #28a745; }
         .color-badge.red i { color: #dc3545; }
-        .color-hint { font-size: 0.82rem; color: var(--text-muted); display: block; margin-top: 0.25rem; }
 
         .info-message { display: flex; align-items: flex-start; gap: 0.75rem; background: rgba(54,209,220,0.08); border: 1px solid rgba(54,209,220,0.2); border-radius: 10px; padding: 0.85rem 1rem; margin: 0.85rem 0; }
         .info-message i { color: var(--accent-cyan); flex-shrink: 0; margin-top: 2px; }
@@ -787,17 +737,6 @@
         .settings-note { font-size: 0.75rem; color: var(--text-muted); }
         .highlight-path { background: rgba(139,92,246,0.12); padding: 0.1rem 0.4rem; border-radius: 4px; color: #a78bfa; }
 
-        .update-instructions { margin: 1rem 0; }
-        .instruction-step { display: flex; align-items: center; gap: 0.85rem; padding: 0.85rem; background: var(--bg-card); border-radius: 10px; margin-bottom: 0.5rem; }
-        .step-content { display: flex; flex-direction: column; gap: 0.35rem; }
-        .step-action { font-size: 0.85rem; color: var(--text-muted); }
-        .button-demo, .result-demo { display: flex; align-items: center; gap: 0.5rem; background: var(--bg-secondary); padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.9rem; width: fit-content; }
-        .button-demo i { color: var(--accent-cyan); }
-        .result-demo i { color: var(--accent-green); }
-        .step-note { font-size: 0.8rem; color: var(--text-muted); }
-        .instruction-arrow { text-align: center; color: var(--text-muted); padding: 0.25rem 0; }
-
-        /* ===== FOOTER ===== */
         .footer {
             position: relative; background: var(--bg-secondary);
             border-top: 1px solid var(--border-color); padding: 3rem 0 1.5rem;
@@ -821,7 +760,6 @@
         .footer-bottom { padding-top: 1.5rem; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-muted); font-size: 0.85rem; }
         .version { margin-top: 0.4rem; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600; }
 
-        /* ===== SCROLL TOP BTN ===== */
         .scroll-top-btn {
             display: none; position: fixed; bottom: 24px; right: 20px; z-index: 9999;
             width: 48px; height: 48px; border-radius: 50%; border: none; cursor: pointer;
@@ -831,10 +769,6 @@
             opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease; transform: translateY(12px);
         }
         .scroll-top-btn.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
-
-        /* =============================================
-           RESPONSIVE
-           ============================================= */
 
         @media (min-width: 768px) {
             .logo-text { display: inline; }
@@ -852,142 +786,52 @@
             .submodule-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* Modules grid responsive */
         @media (max-width: 1199px) { .modules-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 899px) { .modules-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 599px) { .modules-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; } }
         @media (max-width: 420px) { .modules-grid { grid-template-columns: 1fr; } }
 
-        /* Info cards mobile */
         @media (max-width: 767px) {
             .info-section { padding: 1.5rem 0; }
-            .info-grid {
-                grid-template-columns: 1fr;
-                gap: 0.65rem;
-            }
-            .info-card {
-                flex-direction: row;
-                align-items: flex-start;
-                gap: 1rem;
-                padding: 1rem 1.1rem;
-                border-radius: 12px;
-            }
-            .info-card-left {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                flex-shrink: 0;
-                width: 60px;
-                gap: 0.4rem;
-            }
-            .info-icon {
-                width: 40px; height: 40px;
-                font-size: 1.1rem;
-                border-radius: 10px;
-                margin-bottom: 0;
-            }
-            .info-card h3 {
-                font-size: 0.72rem;
-                font-weight: 700;
-                margin-bottom: 0;
-                text-align: center;
-                line-height: 1.2;
-            }
+            .info-grid { grid-template-columns: 1fr; gap: 0.65rem; }
+            .info-card { flex-direction: row; align-items: flex-start; gap: 1rem; padding: 1rem 1.1rem; border-radius: 12px; }
+            .info-card-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 60px; gap: 0.4rem; }
+            .info-icon { width: 40px; height: 40px; font-size: 1.1rem; border-radius: 10px; margin-bottom: 0; }
+            .info-card h3 { font-size: 0.72rem; font-weight: 700; margin-bottom: 0; text-align: center; line-height: 1.2; }
             .info-card ul { flex: 1; margin: 0; }
-            .info-card li {
-                font-size: 0.82rem;
-                line-height: 1.45;
-                margin-bottom: 0.4rem;
-                padding-left: 1rem;
-            }
-            .info-card li::before { font-size: 0.9rem; }
-            .info-card li strong { font-size: 0.82rem; }
+            .info-card li { font-size: 0.82rem; line-height: 1.45; margin-bottom: 0.4rem; padding-left: 1rem; }
         }
 
-        /* ===== MOBILE MODAL ===== */
         @media (max-width: 768px) {
             .module-modal { padding: 0; align-items: flex-end; }
-            .module-modal-content {
-                border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-                max-height: 92vh; max-width: 100%; width: 100%;
-                animation: slideUpMobile 0.35s cubic-bezier(0.4,0,0.2,1);
-            }
+            .module-modal-content { border-radius: var(--radius-lg) var(--radius-lg) 0 0; max-height: 92vh; max-width: 100%; width: 100%; animation: slideUpMobile 0.35s cubic-bezier(0.4,0,0.2,1); }
             @keyframes slideUpMobile { from { transform: translateY(100%); } to { transform: translateY(0); } }
-
             .modal-header { padding: 1rem 1.1rem; }
             .modal-title { font-size: 1.1rem; }
             .modal-subtitle { font-size: 0.82rem; }
-            /* Кнопка закрытия — всегда видима на мобиле */
-            .modal-close {
-                width: 44px; height: 44px; min-width: 44px;
-                background: rgba(255,107,53,0.15);
-                border-color: rgba(255,107,53,0.4);
-                color: var(--accent-orange);
-                font-size: 1.1rem;
-            }
-
-            .modal-body {
-                grid-template-columns: 1fr; gap: 1rem; padding: 1rem 1.1rem;
-            }
+            .modal-close { width: 44px; height: 44px; min-width: 44px; background: rgba(255,107,53,0.15); border-color: rgba(255,107,53,0.4); color: var(--accent-orange); font-size: 1.1rem; }
+            .modal-body { grid-template-columns: 1fr; gap: 1rem; padding: 1rem 1.1rem; }
             .modal-sidebar { position: static; order: 2; }
             .modal-steps-container { order: 1; }
-
-            .modal-steps li { padding-left: 2.5rem; margin-bottom: 1.25rem; }
-            .modal-steps li::before { left: 10px; }
-            .modal-steps li::after { left: 4px; width: 12px; height: 12px; }
-            .step-number { width: 20px; height: 20px; font-size: 0.72rem; }
-            .step-title { font-size: 0.92rem; }
-            .step-description { font-size: 0.85rem; }
-
-            .sidebar-tip, .sidebar-warning, .sidebar-path { padding: 0.75rem; font-size: 0.84rem; }
-
-            .faq-question { padding: 0.95rem 1rem; }
-            .faq-question-content h3 { font-size: 0.95rem; }
-            .faq-item.active .faq-answer { padding: 1rem; }
-            .faq-categories { gap: 0.4rem; }
-            .faq-category { padding: 0.4rem 0.85rem; font-size: 0.82rem; }
-
-            .settings-grid { grid-template-columns: 1fr; }
-            .status-grid { grid-template-columns: 1fr; }
-            .color-difference { grid-template-columns: 1fr; }
-            .format-showcase { flex-direction: column; }
-            .format-arrow { flex-direction: row; }
-
             .section { padding: 2.5rem 0; }
             .section-title { font-size: 1.75rem; }
-            .section-header-top { flex-direction: column; }
-            .section-decoration { display: none; }
-
             .hero { padding: 1.5rem 0 2rem; }
             .hero-title { font-size: 2rem; }
-            .hero-subtitle { font-size: 1rem; }
-            .hero-description { font-size: 0.92rem; }
-
             .module-card { padding: 1.1rem; min-height: auto; }
-            .module-title { font-size: 0.92rem; }
-            .module-description { font-size: 0.78rem; }
-            .module-number { font-size: 2.8rem; }
-
-            .pdf-card { padding: 2rem 1.25rem; }
-            .pdf-card h3 { font-size: 1.4rem; }
+            .settings-grid { grid-template-columns: 1fr; }
+            .color-difference { grid-template-columns: 1fr; }
+            .format-showcase { flex-direction: column; }
         }
 
         @media (max-width: 480px) {
             .hero-title { font-size: 1.75rem; }
             .module-card { padding: 1rem; }
-            .module-actions { gap: 0.35rem; }
-            .module-link { padding: 0.35rem 0.6rem; font-size: 0.75rem; }
-            .module-status { font-size: 0.68rem; padding: 0.2rem 0.45rem; }
             .container { padding: 0 1rem; }
         }
-
-        .function-card, .module-card, .info-card { opacity: 1; }
-        .function-card, .module-card, .info-card { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
     </style>
 </head>
 <body>
 
-<!-- Header -->
 <header class="header">
     <div class="header-container">
         <a href="#" class="logo">
@@ -1009,7 +853,6 @@
     </div>
 </header>
 
-<!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <nav class="mobile-menu-content">
@@ -1021,7 +864,6 @@
     </nav>
 </div>
 
-<!-- Hero -->
 <section class="hero">
     <div class="container">
         <div class="hero-badge"><i class="fas fa-bolt"></i> Полное руководство</div>
@@ -1036,7 +878,6 @@
     </div>
 </section>
 
-<!-- Info Cards -->
 <section class="info-section">
     <div class="container">
         <div class="info-grid">
@@ -1078,7 +919,6 @@
     </div>
 </section>
 
-<!-- Functions -->
 <section id="functions" class="section">
     <div class="container">
         <div class="section-header" style="text-align:center;">
@@ -1120,21 +960,17 @@
     </div>
 </section>
 
-<!-- Function Modal -->
 <div class="func-modal" id="funcModal">
     <div class="func-modal-content" id="funcModalContent">
         <button class="func-modal-close" id="funcModalClose"><i class="fas fa-times"></i></button>
         <div class="func-modal-header">
             <div class="func-modal-icon" id="funcModalIcon"></div>
-            <div>
-                <div class="func-modal-title" id="funcModalTitle"></div>
-            </div>
+            <div><div class="func-modal-title" id="funcModalTitle"></div></div>
         </div>
         <p class="func-modal-desc" id="funcModalDesc"></p>
     </div>
 </div>
 
-<!-- Modules -->
 <section id="modules" class="section section-dark">
     <div class="container">
         <div class="section-header" style="text-align:center;">
@@ -1145,7 +981,7 @@
             <div class="module-card" data-module="start">
                 <div class="module-number">1</div>
                 <div class="module-icon"><i class="fas fa-rocket"></i></div>
-                <h3 class="module-title">Шаг 1: Начало работы <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot%20.html#%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%B2%D1%8B%D0%B5-%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 1: Начало работы <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot_manual_.html#%D1%87%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-exchange-desk-bot" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Первые шаги: регистрация в системе, согласие с условиями, получение Telegram ID</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1155,7 +991,7 @@
             <div class="module-card" data-module="exchange">
                 <div class="module-number">2</div>
                 <div class="module-icon"><i class="fas fa-building"></i></div>
-                <h3 class="module-title">Шаг 2: Создание обменного пункта <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot%20.html#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BE%D0%B1%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BF%D1%83%D0%BD%D0%BA%D1%82%D0%B0" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 2: Создание обменного пункта <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot_manual_.html#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BE%D0%B1%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BF%D1%83%D0%BD%D0%BA%D1%82%D0%B0" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Настройка виртуального обменного пункта: уникальное название, базовая валюта, часовой пояс</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1165,7 +1001,7 @@
             <div class="module-card" data-module="fractional">
                 <div class="module-number">3</div>
                 <div class="module-icon"><i class="fas fa-coins"></i></div>
-                <h3 class="module-title">Шаг 3: Настройка базы валют и кросс-пары <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot%20.html#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BE%D0%B1%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BF%D1%83%D0%BD%D0%BA%D1%82%D0%B0" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 3: Настройка базы валют и кросс-пары <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot_manual_.html#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2%D0%B0%D0%BB%D1%8E%D1%82-%D0%B8-%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%D0%BD%D1%8B%D1%85-%D0%BF%D0%B0%D1%80" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Создание и управление валютной базой, настройка кросс-валютных пар для торговли</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1175,8 +1011,8 @@
             <div class="module-card" data-module="fraction">
                 <div class="module-number">4</div>
                 <div class="module-icon"><i class="fas fa-divide"></i></div>
-                <h3 class="module-title">Шаг 4: Конфигурация валютных параметров <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot%20.html#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BD%D0%BE%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB%D0%BE%D0%B2-%D0%BA%D1%83%D0%BF%D1%8E%D1%80" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
-                <p class="module-description">Этот раздел позволяет детально настроить отображение и поведение каждой валюты в системе</p>
+                <h3 class="module-title">Шаг 4: Конфигурация валютных параметров <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot_manual_.html#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BD%D0%BE%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB%D0%BE%D0%B2-%D0%BA%D1%83%D0%BF%D1%8E%D1%80" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Детальная настройка отображения и поведения каждой валюты в системе</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
                     <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
@@ -1185,8 +1021,8 @@
             <div class="module-card" data-module="rates">
                 <div class="module-number">5</div>
                 <div class="module-icon"><i class="fas fa-chart-line"></i></div>
-                <h3 class="module-title">Шаг 5: Управление курсами <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot%20.html#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BD%D0%BE%D0%BC%D0%B8%D0%BD%D0%B0%D0%BB%D0%BE%D0%B2-%D0%BA%D1%83%D0%BF%D1%8E%D1%80" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
-                <p class="module-description">Выставление и корректировка курсов покупки/продажи для всех валютных пар. Пошаговая настройка и автоматическое обновление</p>
+                <h3 class="module-title">Шаг 5: Управление курсами <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot_manual_.html#%D0%B2%D1%8B%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BA%D1%83%D1%80%D1%81%D0%BE%D0%B2-%D0%B8-%D0%BA%D0%BE%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BE%D0%BA" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Выставление и корректировка курсов покупки/продажи для всех валютных пар</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
                     <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
@@ -1195,8 +1031,8 @@
             <div class="module-card" data-module="channel">
                 <div class="module-number">6</div>
                 <div class="module-icon"><i class="fas fa-broadcast-tower"></i></div>
-                <h3 class="module-title">Шаг 6: Канал для сотрудников <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot%20.html#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B0-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
-                <p class="module-description">Настройка закрытого канала для внутренней работы с заказами и коммуникации между сотрудниками</p>
+                <h3 class="module-title">Шаг 6: Канал для сотрудников <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot_manual_.html#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B0-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Настройка закрытого канала для внутренней работы с заказами и коммуникации</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
                     <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
@@ -1205,8 +1041,8 @@
             <div class="module-card" data-module="users">
                 <div class="module-number">7</div>
                 <div class="module-icon"><i class="fas fa-user-group"></i></div>
-                <h3 class="module-title">Шаг 7: Создание заказов <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot%20.html#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D0%BC%D0%B8" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
-                <p class="module-description">Полный цикл работы со сделками: создание, редактирование, выполнение заказов. Работа с кросс-парами и прикрепление скриншотов</p>
+                <h3 class="module-title">Шаг 7: Создание заказов <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot_manual_.html#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8-%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D0%BC%D0%B8" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Полный цикл работы со сделками: создание, редактирование, выполнение заказов</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
                     <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
@@ -1215,8 +1051,8 @@
             <div class="module-card" data-module="orders">
                 <div class="module-number">8</div>
                 <div class="module-icon"><i class="fas fa-file-invoice"></i></div>
-                <h3 class="module-title">Шаг 8: Статусы заказов <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot%20.html#%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%D1%8B-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
-                <p class="module-description">Управление статусами сделок: новый, подтвержден, выполнен, отменен. Автоматические переходы и ручное изменение</p>
+                <h3 class="module-title">Шаг 8: Статусы заказов <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot_manual_.html#%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%D1%8B-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Управление статусами сделок: новый, подтвержден, выполнен, отменен</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
                     <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
@@ -1225,8 +1061,8 @@
             <div class="module-card" data-module="edit-orders">
                 <div class="module-number">9</div>
                 <div class="module-icon"><i class="fas fa-edit"></i></div>
-                <h3 class="module-title">Шаг 9: Работа с кросс-парами <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot%20.html#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0-%D0%BD%D0%B0-%D0%BA%D1%80%D0%BE%D1%81%D1%81-%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%D0%BD%D1%83%D1%8E-%D0%BF%D0%B0%D1%80%D1%83" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
-                <p class="module-description">Особенности создания и редактирования заказов на кросс-валютные пары. Три способа редактирования</p>
+                <h3 class="module-title">Шаг 9: Работа с кросс-парами <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot_manual_.html#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D1%80%D0%BE%D1%81%D1%81-%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%D0%BD%D1%8B%D1%85-%D0%BF%D0%B0%D1%80" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Особенности создания и редактирования заказов на кросс-валютные пары</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
                     <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
@@ -1235,8 +1071,8 @@
             <div class="module-card" data-module="status">
                 <div class="module-number">10</div>
                 <div class="module-icon"><i class="fas fa-tasks"></i></div>
-                <h3 class="module-title">Шаг 10: Редактирование заказов <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot%20.html#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
-                <p class="module-description">Изменение параметров заказов, корректировка сумм, обновление реквизитов и статусов. Три способа редактирования</p>
+                <h3 class="module-title">Шаг 10: Редактирование заказов <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot_manual_.html#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <p class="module-description">Изменение параметров заказов, корректировка сумм, обновление реквизитов и статусов</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
                     <span class="module-status status-active"><i class="fas fa-check-circle"></i> Активен</span>
@@ -1245,7 +1081,7 @@
             <div class="module-card" data-module="cross">
                 <div class="module-number">11</div>
                 <div class="module-icon"><i class="fas fa-exchange-alt"></i></div>
-                <h3 class="module-title">Шаг 11: Управление пользователями <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot%20.html#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 11: Управление пользователями <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot_manual_.html#%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F%D0%BC%D0%B8-%D0%B8-%D1%80%D0%BE%D0%BB%D0%B8" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Добавление сотрудников, назначение ролей, управление правами доступа</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1255,7 +1091,7 @@
             <div class="module-card" data-module="export">
                 <div class="module-number">12</div>
                 <div class="module-icon"><i class="fas fa-file-export"></i></div>
-                <h3 class="module-title">Шаг 12: Выгрузка данных <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot%20.html#%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%BE%D0%B2" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 12: Выгрузка данных <a class="module-ref-link" href="https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot_manual_.html#%D0%B2%D1%8B%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0-%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B-%D1%81-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D0%BC%D0%B8" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Экспорт заказов в Excel-таблицы для бухгалтерского учета и анализа</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1266,7 +1102,6 @@
     </div>
 </section>
 
-<!-- PDF -->
 <section id="pdf" class="section">
     <div class="container">
         <div class="pdf-card">
@@ -1280,7 +1115,6 @@
     </div>
 </section>
 
-<!-- FAQ -->
 <section id="faq" class="section section-dark">
     <div class="container">
         <div class="section-header" style="text-align:center;">
@@ -1299,13 +1133,9 @@
             <button class="faq-category" data-category="channel">Канал</button>
         </div>
         <div class="faq-grid" id="faqGrid">
-
             <div class="faq-item" data-category="general">
                 <div class="faq-question">
-                    <div class="faq-question-content">
-                        <i class="fas fa-question-circle"></i>
-                        <h3>Можно ли работать в нескольких обменных пунктах?</h3>
-                    </div>
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Можно ли работать в нескольких обменных пунктах?</h3></div>
                     <i class="fas fa-chevron-down faq-toggle"></i>
                 </div>
                 <div class="faq-answer">
@@ -1317,13 +1147,9 @@
                     <div class="faq-note"><i class="fas fa-info-circle"></i><span>Данные разных обменников полностью изолированы.</span></div>
                 </div>
             </div>
-
             <div class="faq-item" data-category="general">
                 <div class="faq-question">
-                    <div class="faq-question-content">
-                        <i class="fas fa-question-circle"></i>
-                        <h3>Что делать, если бот не отвечает?</h3>
-                    </div>
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Что делать, если бот не отвечает?</h3></div>
                     <i class="fas fa-chevron-down faq-toggle"></i>
                 </div>
                 <div class="faq-answer">
@@ -1335,13 +1161,9 @@
                     <div class="faq-warning"><i class="fas fa-exclamation-triangle"></i><span>Если проблема сохраняется — свяжитесь с владельцем</span></div>
                 </div>
             </div>
-
             <div class="faq-item" data-category="general">
                 <div class="faq-question">
-                    <div class="faq-question-content">
-                        <i class="fas fa-question-circle"></i>
-                        <h3>В чем разница между зелеными и красными кнопками при создании заказа?</h3>
-                    </div>
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>В чем разница между зелеными и красными кнопками при создании заказа?</h3></div>
                     <i class="fas fa-chevron-down faq-toggle"></i>
                 </div>
                 <div class="faq-answer">
@@ -1358,13 +1180,9 @@
                     <div class="faq-note"><i class="fas fa-info-circle"></i><span>Зеленый = входящий поток в пункт, красный = исходящий из пункта.</span></div>
                 </div>
             </div>
-
             <div class="faq-item" data-category="general">
                 <div class="faq-question">
-                    <div class="faq-question-content">
-                        <i class="fas fa-question-circle"></i>
-                        <h3>Как обновить таблицу котировок?</h3>
-                    </div>
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Как обновить таблицу котировок?</h3></div>
                     <i class="fas fa-chevron-down faq-toggle"></i>
                 </div>
                 <div class="faq-answer">
@@ -1372,13 +1190,9 @@
                     <div class="faq-tip"><i class="fas fa-lightbulb"></i><span>После изменения курсов вызовите таблицу снова — она всегда покажет актуальные данные.</span></div>
                 </div>
             </div>
-
             <div class="faq-item" data-category="general">
                 <div class="faq-question">
-                    <div class="faq-question-content">
-                        <i class="fas fa-question-circle"></i>
-                        <h3>Почему при вводе списка валют нужно писать через запятую?</h3>
-                    </div>
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Почему при вводе списка валют нужно писать через запятую?</h3></div>
                     <i class="fas fa-chevron-down faq-toggle"></i>
                 </div>
                 <div class="faq-answer">
@@ -1389,32 +1203,20 @@
                     <div class="format-showcase">
                         <div class="format-card correct">
                             <div class="format-icon"><i class="fas fa-check-circle"></i></div>
-                            <div>
-                                <span class="format-label">✅ Правильно</span>
-                                <div class="code-demo"><code>USD, EUR, GBP, CHF</code></div>
-                            </div>
+                            <div><span class="format-label">✅ Правильно</span><div class="code-demo"><code>USD, EUR, GBP, CHF</code></div></div>
                         </div>
                         <div class="format-arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
                         <div class="format-card result">
                             <div class="format-icon"><i class="fas fa-list"></i></div>
-                            <div>
-                                <span class="format-label">📋 Результат</span>
-                                <div class="tags-demo">
-                                    <span class="currency-tag">USD</span><span class="currency-tag">EUR</span><span class="currency-tag">GBP</span>
-                                </div>
-                            </div>
+                            <div><span class="format-label">📋 Результат</span><div class="tags-demo"><span class="currency-tag">USD</span><span class="currency-tag">EUR</span><span class="currency-tag">GBP</span></div></div>
                         </div>
                     </div>
                     <div class="faq-tip"><i class="fas fa-lightbulb"></i><span>Пробелы необязательны — USD,EUR,GBP тоже работает</span></div>
                 </div>
             </div>
-
             <div class="faq-item" data-category="currency">
                 <div class="faq-question">
-                    <div class="faq-question-content">
-                        <i class="fas fa-question-circle"></i>
-                        <h3>Зачем нужна глобальная база номиналов?</h3>
-                    </div>
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Зачем нужна глобальная база номиналов?</h3></div>
                     <i class="fas fa-chevron-down faq-toggle"></i>
                 </div>
                 <div class="faq-answer">
@@ -1422,26 +1224,18 @@
                     <div class="faq-tip"><i class="fas fa-lightbulb"></i><span>Достаточно один раз настроить — и все номиналы появятся автоматически</span></div>
                 </div>
             </div>
-
             <div class="faq-item" data-category="currency">
                 <div class="faq-question">
-                    <div class="faq-question-content">
-                        <i class="fas fa-question-circle"></i>
-                        <h3>Как изменить дробную часть?</h3>
-                    </div>
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Как изменить дробную часть?</h3></div>
                     <i class="fas fa-chevron-down faq-toggle"></i>
                 </div>
                 <div class="faq-answer">
                     <div class="faq-path"><i class="fas fa-map-signs"></i><code>Настройки → Валютные пары → Кастомизация → Дробная часть</code></div>
                 </div>
             </div>
-
             <div class="faq-item" data-category="currency">
                 <div class="faq-question">
-                    <div class="faq-question-content">
-                        <i class="fas fa-question-circle"></i>
-                        <h3>Я случайно удалил важную валюту. Как восстановить?</h3>
-                    </div>
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Я случайно удалил важную валюту. Как восстановить?</h3></div>
                     <i class="fas fa-chevron-down faq-toggle"></i>
                 </div>
                 <div class="faq-answer">
@@ -1458,13 +1252,9 @@
                     <div class="faq-path"><i class="fas fa-map-signs"></i><code>База данных → Валюты → Добавить валюту</code></div>
                 </div>
             </div>
-
             <div class="faq-item" data-category="orders">
                 <div class="faq-question">
-                    <div class="faq-question-content">
-                        <i class="fas fa-question-circle"></i>
-                        <h3>Что означают статусы заказов?</h3>
-                    </div>
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Что означают статусы заказов?</h3></div>
                     <i class="fas fa-chevron-down faq-toggle"></i>
                 </div>
                 <div class="faq-answer">
@@ -1476,26 +1266,18 @@
                     </div>
                 </div>
             </div>
-
             <div class="faq-item" data-category="orders">
                 <div class="faq-question">
-                    <div class="faq-question-content">
-                        <i class="fas fa-question-circle"></i>
-                        <h3>Клиент оплатил заказ, но сделка сорвалась. Как отразить?</h3>
-                    </div>
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Клиент оплатил заказ, но сделка сорвалась. Как отразить?</h3></div>
                     <i class="fas fa-chevron-down faq-toggle"></i>
                 </div>
                 <div class="faq-answer">
                     <p>Ни в коем случае не удаляйте заказ. Откройте его на редактирование и измените статус на ❌ <strong>Отменён</strong>. Это сохранит историю операции для отчетности.</p>
                 </div>
             </div>
-
             <div class="faq-item" data-category="channel">
                 <div class="faq-question">
-                    <div class="faq-question-content">
-                        <i class="fas fa-question-circle"></i>
-                        <h3>Обязательно создавать канал?</h3>
-                    </div>
+                    <div class="faq-question-content"><i class="fas fa-question-circle"></i><h3>Обязательно создавать канал?</h3></div>
                     <i class="fas fa-chevron-down faq-toggle"></i>
                 </div>
                 <div class="faq-answer">
@@ -1503,7 +1285,6 @@
                     <div class="faq-tip"><i class="fas fa-lightbulb"></i><span>С каналом все сотрудники видят заказы в реальном времени</span></div>
                 </div>
             </div>
-
             <div class="faq-no-results" id="faqNoResults">
                 <i class="fas fa-search"></i>
                 <h3>Ничего не найдено</h3>
@@ -1516,7 +1297,6 @@
     </div>
 </section>
 
-<!-- Footer -->
 <footer id="support" class="footer">
     <div class="container">
         <div class="footer-grid">
@@ -1543,7 +1323,7 @@
             <div class="footer-col">
                 <h3>Контакты</h3>
                 <ul>
-                    <li><a href="#"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="b7c4c2c7c7d8c5c3f7d2cfd4dfd6d9d0d2d3d2c4dc99d5d8c3">[email&#160;protected]</span></a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> info@exchangedesk.bot</a></li>
                     <li><a href="#"><i class="fas fa-paper-plane"></i> @exchangedesk</a></li>
                 </ul>
             </div>
@@ -1555,7 +1335,6 @@
     </div>
 </footer>
 
-<!-- Modal -->
 <div class="module-modal" id="modal">
     <div class="module-modal-content">
         <div class="modal-header">
@@ -1585,18 +1364,19 @@
     </div>
 </div>
 
-<!-- Scroll top -->
 <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
 </button>
 
 <script>
-const BASE = "https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot%20.html";
+// ===== BASE URL pointing to the new manual file =====
+const BASE = "https://peaceful-empanada-5464b3.netlify.app/exchange_desk_bot_manual_.html";
+
 const moduleData = {
     start: {
         title: "Шаг 1: Начало работы",
         subtitle: "Первые шаги: регистрация, согласие с условиями, создание или подключение к обменнику",
-        docLink: BASE + "#file:///Users/annaatie/Desktop/Exchange_Desk_Bot%20.html#%D1%87%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-exchange-desk-bot",
+        docLink: BASE + "#%D1%87%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-exchange-desk-bot",
         steps: [
             { number:"1", title:"Регистрация в системе", description:"При первом входе система предложит подписать условия использования." },
             { number:"2", title:"Получение Telegram ID", description:"После регистрации бот отправит ваш уникальный Telegram ID. Сохраните его." },
@@ -1640,22 +1420,20 @@ const moduleData = {
         tags: ["Заказы", "Сделки", "Операции"]
     },
     fractional: {
-         title: "Шаг 3: Настройка базы валют и кросс-пары",
+        title: "Шаг 3: Настройка базы валют и кросс-пары",
         subtitle: "Создание и управление валютной базой, настройка кросс-валютных пар",
-          docLink: BASE + "#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2%D0%B0%D0%BB%D1%8E%D1%82-%D0%B8-%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%D0%BD%D1%8B%D1%85-%D0%BF%D0%B0%D1%80",
-        
+        docLink: BASE + "#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B2%D0%B0%D0%BB%D1%8E%D1%82-%D0%B8-%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%D0%BD%D1%8B%D1%85-%D0%BF%D0%B0%D1%80",
         steps: [
             { number:"1", title:"Создание валютных пар", description:"Настройки → Валютные пары → База данных валют." },
             { number:"2", title:"Добавить валюту", description:"Нажмите 'Добавить валюту' и введите код валюты вручную как в примере (USD, EUR, GBP, USD_white и т.д.) → Добавить RUB (ДА/НЕТ)→ Назад." },
-            { number:"3", title:"Создать кросс-пары", description:"Перейдите в Настройки → Валютные пары → Кросс-курсы → Добавить кросс-курс.Система автоматически сформирует и предложит название пары или можно указать свой вариант." },
+            { number:"3", title:"Создать кросс-пары", description:"Перейдите в Настройки → Валютные пары → Кросс-курсы → Добавить кросс-курс. Система автоматически сформирует и предложит название пары или можно указать свой вариант." },
             { number:"4", title:"Настройки кросс-курсов", description:"После выбора пар, вы можете в этом же окне внести изменения, такие как: изменить название, удалить или добавить еще одну пару." },
             { number:"5", title:"Оптимизация для кросс-пар", description:"Не выходя в главное меню, при необходимости можно отредактировать название. Задать название → в строке написать, например: USD/EUR(CASH)→ Главное меню." }
         ],
-        tip: "Начните с добавления основных валют: национальная валюта, USD, EUR,  GBP. Кросс-пары формируются только на основе уже добавленных в систему валютных пар.",
+        tip: "Начните с добавления основных валют: национальная валюта, USD, EUR, GBP. Кросс-пары формируются только на основе уже добавленных в систему валютных пар.",
         warning: "При удалении валюты будут удалены все связанные с ней пары и исторические данные.",
         path: "Настройки → Валютные пары → Кастомизация → Выбор валюты",
-        tags: ["Валюты", "Кросс-пары", "База данных”]
-
+        tags: ["Валюты", "Кросс-пары", "База данных"]
     },
     fraction: {
         title: "Шаг 4: Конфигурация валютных параметров",
@@ -1820,7 +1598,7 @@ const moduleData = {
     "edit-orders": {
         title: "Шаг 9: Работа с кросс-парами",
         subtitle: "Особенности создания заказов с кросс-валютными парами",
-        docLink: BASE + "#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0-%D0%BD%D0%B0-%D0%BA%D1%80%D0%BE%D1%81%D1%81-%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%D0%BD%D1%83%D1%8E-%D0%BF%D0%B0%D1%80%D1%83",
+        docLink: BASE + "#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-%D0%BA%D1%80%D0%BE%D1%81%D1%81-%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%D0%BD%D1%8B%D1%85-%D0%BF%D0%B0%D1%80",
         steps: [
             { number:"1", title:"Отображение кросс-пар", description:"Кросс-пары (GBP/USD, BTC/USDT) всегда внизу списка при создании заказа." },
             { number:"2", title:"Особенности расчета", description:"Часто возникают дробные суммы из-за мелких значений курса." },
@@ -1886,15 +1664,9 @@ function openModal(moduleId) {
     if (!data) return;
     document.getElementById('modalTitle').textContent = data.title;
     document.getElementById('modalSubtitle').textContent = data.subtitle;
-
-    // Ссылка на инструкцию
     const docLink = document.getElementById('modalDocLink');
-    if (data.docLink) {
-        docLink.href = data.docLink;
-        docLink.style.display = 'inline-flex';
-    } else {
-        docLink.style.display = 'none';
-    }
+    if (data.docLink) { docLink.href = data.docLink; docLink.style.display = 'inline-flex'; }
+    else { docLink.style.display = 'none'; }
     const stepsContainer = document.getElementById('modalSteps');
     stepsContainer.innerHTML = data.steps.map(step => `
         <li class="step-animate">
@@ -1945,6 +1717,7 @@ document.querySelectorAll('.module-card').forEach(card => card.addEventListener(
 document.querySelectorAll('.module-link').forEach(link => {
     link.addEventListener('click', e => { e.stopPropagation(); openModal(link.closest('.module-card').dataset.module); });
 });
+// External links open in new tab, stop propagation to prevent modal opening
 document.querySelectorAll('.module-ref-link').forEach(link => {
     link.addEventListener('click', e => {
         e.stopPropagation();
@@ -1955,12 +1728,12 @@ document.querySelectorAll('.module-ref-link').forEach(link => {
 
 // ===== FUNCTION ROWS MODAL =====
 const funcInfo = {
-    users:        { title:"Управление пользователями", icon:"fas fa-user-plus",  iconBg:"rgba(255,107,53,0.15)",  iconColor:"#FF8A35", iconBorder:"rgba(255,107,53,0.3)",  titleColor:"#FF8A35", borderGrad:"linear-gradient(#1a1a3a,#1a1a3a) padding-box, linear-gradient(90deg,#FF6B35,#FF8A35) border-box",   desc:"Добавление сотрудников, назначение ролей (владелец, администратор, оператор, пользователь) и гибкий контроль доступа. Каждая роль имеет чётко ограниченный набор прав — от полного управления у владельца до работы только с заказами у базового пользователя." },
-    currencies:   { title:"Настройка валют",            icon:"fas fa-coins",      iconBg:"rgba(54,209,220,0.15)",  iconColor:"#36D1DC", iconBorder:"rgba(54,209,220,0.3)",  titleColor:"#36D1DC", borderGrad:"linear-gradient(#1a1a3a,#1a1a3a) padding-box, linear-gradient(90deg,#36D1DC,#5DFDCB) border-box",  desc:"Создание собственной базы валют, добавление кросс-валютных пар, установка номиналов купюр и настройка дробных частей (от 2 до 8 знаков). Поддержка глобальной базы номиналов — автоматическая подгрузка стандартных купюр для любой валюты." },
-    analytics:    { title:"Аналитика и отчеты",         icon:"fas fa-chart-bar",  iconBg:"rgba(139,92,246,0.15)", iconColor:"#a78bfa", iconBorder:"rgba(139,92,246,0.3)", titleColor:"#a78bfa", borderGrad:"linear-gradient(#1a1a3a,#1a1a3a) padding-box, linear-gradient(90deg,#8b5cf6,#36D1DC) border-box",   desc:"Выгрузка заказов в Excel и CSV с фильтрацией по дате, статусу и валюте. Статистика по сделкам, анализ оборота, финансовые отчёты для бухгалтерского учёта. Данные всегда доступны для импорта в Google Sheets или 1C." },
-    security:     { title:"Безопасность",               icon:"fas fa-shield-alt", iconBg:"rgba(93,253,203,0.15)",  iconColor:"#5DFDCB", iconBorder:"rgba(93,253,203,0.3)",  titleColor:"#5DFDCB", borderGrad:"linear-gradient(#1a1a3a,#1a1a3a) padding-box, linear-gradient(90deg,#5DFDCB,#36D1DC) border-box",   desc:"Полная изоляция баз данных между обменными пунктами — сотрудники одного обменника не видят данные другого. Разграничение прав доступа по ролям, защита от несанкционированных действий и журнал операций для аудита." },
-    communication:{ title:"Коммуникация",               icon:"fas fa-comments",   iconBg:"rgba(255,107,53,0.15)",  iconColor:"#FF6B35", iconBorder:"rgba(255,107,53,0.3)",  titleColor:"#FF8A35", borderGrad:"linear-gradient(#1a1a3a,#1a1a3a) padding-box, linear-gradient(90deg,#FF6B35,#8b5cf6) border-box",   desc:"Встроенный закрытый канал для сотрудников: публикация заказов в реальном времени, обсуждение деталей в привязанной группе, прикрепление скриншотов подтверждения оплаты. Все уведомления об изменении статусов приходят мгновенно." },
-    automation:   { title:"Автоматизация",              icon:"fas fa-sync-alt",   iconBg:"rgba(54,209,220,0.15)",  iconColor:"#36D1DC", iconBorder:"rgba(54,209,220,0.3)",  titleColor:"#36D1DC", borderGrad:"linear-gradient(#1a1a3a,#1a1a3a) padding-box, linear-gradient(90deg,#36D1DC,#FF6B35) border-box",   desc:"Автоматические расчёты при создании заказа, умное округление сумм до доступных номиналов, мгновенные уведомления при смене статуса. Пересчёт суммы происходит автоматически при редактировании курса — вручную ничего считать не нужно." }
+    users:        { title:"Управление пользователями", icon:"fas fa-user-plus",  desc:"Добавление сотрудников, назначение ролей (владелец, администратор, оператор, пользователь) и гибкий контроль доступа. Каждая роль имеет чётко ограниченный набор прав — от полного управления у владельца до работы только с заказами у базового пользователя." },
+    currencies:   { title:"Настройка валют",            icon:"fas fa-coins",      desc:"Создание собственной базы валют, добавление кросс-валютных пар, установка номиналов купюр и настройка дробных частей (от 2 до 8 знаков). Поддержка глобальной базы номиналов — автоматическая подгрузка стандартных купюр для любой валюты." },
+    analytics:    { title:"Аналитика и отчеты",         icon:"fas fa-chart-bar",  desc:"Выгрузка заказов в Excel и CSV с фильтрацией по дате, статусу и валюте. Статистика по сделкам, анализ оборота, финансовые отчёты для бухгалтерского учёта. Данные всегда доступны для импорта в Google Sheets или 1C." },
+    security:     { title:"Безопасность",               icon:"fas fa-shield-alt", desc:"Полная изоляция баз данных между обменными пунктами — сотрудники одного обменника не видят данные другого. Разграничение прав доступа по ролям, защита от несанкционированных действий и журнал операций для аудита." },
+    communication:{ title:"Коммуникация",               icon:"fas fa-comments",   desc:"Встроенный закрытый канал для сотрудников: публикация заказов в реальном времени, обсуждение деталей в привязанной группе, прикрепление скриншотов подтверждения оплаты. Все уведомления об изменении статусов приходят мгновенно." },
+    automation:   { title:"Автоматизация",              icon:"fas fa-sync-alt",   desc:"Автоматические расчёты при создании заказа, умное округление сумм до доступных номиналов, мгновенные уведомления при смене статуса. Пересчёт суммы происходит автоматически при редактировании курса — вручную ничего считать не нужно." }
 };
 const funcModal = document.getElementById('funcModal');
 const funcModalClose = document.getElementById('funcModalClose');

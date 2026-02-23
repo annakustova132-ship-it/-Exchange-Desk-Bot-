@@ -67,7 +67,8 @@
         @media (max-width: 1023px) {
             .header { height: 54px; }
             .header.scrolled { height: 48px; }
-            .logo-icon { width: 32px; height: 32px; font-size: 1rem; border-radius: 8px; }
+            .logo-icon { width: 36px; height: 36px; font-size: 1rem; border-radius: 9px; }
+            .logo-text { font-size: 0.95rem; }
         }
         .header::after {
             content: '';
@@ -89,7 +90,7 @@
             display: flex; align-items: center; justify-content: center;
             background: var(--gradient-primary); border-radius: 10px; font-size: 1.2rem;
         }
-        .logo-text { font-weight: 700; font-size: 1.2rem; display: none; }
+        .logo-text { font-weight: 700; font-size: 1.05rem; display: inline; }
         .logo-exchange { color: var(--accent-orange); }
         .logo-desk { color: var(--accent-cyan); }
         .logo-bot { color: var(--text-primary); }
@@ -116,6 +117,21 @@
         }
         .desktop-btn { display: none; }
 
+        .mobile-quick-nav {
+            display: flex; align-items: center; gap: 0.25rem;
+            margin-left: auto; margin-right: 0.5rem;
+        }
+        .mobile-quick-link {
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s, background 0.2s;
+        }
+        .mobile-quick-link:hover, .mobile-quick-link:active {
+            color: var(--accent-cyan);
+            background: rgba(30,200,216,0.1);
+        }
         .mobile-menu-btn {
             width: 44px; height: 44px;
             display: flex; align-items: center; justify-content: center;
@@ -922,13 +938,13 @@
         .scroll-top-btn.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
 
         @media (min-width: 768px) {
-            .logo-text { display: inline; }
             .info-grid { gap: 1rem; }
             .footer-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (min-width: 1024px) {
             .mobile-menu-btn { display: none; }
+            .mobile-quick-nav { display: none; }
             .desktop-nav { display: flex; }
             .desktop-btn { display: inline-flex; }
             .scroll-top-btn { display: flex; }
@@ -1017,7 +1033,10 @@
             <div class="logo-icon"><i class="fas fa-exchange-alt"></i></div>
             <span class="logo-text">
                 <span class="logo-exchange">Exchange</span>
-                <span class="logo-desk">Desk</span>
+                <span class="logo-desk"> Desk</span>
+                <span style="color:var(--text-primary);"> Bot</span>
+            </span>
+        </a>
                 <span class="logo-bot">Bot</span>
             </span>
         </a>
@@ -1110,7 +1129,8 @@
     </div>
 </section>
 
-<section id="functions" class="section">
+<section id="functions" class="section" style="position:relative; overflow:hidden;">
+    <canvas id="starsCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
     <div class="container">
         <div class="section-header" style="text-align:center;">
             <h2 class="section-title">Основные функции бота</h2>
@@ -1592,7 +1612,7 @@ const moduleData = {
         tip: "Используйте понятные названия для нескольких обменных пунктов.",
         warning: "После создания изменить базовую валюту нельзя без пересоздания.",
         path: "Настройки → Обменник → Создать → Параметры",
-        
+       
     },
     users: {
         title: "Шаг 7: Создание заказов",
@@ -1607,7 +1627,7 @@ const moduleData = {
         tip: "Кросс-пары всегда отображаются в нижней части таблицы.",
         warning: "Зелёные кнопки (🟢) — пункт покупает; красные кнопки (🔴) — пункт продаёт.",
         path: "Главное меню → Новый заказ → Выбор пары → Ввод данных",
-        
+       
     },
     fractional: {
         title: "Шаг 3: Настройка базы валют и кросс-пары",
@@ -1749,7 +1769,7 @@ const moduleData = {
         tip: "Регулярно обновляйте статусы для актуальной отчетности.",
         warning: "Статус «Выполнен» делает заказ недоступным для редактирования.",
         path: "Главное меню → Заказы → Редактировать → Статус",
-       
+        
     },
     status: {
         title: "Шаг 10: Редактирование заказов",
@@ -1766,7 +1786,7 @@ const moduleData = {
         tip: "Регулярно проверяйте заказы на наличие ошибок.",
         warning: "После статуса «Выполнен» редактирование недоступно.",
         path: "Выбор способа → Открытие → Редактировать → Изменение → Сохранить",
-       
+        
     },
     cross: {
         title: "Шаг 11: Управление пользователями",
@@ -1783,12 +1803,12 @@ const moduleData = {
         tip: "Новый пользователь получает базовые права. Для расширения измените роль.",
         warning: "Администратор не может удалить Владельца или изменить его права.",
         path: "Настройки → Обменник → Пользователи → Добавить / Права",
-       
+    
     },
     "edit-orders": {
         title: "Шаг 9: Работа с кросс-парами",
         subtitle: "Особенности создания заказов с кросс-валютными парами",
-        docLink: BASE + "#выставление-курсов-и-котировок",
+        docLink: BASE + "##выставление-курсов-и-котировок",
         steps: [
             { number:"1", title:"Отображение кросс-пар", description:"Кросс-пары (GBP/USD, BTC/USDT) всегда внизу списка при создании заказа." },
             { number:"2", title:"Особенности расчета", description:"Часто возникают дробные суммы из-за мелких значений курса." },
@@ -2096,6 +2116,51 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal
         allExpanded = vis.length > 0 && act.length === vis.length;
         showAll.innerHTML = allExpanded ? '<i class="fas fa-chevron-up"></i> Свернуть все' : '<i class="fas fa-chevron-down"></i> Развернуть все';
     }
+})();
+
+// ===== STARS CANVAS =====
+(function() {
+    const canvas = document.getElementById('starsCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const section = canvas.parentElement;
+    let W, H, stars = [];
+    const COLORS = ['255,90,31', '30,200,216', '155,109,255', '63,250,184', '255,255,255'];
+    const COUNT = window.innerWidth < 600 ? 80 : 160;
+
+    function resize() {
+        W = canvas.width = section.offsetWidth;
+        H = canvas.height = section.offsetHeight;
+    }
+
+    function makeStar() {
+        return {
+            x: Math.random() * W, y: Math.random() * H,
+            r: Math.random() * 1.2 + 0.2,
+            color: COLORS[Math.floor(Math.random() * COLORS.length)],
+            alpha: Math.random() * 0.4 + 0.05,
+            twinkleSpeed: Math.random() * 0.0008 + 0.0002,
+            twinkleOffset: Math.random() * Math.PI * 2,
+            flashing: false, flashAlpha: 0, flashR: 0,
+            nextFlash: Math.random() * 8000 + 2000,
+            lastTime: performance.now()
+        };
+    }
+
+    function init() { resize(); stars = Array.from({ length: COUNT }, makeStar); }
+
+    function draw(now) {
+        ctx.clearRect(0, 0, W, H);
+        stars.forEach(s => {
+            const twinkle = s.alpha * (0.4 + 0.6 * Math.sin(now * s.twinkleSpeed + s.twinkleOffset));
+            ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${s.color},${twinkle})`; ctx.fill();
+        });
+        requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', resize);
+    init(); requestAnimationFrame(draw);
 })();
 
 // ===== SCROLL TOP =====

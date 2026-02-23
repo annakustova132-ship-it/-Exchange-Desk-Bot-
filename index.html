@@ -59,12 +59,12 @@
         }
         .header::after {
             content: '';
-    position: absolute; bottom: 0; left: -100%; width: 100%; height: 2px;
-    background: linear-gradient(90deg, transparent 0%, #FF6B35 25%, #36D1DC 50%, #5DFDCB 75%, transparent 100%);
-    animation: headerGlow 3s linear infinite;
-    pointer-events: none;
-}
-@keyframes headerGlow { 0% { transform: translateX(0); } 100% { transform: translateX(200%); } }
+            position: absolute; bottom: 0; left: -100%; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #FF6B35 25%, #36D1DC 50%, #5DFDCB 75%, transparent 100%);
+            animation: headerGlow 3s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes headerGlow { 0% { transform: translateX(0); } 100% { transform: translateX(200%); } }
 
         .header-container {
             max-width: 1200px; margin: 0 auto;
@@ -444,15 +444,10 @@
         .step-title { font-weight: 600; font-size: 0.98rem; display: inline; }
         .step-description { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; margin-top: 0.4rem; white-space: pre-line; }
 
-        /* Анимация появления шагов */
-        .modal-steps li.step-animate  { opacity: 0; transform: translateX(-8px); transition: ... }
-        .modal-steps li:nth-child(1) { animation-delay: 0.05s; }
-        .modal-steps li:nth-child(2) { animation-delay: 0.1s; }
-        .modal-steps li:nth-child(3) { animation-delay: 0.15s; }
-        .modal-steps li:nth-child(4) { animation-delay: 0.2s; }
-        .modal-steps li:nth-child(5) { animation-delay: 0.25s; }
-        .modal-steps li:nth-child(6) { animation-delay: 0.3s; }
-        @keyframes slideInStep { to { opacity: 1; transform: translateX(0); } }
+        /* Анимация появления шагов — управляется через JS */
+        .modal-steps li { opacity: 1; transform: none; }
+        .modal-steps li.step-animate { opacity: 0; transform: translateX(-8px); transition: opacity 0.3s ease, transform 0.3s ease; }
+        .modal-steps li.step-visible { opacity: 1; transform: translateX(0); }
 
         /* ===== SIDEBAR ===== */
         .modal-sidebar {
@@ -729,11 +724,11 @@
         }
         .footer::before {
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 2px;
-    background: linear-gradient(90deg, transparent 0%, #FF6B35 25%, #36D1DC 50%, #5DFDCB 75%, transparent 100%);
-    animation: scanline 3s linear infinite;
-    pointer-events: none;
-}
-@keyframes scanline { 0% { transform: translateX(0); } 100% { transform: translateX(200%); } }
+            background: linear-gradient(90deg, transparent 0%, #FF6B35 25%, #36D1DC 50%, #5DFDCB 75%, transparent 100%);
+            animation: scanline 3s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes scanline { 0% { transform: translateX(0); } 100% { transform: translateX(200%); } }
 
         .footer-grid { display: grid; gap: 2rem; margin-bottom: 2rem; }
         .footer-col h3 { font-size: 1.1rem; margin-bottom: 0.85rem; }
@@ -1062,7 +1057,7 @@
             <div class="module-card" data-module="fractional">
                 <div class="module-number">3</div>
                 <div class="module-icon"><i class="fas fa-coins"></i></div>
-                <h3 class="module-title">Шаг 3: Настройка базы валют и кросс-пары</h3>
+                <h3 class="module-title">Шаг 3: База валют и кросс-пары</h3>
                 <p class="module-description">Создание и управление валютной базой, настройка кросс-валютных пар для торговли</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1440,7 +1435,7 @@
             <div class="footer-col">
                 <h3>Контакты</h3>
                 <ul>
-                    <li><a href="#"><i class="fas fa-envelope"></i> support@exchangedesk.bot</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="88fbfdf8f8e7fafcc8edf0ebe0e9e6efedecedfbe3a6eae7fc">[email&#160;protected]</span></a></li>
                     <li><a href="#"><i class="fas fa-paper-plane"></i> @exchangedesk</a></li>
                 </ul>
             </div>
@@ -1484,7 +1479,7 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
 </button>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ===== MODULE DATA =====
 const moduleData = {
     start: {
@@ -1531,7 +1526,7 @@ const moduleData = {
         tags: ["Заказы", "Сделки", "Операции"]
     },
     fractional: {
-        title: "Шаг 3: Настройка базы валют и кросс-пары",
+                title: "Шаг 3: Настройка базы валют и кросс-пары",
         subtitle: "Создание и управление валютной базой, настройка кросс-валютных пар",
         steps: [
             { number:"1", title:"Создание валютных пар", description:"Настройки → Валютные пары → База данных валют." },
@@ -1620,8 +1615,6 @@ const moduleData = {
                 path: "[Настройки] → [Валютные пары] → [Кастомизация валют] → [Глобальные валюты] → Выбор валюты → Настройка синхронизации"
             }
         ]
-    },
-
     },
     rates: {
         title: "Шаг 5: Управление курсами",
@@ -1784,7 +1777,7 @@ function openModal(moduleId) {
 
     const stepsContainer = document.getElementById('modalSteps');
     stepsContainer.innerHTML = data.steps.map(step => `
-        <li>
+        <li class="step-animate">
             <span class="step-number">${step.number}</span>
             <span class="step-title">${step.title}</span>
             <p class="step-description">${step.description}</p>
@@ -1955,11 +1948,11 @@ document.querySelectorAll('.module-link').forEach(link => {
 (function() {
     const btn = document.getElementById('scrollTopBtn');
     if (!btn) return;
-    window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300), { passive: true });
+    window.addEventListener('scroll', () => {
+        btn.classList.toggle('visible', window.scrollY > 300);
+    }, { passive: true });
     btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
 </script>
 </body>
 </html>
-
-

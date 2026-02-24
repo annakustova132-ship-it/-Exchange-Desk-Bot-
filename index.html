@@ -68,7 +68,7 @@
         @media (max-width: 1023px) {
             .header { height: 58px; }
             .header.scrolled { height: 52px; }
-            .logo-icon { width: 48px; height: 48px; border-radius: 14px; }
+            .logo-icon { width: 46px; height: 46px; border-radius: 14px; }
             .logo-text { font-size: 0.95rem; }
         }
         .header::after {
@@ -92,22 +92,20 @@
             background: var(--gradient-primary); border-radius: 10px; font-size: 1.2rem;
         }
         .logo-img-wrap {
-            background: var(--bg-primary) !important;
+            background: transparent !important;
             border-radius: 14px !important;
             overflow: hidden !important;
-            width: 48px !important; height: 48px !important;
+            width: 46px !important; height: 46px !important;
             padding: 0;
             position: relative;
             flex-shrink: 0;
             box-shadow:
-                0 0 0 1.5px rgba(90,70,140,0.7),
-                0 0 10px rgba(80,55,150,0.4),
-                0 0 24px rgba(50,35,100,0.25),
-                inset 0 1px 0 rgba(180,140,255,0.07);
+                0 4px 20px rgba(255,90,31,0.2),
+                0 2px 8px rgba(0,0,0,0.4);
         }
         .logo-img {
-            width: 48px; height: 48px; object-fit: cover; display: block;
-            border-radius: 12px;
+            width: 46px; height: 46px; object-fit: cover; display: block;
+            border-radius: 14px;
         }
         .logo-text { display: inline-flex; flex-direction: column; gap: 0; font-weight: 700; font-size: 1rem; line-height: 1.15; }
         .logo-exchange { color: var(--accent-orange); }
@@ -171,18 +169,14 @@
         }
         .mobile-menu.active .mobile-menu-overlay { opacity: 1; }
         .mobile-menu-content {
-            position: absolute; top: 0; left: 0; width: 280px; height: 100%;
+            position: absolute; top: 0; left: 0; width: 260px; height: 100%;
             background: var(--bg-secondary); border-right: 1px solid var(--border-color);
-            padding: 0;
+            padding: 1.5rem 1rem;
+            padding-top: calc(58px + 1.5rem);
             transform: translateX(-100%); transition: var(--transition); overflow-y: auto;
         }
-        .mobile-menu-header {
-            display: flex; align-items: center; gap: 0.75rem;
-            padding: 1rem var(--spacing);
-            border-bottom: 1px solid var(--border-color);
-            min-height: 58px;
-        }
-        .mobile-menu-nav { padding: 1rem var(--spacing); }
+        .mobile-menu-header { display: none; }
+        .mobile-menu-nav { padding: 0; }
         .mobile-menu.active .mobile-menu-content { transform: translateX(0); }
         .mobile-nav-link {
             display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1rem;
@@ -516,13 +510,13 @@
         .func-modal-desc { color: var(--text-secondary); font-size: 0.97rem; line-height: 1.8; }
 
         @media (max-width: 768px) {
-            .func-modal { align-items: flex-end; padding: 0; overflow-y: visible; }
+            .func-modal { align-items: center; justify-content: center; padding: 1.25rem; overflow-y: auto; }
             .func-modal-content {
-                border-radius: 20px 20px 0 0; max-width: 100%; width: 100%;
-                padding: 1.75rem 1.25rem 2.5rem;
-                max-height: 80vh; overflow-y: auto;
-                animation: slideUpMobile 0.3s cubic-bezier(0.4,0,0.2,1);
-                margin: 0;
+                border-radius: 20px; max-width: 100%; width: 100%;
+                padding: 1.75rem 1.25rem 2rem;
+                max-height: 82vh; overflow-y: auto;
+                animation: slideUp 0.25s cubic-bezier(0.4,0,0.2,1);
+                margin: auto;
             }
             .func-modal-title { font-size: 1.1rem; }
             .func-modal-desc { font-size: 0.95rem; line-height: 1.8; color: var(--text-primary); }

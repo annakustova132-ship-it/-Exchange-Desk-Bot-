@@ -75,22 +75,16 @@
             content: '';
             position: absolute; bottom: 0; left: -100%; width: 100%; height: 2px;
             background: linear-gradient(90deg, transparent 0%, #FF6B35 25%, #36D1DC 50%, #5DFDCB 75%, transparent 100%);
-            
             pointer-events: none;
         }
-        @keyframes headerGlow { 0% { transform: translateX(0); } 100% { transform: translateX(200%); } }
 
         .header-container {
             max-width: 1200px; margin: 0 auto;
             padding: 0 var(--spacing); height: 100%;
             display: flex; align-items: center; justify-content: space-between;
         }
-        .logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; color: var(--text-primary); }
-        .logo-icon {
-            width: 44px; height: 44px; flex-shrink: 0;
-            display: flex; align-items: center; justify-content: center;
-            background: var(--gradient-primary); border-radius: 10px; font-size: 1.2rem;
-        }
+
+        /* ===== TELEGRAM BOT LINK — LEFT CORNER ===== */
         .tg-bot-link {
             display: inline-flex; align-items: center; gap: 0.65rem;
             text-decoration: none;
@@ -124,11 +118,12 @@
             font-size: 0.6rem; font-weight: 400;
             color: var(--text-muted); letter-spacing: 0.02em; line-height: 1.2;
         }
-        .logo-text { display: inline-flex; flex-direction: column; gap: 0.3rem; font-weight: 700; font-size: 1rem; line-height: 1.15; justify-content: center; }
-        .logo-exchange { color: var(--accent-orange); }
-        .logo-desk { color: var(--accent-cyan); }
-        .logo-bot { color: var(--text-primary); }
-        .logo-tagline { font-size: 0.62rem; font-weight: 400; color: var(--text-muted); letter-spacing: 0.02em; }
+
+        /* Скрываем текстовую часть на малых экранах */
+        @media (max-width: 480px) {
+            .tg-bot-text { display: none; }
+            .tg-bot-icon { width: 40px; height: 40px; font-size: 1.3rem; }
+        }
 
         .desktop-nav { display: none; gap: 2rem; }
         .nav-link { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: var(--transition); }
@@ -422,7 +417,6 @@
             background: linear-gradient(90deg, transparent 0%, #FF5A1F 30%, #1EC8D8 70%, transparent 100%);
             border-radius: 2px;
         }
-        /* для выровненных по левому краю заголовков */
         .section-header-top .section-divider { margin-left: 0; }
         .section-subtitle { color: var(--text-secondary); font-size: 1rem; }
 
@@ -965,13 +959,6 @@
             border-top: 1px solid var(--border-color); padding: 3rem 0 1.5rem;
             overflow: hidden;
         }
-        .footer::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent 0%, #FF6B35 25%, #36D1DC 50%, #5DFDCB 75%, transparent 100%);
-            display: none;
-            pointer-events: none;
-        }
-        @keyframes scanline { 0% { transform: translateX(0); } 100% { transform: translateX(200%); } }
 
         .footer-grid { display: grid; gap: 2rem; margin-bottom: 2rem; }
         .footer-col h3 { font-size: 1.1rem; margin-bottom: 0.85rem; }
@@ -1018,7 +1005,6 @@
         @media (max-width: 420px) { .modules-grid { grid-template-columns: 1fr; } }
 
         @media (max-width: 767px) {
-            /* Info cards (Для кого / Что делает / Как начать) */
             .info-section { padding: 1.5rem 0; }
             .info-grid { grid-template-columns: 1fr; gap: 0.75rem; }
             .info-card { flex-direction: column; align-items: flex-start; padding: 1.25rem; border-radius: 14px; }
@@ -1027,17 +1013,13 @@
             .info-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0; text-align: left; line-height: 1.2; }
             .info-card ul { width: 100%; margin: 0; }
             .info-card li { font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.45rem; padding-left: 1rem; }
-
-            /* Функции — 2 колонки на мобиле */
             .functions-list { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
             .function-row { padding: 1.25rem 0.9rem 1.1rem; flex-direction: column; text-align: center; align-items: center; }
             .function-row-icon { width: 50px; height: 50px; font-size: 1.3rem; margin-bottom: 0.75rem; }
             .function-row-title { font-size: 0.9rem; }
             .function-row-desc { font-size: 0.8rem; }
-
-            /* Кнопки hero — в ряд одинакового размера */
             .hero-buttons { flex-direction: row !important; gap: 0.65rem !important; }
-            .hero-buttons .cta-button, .hero-buttons .cta-button { flex: 1; justify-content: center; font-size: 0.92rem; padding: 0.7rem 0.75rem; }
+            .hero-buttons .cta-button { flex: 1; justify-content: center; font-size: 0.92rem; padding: 0.7rem 0.75rem; }
         }
 
         @media (max-width: 400px) {
@@ -1088,16 +1070,17 @@
 
 <header class="header">
     <div class="header-container">
-        <a href="#" class="logo">
-            <a href="https://t.me/ratedesk_bot" target="_blank" rel="noopener" class="tg-bot-link">
-                <div class="tg-bot-icon"><i class="fab fa-telegram-plane"></i></div>
-                <div class="tg-bot-text">
-                    <span class="tg-bot-name">@ratedesk_bot</span>
-                    <span class="tg-bot-tagline">Обменный пункт в Telegram</span>
-                </div>
-            </a>
 
+        <!-- ===== ЛЕВЫЙ УГОЛ: Telegram-иконка и ссылка на бота ===== -->
+        <a href="https://t.me/ratedesk_bot" target="_blank" rel="noopener" class="tg-bot-link">
+            <div class="tg-bot-icon"><i class="fab fa-telegram-plane"></i></div>
+            <div class="tg-bot-text">
+                <span class="tg-bot-name">@ratedesk_bot</span>
+                <span class="tg-bot-tagline">Обменный пункт в Telegram</span>
+            </div>
         </a>
+
+        <!-- ===== ЦЕНТР: десктопная навигация ===== -->
         <nav class="desktop-nav">
             <a href="#functions" class="nav-link">Функции</a>
             <a href="#modules" class="nav-link">Настройка</a>
@@ -1105,6 +1088,11 @@
             <a href="#support" class="nav-link">Поддержка</a>
         </nav>
 
+        <!-- ===== ПРАВЫЙ УГОЛ: мобильные кнопки ===== -->
+        <div class="mobile-quick-nav">
+            <a href="#functions" class="mobile-quick-link" aria-label="Функции"><i class="fas fa-bolt"></i></a>
+            <a href="#faq" class="mobile-quick-link" aria-label="FAQ"><i class="fas fa-question-circle"></i></a>
+        </div>
         <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню"><i class="fas fa-bars"></i></button>
     </div>
 </header>
@@ -1591,8 +1579,8 @@
             <div class="footer-col">
                 <h3>Контакты</h3>
                 <ul>
-                    <li><a href="#"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="325b5c545d72574a515a535c5557565741591c505d46">[email&#160;protected]</span></a></li>
-                    <li><a href="#"><i class="fas fa-paper-plane"></i> @exchangedesk</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> info@exchangedesk.bot</a></li>
+                    <li><a href="https://t.me/ratedesk_bot" target="_blank"><i class="fas fa-paper-plane"></i> @ratedesk_bot</a></li>
                 </ul>
             </div>
         </div>
@@ -1636,10 +1624,9 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
 </button>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 document.addEventListener("DOMContentLoaded", function() {
 
-// ===== БАЗОВЫЙ URL =====
 const BASE = "https://annakustova132-ship-it.github.io/-Exchange-Desk-Bot-/Exchange_Desk_Bot_manual.html";
 
 const moduleData = {
@@ -1948,7 +1935,6 @@ function openModal(moduleId) {
     if (data.docLink) { 
         docLink.href = data.docLink; 
         docLink.style.display = 'inline-flex'; 
-        console.log('Ссылка установлена:', data.docLink);
     } else { 
         docLink.style.display = 'none'; 
     }
@@ -2014,18 +2000,12 @@ const funcInfo = {
 };
 const funcModal = document.getElementById('funcModal');
 const funcModalClose = document.getElementById('funcModalClose');
-const funcLinks = { users:'#user-management', currencies:'#currencies', analytics:'#analytics', security:'#security', communication:'#communication', automation:'#automation' };
 function openFuncModal(key) {
     const d = funcInfo[key]; if (!d) return;
     const icon = document.getElementById('funcModalIcon');
     icon.innerHTML = '<i class="' + d.icon + '"></i>';
     document.getElementById('funcModalTitle').textContent = d.title;
     document.getElementById('funcModalDesc').textContent = d.desc;
-    const docLink = document.getElementById('funcDocLink');
-    if (docLink) {
-        const url = 'https://annakustova132-ship-it.github.io/-Exchange-Desk-Bot-/Exchange_Desk_Bot_manual.html' + (funcLinks[key] || '');
-        docLink.dataset.href = url;
-    }
     funcModal.style.display = 'flex';
     lockScroll();
 }
@@ -2045,11 +2025,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal
     const COLORS = ['rgba(255,90,31,', 'rgba(30,200,216,', 'rgba(63,250,184,', 'rgba(155,109,255,'];
     const COUNT = window.innerWidth < 600 ? 38 : 65;
 
-    function resize() {
-        W = canvas.width = hero.offsetWidth;
-        H = canvas.height = hero.offsetHeight;
-    }
-
+    function resize() { W = canvas.width = hero.offsetWidth; H = canvas.height = hero.offsetHeight; }
     function randomParticle() {
         return {
             x: Math.random() * W, y: Math.random() * H,
@@ -2061,17 +2037,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal
             pulse: Math.random() * Math.PI * 2
         };
     }
-
-    function init() {
-        resize();
-        particles = Array.from({ length: COUNT }, randomParticle);
-    }
-
+    function init() { resize(); particles = Array.from({ length: COUNT }, randomParticle); }
     function draw() {
         ctx.clearRect(0, 0, W, H);
-        const now = Date.now() * 0.001;
-
-        // Рисуем линии между близкими частицами
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
@@ -2087,52 +2055,34 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal
                 }
             }
         }
-
         particles.forEach(p => {
-            // Лёгкое притяжение к мышке/пальцу
             const dx = mouse.x - p.x, dy = mouse.y - p.y;
             const d = Math.sqrt(dx*dx + dy*dy);
             if (d < 150) { p.vx += dx * 0.00015; p.vy += dy * 0.00015; }
-
             p.x += p.vx; p.y += p.vy;
             p.pulse += 0.02;
             const a = p.alpha * (0.7 + 0.3 * Math.sin(p.pulse));
-
-            // Отскок от краёв
             if (p.x < 0 || p.x > W) p.vx *= -1;
             if (p.y < 0 || p.y > H) p.vy *= -1;
             p.x = Math.max(0, Math.min(W, p.x));
             p.y = Math.max(0, Math.min(H, p.y));
-
-            // Ограничение скорости
             const speed = Math.sqrt(p.vx*p.vx + p.vy*p.vy);
             if (speed > 0.8) { p.vx *= 0.98; p.vy *= 0.98; }
-
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r * (1 + 0.2 * Math.sin(p.pulse)), 0, Math.PI * 2);
             ctx.fillStyle = p.color + a + ')';
             ctx.fill();
         });
-
         requestAnimationFrame(draw);
     }
-
-    hero.addEventListener('mousemove', e => {
-        const rect = hero.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
-    });
-    hero.addEventListener('touchmove', e => {
-        const rect = hero.getBoundingClientRect();
-        mouse.x = e.touches[0].clientX - rect.left;
-        mouse.y = e.touches[0].clientY - rect.top;
-    }, { passive: true });
+    hero.addEventListener('mousemove', e => { const rect = hero.getBoundingClientRect(); mouse.x = e.clientX - rect.left; mouse.y = e.clientY - rect.top; });
+    hero.addEventListener('touchmove', e => { const rect = hero.getBoundingClientRect(); mouse.x = e.touches[0].clientX - rect.left; mouse.y = e.touches[0].clientY - rect.top; }, { passive: true });
     hero.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
-
     window.addEventListener('resize', () => { resize(); });
-    init();
-    draw();
+    init(); draw();
 })();
+
+// ===== FAQ =====
 (function() {
     const items = document.querySelectorAll('.faq-item');
     const cats = document.querySelectorAll('.faq-category');
@@ -2197,12 +2147,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal
     let W, H, stars = [];
     const COLORS = ['255,90,31', '30,200,216', '155,109,255', '63,250,184', '255,255,255'];
     const COUNT = window.innerWidth < 600 ? 80 : 160;
-
-    function resize() {
-        W = canvas.width = section.offsetWidth;
-        H = canvas.height = section.offsetHeight;
-    }
-
+    function resize() { W = canvas.width = section.offsetWidth; H = canvas.height = section.offsetHeight; }
     function makeStar() {
         return {
             x: Math.random() * W, y: Math.random() * H,
@@ -2211,14 +2156,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal
             alpha: Math.random() * 0.4 + 0.05,
             twinkleSpeed: Math.random() * 0.0008 + 0.0002,
             twinkleOffset: Math.random() * Math.PI * 2,
-            flashing: false, flashAlpha: 0, flashR: 0,
-            nextFlash: Math.random() * 8000 + 2000,
-            lastTime: performance.now()
         };
     }
-
     function init() { resize(); stars = Array.from({ length: COUNT }, makeStar); }
-
     function draw(now) {
         ctx.clearRect(0, 0, W, H);
         stars.forEach(s => {
@@ -2228,7 +2168,6 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal
         });
         requestAnimationFrame(draw);
     }
-
     window.addEventListener('resize', resize);
     init(); requestAnimationFrame(draw);
 })();
@@ -2244,22 +2183,18 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal
     btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
 
-// Умный хедер — скрывается при скролле вниз, появляется при скролле вверх
+// ===== SMART HEADER =====
 (function() {
     const header = document.querySelector('.header');
     if (!header) return;
-    let lastY = 0;
-    let ticking = false;
+    let lastY = 0, ticking = false;
     window.addEventListener('scroll', () => {
         if (!ticking) {
             requestAnimationFrame(() => {
                 const y = window.scrollY;
-                if (y > 80) header.classList.add('scrolled');
-                else header.classList.remove('scrolled');
-                if (y > lastY && y > 120) header.classList.add('hide');
-                else header.classList.remove('hide');
-                lastY = y;
-                ticking = false;
+                if (y > 80) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+                if (y > lastY && y > 120) header.classList.add('hide'); else header.classList.remove('hide');
+                lastY = y; ticking = false;
             });
             ticking = true;
         }

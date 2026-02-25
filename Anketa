@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анкета — Exchange Desk Bot</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #161a22;
+    --card: #1c2130;
+    --border: #2a3348;
+    --accent: #f97316;
+    --accent2: #3b82f6;
+    --text: #e8edf5;
+    --muted: #8892a4;
+    --success: #22c55e;
+    --error: #ef4444;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Manrope', sans-serif;
+    min-height: 100vh;
+    padding: 40px 20px 80px;
+    background-image:
+      radial-gradient(ellipse 60% 40% at 80% 10%, rgba(249,115,22,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 10% 90%, rgba(59,130,246,0.06) 0%, transparent 60%);
+  }
+
+  .wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(249,115,22,0.12);
+    border: 1px solid rgba(249,115,22,0.3);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(22px, 4vw, 34px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, #fff 40%, #f97316 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  /* PROGRESS */
+  .progress-bar {
+    height: 3px;
+    background: var(--border);
+    border-radius: 10px;
+    margin-bottom: 40px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 10px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 32px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* CARD */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+
+  .card:focus-within {
+    border-color: rgba(249,115,22,0.4);
+  }
+
+  .question-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+
+  .question-hint {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .required { color: var(--accent); margin-left: 3px; }
+
+  /* RADIO GRID */
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .radio-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .radio-option:hover {
+    border-color: rgba(249,115,22,0.4);
+    background: rgba(249,115,22,0.04);
+  }
+
+  .radio-option input[type="radio"] {
+    display: none;
+  }
+
+  .radio-dot {
+    width: 18px; height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+
+  .radio-option:has(input:checked) .radio-dot {
+    border-color: var(--accent);
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(249,115,22,0.15);
+  }
+
+  .radio-option:has(input:checked) .radio-dot::after {
+    content: '';
+    width: 6px; height: 6px;
+    background: white;
+    border-radius: 50%;
+  }
+
+  .radio-option:has(input:checked) {
+    border-color: rgba(249,115,22,0.5);
+    background: rgba(249,115,22,0.06);
+  }
+
+  .radio-text {
+    font-size: 14px;
+    color: var(--text);
+    flex: 1;
+  }
+
+  /* CHECKBOX */
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .checkbox-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .checkbox-option:hover {
+    border-color: rgba(59,130,246,0.4);
+    background: rgba(59,130,246,0.04);
+  }
+
+  .checkbox-option input[type="checkbox"] {
+    display: none;
+  }
+
+  .checkbox-box {
+    width: 18px; height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+
+  .checkbox-option:has(input:checked) .checkbox-box {
+    border-color: var(--accent2);
+    background: var(--accent2);
+  }
+
+  .checkbox-option:has(input:checked) .checkbox-box::after {
+    content: '✓';
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .checkbox-option:has(input:checked) {
+    border-color: rgba(59,130,246,0.4);
+    background: rgba(59,130,246,0.05);
+  }
+
+  /* SCALE */
+  .scale-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .scale-btn {
+    flex: 1;
+    min-width: 40px;
+    aspect-ratio: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Manrope', sans-serif;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .scale-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .scale-btn.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+    box-shadow: 0 0 0 4px rgba(249,115,22,0.15);
+  }
+
+  .scale-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+
+  .scale-labels span {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* TEXTAREA */
+  textarea {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    padding: 14px 16px;
+    resize: vertical;
+    min-height: 100px;
+    outline: none;
+    transition: border-color 0.2s;
+    line-height: 1.6;
+  }
+
+  textarea:focus {
+    border-color: rgba(249,115,22,0.5);
+  }
+
+  textarea::placeholder { color: var(--muted); }
+
+  /* INPUT */
+  input[type="text"], input[type="email"] {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  input[type="text"]:focus, input[type="email"]:focus {
+    border-color: rgba(249,115,22,0.5);
+  }
+
+  input::placeholder { color: var(--muted); }
+
+  /* SUBMIT */
+  .submit-section {
+    text-align: center;
+    padding-top: 20px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--accent), #ea580c);
+    border: none;
+    border-radius: 14px;
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 18px 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 8px 24px rgba(249,115,22,0.3);
+    letter-spacing: 0.04em;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(249,115,22,0.4);
+  }
+
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+
+  /* SUCCESS */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .success-icon {
+    width: 80px; height: 80px;
+    background: rgba(34,197,94,0.1);
+    border: 2px solid rgba(34,197,94,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin: 0 auto 24px;
+  }
+
+  .success-screen h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 24px;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .success-screen p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 8px 0 20px;
+  }
+
+  /* NOTE */
+  .note-box {
+    background: rgba(59,130,246,0.08);
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: #93c5fd;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section:nth-child(1) { animation-delay: 0.05s; }
+  .section:nth-child(2) { animation-delay: 0.1s; }
+  .section:nth-child(3) { animation-delay: 0.15s; }
+  .section:nth-child(4) { animation-delay: 0.2s; }
+  .section:nth-child(5) { animation-delay: 0.25s; }
+  .section:nth-child(6) { animation-delay: 0.3s; }
+  .section:nth-child(7) { animation-delay: 0.35s; }
+
+  @media (max-width: 480px) {
+    .scale-btn { min-width: 34px; font-size: 12px; }
+  }
+
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="badge">Тестирование продукта</div>
+    <h1>Анкета по Exchange Desk Bot</h1>
+    <p class="subtitle">Помогите нам улучшить бот и инструкцию к нему. Анкета занимает около 5–7 минут. Ваше мнение важно!</p>
+  </div>
+
+
+  <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+  <form id="survey">
+
+    <!-- ░░░ РАЗДЕЛ 1: О СЕБЕ ░░░ -->
+    <div class="section">
+      <div class="section-label">01 — Немного о вас</div>
+
+      <div class="card">
+        <div class="question-label">Как вы узнали об Exchange Desk Bot?<span class="required">*</span></div>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q_source" value="colleague"><span class="radio-dot"></span><span class="radio-text">Порекомендовал коллега или партнёр</span></label>
+          <label class="radio-option"><input type="radio" name="q_source" value="search"><span class="radio-dot"></span><span class="radio-text">Нашёл(а) сам(а) — поиск в интернете или Telegram</span></label>
+          <label class="radio-option"><input type="radio" name="q_source" value="social"><span class="radio-dot"></span><span class="radio-text">Увидел(а) в соцсетях или канале</span></label>
+          <label class="radio-option"><input type="radio" name="q_source" value="invited"><span class="radio-dot"></span><span class="radio-text">Меня пригласил владелец / администратор обменника</span></label>
+          <label class="radio-option"><input type="radio" name="q_source" value="other"><span class="radio-dot"></span><span class="radio-text">Другое</span></label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Какую задачу вы хотели решить с помощью бота?<span class="required">*</span></div>
+        <div class="question-hint">Можно выбрать несколько</div>
+        <div class="checkbox-group">
+          <label class="checkbox-option"><input type="checkbox" name="q_goal" value="orders"><span class="checkbox-box"></span><span class="radio-text">Автоматизировать приём и учёт заказов</span></label>
+          <label class="checkbox-option"><input type="checkbox" name="q_goal" value="rates"><span class="checkbox-box"></span><span class="radio-text">Управлять курсами и котировками</span></label>
+          <label class="checkbox-option"><input type="checkbox" name="q_goal" value="team"><span class="checkbox-box"></span><span class="radio-text">Организовать совместную работу команды</span></label>
+          <label class="checkbox-option"><input type="checkbox" name="q_goal" value="reports"><span class="checkbox-box"></span><span class="radio-text">Получить отчётность и аналитику</span></label>
+          <label class="checkbox-option"><input type="checkbox" name="q_goal" value="replace"><span class="checkbox-box"></span><span class="radio-text">Заменить текущий инструмент учёта</span></label>
+          <label class="checkbox-option"><input type="checkbox" name="q_goal" value="curious"><span class="checkbox-box"></span><span class="radio-text">Просто хотел(а) посмотреть, что это такое</span></label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Используете ли вы сейчас какой-то другой инструмент для учёта обменных операций?<span class="required">*</span></div>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q_tool" value="excel"><span class="radio-dot"></span><span class="radio-text">Да, Excel / Google Таблицы</span></label>
+          <label class="radio-option"><input type="radio" name="q_tool" value="crm"><span class="radio-dot"></span><span class="radio-text">Да, специализированная CRM или программа</span></label>
+          <label class="radio-option"><input type="radio" name="q_tool" value="paper"><span class="radio-dot"></span><span class="radio-text">Да, бумажный учёт</span></label>
+          <label class="radio-option"><input type="radio" name="q_tool" value="nothing"><span class="radio-dot"></span><span class="radio-text">Нет, ничего не использую</span></label>
+          <label class="radio-option"><input type="radio" name="q_tool" value="other"><span class="radio-dot"></span><span class="radio-text">Другое</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ░░░ РАЗДЕЛ 2: ТЕСТИРОВАНИЕ БОТА ░░░ -->
+    <div class="section">
+      <div class="section-label">02 — Проверяем, что вы попробовали</div>
+
+      <div class="note-box">🔍 Несколько конкретных вопросов о том, что вы делали в боте. Это помогает нам понять, насколько интерфейс понятен без подсказок.</div>
+
+      <!-- Создание обменника -->
+      <div class="card">
+        <div class="question-label">Когда вы впервые запустили бота, какое сообщение он прислал?<span class="required">*</span></div>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q_v1" value="correct"><span class="radio-dot"></span><span class="radio-text">Условия использования с кнопками «Согласен» и «Отказываюсь»</span></label>
+          <label class="radio-option"><input type="radio" name="q_v1" value="wrong1"><span class="radio-dot"></span><span class="radio-text">Сразу главное меню с кнопками</span></label>
+          <label class="radio-option"><input type="radio" name="q_v1" value="wrong2"><span class="radio-dot"></span><span class="radio-text">Запрос на ввод названия обменника</span></label>
+          <label class="radio-option"><input type="radio" name="q_v1" value="notsure"><span class="radio-dot"></span><span class="radio-text">Не помню / не запускал(а)</span></label>
+        </div>
+      </div>
+
+      <!-- Создание обменника -->
+      <div class="card">
+        <div class="question-label">Где в боте находится кнопка для создания нового обменного пункта?<span class="required">*</span></div>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q_v2" value="correct"><span class="radio-dot"></span><span class="radio-text">Настройки → Обменник → Создать обменник</span></label>
+          <label class="radio-option"><input type="radio" name="q_v2" value="wrong1"><span class="radio-dot"></span><span class="radio-text">Прямо на главном экране, отдельная кнопка</span></label>
+          <label class="radio-option"><input type="radio" name="q_v2" value="wrong2"><span class="radio-dot"></span><span class="radio-text">Настройки → Пользователи → Создать</span></label>
+          <label class="radio-option"><input type="radio" name="q_v2" value="notsure"><span class="radio-dot"></span><span class="radio-text">Не знаю / не пробовал(а)</span></label>
+        </div>
+      </div>
+
+      <!-- Валюты -->
+      <div class="card">
+        <div class="question-label">При добавлении валют в бот — в каком формате нужно их вводить?<span class="required">*</span></div>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q_v3" value="correct"><span class="radio-dot"></span><span class="radio-text">Через запятую, только тикеры без «/»: USD, EUR, GBP</span></label>
+          <label class="radio-option"><input type="radio" name="q_v3" value="wrong1"><span class="radio-dot"></span><span class="radio-text">Каждую валюту отдельным сообщением</span></label>
+          <label class="radio-option"><input type="radio" name="q_v3" value="wrong2"><span class="radio-dot"></span><span class="radio-text">С указанием базовой валюты: USD/RUB, EUR/RUB</span></label>
+          <label class="radio-option"><input type="radio" name="q_v3" value="notsure"><span class="radio-dot"></span><span class="radio-text">Не знаю / не настраивал(а)</span></label>
+        </div>
+      </div>
+
+      <!-- Котировки -->
+      <div class="card">
+        <div class="question-label">Что означает зелёная кнопка рядом с валютой при создании нового заказа?<span class="required">*</span></div>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q_v4" value="correct"><span class="radio-dot"></span><span class="radio-text">Обменник покупает эту валюту у клиента</span></label>
+          <label class="radio-option"><input type="radio" name="q_v4" value="wrong1"><span class="radio-dot"></span><span class="radio-text">Обменник продаёт эту валюту клиенту</span></label>
+          <label class="radio-option"><input type="radio" name="q_v4" value="wrong2"><span class="radio-dot"></span><span class="radio-text">Валюта активна и доступна для обмена</span></label>
+          <label class="radio-option"><input type="radio" name="q_v4" value="notsure"><span class="radio-dot"></span><span class="radio-text">Не знаю / не создавал(а) заказы</span></label>
+        </div>
+      </div>
+
+      <!-- Статусы -->
+      <div class="card">
+        <div class="question-label">Что происходит с заказом после нажатия кнопки «В канал»?<span class="required">*</span></div>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q_v5" value="correct"><span class="radio-dot"></span><span class="radio-text">Статус меняется с «Новый» на «Подтверждён», заказ появляется в канале для сотрудников</span></label>
+          <label class="radio-option"><input type="radio" name="q_v5" value="wrong1"><span class="radio-dot"></span><span class="radio-text">Заказ удаляется из бота и переходит в канал</span></label>
+          <label class="radio-option"><input type="radio" name="q_v5" value="wrong2"><span class="radio-dot"></span><span class="radio-text">Статус меняется на «Выполнен»</span></label>
+          <label class="radio-option"><input type="radio" name="q_v5" value="notsure"><span class="radio-dot"></span><span class="radio-text">Не знаю / не отправлял(а) заказы в канал</span></label>
+        </div>
+      </div>
+
+      <!-- Канал -->
+      <div class="card">
+        <div class="question-label">Какой chat_id нужно вводить при подключении канала — с минусом или без?<span class="required">*</span></div>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q_v6" value="correct"><span class="radio-dot"></span><span class="radio-text">С минусом — например, -1001234567890</span></label>
+          <label class="radio-option"><input type="radio" name="q_v6" value="wrong1"><span class="radio-dot"></span><span class="radio-text">Без минуса — только цифры</span></label>
+          <label class="radio-option"><input type="radio" name="q_v6" value="wrong2"><span class="radio-dot"></span><span class="radio-text">Не цифры, а @username канала</span></label>
+          <label class="radio-option"><input type="radio" name="q_v6" value="notsure"><span class="radio-dot"></span><span class="radio-text">Не знаю / не настраивал(а) канал</span></label>
+        </div>
+      </div>
+
+      <!-- Ошибки -->
+      <div class="card">
+        <div class="question-label">Возникали ли у вас ошибки или тупики при работе с ботом?<span class="required">*</span></div>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q_errors" value="no"><span class="radio-dot"></span><span class="radio-text">Нет, всё шло гладко</span></label>
+          <label class="radio-option"><input type="radio" name="q_errors" value="minor"><span class="radio-dot"></span><span class="radio-text">Небольшие непонятки, разобрался(ась) сам(а)</span></label>
+          <label class="radio-option"><input type="radio" name="q_errors" value="yes"><span class="radio-dot"></span><span class="radio-text">Да, пришлось перечитывать инструкцию несколько раз</span></label>
+          <label class="radio-option"><input type="radio" name="q_errors" value="blocked"><span class="radio-dot"></span><span class="radio-text">Застрял(а) и не смог(ла) продолжить</span></label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Если застряли или была ошибка — опишите, где именно</div>
+        <div class="question-hint">Если всё было ок — пропустите поле</div>
+        <textarea name="q_errors_desc" placeholder="Например: не понял(а), как получить chat_id канала; бот не реагировал на ввод номиналов..."></textarea>
+      </div>
+    </div>
+
+    <!-- ░░░ РАЗДЕЛ 3: ПОНЯТНОСТЬ ИНСТРУКЦИИ ░░░ -->
+    <div class="section">
+      <div class="section-label">03 — Понятность инструкции</div>
+
+      <div class="note-box">📋 В этом разделе оцените, насколько легко было понять и применить инструкцию. Оценки от 1 (очень сложно) до 5 (очень легко).</div>
+
+      <div class="card">
+        <div class="question-label">Насколько понятно описан первый запуск и регистрация?<span class="required">*</span></div>
+        <div class="scale-row" id="scale_start"></div>
+        <div class="scale-labels"><span>Совсем непонятно</span><span>Всё ясно</span></div>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Насколько понятно описана настройка валют и кросс-пар?<span class="required">*</span></div>
+        <div class="scale-row" id="scale_currencies"></div>
+        <div class="scale-labels"><span>Совсем непонятно</span><span>Всё ясно</span></div>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Насколько понятно описано создание и управление заказами?<span class="required">*</span></div>
+        <div class="scale-row" id="scale_orders"></div>
+        <div class="scale-labels"><span>Совсем непонятно</span><span>Всё ясно</span></div>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Насколько понятно описана настройка канала для сотрудников?<span class="required">*</span></div>
+        <div class="scale-row" id="scale_channel"></div>
+        <div class="scale-labels"><span>Совсем непонятно</span><span>Всё ясно</span></div>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Насколько понятна система ролей и управления доступом?<span class="required">*</span></div>
+        <div class="scale-row" id="scale_roles"></div>
+        <div class="scale-labels"><span>Совсем непонятно</span><span>Всё ясно</span></div>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Были ли разделы, которые вы читали несколько раз, но всё равно не поняли?</div>
+        <div class="question-hint">Если всё было ясно — напишите «нет»</div>
+        <textarea name="q_confusing" placeholder="Например: не понял(а) разницу между &quot;По сумме выдачи&quot; и &quot;По сумме получения&quot;..."></textarea>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Не хватало ли вам примеров или иллюстраций? Где именно?</div>
+        <textarea name="q_examples" placeholder="Например: хотелось бы видеть скриншоты при настройке chat_id..."></textarea>
+      </div>
+    </div>
+
+    <!-- ░░░ РАЗДЕЛ 4: ОБЩИЕ ОЦЕНКИ ░░░ -->
+    <div class="section">
+      <div class="section-label">04 — Общие оценки</div>
+
+      <div class="card">
+        <div class="question-label">Насколько инструкция помогла вам разобраться с ботом?<span class="required">*</span></div>
+        <div class="scale-row" id="scale_helpful"></div>
+        <div class="scale-labels"><span>Не помогла совсем</span><span>Помогла полностью</span></div>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Как вы оцениваете удобство и понятность самого бота?<span class="required">*</span></div>
+        <div class="scale-row" id="scale_bot_ux"></div>
+        <div class="scale-labels"><span>Очень неудобно</span><span>Очень удобно</span></div>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Насколько вероятно, что вы начнёте использовать Exchange Desk Bot в работе?<span class="required">*</span></div>
+        <div class="scale-row" id="scale_nps"></div>
+        <div class="scale-labels"><span>Точно не буду</span><span>Однозначно да</span></div>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Какой из разделов инструкции показался вам наиболее полезным?<span class="required">*</span></div>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q_best" value="start"><span class="radio-dot"></span><span class="radio-text">Первый запуск и регистрация</span></label>
+          <label class="radio-option"><input type="radio" name="q_best" value="currencies"><span class="radio-dot"></span><span class="radio-text">Настройка валют и кросс-пар</span></label>
+          <label class="radio-option"><input type="radio" name="q_best" value="rates"><span class="radio-dot"></span><span class="radio-text">Выставление котировок</span></label>
+          <label class="radio-option"><input type="radio" name="q_best" value="orders"><span class="radio-dot"></span><span class="radio-text">Создание и управление заказами</span></label>
+          <label class="radio-option"><input type="radio" name="q_best" value="channel"><span class="radio-dot"></span><span class="radio-text">Настройка канала для сотрудников</span></label>
+          <label class="radio-option"><input type="radio" name="q_best" value="users"><span class="radio-dot"></span><span class="radio-text">Управление пользователями</span></label>
+          <label class="radio-option"><input type="radio" name="q_best" value="export"><span class="radio-dot"></span><span class="radio-text">Выгрузка таблицы заказов</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ░░░ РАЗДЕЛ 5: КОММЕНТАРИИ И ИДЕИ ░░░ -->
+    <div class="section">
+      <div class="section-label">05 — Ваши мысли и идеи</div>
+
+      <div class="note-box">💬 Это самый важный раздел. Пишите всё, что думаете — без ограничений. Нет правильных и неправильных ответов.</div>
+
+      <div class="card">
+        <div class="question-label">Что вас приятно удивило в боте или инструкции?</div>
+        <textarea name="q_positive" rows="4" placeholder="Что понравилось, что сработало лучше, чем ожидали..."></textarea>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Что вас раздражало или казалось лишним?</div>
+        <textarea name="q_negative" rows="4" placeholder="Что мешало, было непонятно, казалось избыточным или неудобным..."></textarea>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Каких функций вам не хватает в боте?</div>
+        <div class="question-hint">Мечтайте смело — мы хотим знать, что было бы ценно для вас</div>
+        <textarea name="q_features" rows="4" placeholder="Например: хотел(а) бы видеть автоматическое обновление курсов из внешнего источника..."></textarea>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Есть ли что-то важное, чего нет в инструкции?</div>
+        <textarea name="q_missing_docs" rows="3" placeholder="Например: не хватает раздела про экспорт в 1С, нет FAQ по ошибкам бота..."></textarea>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Если бы вы могли изменить одну вещь в боте или инструкции — что бы это было?</div>
+        <textarea name="q_one_change" rows="3" placeholder="Самое главное, что вы бы изменили в первую очередь..."></textarea>
+      </div>
+
+      <div class="card">
+        <div class="question-label">Любые другие комментарии, идеи или пожелания</div>
+        <div class="question-hint">Свободное поле — пишите всё, что хотите передать команде</div>
+        <textarea name="q_other" rows="5" placeholder="Напишите всё, что важно и не поместилось в другие вопросы..."></textarea>
+      </div>
+    </div>
+
+    <!-- ░░░ РАЗДЕЛ 6: КОНТАКТ ░░░ -->
+    <div class="section">
+      <div class="section-label">06 — Обратная связь</div>
+
+      <div class="card">
+        <div class="question-label">Хотите ли вы, чтобы мы связались с вами?</div>
+        <div class="question-hint">Необязательно, но будет полезно для уточнения деталей</div>
+        <div class="radio-group" style="margin-bottom:16px">
+          <label class="radio-option"><input type="radio" name="q_contact" value="yes"><span class="radio-dot"></span><span class="radio-text">Да, готов(а) пообщаться</span></label>
+          <label class="radio-option"><input type="radio" name="q_contact" value="no"><span class="radio-dot"></span><span class="radio-text">Нет, предпочитаю анонимность</span></label>
+        </div>
+        <input type="text" name="q_contact_info" placeholder="Ваш Telegram @username или email (если хотите связи)">
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="divider"></div>
+    <div class="submit-section">
+      <button type="submit" class="submit-btn">
+        Отправить анкету →
+      </button>
+      <p style="color:var(--muted); font-size:12px; margin-top:16px;">Спасибо, что уделили время. Каждый ответ помогает сделать продукт лучше.</p>
+    </div>
+
+  </form>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="success">
+    <div class="success-icon">✓</div>
+    <h2>Анкета отправлена!</h2>
+    <p>Спасибо за честные и подробные ответы.<br>Ваш фидбек поможет нам улучшить Exchange Desk Bot и инструкцию к нему.</p>
+  </div>
+
+</div>
+
+<script>
+  // Build scale buttons
+  const scales = [
+    { id: 'scale_start', name: 'scale_start' },
+    { id: 'scale_currencies', name: 'scale_currencies' },
+    { id: 'scale_orders', name: 'scale_orders' },
+    { id: 'scale_channel', name: 'scale_channel' },
+    { id: 'scale_roles', name: 'scale_roles' },
+    { id: 'scale_helpful', name: 'scale_helpful' },
+    { id: 'scale_bot_ux', name: 'scale_bot_ux' },
+    { id: 'scale_nps', name: 'scale_nps' },
+  ];
+
+  scales.forEach(({ id, name }) => {
+    const container = document.getElementById(id);
+    for (let i = 1; i <= 5; i++) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'scale-btn';
+      btn.textContent = i;
+      btn.dataset.value = i;
+      btn.dataset.group = name;
+      btn.addEventListener('click', () => {
+        container.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        btn.dataset.selected = 'true';
+        updateProgress();
+      });
+      container.appendChild(btn);
+    }
+  });
+
+  // Progress tracking
+  function updateProgress() {
+    const radioNames = new Set();
+    document.querySelectorAll('input[type="radio"]').forEach(r => radioNames.add(r.name));
+
+    let total = radioNames.size + scales.length;
+    let filled = 0;
+
+    radioNames.forEach(name => {
+      if (document.querySelector(`input[name="${name}"]:checked`)) filled++;
+    });
+
+    scales.forEach(({ id }) => {
+      if (document.querySelector(`#${id} .scale-btn.selected`)) filled++;
+    });
+
+    const pct = Math.round((filled / total) * 100);
+    document.getElementById('progress').style.width = pct + '%';
+  }
+
+  document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => {
+    el.addEventListener('change', updateProgress);
+  });
+
+  // ▼ Вставьте сюда вашу ссылку после публикации Apps Script
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzlLTI6j_kjFpSvowG7gUZIEdgH7ZC8j9peAIrbwv0R1v-QX8LX1JsVMRrvKzl1zJw/exec';
+
+  document.getElementById('survey').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn = this.querySelector('.submit-btn');
+    btn.textContent = 'Отправляем...';
+    btn.disabled = true;
+
+    // Собираем все поля формы
+    const fd = new FormData(this);
+    const data = {};
+
+    // Radio и text/textarea — простые значения
+    for (const [key, val] of fd.entries()) {
+      if (data[key]) {
+        // checkbox с несколькими значениями → массив
+        data[key] = [].concat(data[key], val);
+      } else {
+        data[key] = val;
+      }
+    }
+
+    // Scale кнопки (они не в FormData, т.к. это <button>, не <input>)
+    document.querySelectorAll('.scale-btn.selected').forEach(btn => {
+      data[btn.dataset.group] = btn.dataset.value;
+    });
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Google Apps Script требует no-cors
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+    } catch (err) {
+      // no-cors всегда возвращает opaque response, ошибки здесь редки
+      console.warn('fetch error:', err);
+    }
+
+    // Показываем экран успеха в любом случае
+    this.style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>

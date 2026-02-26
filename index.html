@@ -68,8 +68,6 @@
         @media (max-width: 1023px) {
             .header { height: 58px; }
             .header.scrolled { height: 52px; }
-            .logo-icon { width: 46px; height: 46px; border-radius: 14px; }
-            .logo-text { font-size: 0.95rem; }
         }
         .header::after {
             content: '';
@@ -84,42 +82,26 @@
             display: flex; align-items: center; justify-content: space-between;
         }
 
-        /* ===== TELEGRAM BOT LINK — LEFT CORNER ===== */
         .tg-bot-link {
             display: inline-flex; align-items: center; gap: 0.65rem;
-            text-decoration: none;
-            flex-shrink: 0;
+            text-decoration: none; flex-shrink: 0;
         }
         .tg-bot-icon {
             display: flex; align-items: center; justify-content: center;
             width: 44px; height: 44px;
             background: linear-gradient(135deg, rgba(41,182,246,0.18), rgba(30,200,216,0.1));
             border: 1px solid rgba(41,182,246,0.25);
-            border-radius: 13px;
-            color: #29B6F6;
-            font-size: 1.5rem;
+            border-radius: 13px; color: #29B6F6; font-size: 1.5rem;
             transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 2px 14px rgba(41,182,246,0.12);
-            flex-shrink: 0;
+            box-shadow: 0 2px 14px rgba(41,182,246,0.12); flex-shrink: 0;
         }
         .tg-bot-link:hover .tg-bot-icon {
             background: linear-gradient(135deg, rgba(41,182,246,0.28), rgba(30,200,216,0.18));
-            box-shadow: 0 4px 20px rgba(41,182,246,0.25);
-            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(41,182,246,0.25); transform: scale(1.05);
         }
-        .tg-bot-text {
-            display: flex; flex-direction: column; gap: 0.05rem;
-        }
-        .tg-bot-name {
-            font-size: 0.92rem; font-weight: 700;
-            color: #29B6F6; line-height: 1.2; letter-spacing: 0.01em;
-        }
-        .tg-bot-tagline {
-            font-size: 0.6rem; font-weight: 400;
-            color: var(--text-muted); letter-spacing: 0.02em; line-height: 1.2;
-        }
-
-        /* Скрываем текстовую часть на малых экранах */
+        .tg-bot-text { display: flex; flex-direction: column; gap: 0.05rem; }
+        .tg-bot-name { font-size: 0.92rem; font-weight: 700; color: #29B6F6; line-height: 1.2; }
+        .tg-bot-tagline { font-size: 0.6rem; font-weight: 400; color: var(--text-muted); letter-spacing: 0.02em; }
         @media (max-width: 480px) {
             .tg-bot-text { display: none; }
             .tg-bot-icon { width: 40px; height: 40px; font-size: 1.3rem; }
@@ -131,19 +113,15 @@
 
         .cta-button {
             display: inline-flex; align-items: center; gap: 0.5rem;
-            background: rgba(255,90,31,0.15);
-            color: #FF7A45;
+            background: rgba(255,90,31,0.15); color: #FF7A45;
             padding: 0.75rem 1.5rem; border-radius: 12px;
             text-decoration: none; font-weight: 700;
             border: 1px solid rgba(255,90,31,0.45);
             cursor: pointer; transition: var(--transition); white-space: nowrap;
         }
         .cta-button:hover {
-            transform: translateY(-2px);
-            background: rgba(255,90,31,0.25);
-            border-color: rgba(255,90,31,0.8);
-            box-shadow: 0 8px 24px rgba(255,90,31,0.25);
-            color: #FF8F5E;
+            transform: translateY(-2px); background: rgba(255,90,31,0.25);
+            border-color: rgba(255,90,31,0.8); box-shadow: 0 8px 24px rgba(255,90,31,0.25); color: #FF8F5E;
         }
         .desktop-btn { display: none; }
 
@@ -154,14 +132,10 @@
         .mobile-quick-link {
             width: 36px; height: 36px; border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
-            color: var(--text-muted); text-decoration: none;
-            font-size: 0.95rem;
+            color: var(--text-muted); text-decoration: none; font-size: 0.95rem;
             transition: color 0.2s, background 0.2s;
         }
-        .mobile-quick-link:hover, .mobile-quick-link:active {
-            color: var(--accent-cyan);
-            background: rgba(30,200,216,0.1);
-        }
+        .mobile-quick-link:hover { color: var(--accent-cyan); background: rgba(30,200,216,0.1); }
         .mobile-menu-btn {
             width: 44px; height: 44px;
             display: flex; align-items: center; justify-content: center;
@@ -169,10 +143,7 @@
             color: var(--text-primary); font-size: 1.5rem; cursor: pointer;
         }
 
-        .mobile-menu {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            z-index: 999; pointer-events: none;
-        }
+        .mobile-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999; pointer-events: none; }
         .mobile-menu.active { pointer-events: all; }
         .mobile-menu-overlay {
             position: absolute; inset: 0;
@@ -183,262 +154,93 @@
         .mobile-menu-content {
             position: absolute; top: 0; left: 0; width: 260px; height: 100%;
             background: var(--bg-secondary); border-right: 1px solid var(--border-color);
-            padding: 1.5rem 1rem;
-            padding-top: calc(58px + 1.5rem);
+            padding: 1.5rem 1rem; padding-top: calc(58px + 1.5rem);
             transform: translateX(-100%); transition: var(--transition); overflow-y: auto;
         }
         .mobile-menu-header { display: none; }
-        .mobile-menu-nav { padding: 0; }
         .mobile-menu.active .mobile-menu-content { transform: translateX(0); }
         .mobile-nav-link {
             display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1rem;
             color: var(--text-secondary); text-decoration: none;
             border-radius: 10px; margin-bottom: 0.4rem; transition: var(--transition);
-            border: 1px solid transparent;
-            position: relative;
+            border: 1px solid transparent; position: relative;
         }
         .mobile-nav-link::after {
-            content: '\f054';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            font-size: 0.75rem;
-            color: #FF5A1F;
-            margin-left: auto;
-            opacity: 0.6;
-            transition: transform 0.2s ease, opacity 0.2s ease;
+            content: '\f054'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            font-size: 0.75rem; color: #FF5A1F; margin-left: auto;
+            opacity: 0.6; transition: transform 0.2s ease, opacity 0.2s ease;
         }
-        .mobile-nav-link:hover {
-            background: var(--bg-hover);
-            color: var(--text-primary);
-            border-color: rgba(255,90,31,0.2);
-        }
+        .mobile-nav-link:hover { background: var(--bg-hover); color: var(--text-primary); border-color: rgba(255,90,31,0.2); }
         .mobile-nav-link:hover::after { transform: translateX(3px); opacity: 1; }
         .mobile-nav-link i { font-size: 1.1rem; width: 22px; color: #FF5A1F; opacity: 0.8; }
 
         .hero { padding: 4rem 0 3rem; text-align: center; position: relative; overflow: hidden; }
-        .hero-canvas {
-            position: absolute; inset: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 0;
-        }
+        .hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
         .hero-orbs { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-        .orb {
-            position: absolute; border-radius: 50%;
-            filter: blur(60px); opacity: 0.18;
-        }
-        .orb-1 {
-            width: 420px; height: 420px;
-            background: radial-gradient(circle, #FF5A1F, transparent 70%);
-            top: -120px; left: -80px;
-            animation: orbFloat1 12s ease-in-out infinite;
-        }
-        .orb-2 {
-            width: 380px; height: 380px;
-            background: radial-gradient(circle, #1EC8D8, transparent 70%);
-            top: -60px; right: -60px;
-            animation: orbFloat2 15s ease-in-out infinite;
-        }
-        .orb-3 {
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, #9b6dff, transparent 70%);
-            bottom: -100px; left: 40%;
-            animation: orbFloat3 18s ease-in-out infinite;
-        }
-        @keyframes orbFloat1 {
-            0%,100% { transform: translate(0,0) scale(1); }
-            33% { transform: translate(60px, 40px) scale(1.1); }
-            66% { transform: translate(-30px, 70px) scale(0.95); }
-        }
-        @keyframes orbFloat2 {
-            0%,100% { transform: translate(0,0) scale(1); }
-            33% { transform: translate(-70px, 50px) scale(0.9); }
-            66% { transform: translate(40px, 30px) scale(1.12); }
-        }
-        @keyframes orbFloat3 {
-            0%,100% { transform: translate(0,0) scale(1); }
-            50% { transform: translate(-50px, -60px) scale(1.15); }
-        }
+        .orb { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.18; }
+        .orb-1 { width: 420px; height: 420px; background: radial-gradient(circle, #FF5A1F, transparent 70%); top: -120px; left: -80px; animation: orbFloat1 12s ease-in-out infinite; }
+        .orb-2 { width: 380px; height: 380px; background: radial-gradient(circle, #1EC8D8, transparent 70%); top: -60px; right: -60px; animation: orbFloat2 15s ease-in-out infinite; }
+        .orb-3 { width: 300px; height: 300px; background: radial-gradient(circle, #9b6dff, transparent 70%); bottom: -100px; left: 40%; animation: orbFloat3 18s ease-in-out infinite; }
+        @keyframes orbFloat1 { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(60px, 40px) scale(1.1); } 66% { transform: translate(-30px, 70px) scale(0.95); } }
+        @keyframes orbFloat2 { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(-70px, 50px) scale(0.9); } 66% { transform: translate(40px, 30px) scale(1.12); } }
+        @keyframes orbFloat3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-50px, -60px) scale(1.15); } }
         .hero::before {
-            content: '';
-            position: absolute; inset: 0; z-index: 1;
+            content: ''; position: absolute; inset: 0; z-index: 1;
             background: radial-gradient(ellipse 100% 80% at 50% 50%, transparent 40%, rgba(10,10,26,0.6) 100%);
             pointer-events: none;
         }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            background: rgba(255,107,53,0.1); color: var(--accent-orange);
-            padding: 0.5rem 1rem; border-radius: 20px;
-            font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem;
-            border: 1px solid rgba(255,107,53,0.2);
-        }
-        .hero-title {
-            font-size: 3.2rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem;
-        }
-        .hero-exchange {
-            color: var(--accent-orange);
-            text-shadow: 0 0 40px rgba(255,107,53,0.4);
-            animation: pulseOrange 3s ease-in-out infinite;
-        }
-        .hero-desk {
-            color: var(--accent-cyan);
-            text-shadow: 0 0 40px rgba(54,209,220,0.4);
-            animation: pulseCyan 3s ease-in-out infinite 0.5s;
-        }
-        .hero-bot {
-            color: var(--accent-green); display: block; margin-top: 0.15rem;
-            text-shadow: 0 0 40px rgba(93,253,203,0.35);
-            animation: pulseGreen 3s ease-in-out infinite 1s;
-        }
-        @keyframes pulseOrange {
-            0%, 100% { text-shadow: 0 0 30px rgba(255,107,53,0.3); }
-            50% { text-shadow: 0 0 60px rgba(255,107,53,0.7), 0 0 120px rgba(255,107,53,0.2); }
-        }
-        @keyframes pulseCyan {
-            0%, 100% { text-shadow: 0 0 30px rgba(54,209,220,0.3); }
-            50% { text-shadow: 0 0 60px rgba(54,209,220,0.7), 0 0 120px rgba(54,209,220,0.2); }
-        }
-        @keyframes pulseGreen {
-            0%, 100% { text-shadow: 0 0 30px rgba(93,253,203,0.25); }
-            50% { text-shadow: 0 0 60px rgba(93,253,203,0.6), 0 0 120px rgba(93,253,203,0.15); }
-        }
-        .hero-divider {
-            width: 280px; height: 2px; margin: 1rem auto 1.25rem;
-            background: linear-gradient(90deg, transparent 0%, #FF5A1F 30%, #1EC8D8 70%, transparent 100%);
-            border-radius: 2px;
-        }
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,107,53,0.1); color: var(--accent-orange); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(255,107,53,0.2); }
+        .hero-title { font-size: 3.2rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem; }
+        .hero-exchange { color: var(--accent-orange); text-shadow: 0 0 40px rgba(255,107,53,0.4); animation: pulseOrange 3s ease-in-out infinite; }
+        .hero-desk { color: var(--accent-cyan); text-shadow: 0 0 40px rgba(54,209,220,0.4); animation: pulseCyan 3s ease-in-out infinite 0.5s; }
+        .hero-bot { color: var(--accent-green); display: block; margin-top: 0.15rem; text-shadow: 0 0 40px rgba(93,253,203,0.35); animation: pulseGreen 3s ease-in-out infinite 1s; }
+        @keyframes pulseOrange { 0%, 100% { text-shadow: 0 0 30px rgba(255,107,53,0.3); } 50% { text-shadow: 0 0 60px rgba(255,107,53,0.7), 0 0 120px rgba(255,107,53,0.2); } }
+        @keyframes pulseCyan { 0%, 100% { text-shadow: 0 0 30px rgba(54,209,220,0.3); } 50% { text-shadow: 0 0 60px rgba(54,209,220,0.7), 0 0 120px rgba(54,209,220,0.2); } }
+        @keyframes pulseGreen { 0%, 100% { text-shadow: 0 0 30px rgba(93,253,203,0.25); } 50% { text-shadow: 0 0 60px rgba(93,253,203,0.6), 0 0 120px rgba(93,253,203,0.15); } }
+        .hero-divider { width: 280px; height: 2px; margin: 1rem auto 1.25rem; background: linear-gradient(90deg, transparent 0%, #FF5A1F 30%, #1EC8D8 70%, transparent 100%); border-radius: 2px; }
         .hero-subtitle { font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0.75rem; font-weight: 500; }
         .hero-description { color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; font-size: 1rem; line-height: 1.7; }
         .hero-btn { font-size: 1.05rem; }
-        .btn-pdf {
-            display: inline-flex; align-items: center; gap: 0.55rem;
-            background: rgba(26,26,58,0.9);
-            color: #e0e0ff;
-            padding: 0.75rem 1.5rem; border-radius: 12px;
-            text-decoration: none; font-weight: 700; font-size: 1.05rem;
-            border: 1px solid rgba(255,90,31,0.35);
-            cursor: pointer; transition: var(--transition); white-space: nowrap;
-            box-shadow: inset 0 0 0 0 rgba(255,90,31,0);
-        }
-        .btn-pdf i { color: #FF5A1F; font-size: 1.1rem; }
-        .btn-pdf:hover {
-            border-color: rgba(255,90,31,0.7);
-            background: rgba(255,90,31,0.08);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255,90,31,0.2);
-        }
+        .btn-pdf { display: inline-flex; align-items: center; gap: 0.55rem; background: rgba(26,26,58,0.9); color: #e0e0ff; padding: 0.75rem 1.5rem; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border: 1px solid rgba(255,90,31,0.35); cursor: pointer; transition: var(--transition); white-space: nowrap; }
+        .btn-pdf i { color: #FF5A1F; }
+        .btn-pdf:hover { border-color: rgba(255,90,31,0.7); background: rgba(255,90,31,0.08); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,90,31,0.2); }
 
         .info-section { padding: 3rem 0; background: var(--bg-secondary); }
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-        }
-
-        .info-card {
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            border: 1px solid transparent;
-            background-origin: border-box;
-        }
-
-        .info-card:nth-child(1) {
-            background: linear-gradient(145deg, rgba(255,90,31,0.12) 0%, rgba(26,26,58,0.95) 55%, rgba(255,90,31,0.05) 100%);
-            border: 1px solid rgba(255,90,31,0.35);
-            box-shadow: 0 0 30px rgba(255,90,31,0.08), inset 0 1px 0 rgba(255,90,31,0.15);
-        }
-        .info-card:nth-child(2) {
-            background: linear-gradient(145deg, rgba(30,200,216,0.12) 0%, rgba(26,26,58,0.95) 55%, rgba(30,200,216,0.05) 100%);
-            border: 1px solid rgba(30,200,216,0.35);
-            box-shadow: 0 0 30px rgba(30,200,216,0.08), inset 0 1px 0 rgba(30,200,216,0.15);
-        }
-        .info-card:nth-child(3) {
-            background: linear-gradient(145deg, rgba(155,109,255,0.12) 0%, rgba(26,26,58,0.95) 55%, rgba(155,109,255,0.05) 100%);
-            border: 1px solid rgba(155,109,255,0.35);
-            box-shadow: 0 0 30px rgba(155,109,255,0.08), inset 0 1px 0 rgba(155,109,255,0.15);
-        }
-
+        .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+        .info-card { border-radius: var(--radius-lg); padding: 2rem; transition: var(--transition); display: flex; flex-direction: column; position: relative; border: 1px solid transparent; background-origin: border-box; }
+        .info-card:nth-child(1) { background: linear-gradient(145deg, rgba(255,90,31,0.12) 0%, rgba(26,26,58,0.95) 55%, rgba(255,90,31,0.05) 100%); border: 1px solid rgba(255,90,31,0.35); box-shadow: 0 0 30px rgba(255,90,31,0.08), inset 0 1px 0 rgba(255,90,31,0.15); }
+        .info-card:nth-child(2) { background: linear-gradient(145deg, rgba(30,200,216,0.12) 0%, rgba(26,26,58,0.95) 55%, rgba(30,200,216,0.05) 100%); border: 1px solid rgba(30,200,216,0.35); box-shadow: 0 0 30px rgba(30,200,216,0.08), inset 0 1px 0 rgba(30,200,216,0.15); }
+        .info-card:nth-child(3) { background: linear-gradient(145deg, rgba(155,109,255,0.12) 0%, rgba(26,26,58,0.95) 55%, rgba(155,109,255,0.05) 100%); border: 1px solid rgba(155,109,255,0.35); box-shadow: 0 0 30px rgba(155,109,255,0.08), inset 0 1px 0 rgba(155,109,255,0.15); }
         .info-card:nth-child(1):hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(255,90,31,0.2), inset 0 1px 0 rgba(255,90,31,0.2); }
         .info-card:nth-child(2):hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(30,200,216,0.2), inset 0 1px 0 rgba(30,200,216,0.2); }
         .info-card:nth-child(3):hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(155,109,255,0.2), inset 0 1px 0 rgba(155,109,255,0.2); }
-
-        .info-icon {
-            width: 56px; height: 56px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 14px; font-size: 1.4rem; margin-bottom: 1rem;
-            flex-shrink: 0;
-        }
+        .info-icon { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 14px; font-size: 1.4rem; margin-bottom: 1rem; flex-shrink: 0; }
         .info-card:nth-child(1) .info-icon { background: rgba(255,107,53,0.15); border: 1px solid rgba(255,107,53,0.3); }
         .info-card:nth-child(2) .info-icon { background: rgba(54,209,220,0.15); border: 1px solid rgba(54,209,220,0.3); }
         .info-card:nth-child(3) .info-icon { background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); }
-
         .info-card:nth-child(1) .info-icon i { color: #FF8A35; }
         .info-card:nth-child(2) .info-icon i { color: #36D1DC; }
         .info-card:nth-child(3) .info-icon i { color: #a78bfa; }
-
         .info-card:nth-child(1) h3 { color: #FF8A35; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
         .info-card:nth-child(2) h3 { color: #36D1DC; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
         .info-card:nth-child(3) h3 { color: #a78bfa; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
-
         .info-card ul { list-style: none; }
-        .info-card li {
-            color: var(--text-secondary);
-            margin-bottom: 0.75rem;
-            padding-left: 1.25rem;
-            position: relative;
-            line-height: 1.55;
-            font-size: 0.95rem;
-        }
+        .info-card li { color: var(--text-secondary); margin-bottom: 0.75rem; padding-left: 1.25rem; position: relative; line-height: 1.55; font-size: 0.95rem; }
         .info-card:nth-child(1) li::before { content: '•'; position: absolute; left: 0; color: #FF6B35; font-weight: 900; font-size: 1.1rem; line-height: 1.5; }
         .info-card:nth-child(2) li::before { content: '•'; position: absolute; left: 0; color: #36D1DC; font-weight: 900; font-size: 1.1rem; line-height: 1.5; }
         .info-card:nth-child(3) li::before { content: '•'; position: absolute; left: 0; color: #8b5cf6; font-weight: 900; font-size: 1.1rem; line-height: 1.5; }
-
         .info-card li strong { color: #f0f0ff; font-weight: 600; }
 
         .section { padding: 4rem 0; }
         .section-dark { background: var(--bg-secondary); }
-
         .section-header { margin-bottom: 3rem; }
-        .section-header-top {
-            display: flex; align-items: flex-start; justify-content: space-between;
-            flex-wrap: wrap; gap: 1rem; margin-bottom: 0.5rem;
-        }
-        .section-title {
-            font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            display: inline-block;
-            line-height: 1.15;
-        }
-        .section-divider {
-            width: 200px; height: 2px; margin: 0.5rem auto 0.85rem;
-            background: linear-gradient(90deg, transparent 0%, #FF5A1F 30%, #1EC8D8 70%, transparent 100%);
-            border-radius: 2px;
-        }
-        .section-header-top .section-divider { margin-left: 0; }
+        .section-header-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.5rem; }
+        .section-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block; line-height: 1.15; }
+        .section-divider { width: 200px; height: 2px; margin: 0.5rem auto 0.85rem; background: linear-gradient(90deg, transparent 0%, #FF5A1F 30%, #1EC8D8 70%, transparent 100%); border-radius: 2px; }
         .section-subtitle { color: var(--text-secondary); font-size: 1rem; }
 
-        .functions-list {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .function-row {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 2rem 1.5rem 1.75rem;
-            border-radius: 20px;
-            cursor: pointer;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-        }
+        .functions-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 1000px; margin: 0 auto; }
+        .function-row { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 2rem 1.5rem 1.75rem; border-radius: 20px; cursor: pointer; background: var(--bg-card); border: 1px solid var(--border-color); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
         .function-row:nth-child(1) { border-color: rgba(255,107,53,0.3); }
         .function-row:nth-child(2) { border-color: rgba(54,209,220,0.3); }
         .function-row:nth-child(3) { border-color: rgba(139,92,246,0.3); }
@@ -451,20 +253,14 @@
         .function-row:nth-child(4):hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(93,253,203,0.2); border-color: rgba(93,253,203,0.7); }
         .function-row:nth-child(5):hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(255,107,53,0.2); border-color: rgba(255,107,53,0.7); }
         .function-row:nth-child(6):hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(54,209,220,0.2); border-color: rgba(54,209,220,0.7); }
-        .function-row-icon {
-            width: 64px; height: 64px; border-radius: 18px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.7rem; margin-bottom: 1.1rem; flex-shrink: 0;
-        }
+        .function-row-icon { width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; margin-bottom: 1.1rem; flex-shrink: 0; }
         .function-row:nth-child(1) .function-row-icon { background: rgba(255,107,53,0.12); border: 1px solid rgba(255,107,53,0.35); color: #FF8A35; }
         .function-row:nth-child(2) .function-row-icon { background: rgba(54,209,220,0.12); border: 1px solid rgba(54,209,220,0.35); color: #36D1DC; }
         .function-row:nth-child(3) .function-row-icon { background: rgba(139,92,246,0.12); border: 1px solid rgba(139,92,246,0.35); color: #a78bfa; }
         .function-row:nth-child(4) .function-row-icon { background: rgba(93,253,203,0.12); border: 1px solid rgba(93,253,203,0.35); color: #5DFDCB; }
         .function-row:nth-child(5) .function-row-icon { background: rgba(255,107,53,0.12); border: 1px solid rgba(255,107,53,0.35); color: #FF8A35; }
         .function-row:nth-child(6) .function-row-icon { background: rgba(54,209,220,0.12); border: 1px solid rgba(54,209,220,0.35); color: #36D1DC; }
-        .function-row-title {
-            font-size: 1.05rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.6rem;
-        }
+        .function-row-title { font-size: 1.05rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.6rem; }
         .function-row:nth-child(1) .function-row-title { color: #FF8A35; }
         .function-row:nth-child(2) .function-row-title { color: #36D1DC; }
         .function-row:nth-child(3) .function-row-title { color: #a78bfa; }
@@ -472,377 +268,168 @@
         .function-row:nth-child(5) .function-row-title { color: #FF8A35; }
         .function-row:nth-child(6) .function-row-title { color: #36D1DC; }
         .function-row-badge { display: none; }
-        .function-row-desc {
-            font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65; margin: 0;
-        }
-        @media (max-width: 900px) {
-            .functions-list { grid-template-columns: repeat(2, 1fr); }
-        }
+        .function-row-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65; margin: 0; }
+        @media (max-width: 900px) { .functions-list { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 560px) {
             .functions-list { grid-template-columns: 1fr; gap: 0.85rem; }
             .function-row { padding: 1.4rem 1.2rem; flex-direction: row; text-align: left; align-items: flex-start; gap: 1rem; }
             .function-row-icon { width: 50px; height: 50px; font-size: 1.3rem; margin-bottom: 0; border-radius: 13px; }
         }
 
-        .func-modal {
-            display: none; position: fixed; inset: 0;
-            background: rgba(10,10,26,0.92);
-            z-index: 3000; align-items: center; justify-content: center;
-            padding: 1rem;
-            overflow-y: auto;
-        }
-        .func-modal-content {
-            background: var(--bg-card); border-radius: var(--radius-lg);
-            border: 1px solid var(--accent-cyan);
-            box-shadow: 0 0 30px rgba(54,209,220,0.1);
-            width: 100%; max-width: 520px; padding: 2rem;
-            position: relative; animation: slideUp 0.25s cubic-bezier(0.4,0,0.2,1);
-            margin: auto;
-        }
+        .func-modal { display: none; position: fixed; inset: 0; background: rgba(10,10,26,0.92); z-index: 3000; align-items: center; justify-content: center; padding: 1rem; overflow-y: auto; }
+        .func-modal-content { background: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid var(--accent-cyan); box-shadow: 0 0 30px rgba(54,209,220,0.1); width: 100%; max-width: 520px; padding: 2rem; position: relative; animation: slideUp 0.25s cubic-bezier(0.4,0,0.2,1); margin: auto; }
         .func-modal-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; padding-right: 2.5rem; }
-        .func-modal-icon {
-            width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.3rem;
-            background: rgba(54,209,220,0.1);
-            color: var(--accent-cyan);
-            border: 1px solid rgba(54,209,220,0.25);
-        }
+        .func-modal-icon { width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; background: rgba(54,209,220,0.1); color: var(--accent-cyan); border: 1px solid rgba(54,209,220,0.25); }
         .func-modal-title { font-size: 1.2rem; font-weight: 700; line-height: 1.3; color: var(--text-primary); }
-        .func-modal-close {
-            position: absolute; top: 1rem; right: 1rem;
-            width: 38px; height: 38px; border-radius: 8px;
-            background: var(--bg-secondary); border: 1px solid var(--border-color);
-            color: var(--text-muted); cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: var(--transition);
-        }
+        .func-modal-close { position: absolute; top: 1rem; right: 1rem; width: 38px; height: 38px; border-radius: 8px; background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
         .func-modal-close:hover { background: var(--bg-hover); color: var(--text-primary); }
         .func-modal-desc { color: var(--text-secondary); font-size: 0.97rem; line-height: 1.8; }
+        @media (max-width: 768px) { .func-modal-content { border-radius: 20px; max-width: 100%; padding: 1.75rem 1.25rem 2rem; max-height: 82vh; overflow-y: auto; margin: auto; } }
 
-        @media (max-width: 768px) {
-            .func-modal { align-items: center; justify-content: center; padding: 1.25rem; overflow-y: auto; }
-            .func-modal-content {
-                border-radius: 20px; max-width: 100%; width: 100%;
-                padding: 1.75rem 1.25rem 2rem;
-                max-height: 82vh; overflow-y: auto;
-                animation: slideUp 0.25s cubic-bezier(0.4,0,0.2,1);
-                margin: auto;
-            }
-            .func-modal-title { font-size: 1.1rem; }
-            .func-modal-desc { font-size: 0.95rem; line-height: 1.8; color: var(--text-primary); }
-        }
-
-        .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.1rem;
-        }
-        .module-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 1.4rem;
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative; overflow: hidden;
-            min-height: 200px;
-            display: flex; flex-direction: column;
-        }
-        .module-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: var(--gradient-primary);
-        }
-        .module-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(54,209,220,0.5);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .module-number {
-            position: absolute; top: 0.5rem; right: 0.75rem;
-            font-size: 3.5rem; font-weight: 800;
-            color: rgba(255,255,255,0.04);
-            line-height: 1; pointer-events: none;
-            user-select: none;
-        }
-
-        .module-icon {
-            font-size: 1.5rem; margin-bottom: 0.9rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; display: inline-block;
-        }
-        .module-title {
-            font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .module-description {
-            color: var(--text-secondary); margin-bottom: 0.85rem;
-            font-size: 0.82rem; line-height: 1.5; flex-grow: 1;
-        }
-        .module-actions {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-top: auto; flex-wrap: wrap; gap: 0.5rem;
-        }
-        .module-ref-link {
-            display: inline-flex; align-items: center; justify-content: center;
-            margin-left: 0.4rem; color: var(--accent-cyan);
-            font-size: 0.72rem; opacity: 0.6;
-            transition: opacity 0.2s ease, transform 0.2s ease;
-            vertical-align: middle; text-decoration: none;
-        }
+        .modules-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+        .module-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.4rem; transition: var(--transition); cursor: pointer; position: relative; overflow: hidden; min-height: 200px; display: flex; flex-direction: column; }
+        .module-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient-primary); }
+        .module-card:hover { transform: translateY(-4px); border-color: rgba(54,209,220,0.5); box-shadow: var(--shadow-lg); }
+        .module-number { position: absolute; top: 0.5rem; right: 0.75rem; font-size: 3.5rem; font-weight: 800; color: rgba(255,255,255,0.04); line-height: 1; pointer-events: none; user-select: none; }
+        .module-icon { font-size: 1.5rem; margin-bottom: 0.9rem; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block; }
+        .module-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .module-description { color: var(--text-secondary); margin-bottom: 0.85rem; font-size: 0.82rem; line-height: 1.5; flex-grow: 1; }
+        .module-actions { display: flex; justify-content: space-between; align-items: center; margin-top: auto; flex-wrap: wrap; gap: 0.5rem; }
+        .module-ref-link { display: inline-flex; align-items: center; justify-content: center; margin-left: 0.4rem; color: var(--accent-cyan); font-size: 0.72rem; opacity: 0.6; transition: opacity 0.2s ease, transform 0.2s ease; vertical-align: middle; text-decoration: none; }
         .module-ref-link:hover { opacity: 1; transform: translateY(-1px); }
-        .module-link {
-            color: #FF6B35; text-decoration: none; font-weight: 600; font-size: 0.8rem;
-            display: flex; align-items: center; gap: 0.4rem;
-            background: rgba(255,107,53,0.1);
-            padding: 0.4rem 0.75rem; border-radius: var(--radius-sm);
-            transition: var(--transition); white-space: nowrap;
-        }
+        .module-link { color: #FF6B35; text-decoration: none; font-weight: 600; font-size: 0.8rem; display: flex; align-items: center; gap: 0.4rem; background: rgba(255,107,53,0.1); padding: 0.4rem 0.75rem; border-radius: var(--radius-sm); transition: var(--transition); white-space: nowrap; }
         .module-link:hover { background: rgba(255,107,53,0.2); }
-        .module-status {
-            display: flex; align-items: center; gap: 0.3rem;
-            font-size: 0.72rem; padding: 0.22rem 0.55rem;
-            border-radius: 50px; white-space: nowrap;
-        }
+        .module-status { display: flex; align-items: center; gap: 0.3rem; font-size: 0.72rem; padding: 0.22rem 0.55rem; border-radius: 50px; white-space: nowrap; }
         .status-active { background: rgba(16,185,129,0.1); color: #5DFDCB; }
         .status-beta { background: rgba(245,158,11,0.1); color: var(--accent-orange); }
 
-        .module-modal {
-            display: none; position: fixed; inset: 0;
-            background: rgba(10,10,26,0.88);
-            z-index: 2000; align-items: center; justify-content: center;
-            padding: 1rem;
-        }
+        /* ===== MODULE MODAL ===== */
+        .module-modal { display: none; position: fixed; inset: 0; background: rgba(10,10,26,0.88); z-index: 2000; align-items: center; justify-content: center; padding: 1rem; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .module-modal-content {
-            background: var(--bg-card);
-            border-radius: var(--radius-lg); border: 1px solid var(--border-color);
-            width: 100%; max-width: 960px; max-height: 92vh;
-            overflow: hidden; position: relative;
-            animation: slideUp 0.3s cubic-bezier(0.4,0,0.2,1);
-            display: flex; flex-direction: column;
-        }
+        .module-modal-content { background: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid var(--border-color); width: 100%; max-width: 960px; max-height: 92vh; overflow: hidden; position: relative; animation: slideUp 0.3s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; }
         @keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        .modal-header {
-            padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-            display: flex; justify-content: space-between; align-items: flex-start;
-            position: sticky; top: 0; background: var(--bg-card); z-index: 10;
-            flex-shrink: 0; gap: 1rem;
-        }
-        .modal-title {
-            font-size: 1.35rem; font-weight: 700; margin-bottom: 0.2rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            line-height: 1.3;
-        }
+        .modal-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: flex-start; position: sticky; top: 0; background: var(--bg-card); z-index: 10; flex-shrink: 0; gap: 1rem; }
+        .modal-title { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.2rem; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.3; }
         .modal-subtitle { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.4; }
-        .modal-doc-link {
-            display: inline-flex; align-items: center; gap: 0.4rem;
-            margin-top: 0.6rem;
-            font-size: 0.82rem; font-weight: 600;
-            color: var(--accent-cyan); text-decoration: none;
-            background: rgba(54,209,220,0.08);
-            border: 1px solid rgba(54,209,220,0.25);
-            padding: 0.3rem 0.75rem; border-radius: 20px;
-            transition: background 0.2s ease, border-color 0.2s ease;
-            cursor: pointer; font-family: inherit;
-        }
+        .modal-doc-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.6rem; font-size: 0.82rem; font-weight: 600; color: var(--accent-cyan); text-decoration: none; background: rgba(54,209,220,0.08); border: 1px solid rgba(54,209,220,0.25); padding: 0.3rem 0.75rem; border-radius: 20px; transition: background 0.2s ease, border-color 0.2s ease; cursor: pointer; font-family: inherit; }
         .modal-doc-link:hover { background: rgba(54,209,220,0.16); border-color: rgba(54,209,220,0.5); }
-        .modal-close {
-            background: var(--bg-secondary); border: 1px solid var(--border-color);
-            color: var(--text-secondary); width: 40px; height: 40px; min-width: 40px;
-            border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: var(--transition); flex-shrink: 0;
-            position: relative; z-index: 20;
-        }
+        .modal-close { background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-secondary); width: 40px; height: 40px; min-width: 40px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition); flex-shrink: 0; position: relative; z-index: 20; }
         .modal-close:hover { background: var(--bg-hover); color: var(--text-primary); }
 
-        .modal-body {
-            padding: 1.5rem; display: grid;
-            grid-template-columns: 1fr 280px; gap: 1.5rem;
-            flex: 1; overflow-y: auto; min-height: 0;
-        }
-
+        .modal-body { padding: 1.5rem; display: grid; grid-template-columns: 1fr 280px; gap: 1.5rem; flex: 1; overflow-y: auto; min-height: 0; }
         .modal-section-title { font-size: 1.1rem; margin-bottom: 1.25rem; color: var(--text-primary); font-weight: 600; }
 
         .modal-steps { list-style: none; }
-        .modal-steps li {
-            margin-bottom: 1.5rem;
-            padding-left: 2.75rem;
-            position: relative;
-        }
-        .modal-steps li::before {
-            content: '';
-            position: absolute; left: 12px; top: 14px;
-            width: 2px; bottom: -1.5rem;
-            background: linear-gradient(180deg, rgba(255,107,53,0.5), rgba(54,209,220,0.15));
-        }
+        .modal-steps li { margin-bottom: 1.5rem; padding-left: 2.75rem; position: relative; }
+        .modal-steps li::before { content: ''; position: absolute; left: 12px; top: 14px; width: 2px; bottom: -1.5rem; background: linear-gradient(180deg, rgba(255,107,53,0.5), rgba(54,209,220,0.15)); }
         .modal-steps li:last-child::before { display: none; }
-        .modal-steps li::after {
-            content: '';
-            position: absolute; left: 6px; top: 5px;
-            width: 14px; height: 14px; border-radius: 50%;
-            background: linear-gradient(135deg, #FF6B35, #FF8A35);
-            border: 2px solid var(--bg-card);
-            box-shadow: 0 0 0 2px rgba(255,107,53,0.25);
-            z-index: 2;
-        }
-        .step-number {
-            display: inline-flex; align-items: center; justify-content: center;
-            background: linear-gradient(135deg, #FF6B35, #FF8A35);
-            color: white; width: 22px; height: 22px; border-radius: 50%;
-            font-weight: 700; font-size: 0.75rem; margin-right: 0.6rem;
-            vertical-align: middle; position: relative; z-index: 3;
-        }
+        .modal-steps li::after { content: ''; position: absolute; left: 6px; top: 5px; width: 14px; height: 14px; border-radius: 50%; background: linear-gradient(135deg, #FF6B35, #FF8A35); border: 2px solid var(--bg-card); box-shadow: 0 0 0 2px rgba(255,107,53,0.25); z-index: 2; }
+        .step-number { display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #FF6B35, #FF8A35); color: white; width: 22px; height: 22px; border-radius: 50%; font-weight: 700; font-size: 0.75rem; margin-right: 0.6rem; vertical-align: middle; position: relative; z-index: 3; }
         .step-title { font-weight: 600; font-size: 0.98rem; display: inline; }
         .step-description { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; margin-top: 0.4rem; white-space: pre-line; }
-
         .modal-steps li { opacity: 1; transform: none; }
         .modal-steps li.step-animate { opacity: 0; transform: translateX(-8px); transition: opacity 0.3s ease, transform 0.3s ease; }
         .modal-steps li.step-visible { opacity: 1; transform: translateX(0); }
 
-        .modal-sidebar {
-            background: var(--bg-secondary); border-radius: var(--radius-md);
-            padding: 1.25rem; border: 1px solid var(--border-color);
-            height: fit-content; position: sticky; top: 1rem;
-        }
-        .sidebar-title {
-            font-size: 0.95rem; font-weight: 700; margin-bottom: 0.85rem;
-            padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color);
-            background: var(--gradient-primary);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .sidebar-tip, .sidebar-warning, .sidebar-path {
-            padding: 0.85rem; border-radius: 8px; margin-bottom: 0.85rem;
-            font-size: 0.88rem; line-height: 1.5;
-        }
+        .modal-sidebar { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 1.25rem; border: 1px solid var(--border-color); height: fit-content; position: sticky; top: 1rem; }
+        .sidebar-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.85rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .sidebar-tip, .sidebar-warning, .sidebar-path { padding: 0.85rem; border-radius: 8px; margin-bottom: 0.85rem; font-size: 0.88rem; line-height: 1.5; }
         .sidebar-tip { background: rgba(54,130,246,0.08); border: 1px solid rgba(54,130,246,0.2); color: #93c5fd; }
         .sidebar-tip strong, .sidebar-warning strong { display: block; margin-bottom: 0.35rem; }
         .sidebar-warning { background: rgba(156,163,175,0.08); border: 1px solid rgba(156,163,175,0.2); color: #d1d5db; }
-        .sidebar-path {
-            background: rgba(139,92,246,0.08); border: 1px solid rgba(139,92,246,0.2);
-            color: #a78bfa; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
-            word-break: break-all;
-        }
+        .sidebar-path { background: rgba(139,92,246,0.08); border: 1px solid rgba(139,92,246,0.2); color: #a78bfa; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; word-break: break-all; }
         .sidebar-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
-        .tag {
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.7); padding: 0.3rem 0.7rem;
-            border-radius: 6px; font-size: 0.82rem; font-weight: 500; transition: var(--transition);
-        }
+        .tag { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); padding: 0.3rem 0.7rem; border-radius: 6px; font-size: 0.82rem; font-weight: 500; transition: var(--transition); }
         .tag:hover { background: rgba(255,255,255,0.08); color: white; }
 
         .submodules { margin-top: 2.5rem; }
         .submodules h3 { font-size: 1.1rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
         .submodule-grid { display: grid; gap: 1rem; }
-        .submodule-card {
-            background: var(--bg-secondary); border: 1px solid var(--border-color);
-            border-radius: 12px; padding: 1.25rem; cursor: pointer; transition: var(--transition);
-        }
+        .submodule-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem; cursor: pointer; transition: var(--transition); }
         .submodule-card:hover { border-color: rgba(54,209,220,0.35); }
         .submodule-card.active { background: var(--bg-hover); border-color: rgba(54,209,220,0.4); }
         .submodule-header { display: flex; align-items: center; gap: 0.85rem; }
-        .submodule-icon {
-            width: 36px; height: 36px;
-            display: flex; align-items: center; justify-content: center;
-            background: var(--gradient-primary); border-radius: 8px; font-size: 1rem; flex-shrink: 0;
-        }
+        .submodule-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: var(--gradient-primary); border-radius: 8px; font-size: 1rem; flex-shrink: 0; }
         .submodule-card h5 { flex: 1; font-size: 1rem; }
         .submodule-toggle { color: var(--text-muted); transition: var(--transition); }
         .submodule-card.active .submodule-toggle { transform: rotate(180deg); }
         .submodule-content { max-height: 0; overflow: hidden; transition: var(--transition); }
         .submodule-card.active .submodule-content { max-height: 800px; margin-top: 1.25rem; }
         .submodule-steps { list-style: none; padding-left: 1.25rem; }
-        .submodule-steps li {
-            color: var(--text-secondary); margin-bottom: 0.6rem;
-            position: relative; font-size: 0.9rem;
-        }
+        .submodule-steps li { color: var(--text-secondary); margin-bottom: 0.6rem; position: relative; font-size: 0.9rem; }
         .submodule-steps li::before { content: '•'; position: absolute; left: -1.25rem; color: var(--accent-cyan); }
         .submodule-info { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color); font-size: 0.88rem; }
         .submodule-info p { margin-bottom: 0.6rem; display: flex; align-items: flex-start; gap: 0.5rem; color: var(--text-secondary); }
         .submodule-info strong { color: var(--text-primary); }
 
-        .pdf-card {
-            background: var(--bg-card); border: 2px dashed var(--border-color);
-            border-radius: var(--radius-lg); padding: 3rem 2rem; text-align: center;
-            transition: var(--transition);
+        /* ===== STEP NAVIGATION BAR ===== */
+        .modal-nav-bar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.9rem 1.5rem 1rem;
+            border-top: 1px solid var(--border-color);
+            background: rgba(10,10,26,0.6);
+            flex-shrink: 0;
+            gap: 1rem;
         }
-        .pdf-card:hover { border-color: var(--accent-cyan); box-shadow: 0 0 30px rgba(54,209,220,0.1); }
-        .pdf-icon {
-            font-size: 3.5rem; margin-bottom: 1.5rem; display: block;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            animation: bounce 2s ease infinite;
+        .modal-nav-btn {
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            padding: 0.5rem 1.1rem; border-radius: 10px;
+            background: rgba(255,90,31,0.1); border: 1px solid rgba(255,90,31,0.3);
+            color: #FF8A35; font-size: 0.88rem; font-weight: 600;
+            cursor: pointer; transition: var(--transition); white-space: nowrap;
+            font-family: inherit; user-select: none;
         }
-        @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-        .pdf-card h3 { font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; }
-        .pdf-card p { color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; }
+        .modal-nav-btn:hover:not(:disabled) {
+            background: rgba(255,90,31,0.22); border-color: rgba(255,90,31,0.7);
+            transform: translateY(-1px); box-shadow: 0 4px 14px rgba(255,90,31,0.2);
+        }
+        .modal-nav-btn:disabled {
+            opacity: 0.25; cursor: not-allowed; transform: none !important; box-shadow: none !important;
+        }
+        .modal-nav-dots {
+            display: flex; align-items: center; gap: 5px; flex-wrap: wrap; justify-content: center; flex: 1;
+        }
+        .modal-nav-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(255,255,255,0.18); cursor: pointer;
+            transition: background 0.25s, width 0.25s, border-radius 0.25s, transform 0.2s;
+            border: none; padding: 0; flex-shrink: 0; outline: none;
+        }
+        .modal-nav-dot.active {
+            background: var(--accent-cyan); width: 20px; border-radius: 4px;
+        }
+        .modal-nav-dot:hover:not(.active) { background: rgba(255,255,255,0.42); transform: scale(1.25); }
+        @media (max-width: 768px) {
+            .modal-nav-bar { padding: 0.75rem 1.1rem 0.9rem; }
+            .modal-nav-btn { padding: 0.45rem 0.9rem; font-size: 0.82rem; }
+            .modal-nav-dot { width: 7px; height: 7px; }
+            .modal-nav-dot.active { width: 16px; }
+        }
 
         .faq-search-container { position: relative; max-width: 400px; margin: 1.5rem auto 0; }
         .faq-search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
-        .faq-search {
-            width: 100%; padding: 0.75rem 1rem 0.75rem 2.5rem;
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 12px; color: var(--text-primary); font-size: 1rem; transition: var(--transition);
-        }
+        .faq-search { width: 100%; padding: 0.75rem 1rem 0.75rem 2.5rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; color: var(--text-primary); font-size: 1rem; transition: var(--transition); }
         .faq-search:focus { outline: none; border-color: var(--accent-cyan); box-shadow: 0 0 0 3px rgba(54,209,220,0.1); }
         .faq-search::placeholder { color: var(--text-muted); }
-
         .faq-categories { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin: 1.5rem 0 2rem; }
-        .faq-category {
-            padding: 0.5rem 1.1rem; background: var(--bg-card);
-            border: 1px solid var(--border-color); border-radius: 30px;
-            color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;
-            cursor: pointer; transition: var(--transition);
-        }
+        .faq-category { padding: 0.5rem 1.1rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 30px; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: var(--transition); }
         .faq-category:hover { background: var(--bg-hover); color: var(--text-primary); border-color: var(--accent-cyan); }
-        .faq-category.active {
-            background: var(--bg-hover); color: var(--accent-cyan);
-            border-color: var(--accent-cyan); font-weight: 600;
-            box-shadow: 0 0 10px rgba(54,209,220,0.15);
-        }
-
+        .faq-category.active { background: var(--bg-hover); color: var(--accent-cyan); border-color: var(--accent-cyan); font-weight: 600; box-shadow: 0 0 10px rgba(54,209,220,0.15); }
         .faq-grid { display: flex; flex-direction: column; gap: 0.85rem; max-width: 900px; margin: 0 auto; }
-
-        .faq-item {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition);
-            opacity: 0; transform: translateY(8px);
-            animation: faqFadeIn 0.35s ease forwards;
-        }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); opacity: 0; transform: translateY(8px); animation: faqFadeIn 0.35s ease forwards; }
         @keyframes faqFadeIn { to { opacity: 1; transform: translateY(0); } }
-        .faq-item:nth-child(1) { animation-delay: 0.05s; }
-        .faq-item:nth-child(2) { animation-delay: 0.1s; }
-        .faq-item:nth-child(3) { animation-delay: 0.15s; }
-        .faq-item:nth-child(4) { animation-delay: 0.2s; }
-        .faq-item:nth-child(5) { animation-delay: 0.25s; }
-        .faq-item:nth-child(6) { animation-delay: 0.3s; }
-        .faq-item:nth-child(7) { animation-delay: 0.35s; }
+        .faq-item:nth-child(1) { animation-delay: 0.05s; } .faq-item:nth-child(2) { animation-delay: 0.1s; } .faq-item:nth-child(3) { animation-delay: 0.15s; } .faq-item:nth-child(4) { animation-delay: 0.2s; } .faq-item:nth-child(5) { animation-delay: 0.25s; } .faq-item:nth-child(6) { animation-delay: 0.3s; } .faq-item:nth-child(7) { animation-delay: 0.35s; }
         .faq-item:hover { border-color: rgba(54,209,220,0.35); box-shadow: var(--shadow); }
         .faq-item.active { border-color: var(--accent-cyan); }
-
-        .faq-question {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 1.1rem 1.4rem; cursor: pointer; user-select: none; transition: var(--transition);
-        }
+        .faq-question { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.4rem; cursor: pointer; user-select: none; transition: var(--transition); }
         .faq-question:hover { background: var(--bg-secondary); }
         .faq-question-content { display: flex; align-items: center; gap: 0.9rem; flex: 1; }
         .faq-question-content i { font-size: 1.1rem; color: var(--accent-orange); width: 20px; flex-shrink: 0; }
         .faq-question-content h3 { font-size: 1rem; font-weight: 600; color: var(--text-primary); margin: 0; }
         .faq-toggle { color: var(--text-muted); transition: var(--transition); flex-shrink: 0; }
         .faq-item.active .faq-toggle { transform: rotate(180deg); color: var(--accent-cyan); }
-
-        .faq-answer {
-            max-height: 0; padding: 0 1.4rem;
-            overflow: hidden; transition: all 0.3s ease;
-            background: var(--bg-secondary);
-        }
+        .faq-answer { max-height: 0; padding: 0 1.4rem; overflow: hidden; transition: all 0.3s ease; background: var(--bg-secondary); }
         .faq-item.active .faq-answer { max-height: 3000px; padding: 1.25rem 1.4rem; border-top: 1px solid var(--border-color); }
         .faq-answer p { color: var(--text-secondary); margin-bottom: 0.85rem; line-height: 1.6; }
         .faq-answer ul, .faq-answer ol { margin: 0.5rem 0 0.85rem; padding-left: 1.4rem; }
@@ -850,16 +437,8 @@
         .faq-answer li i { color: var(--accent-green); margin-right: 0.4rem; }
         .faq-answer a { color: var(--accent-cyan); text-decoration: none; border-bottom: 1px dashed; }
         .faq-answer a:hover { color: var(--accent-green); }
-        .faq-answer code {
-            background: var(--bg-hover); color: var(--accent-cyan);
-            padding: 0.15rem 0.4rem; border-radius: 4px;
-            font-family: 'JetBrains Mono', monospace; font-size: 0.88rem;
-        }
-
-        .faq-note, .faq-tip, .faq-warning, .faq-path {
-            display: flex; align-items: flex-start; gap: 0.75rem;
-            padding: 0.85rem 1rem; border-radius: 10px; margin-top: 0.85rem; font-size: 0.9rem;
-        }
+        .faq-answer code { background: var(--bg-hover); color: var(--accent-cyan); padding: 0.15rem 0.4rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; }
+        .faq-note, .faq-tip, .faq-warning, .faq-path { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.85rem 1rem; border-radius: 10px; margin-top: 0.85rem; font-size: 0.9rem; }
         .faq-note i, .faq-tip i, .faq-warning i, .faq-path i { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
         .faq-note { background: rgba(54,209,220,0.1); border: 1px solid rgba(54,209,220,0.2); }
         .faq-note i { color: var(--accent-cyan); }
@@ -870,48 +449,24 @@
         .faq-path { background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.2); font-family: 'JetBrains Mono', monospace; }
         .faq-path i { color: #a78bfa; }
         .faq-path code { color: var(--text-primary); background: transparent; padding: 0; }
-
         .faq-steps { list-style: none; padding: 0 !important; }
         .faq-steps li { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.85rem; color: var(--text-secondary); }
-        .step-badge {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 24px; height: 24px; min-width: 24px; background: var(--gradient-primary);
-            border-radius: 50%; color: #0a0a1a; font-weight: 700; font-size: 0.8rem;
-        }
+        .step-badge { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; min-width: 24px; background: var(--gradient-primary); border-radius: 50%; color: #0a0a1a; font-weight: 700; font-size: 0.8rem; }
         .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 0.85rem; margin: 0.85rem 0; }
         .status-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: var(--bg-card); border-radius: 8px; }
         .status-badge { font-size: 1.1rem; width: 22px; text-align: center; }
-
-        .faq-no-results {
-            text-align: center; padding: 3rem; background: var(--bg-card);
-            border: 1px solid var(--border-color); border-radius: var(--radius-lg); display: none;
-        }
+        .faq-no-results { text-align: center; padding: 3rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); display: none; }
         .faq-no-results i { font-size: 2.5rem; color: var(--text-muted); display: block; margin-bottom: 1rem; }
         .faq-no-results h3 { color: var(--text-primary); margin-bottom: 0.5rem; }
         .faq-no-results p { color: var(--text-secondary); }
-
         .faq-footer { text-align: center; margin-top: 1.5rem; }
-        .faq-show-all {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.65rem 1.4rem; background: transparent;
-            border: 1px solid var(--border-color); border-radius: 30px;
-            color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;
-            cursor: pointer; transition: var(--transition);
-        }
+        .faq-show-all { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; background: transparent; border: 1px solid var(--border-color); border-radius: 30px; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: var(--transition); }
         .faq-show-all:hover { background: var(--bg-card); color: var(--text-primary); border-color: var(--accent-cyan); }
 
-        .telegram-explanation {
-            background: linear-gradient(135deg, rgba(0,136,204,0.1), rgba(0,136,204,0.05));
-            border-radius: 10px; padding: 1rem 1.1rem; margin-bottom: 1rem;
-            border-left: 4px solid #0088cc;
-        }
+        .telegram-explanation { background: linear-gradient(135deg, rgba(0,136,204,0.1), rgba(0,136,204,0.05)); border-radius: 10px; padding: 1rem 1.1rem; margin-bottom: 1rem; border-left: 4px solid #0088cc; }
         .explanation-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; color: #0088cc; font-weight: 600; }
         .format-showcase { display: flex; align-items: center; gap: 1rem; margin: 1.25rem 0; flex-wrap: wrap; }
-        .format-card {
-            flex: 1; min-width: 180px; display: flex; align-items: flex-start; gap: 0.75rem;
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 10px; padding: 1rem; transition: var(--transition);
-        }
+        .format-card { flex: 1; min-width: 180px; display: flex; align-items: flex-start; gap: 0.75rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem; transition: var(--transition); }
         .format-card.correct { border-left: 4px solid #28a745; }
         .format-card.incorrect { border-left: 4px solid #dc3545; opacity: 0.8; background: rgba(220,53,69,0.05); }
         .format-card.result { border-left: 4px solid #36D1DC; }
@@ -928,16 +483,13 @@
         .format-arrow i { font-size: 1.3rem; }
         .tags-demo { display: flex; flex-wrap: wrap; gap: 0.4rem; }
         .currency-tag { background: var(--bg-secondary); border: 1px solid #36D1DC; color: #36D1DC; padding: 0.2rem 0.65rem; border-radius: 20px; font-size: 0.82rem; }
-
         .color-difference { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.85rem 0; }
         .color-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem; }
         .color-badge { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; margin-bottom: 0.5rem; }
         .color-badge.green i { color: #28a745; }
         .color-badge.red i { color: #dc3545; }
-
         .info-message { display: flex; align-items: flex-start; gap: 0.75rem; background: rgba(54,209,220,0.08); border: 1px solid rgba(54,209,220,0.2); border-radius: 10px; padding: 0.85rem 1rem; margin: 0.85rem 0; }
         .info-message i { color: var(--accent-cyan); flex-shrink: 0; margin-top: 2px; }
-
         .recovery-message { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; padding: 0.85rem 1rem; margin: 0.85rem 0; display: flex; align-items: flex-start; gap: 0.75rem; }
         .recovery-message i { color: #5DFDCB; flex-shrink: 0; }
         .warning-block { background: rgba(255,107,53,0.08); border: 1px solid rgba(255,107,53,0.2); border-radius: 10px; padding: 0.85rem 1rem; margin: 0.85rem 0; }
@@ -954,12 +506,7 @@
         .settings-note { font-size: 0.75rem; color: var(--text-muted); }
         .highlight-path { background: rgba(139,92,246,0.12); padding: 0.1rem 0.4rem; border-radius: 4px; color: #a78bfa; }
 
-        .footer {
-            position: relative; background: var(--bg-secondary);
-            border-top: 1px solid var(--border-color); padding: 3rem 0 1.5rem;
-            overflow: hidden;
-        }
-
+        .footer { position: relative; background: var(--bg-secondary); border-top: 1px solid var(--border-color); padding: 3rem 0 1.5rem; overflow: hidden; }
         .footer-grid { display: grid; gap: 2rem; margin-bottom: 2rem; }
         .footer-col h3 { font-size: 1.1rem; margin-bottom: 0.85rem; }
         .footer-col p { color: var(--text-secondary); font-size: 0.9rem; }
@@ -970,96 +517,47 @@
         .footer-bottom { padding-top: 1.5rem; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-muted); font-size: 0.85rem; }
         .version { margin-top: 0.4rem; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600; }
 
-        .scroll-top-btn {
-            display: flex; position: fixed; bottom: 24px; right: 20px; z-index: 9999;
-            width: 52px; height: 52px; border-radius: 50%; border: none; cursor: pointer;
-            background: radial-gradient(circle at 35% 35%, #FF8A50, #FF5A1F);
-            color: #fff; font-size: 1.1rem;
-            align-items: center; justify-content: center;
-            box-shadow: 0 4px 20px rgba(255,90,31,0.5), 0 0 0 3px rgba(255,90,31,0.15);
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.2s ease;
-            transform: translateY(12px);
-        }
+        .scroll-top-btn { display: flex; position: fixed; bottom: 24px; right: 20px; z-index: 9999; width: 52px; height: 52px; border-radius: 50%; border: none; cursor: pointer; background: radial-gradient(circle at 35% 35%, #FF8A50, #FF5A1F); color: #fff; font-size: 1.1rem; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(255,90,31,0.5), 0 0 0 3px rgba(255,90,31,0.15); opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.2s ease; transform: translateY(12px); }
         .scroll-top-btn.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
         .scroll-top-btn:hover { box-shadow: 0 6px 28px rgba(255,90,31,0.7), 0 0 0 4px rgba(255,90,31,0.2); transform: translateY(-2px); }
 
-        @media (min-width: 768px) {
-            .info-grid { gap: 1rem; }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (min-width: 1024px) {
-            .mobile-menu-btn { display: none; }
-            .mobile-quick-nav { display: none; }
-            .desktop-nav { display: flex; }
-            .desktop-btn { display: inline-flex; }
-            .hero-title { font-size: 3.5rem; }
-            .footer-grid { grid-template-columns: repeat(4, 1fr); }
-            .submodule-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
+        @media (min-width: 768px) { .info-grid { gap: 1rem; } .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .mobile-menu-btn { display: none; } .mobile-quick-nav { display: none; } .desktop-nav { display: flex; } .desktop-btn { display: inline-flex; } .hero-title { font-size: 3.5rem; } .footer-grid { grid-template-columns: repeat(4, 1fr); } .submodule-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 1199px) { .modules-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 899px) { .modules-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 599px) { .modules-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; } }
         @media (max-width: 420px) { .modules-grid { grid-template-columns: 1fr; } }
-
         @media (max-width: 767px) {
-            .info-section { padding: 1.5rem 0; }
-            .info-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+            .info-section { padding: 1.5rem 0; } .info-grid { grid-template-columns: 1fr; gap: 0.75rem; }
             .info-card { flex-direction: column; align-items: flex-start; padding: 1.25rem; border-radius: 14px; }
             .info-card-left { display: flex; flex-direction: row; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; width: 100%; }
             .info-icon { width: 44px; height: 44px; font-size: 1.1rem; border-radius: 11px; margin-bottom: 0; flex-shrink: 0; }
             .info-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0; text-align: left; line-height: 1.2; }
-            .info-card ul { width: 100%; margin: 0; }
-            .info-card li { font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.45rem; padding-left: 1rem; }
+            .info-card ul { width: 100%; margin: 0; } .info-card li { font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.45rem; padding-left: 1rem; }
             .functions-list { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
             .function-row { padding: 1.25rem 0.9rem 1.1rem; flex-direction: column; text-align: center; align-items: center; }
             .function-row-icon { width: 50px; height: 50px; font-size: 1.3rem; margin-bottom: 0.75rem; }
-            .function-row-title { font-size: 0.9rem; }
-            .function-row-desc { font-size: 0.8rem; }
+            .function-row-title { font-size: 0.9rem; } .function-row-desc { font-size: 0.8rem; }
             .hero-buttons { flex-direction: row !important; gap: 0.65rem !important; }
             .hero-buttons .cta-button { flex: 1; justify-content: center; font-size: 0.92rem; padding: 0.7rem 0.75rem; }
         }
-
-        @media (max-width: 400px) {
-            .functions-list { grid-template-columns: 1fr; }
-        }
-
+        @media (max-width: 400px) { .functions-list { grid-template-columns: 1fr; } }
         @media (max-width: 768px) {
             .module-modal { padding: 0; align-items: flex-end; }
             .module-modal-content { border-radius: var(--radius-lg) var(--radius-lg) 0 0; max-height: 92vh; max-width: 100%; width: 100%; animation: slideUpMobile 0.35s cubic-bezier(0.4,0,0.2,1); }
             @keyframes slideUpMobile { from { transform: translateY(100%); } to { transform: translateY(0); } }
-            .modal-header { padding: 1rem 1.1rem; }
-            .modal-title { font-size: 1.1rem; }
-            .modal-subtitle { font-size: 0.82rem; }
+            .modal-header { padding: 1rem 1.1rem; } .modal-title { font-size: 1.1rem; } .modal-subtitle { font-size: 0.82rem; }
             .modal-close { width: 44px; height: 44px; min-width: 44px; background: rgba(255,107,53,0.15); border-color: rgba(255,107,53,0.4); color: var(--accent-orange); font-size: 1.1rem; }
             .modal-body { grid-template-columns: 1fr; gap: 1rem; padding: 1rem 1.1rem; }
-            .modal-sidebar { position: static; order: 2; }
-            .modal-steps-container { order: 1; }
-            .section { padding: 2.5rem 0; }
-            .section-title { font-size: 1.75rem; }
-            .hero { padding: 1.5rem 0 2rem; }
-            .hero-title { font-size: 2rem; }
+            .modal-sidebar { position: static; order: 2; } .modal-steps-container { order: 1; }
+            .section { padding: 2.5rem 0; } .section-title { font-size: 1.75rem; }
+            .hero { padding: 1.5rem 0 2rem; } .hero-title { font-size: 2rem; }
             .module-card { padding: 1.1rem; min-height: auto; }
-            .settings-grid { grid-template-columns: 1fr; }
-            .color-difference { grid-template-columns: 1fr; }
-            .format-showcase { flex-direction: column; }
+            .settings-grid { grid-template-columns: 1fr; } .color-difference { grid-template-columns: 1fr; } .format-showcase { flex-direction: column; }
         }
+        @media (max-width: 480px) { .hero-title { font-size: 1.75rem; } .module-card { padding: 1rem; } .container { padding: 0 1rem; } }
 
-        @media (max-width: 480px) {
-            .hero-title { font-size: 1.75rem; }
-            .module-card { padding: 1rem; }
-            .container { padding: 0 1rem; }
-        }
-
-        details {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 5px 10px;
-            margin: 0 0 6px;
-        }
+        details { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; padding: 5px 10px; margin: 0 0 6px; }
         summary { cursor: pointer; color: var(--accent-cyan); font-weight: 600; list-style: none; }
         summary::before { content: '▶ '; font-size: 0.72em; color: var(--accent-orange); }
         details[open] summary::before { content: '▼ '; }
@@ -1070,8 +568,6 @@
 
 <header class="header">
     <div class="header-container">
-
-        <!-- ===== ЛЕВЫЙ УГОЛ: Telegram-иконка и ссылка на бота ===== -->
         <a href="https://t.me/ratedesk_bot" target="_blank" rel="noopener" class="tg-bot-link">
             <div class="tg-bot-icon"><i class="fab fa-telegram-plane"></i></div>
             <div class="tg-bot-text">
@@ -1079,16 +575,12 @@
                 <span class="tg-bot-tagline">Обменный пункт в Telegram</span>
             </div>
         </a>
-
-        <!-- ===== ЦЕНТР: десктопная навигация ===== -->
         <nav class="desktop-nav">
             <a href="#functions" class="nav-link">Функции</a>
             <a href="#modules" class="nav-link">Настройка</a>
             <a href="#faq" class="nav-link">FAQ</a>
             <a href="#support" class="nav-link">Поддержка</a>
         </nav>
-
-        <!-- ===== ПРАВЫЙ УГОЛ: мобильные кнопки ===== -->
         <div class="mobile-quick-nav">
             <a href="#functions" class="mobile-quick-link" aria-label="Функции"><i class="fas fa-bolt"></i></a>
             <a href="#faq" class="mobile-quick-link" aria-label="FAQ"><i class="fas fa-question-circle"></i></a>
@@ -1189,37 +681,31 @@
             <div class="function-row" data-func="users">
                 <div class="function-row-icon"><i class="fas fa-user-plus"></i></div>
                 <div class="function-row-title">Управление пользователями</div>
-                <span class="function-row-badge">Роли и доступ</span>
                 <p class="function-row-desc">Кто что может делать в боте — вы решаете. Кассир не видит курсы, оператор не меняет настройки. Всё под контролем.</p>
             </div>
             <div class="function-row" data-func="currencies">
                 <div class="function-row-icon"><i class="fas fa-coins"></i></div>
                 <div class="function-row-title">Настройка валют</div>
-                <span class="function-row-badge">База данных</span>
                 <p class="function-row-desc">Ваши валюты, ваши кросс-пары, ваши номиналы. Бот подстраивается под обменник, а не наоборот.</p>
             </div>
             <div class="function-row" data-func="analytics">
                 <div class="function-row-icon"><i class="fas fa-chart-bar"></i></div>
                 <div class="function-row-title">Аналитика и отчёты</div>
-                <span class="function-row-badge">Excel / CSV</span>
                 <p class="function-row-desc">Нажали кнопку — получили Excel с отчётом. Кто сколько сделал, какой оборот, что зависло. Без тетрадок.</p>
             </div>
             <div class="function-row" data-func="security">
                 <div class="function-row-icon"><i class="fas fa-shield-alt"></i></div>
                 <div class="function-row-title">Безопасность</div>
-                <span class="function-row-badge">Изоляция данных</span>
                 <p class="function-row-desc">Несколько обменников — данные полностью изолированы. Журнал действий покажет кто, что и когда изменил.</p>
             </div>
             <div class="function-row" data-func="communication">
                 <div class="function-row-icon"><i class="fas fa-comments"></i></div>
                 <div class="function-row-title">Коммуникация</div>
-                <span class="function-row-badge">Канал + группа</span>
                 <p class="function-row-desc">Новый заказ — вся команда видит его сразу. Скриншоты, обсуждение, уведомления о статусах — всё в одном месте.</p>
             </div>
             <div class="function-row" data-func="automation">
                 <div class="function-row-icon"><i class="fas fa-sync-alt"></i></div>
                 <div class="function-row-title">Автоматизация</div>
-                <span class="function-row-badge">Умные расчёты</span>
                 <p class="function-row-desc">Сумма, округление, уведомления — бот считает сам. Одна сделка занимает 30 секунд вместо 10 минут.</p>
             </div>
         </div>
@@ -1248,7 +734,7 @@
             <div class="module-card" data-module="start">
                 <div class="module-number">1</div>
                 <div class="module-icon"><i class="fas fa-rocket"></i></div>
-                <h3 class="module-title">Шаг 1: Начало работы <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#о-боте" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 1: Начало работы <a class="module-ref-link" href="#" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
                 <p class="module-description">Первые шаги: регистрация в системе, согласие с условиями, получение Telegram ID</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1258,7 +744,7 @@
             <div class="module-card" data-module="exchange">
                 <div class="module-number">2</div>
                 <div class="module-icon"><i class="fas fa-building"></i></div>
-                <h3 class="module-title">Шаг 2: Создание обменного пункта <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#создание-и-настройка-обменного-пункта" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 2: Создание обменного пункта</h3>
                 <p class="module-description">Настройка виртуального обменного пункта: уникальное название, базовая валюта, часовой пояс</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1268,7 +754,7 @@
             <div class="module-card" data-module="fractional">
                 <div class="module-number">3</div>
                 <div class="module-icon"><i class="fas fa-coins"></i></div>
-                <h3 class="module-title">Шаг 3: Настройка базы валют и кросс-пары <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#настройка-валют-и-валютных-пар" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 3: Настройка базы валют и кросс-пары</h3>
                 <p class="module-description">Создание и управление валютной базой, настройка кросс-валютных пар для торговли</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1278,7 +764,7 @@
             <div class="module-card" data-module="fraction">
                 <div class="module-number">4</div>
                 <div class="module-icon"><i class="fas fa-divide"></i></div>
-                <h3 class="module-title">Шаг 4: Конфигурация валютных параметров <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#настройка-номиналов-купюр" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 4: Конфигурация валютных параметров</h3>
                 <p class="module-description">Детальная настройка отображения и поведения каждой валюты в системе</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1288,7 +774,7 @@
             <div class="module-card" data-module="rates">
                 <div class="module-number">5</div>
                 <div class="module-icon"><i class="fas fa-chart-line"></i></div>
-                <h3 class="module-title">Шаг 5: Управление курсами <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#выставление-курсов-и-котировок" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 5: Управление курсами</h3>
                 <p class="module-description">Выставление и корректировка курсов покупки/продажи для всех валютных пар</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1298,7 +784,7 @@
             <div class="module-card" data-module="channel">
                 <div class="module-number">6</div>
                 <div class="module-icon"><i class="fas fa-broadcast-tower"></i></div>
-                <h3 class="module-title">Шаг 6: Канал для сотрудников <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#настройка-канала-для-сотрудников" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 6: Канал для сотрудников</h3>
                 <p class="module-description">Настройка закрытого канала для внутренней работы с заказами и коммуникации</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1308,7 +794,7 @@
             <div class="module-card" data-module="users">
                 <div class="module-number">7</div>
                 <div class="module-icon"><i class="fas fa-user-group"></i></div>
-                <h3 class="module-title">Шаг 7: Создание заказов <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#создание-и-управление-заказами" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 7: Создание заказов</h3>
                 <p class="module-description">Полный цикл работы со сделками: создание, редактирование, выполнение заказов</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1318,7 +804,7 @@
             <div class="module-card" data-module="orders">
                 <div class="module-number">8</div>
                 <div class="module-icon"><i class="fas fa-file-invoice"></i></div>
-                <h3 class="module-title">Шаг 8: Статусы заказов <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#статусы-заказов" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 8: Статусы заказов</h3>
                 <p class="module-description">Управление статусами сделок: новый, подтвержден, выполнен, отменен</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1328,7 +814,7 @@
             <div class="module-card" data-module="edit-orders">
                 <div class="module-number">9</div>
                 <div class="module-icon"><i class="fas fa-edit"></i></div>
-                <h3 class="module-title">Шаг 9: Работа с кросс-парами <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#работа-с-кросс-парами" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 9: Работа с кросс-парами</h3>
                 <p class="module-description">Особенности создания и редактирования заказов на кросс-валютные пары</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1338,7 +824,7 @@
             <div class="module-card" data-module="status">
                 <div class="module-number">10</div>
                 <div class="module-icon"><i class="fas fa-tasks"></i></div>
-                <h3 class="module-title">Шаг 10: Редактирование заказов <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#редактирование-заказов" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 10: Редактирование заказов</h3>
                 <p class="module-description">Изменение параметров заказов, корректировка сумм, обновление реквизитов и статусов</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1348,7 +834,7 @@
             <div class="module-card" data-module="cross">
                 <div class="module-number">11</div>
                 <div class="module-icon"><i class="fas fa-exchange-alt"></i></div>
-                <h3 class="module-title">Шаг 11: Управление пользователями <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#управление-пользователями-и-роли" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 11: Управление пользователями</h3>
                 <p class="module-description">Добавление сотрудников, назначение ролей, управление правами доступа</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1358,7 +844,7 @@
             <div class="module-card" data-module="export">
                 <div class="module-number">12</div>
                 <div class="module-icon"><i class="fas fa-file-export"></i></div>
-                <h3 class="module-title">Шаг 12: Выгрузка данных <a class="module-ref-link" href="https://raw.githack.com/annakustova132-ship-it/-Exchange-Desk-Bot-/main/Exchange_Desk_Bot_manual.html#выгрузка-таблицы-с-заказами" target="_blank" title="Открыть в инструкции"><i class="fas fa-external-link-alt"></i></a></h3>
+                <h3 class="module-title">Шаг 12: Выгрузка данных</h3>
                 <p class="module-description">Экспорт заказов в Excel-таблицы для бухгалтерского учета и анализа</p>
                 <div class="module-actions">
                     <a class="module-link"><i class="fas fa-book-open"></i> Подробнее</a>
@@ -1395,10 +881,7 @@
                 </div>
                 <div class="faq-answer">
                     <p>Да! Один пользователь может:</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Быть владельцем своего обменного пункта</li>
-                        <li><i class="fas fa-check"></i> Работать оператором в чужом обменнике</li>
-                    </ul>
+                    <ul><li><i class="fas fa-check"></i> Быть владельцем своего обменного пункта</li><li><i class="fas fa-check"></i> Работать оператором в чужом обменнике</li></ul>
                     <div class="faq-note"><i class="fas fa-info-circle"></i><span>Данные разных обменников полностью изолированы.</span></div>
                 </div>
             </div>
@@ -1423,14 +906,8 @@
                 </div>
                 <div class="faq-answer">
                     <div class="color-difference">
-                        <div class="color-item">
-                            <div class="color-badge green"><i class="fas fa-arrow-down"></i><span>🟢 Зеленая кнопка</span></div>
-                            <p>— обменный пункт <strong>покупает</strong> валюту у клиента</p>
-                        </div>
-                        <div class="color-item">
-                            <div class="color-badge red"><i class="fas fa-arrow-up"></i><span>🔴 Красная кнопка</span></div>
-                            <p>— обменный пункт <strong>продает</strong> валюту клиенту</p>
-                        </div>
+                        <div class="color-item"><div class="color-badge green"><i class="fas fa-arrow-down"></i><span>🟢 Зеленая кнопка</span></div><p>— обменный пункт <strong>покупает</strong> валюту у клиента</p></div>
+                        <div class="color-item"><div class="color-badge red"><i class="fas fa-arrow-up"></i><span>🔴 Красная кнопка</span></div><p>— обменный пункт <strong>продает</strong> валюту клиенту</p></div>
                     </div>
                     <div class="faq-note"><i class="fas fa-info-circle"></i><span>Зеленый = входящий поток в пункт, красный = исходящий из пункта.</span></div>
                 </div>
@@ -1451,20 +928,11 @@
                     <i class="fas fa-chevron-down faq-toggle"></i>
                 </div>
                 <div class="faq-answer">
-                    <div class="telegram-explanation">
-                        <div class="explanation-header"><i class="fab fa-telegram-plane"></i><span>Особенность Telegram</span></div>
-                        <p>Telegram обрабатывает сообщение как <strong>одну строку</strong>. Формат через запятую — стандартный способ передачи списка.</p>
-                    </div>
+                    <div class="telegram-explanation"><div class="explanation-header"><i class="fab fa-telegram-plane"></i><span>Особенность Telegram</span></div><p>Telegram обрабатывает сообщение как <strong>одну строку</strong>. Формат через запятую — стандартный способ передачи списка.</p></div>
                     <div class="format-showcase">
-                        <div class="format-card correct">
-                            <div class="format-icon"><i class="fas fa-check-circle"></i></div>
-                            <div><span class="format-label">✅ Правильно</span><div class="code-demo"><code>USD, EUR, GBP, CHF</code></div></div>
-                        </div>
+                        <div class="format-card correct"><div class="format-icon"><i class="fas fa-check-circle"></i></div><div><span class="format-label">✅ Правильно</span><div class="code-demo"><code>USD, EUR, GBP, CHF</code></div></div></div>
                         <div class="format-arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
-                        <div class="format-card result">
-                            <div class="format-icon"><i class="fas fa-list"></i></div>
-                            <div><span class="format-label">📋 Результат</span><div class="tags-demo"><span class="currency-tag">USD</span><span class="currency-tag">EUR</span><span class="currency-tag">GBP</span></div></div>
-                        </div>
+                        <div class="format-card result"><div class="format-icon"><i class="fas fa-list"></i></div><div><span class="format-label">📋 Результат</span><div class="tags-demo"><span class="currency-tag">USD</span><span class="currency-tag">EUR</span><span class="currency-tag">GBP</span></div></div></div>
                     </div>
                     <div class="faq-tip"><i class="fas fa-lightbulb"></i><span>Пробелы необязательны — USD,EUR,GBP тоже работает</span></div>
                 </div>
@@ -1495,9 +963,7 @@
                 </div>
                 <div class="faq-answer">
                     <div class="recovery-message"><i class="fas fa-undo-alt"></i><p><strong>Просто добавьте её заново</strong> через раздел <span class="highlight-path">База данных валют</span></p></div>
-                    <div class="warning-block">
-                        <div class="warning-header"><i class="fas fa-exclamation-triangle"></i><span>После добавления нужно заново настроить:</span></div>
-                    </div>
+                    <div class="warning-block"><div class="warning-header"><i class="fas fa-exclamation-triangle"></i><span>После добавления нужно заново настроить:</span></div></div>
                     <div class="settings-grid">
                         <div class="settings-item"><div class="settings-icon red"><i class="fas fa-chart-line"></i></div><div class="settings-content"><span class="settings-label">Курсы</span><span class="settings-note">(сбросятся)</span></div></div>
                         <div class="settings-item"><div class="settings-icon blue"><i class="fas fa-coins"></i></div><div class="settings-content"><span class="settings-label">Номиналы</span><span class="settings-note">(без глобальной базы)</span></div></div>
@@ -1552,14 +1018,10 @@
     </div>
 </section>
 
-
 <footer id="support" class="footer">
     <div class="container">
         <div class="footer-grid">
-            <div class="footer-col">
-                <h3>Exchange Desk Bot</h3>
-                <p>Telegram-бот для автоматизации обменных операций</p>
-            </div>
+            <div class="footer-col"><h3>Exchange Desk Bot</h3><p>Telegram-бот для автоматизации обменных операций</p></div>
             <div class="footer-col">
                 <h3>Разделы</h3>
                 <ul>
@@ -1571,7 +1033,7 @@
             <div class="footer-col">
                 <h3>Ресурсы</h3>
                 <ul>
-                    <li><a href="https://annakustova132-ship-it.github.io/-Exchange-Desk-Bot-/Exchange_Desk_Bot.pdf" download><i class="fas fa-file-pdf"></i> Инструкция PDF</a></li>
+                    <li><a href="#"><i class="fas fa-file-pdf"></i> Инструкция PDF</a></li>
                     <li><a href="#"><i class="fas fa-play-circle"></i> Видеоуроки</a></li>
                     <li><a href="#"><i class="fas fa-rss"></i> Блог</a></li>
                 </ul>
@@ -1591,6 +1053,7 @@
     </div>
 </footer>
 
+<!-- MODULE MODAL with nav bar -->
 <div class="module-modal" id="modal">
     <div class="module-modal-content">
         <div class="modal-header">
@@ -1616,6 +1079,16 @@
                 <div class="sidebar-path" id="sidebarPath"></div>
                 <div class="sidebar-tags" id="sidebarTags" style="display:none;"></div>
             </div>
+        </div>
+        <!-- ===== NAVIGATION BAR ===== -->
+        <div class="modal-nav-bar" id="modalNavBar">
+            <button class="modal-nav-btn" id="modalNavPrev">
+                <i class="fas fa-chevron-left"></i> Назад
+            </button>
+            <div class="modal-nav-dots" id="modalNavDots"></div>
+            <button class="modal-nav-btn" id="modalNavNext">
+                Далее <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
     </div>
 </div>
@@ -1661,21 +1134,6 @@ const moduleData = {
         path: "Настройки → Обменник → Создать → Параметры",
         tags: ["Создание", "Настройка", "Обменник"]
     },
-    users: {
-        title: "Шаг 7: Создание заказов",
-        subtitle: "Полный цикл работы со сделками и кросс-парами",
-        docLink: BASE + "#создание-и-управление-заказами",
-        steps: [
-            { number:"1", title:"Открыть меню заказов", description:"Главное меню → Новый заказ → Выбрать валютную пару/кросс-пару." },
-            { number:"2", title:"Выбор режима расчёта", description:"Выберите пару из таблицы → тип операции: «По сумме выдачи» или «По сумме получения»." },
-            { number:"3", title:"Ввести данные", description:"Введите сумму для обмена, затем имя клиента или номер телефона." },
-            { number:"4", title:"Публикация", description:"При необходимости нажмите «В канал», чтобы поделиться заказом." }
-        ],
-        tip: "Кросс-пары всегда отображаются в нижней части таблицы.",
-        warning: "Зелёные кнопки (🟢) — пункт покупает; красные кнопки (🔴) — пункт продаёт.",
-        path: "Главное меню → Новый заказ → Выбор пары → Ввод данных",
-        tags: ["Заказы", "Сделки", "Операции"]
-    },
     fractional: {
         title: "Шаг 3: Настройка базы валют и кросс-пары",
         subtitle: "Создание и управление валютной базой, настройка кросс-валютных пар",
@@ -1707,66 +1165,10 @@ const moduleData = {
         path: "Настройки → Валютные пары → Кастомизация → Параметры",
         tags: ["Кастомизация", "Параметры", "Настройка"],
         submodules: [
-            {
-                id: "nominals",
-                title: "Номиналы валют",
-                icon: "fas fa-money-bill-wave",
-                steps: [
-                    "Открыть меню номиналов: Настройки → Валютные пары → Кастомизация валют → Номиналы валют.",
-                    "Выбрать валюту, для которой нужно настроить номиналы.",
-                    "Просмотреть глобальные номиналы или добавить свои собственные.",
-                    "Ввести номиналы через запятую. Например, для RUB: 50,100,200,500,1000,2000,5000.",
-                    "Учесть местные особенности: для разных стран могут быть разные номиналы."
-                ],
-                tip: "Используйте стандартные номиналы для упрощения расчетов с клиентами и кассирами.",
-                warning: "Неправильные номиналы могут усложнить расчеты и привести к ошибкам.",
-                path: "[Настройки] → [Валютные пары] → [Кастомизация валют] → [Номиналы валют] → Выбор валюты → Настройка номиналов"
-            },
-            {
-                id: "fractional",
-                title: "Дробные валюты",
-                icon: "fas fa-divide",
-                steps: [
-                    "Перейти в Настройки → Валютные пары → Кастомизация валют → Дробная часть.",
-                    "Выбрать валюту для настройки точности.",
-                    "Установить количество знаков после запятой от 2 до 8.",
-                    "Для фиатных валют (RUB, USD, EUR) рекомендуется использовать 2 знака.",
-                    "Для криптовалют установите 6-8 знаков для точных расчетов."
-                ],
-                tip: "Для кросс-пар рекомендуется устанавливать более высокую точность (6-8 знаков).",
-                warning: "Изменение точности влияет только на новые расчеты, но не на существующие заказы.",
-                path: "[Настройки] → [Валютные пары] → [Кастомизация валют] → [Дробная часть] → Выбор валюты → Установка точности"
-            },
-            {
-                id: "emojis",
-                title: "Эмодзи",
-                icon: "fas fa-smile",
-                steps: [
-                    "Открыть меню настройки emoji: Настройки → Валютные пары → Кастомизация валют → Emoji валют.",
-                    "Выбрать валюту для настройки.",
-                    "Ввести emoji или символ. Например: ♟ для USDT, флаги стран для фиатных валют.",
-                    "Проверить результат в таблице котировок.",
-                    "Использовать стандартные emoji для лучшей совместимости."
-                ],
-                tip: "Используйте emoji для лучшей визуализации валют в таблице котировок.",
-                warning: "Бот поддерживает только стандартные emoji, кастомные не работают.",
-                path: "[Настройки] → [Валютные пары] → [Кастомизация валют] → [Emoji валют] → Выбор валюты → Ввод emoji"
-            },
-            {
-                id: "global",
-                title: "Глобальные валюты",
-                icon: "fas fa-globe",
-                steps: [
-                    "Перейти в Настройки → Валютные пары → Кастомизация валют → Глобальные валюты.",
-                    "Выбрать валюту для привязки к глобальной базе.",
-                    "Активировать синхронизацию с глобальной базой данных.",
-                    "Настроить автообновление курсов из глобальных источников.",
-                    "Проверить корректность отображаемых данных."
-                ],
-                tip: "Используйте глобальную базу для автоматического обновления информации о валютах.",
-                warning: "При отключении синхронизации данные перестанут обновляться автоматически.",
-                path: "[Настройки] → [Валютные пары] → [Кастомизация валют] → [Глобальные валюты] → Выбор валюты → Настройка синхронизации"
-            }
+            { id: "nominals", title: "Номиналы валют", icon: "fas fa-money-bill-wave", steps: ["Открыть меню номиналов: Настройки → Валютные пары → Кастомизация валют → Номиналы валют.", "Выбрать валюту, для которой нужно настроить номиналы.", "Просмотреть глобальные номиналы или добавить свои собственные.", "Ввести номиналы через запятую. Например, для RUB: 50,100,200,500,1000,2000,5000.", "Учесть местные особенности: для разных стран могут быть разные номиналы."], tip: "Используйте стандартные номиналы для упрощения расчетов с клиентами и кассирами.", warning: "Неправильные номиналы могут усложнить расчеты и привести к ошибкам.", path: "[Настройки] → [Валютные пары] → [Кастомизация валют] → [Номиналы валют] → Выбор валюты → Настройка номиналов" },
+            { id: "fractional", title: "Дробные валюты", icon: "fas fa-divide", steps: ["Перейти в Настройки → Валютные пары → Кастомизация валют → Дробная часть.", "Выбрать валюту для настройки точности.", "Установить количество знаков после запятой от 2 до 8.", "Для фиатных валют (RUB, USD, EUR) рекомендуется использовать 2 знака.", "Для криптовалют установите 6-8 знаков для точных расчетов."], tip: "Для кросс-пар рекомендуется устанавливать более высокую точность (6-8 знаков).", warning: "Изменение точности влияет только на новые расчеты, но не на существующие заказы.", path: "[Настройки] → [Валютные пары] → [Кастомизация валют] → [Дробная часть] → Выбор валюты → Установка точности" },
+            { id: "emojis", title: "Эмодзи", icon: "fas fa-smile", steps: ["Открыть меню настройки emoji: Настройки → Валютные пары → Кастомизация валют → Emoji валют.", "Выбрать валюту для настройки.", "Ввести emoji или символ. Например: ♟ для USDT, флаги стран для фиатных валют.", "Проверить результат в таблице котировок.", "Использовать стандартные emoji для лучшей совместимости."], tip: "Используйте emoji для лучшей визуализации валют в таблице котировок.", warning: "Бот поддерживает только стандартные emoji, кастомные не работают.", path: "[Настройки] → [Валютные пары] → [Кастомизация валют] → [Emoji валют] → Выбор валюты → Ввод emoji" },
+            { id: "global", title: "Глобальные валюты", icon: "fas fa-globe", steps: ["Перейти в Настройки → Валютные пары → Кастомизация валют → Глобальные валюты.", "Выбрать валюту для привязки к глобальной базе.", "Активировать синхронизацию с глобальной базой данных.", "Настроить автообновление курсов из глобальных источников.", "Проверить корректность отображаемых данных."], tip: "Используйте глобальную базу для автоматического обновления информации о валютах.", warning: "При отключении синхронизации данные перестанут обновляться автоматически.", path: "[Настройки] → [Валютные пары] → [Кастомизация валют] → [Глобальные валюты] → Выбор валюты → Настройка синхронизации" }
         ]
     },
     rates: {
@@ -1802,6 +1204,21 @@ const moduleData = {
         path: "Создать канал → chat_id → Настройки → ID канала",
         tags: ["Канал", "Коммуникация", "Уведомления"]
     },
+    users: {
+        title: "Шаг 7: Создание заказов",
+        subtitle: "Полный цикл работы со сделками и кросс-парами",
+        docLink: BASE + "#создание-и-управление-заказами",
+        steps: [
+            { number:"1", title:"Открыть меню заказов", description:"Главное меню → Новый заказ → Выбрать валютную пару/кросс-пару." },
+            { number:"2", title:"Выбор режима расчёта", description:"Выберите пару из таблицы → тип операции: «По сумме выдачи» или «По сумме получения»." },
+            { number:"3", title:"Ввести данные", description:"Введите сумму для обмена, затем имя клиента или номер телефона." },
+            { number:"4", title:"Публикация", description:"При необходимости нажмите «В канал», чтобы поделиться заказом." }
+        ],
+        tip: "Кросс-пары всегда отображаются в нижней части таблицы.",
+        warning: "Зелёные кнопки (🟢) — пункт покупает; красные кнопки (🔴) — пункт продаёт.",
+        path: "Главное меню → Новый заказ → Выбор пары → Ввод данных",
+        tags: ["Заказы", "Сделки", "Операции"]
+    },
     orders: {
         title: "Шаг 8: Статусы заказов",
         subtitle: "Управление статусами сделок для контроля этапов и быстрой реакции",
@@ -1817,6 +1234,22 @@ const moduleData = {
         warning: "Статус «Выполнен» делает заказ недоступным для редактирования.",
         path: "Главное меню → Заказы → Редактировать → Статус",
         tags: ["Статусы", "Управление", "Контроль"]
+    },
+    "edit-orders": {
+        title: "Шаг 9: Работа с кросс-парами",
+        subtitle: "Особенности создания заказов с кросс-валютными парами",
+        docLink: BASE + "#выставление-курсов-и-котировок",
+        steps: [
+            { number:"1", title:"Отображение кросс-пар", description:"Кросс-пары (GBP/USD, BTC/USDT) всегда внизу списка при создании заказа." },
+            { number:"2", title:"Особенности расчета", description:"Часто возникают дробные суммы из-за мелких значений курса." },
+            { number:"3", title:"Три варианта округления", description:"1) Без сдачи — точная сумма\n2) Доплата клиента\n3) Доплата офиса" },
+            { number:"4", title:"Выбор номинала", description:"Бот предложит округлить до доступных номиналов (50 или 100 $)." },
+            { number:"5", title:"Ограничение", description:"Редактирование кросс-пар в разработке. Используйте отмену и новый заказ." }
+        ],
+        tip: "Для кросс-пар используйте точность 6-8 знаков для корректных расчетов.",
+        warning: "Редактирование кросс-пар находится в разработке.",
+        path: "Новый заказ → Кросс-пара → Сумма → Округление",
+        tags: ["Кросс-пары", "Округление", "В разработке"]
     },
     status: {
         title: "Шаг 10: Редактирование заказов",
@@ -1852,22 +1285,6 @@ const moduleData = {
         path: "Настройки → Обменник → Пользователи → Добавить / Права",
         tags: ["Пользователи", "Роли", "Доступ"]
     },
-    "edit-orders": {
-        title: "Шаг 9: Работа с кросс-парами",
-        subtitle: "Особенности создания заказов с кросс-валютными парами",
-        docLink: BASE + "#выставление-курсов-и-котировок",
-        steps: [
-            { number:"1", title:"Отображение кросс-пар", description:"Кросс-пары (GBP/USD, BTC/USDT) всегда внизу списка при создании заказа." },
-            { number:"2", title:"Особенности расчета", description:"Часто возникают дробные суммы из-за мелких значений курса." },
-            { number:"3", title:"Три варианта округления", description:"1) Без сдачи — точная сумма\n2) Доплата клиента\n3) Доплата офиса" },
-            { number:"4", title:"Выбор номинала", description:"Бот предложит округлить до доступных номиналов (50 или 100 $)." },
-            { number:"5", title:"Ограничение", description:"Редактирование кросс-пар в разработке. Используйте отмену и новый заказ." }
-        ],
-        tip: "Для кросс-пар используйте точность 6-8 знаков для корректных расчетов.",
-        warning: "Редактирование кросс-пар находится в разработке.",
-        path: "Новый заказ → Кросс-пара → Сумма → Округление",
-        tags: ["Кросс-пары", "Округление", "В разработке"]
-    },
     export: {
         title: "Шаг 12: Выгрузка данных",
         subtitle: "Экспорт заказов в Excel для бухгалтерского учета и анализа",
@@ -1886,6 +1303,10 @@ const moduleData = {
     }
 };
 
+// ===== MODULE ORDER for step navigation =====
+const MODULE_ORDER = ['start','exchange','fractional','fraction','rates','channel','users','orders','edit-orders','status','cross','export'];
+let currentModuleStep = 0;
+
 function lockScroll() {
     const w = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = 'hidden';
@@ -1900,44 +1321,35 @@ function unlockScroll() {
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-function toggleMobileMenu() { mobileMenu.classList.toggle('active'); document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : ''; }
 function closeMobileMenu() { mobileMenu.classList.remove('active'); document.body.style.overflow = ''; }
-mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('active'); document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : ''; });
 mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 document.querySelectorAll('.mobile-nav-link').forEach(link => {
     link.addEventListener('click', (e) => {
         closeMobileMenu();
         const href = link.getAttribute('href');
-        if (href && href.startsWith('#')) { e.preventDefault(); smoothScroll(href); }
+        if (href && href.startsWith('#')) { e.preventDefault(); const el = document.querySelector(href); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
 });
-function smoothScroll(target) {
-    const el = document.querySelector(target);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
 document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
-        if (href && href !== '#') { e.preventDefault(); smoothScroll(href); }
+        if (href && href !== '#') { e.preventDefault(); const el = document.querySelector(href); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
 });
 window.addEventListener('resize', () => { if (window.innerWidth >= 1024) closeMobileMenu(); });
 
-// ===== MODULES MODAL =====
+// ===== MODAL CORE =====
 const modal = document.getElementById('modal');
 const modalClose = document.getElementById('modalClose');
+
 function openModal(moduleId) {
     const data = moduleData[moduleId];
     if (!data) return;
     document.getElementById('modalTitle').textContent = data.title;
     document.getElementById('modalSubtitle').textContent = data.subtitle;
     const docLink = document.getElementById('modalDocLink');
-    if (data.docLink) { 
-        docLink.href = data.docLink; 
-        docLink.style.display = 'inline-flex'; 
-    } else { 
-        docLink.style.display = 'none'; 
-    }
+    if (data.docLink) { docLink.href = data.docLink; docLink.style.display = 'inline-flex'; } else { docLink.style.display = 'none'; }
     const stepsContainer = document.getElementById('modalSteps');
     stepsContainer.innerHTML = data.steps.map(step => `
         <li class="step-animate">
@@ -1946,9 +1358,7 @@ function openModal(moduleId) {
             <p class="step-description">${step.description}</p>
         </li>
     `).join('');
-    stepsContainer.querySelectorAll('li').forEach((li, i) => {
-        setTimeout(() => li.classList.add('step-visible'), 50 + i * 60);
-    });
+    stepsContainer.querySelectorAll('li').forEach((li, i) => { setTimeout(() => li.classList.add('step-visible'), 50 + i * 60); });
     document.getElementById('sidebarTip').innerHTML = `<strong><i class="fas fa-lightbulb" style="color:#36D1DC;margin-right:0.4rem;"></i> Совет:</strong><br>${data.tip}`;
     document.getElementById('sidebarWarning').innerHTML = `<strong><i class="fas fa-exclamation-triangle" style="color:#FF6B35;margin-right:0.4rem;"></i> Важно:</strong><br>${data.warning}`;
     document.getElementById('sidebarPath').innerHTML = `<i class="fas fa-route" style="margin-right:0.5rem;"></i>${data.path}`;
@@ -1973,47 +1383,98 @@ function openModal(moduleId) {
                     </div>
                 </div>`).join('')}
             </div>`;
-        setTimeout(() => {
-            sub.querySelectorAll('.submodule-card').forEach(c => c.addEventListener('click', () => c.classList.toggle('active')));
-        }, 50);
+        setTimeout(() => { sub.querySelectorAll('.submodule-card').forEach(c => c.addEventListener('click', () => c.classList.toggle('active'))); }, 50);
     } else { sub.innerHTML = ''; }
     modal.style.display = 'flex';
     lockScroll();
     setTimeout(() => { const b = modal.querySelector('.modal-body'); if (b) b.scrollTop = 0; }, 10);
+    // Rebuild nav
+    buildNavDots();
+    updateNavButtons();
 }
+
 function closeModal() { modal.style.display = 'none'; unlockScroll(); }
 modalClose.addEventListener('click', closeModal);
 modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-document.querySelectorAll('.module-card').forEach(card => card.addEventListener('click', () => openModal(card.dataset.module)));
-document.querySelectorAll('.module-link').forEach(link => {
-    link.addEventListener('click', e => { e.stopPropagation(); openModal(link.closest('.module-card').dataset.module); });
+
+// Module cards open modal and set step index
+document.querySelectorAll('.module-card').forEach(card => {
+    card.addEventListener('click', () => {
+        const idx = MODULE_ORDER.indexOf(card.dataset.module);
+        if (idx !== -1) currentModuleStep = idx;
+        openModal(card.dataset.module);
+    });
 });
+document.querySelectorAll('.module-link').forEach(link => {
+    link.addEventListener('click', e => { e.stopPropagation(); const card = link.closest('.module-card'); const idx = MODULE_ORDER.indexOf(card.dataset.module); if (idx !== -1) currentModuleStep = idx; openModal(card.dataset.module); });
+});
+
+// ===== STEP NAVIGATION =====
+function navStep(dir) {
+    const next = currentModuleStep + dir;
+    if (next >= 0 && next < MODULE_ORDER.length) goToStep(next);
+}
+
+function goToStep(i) {
+    currentModuleStep = i;
+    openModal(MODULE_ORDER[i]);
+}
+
+function buildNavDots() {
+    const container = document.getElementById('modalNavDots');
+    if (!container) return;
+    container.innerHTML = '';
+    MODULE_ORDER.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'modal-nav-dot' + (i === currentModuleStep ? ' active' : '');
+        dot.setAttribute('aria-label', 'Шаг ' + (i + 1));
+        dot.addEventListener('click', () => goToStep(i));
+        container.appendChild(dot);
+    });
+}
+
+function updateNavButtons() {
+    const prev = document.getElementById('modalNavPrev');
+    const next = document.getElementById('modalNavNext');
+    if (prev) prev.disabled = currentModuleStep === 0;
+    if (next) next.disabled = currentModuleStep === MODULE_ORDER.length - 1;
+}
+
+document.getElementById('modalNavPrev').addEventListener('click', () => navStep(-1));
+document.getElementById('modalNavNext').addEventListener('click', () => navStep(1));
 
 // ===== FUNCTION ROWS MODAL =====
 const funcInfo = {
-    users:        { title:"Управление пользователями", icon:"fas fa-user-plus",  desc:"Представьте: у вас 3 обменника и 8 сотрудников. Кассир не должен видеть настройки курсов, а новый оператор — закрывать чужие сделки. В боте каждому назначается роль: владелец управляет всем, администратор настраивает курсы и персонал, оператор создаёт и закрывает заказы, базовый пользователь только смотрит. Добавить человека — 30 секунд по Telegram ID. Уволить — одна кнопка, доступ пропадает мгновенно." },
-    currencies:   { title:"Настройка валют",            icon:"fas fa-coins",      desc:"Зачем вам чужой список валют, если у вас свой обменник? Создайте именно те валюты, с которыми работаете — USD, USDT, RUB, GBP или любые другие. Добавьте кросс-пары: например USD→USDT→RUB, чтобы клиент мог обменять доллары на рубли через промежуточный актив. Укажите номиналы купюр — бот сам подберёт сдачу. Глобальная база подгружает стандартные купюры автоматически, ничего не нужно вбивать вручную." },
-    analytics:    { title:"Аналитика и отчёты",         icon:"fas fa-chart-bar",  desc:"В конце месяца бухгалтер просит отчёт — вы нажимаете одну кнопку и выгружаете все сделки в Excel. Фильтруйте по дате, валюте, оператору или статусу. Видите: кто из сотрудников сколько сделок закрыл, какой оборот по USD за неделю, какие заказы висят незакрытыми. Файл открывается в Google Sheets или 1C без лишних движений. Больше никаких тетрадок и ручного подсчёта." },
-    security:     { title:"Безопасность",               icon:"fas fa-shield-alt", desc:"Если вы работаете с несколькими обменниками — их данные полностью изолированы друг от друга. Сотрудник одного обменника физически не видит сделки другого, даже если оба работают в одном боте. Все действия записываются: кто создал заказ, кто изменил курс, кто закрыл сделку. При спорной ситуации — просто открываете журнал и видите всю картину. Роли защищают от случайных и намеренных ошибок." },
-    communication:{ title:"Коммуникация",               icon:"fas fa-comments",   desc:"Каждый новый заказ автоматически публикуется в закрытый канал для вашей команды — никто ничего не пропустит. В привязанной группе сотрудники обсуждают детали сделки, прикрепляют скриншоты оплаты прямо в чат. При смене статуса заказа все причастные получают уведомление мгновенно. Не нужно звонить, писать в личку или держать открытой таблицу — бот сам держит всех в курсе." },
-    automation:   { title:"Автоматизация",              icon:"fas fa-sync-alt",   desc:"Раньше оператор считал сумму на калькуляторе, уточнял курс, вручную подбирал номиналы — это занимало 10 минут. Теперь бот делает всё сам: считает итоговую сумму по текущему курсу, округляет до ближайших доступных купюр, и если курс изменился — пересчитывает автоматически. Уведомления о каждом изменении статуса уходят без участия человека. Одна сделка — 30 секунд вместо 10 минут." }
+    users: { title:"Управление пользователями", icon:"fas fa-user-plus", desc:"Представьте: у вас 3 обменника и 8 сотрудников. Кассир не должен видеть настройки курсов, а новый оператор — закрывать чужие сделки. В боте каждому назначается роль: владелец управляет всем, администратор настраивает курсы и персонал, оператор создаёт и закрывает заказы, базовый пользователь только смотрит. Добавить человека — 30 секунд по Telegram ID. Уволить — одна кнопка, доступ пропадает мгновенно." },
+    currencies: { title:"Настройка валют", icon:"fas fa-coins", desc:"Зачем вам чужой список валют, если у вас свой обменник? Создайте именно те валюты, с которыми работаете — USD, USDT, RUB, GBP или любые другие. Добавьте кросс-пары: например USD→USDT→RUB, чтобы клиент мог обменять доллары на рубли через промежуточный актив. Укажите номиналы купюр — бот сам подберёт сдачу. Глобальная база подгружает стандартные купюры автоматически, ничего не нужно вбивать вручную." },
+    analytics: { title:"Аналитика и отчёты", icon:"fas fa-chart-bar", desc:"В конце месяца бухгалтер просит отчёт — вы нажимаете одну кнопку и выгружаете все сделки в Excel. Фильтруйте по дате, валюте, оператору или статусу. Видите: кто из сотрудников сколько сделок закрыл, какой оборот по USD за неделю, какие заказы висят незакрытыми. Файл открывается в Google Sheets или 1C без лишних движений. Больше никаких тетрадок и ручного подсчёта." },
+    security: { title:"Безопасность", icon:"fas fa-shield-alt", desc:"Если вы работаете с несколькими обменниками — их данные полностью изолированы друг от друга. Сотрудник одного обменника физически не видит сделки другого, даже если оба работают в одном боте. Все действия записываются: кто создал заказ, кто изменил курс, кто закрыл сделку. При спорной ситуации — просто открываете журнал и видите всю картину. Роли защищают от случайных и намеренных ошибок." },
+    communication: { title:"Коммуникация", icon:"fas fa-comments", desc:"Каждый новый заказ автоматически публикуется в закрытый канал для вашей команды — никто ничего не пропустит. В привязанной группе сотрудники обсуждают детали сделки, прикрепляют скриншоты оплаты прямо в чат. При смене статуса заказа все причастные получают уведомление мгновенно. Не нужно звонить, писать в личку или держать открытой таблицу — бот сам держит всех в курсе." },
+    automation: { title:"Автоматизация", icon:"fas fa-sync-alt", desc:"Раньше оператор считал сумму на калькуляторе, уточнял курс, вручную подбирал номиналы — это занимало 10 минут. Теперь бот делает всё сам: считает итоговую сумму по текущему курсу, округляет до ближайших доступных купюр, и если курс изменился — пересчитывает автоматически. Уведомления о каждом изменении статуса уходят без участия человека. Одна сделка — 30 секунд вместо 10 минут." }
 };
 const funcModal = document.getElementById('funcModal');
 const funcModalClose = document.getElementById('funcModalClose');
 function openFuncModal(key) {
     const d = funcInfo[key]; if (!d) return;
-    const icon = document.getElementById('funcModalIcon');
-    icon.innerHTML = '<i class="' + d.icon + '"></i>';
+    document.getElementById('funcModalIcon').innerHTML = '<i class="' + d.icon + '"></i>';
     document.getElementById('funcModalTitle').textContent = d.title;
     document.getElementById('funcModalDesc').textContent = d.desc;
-    funcModal.style.display = 'flex';
-    lockScroll();
+    funcModal.style.display = 'flex'; lockScroll();
 }
 function closeFuncModal() { funcModal.style.display = 'none'; unlockScroll(); }
 document.querySelectorAll('.function-row').forEach(row => row.addEventListener('click', () => openFuncModal(row.dataset.func)));
 funcModalClose.addEventListener('click', closeFuncModal);
 funcModal.addEventListener('click', e => { if (e.target === funcModal) closeFuncModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeFuncModal(); } });
+
+// ===== KEYBOARD =====
+document.addEventListener('keydown', e => {
+    if (modal.style.display === 'flex') {
+        if (e.key === 'ArrowRight') navStep(1);
+        if (e.key === 'ArrowLeft') navStep(-1);
+        if (e.key === 'Escape') closeModal();
+    }
+    if (funcModal.style.display === 'flex' && e.key === 'Escape') closeFuncModal();
+});
 
 // ===== HERO CANVAS PARTICLES =====
 (function() {
@@ -2024,54 +1485,27 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal
     let W, H, particles = [], mouse = { x: -999, y: -999 };
     const COLORS = ['rgba(255,90,31,', 'rgba(30,200,216,', 'rgba(63,250,184,', 'rgba(155,109,255,'];
     const COUNT = window.innerWidth < 600 ? 38 : 65;
-
     function resize() { W = canvas.width = hero.offsetWidth; H = canvas.height = hero.offsetHeight; }
-    function randomParticle() {
-        return {
-            x: Math.random() * W, y: Math.random() * H,
-            r: Math.random() * 1.8 + 0.4,
-            vx: (Math.random() - 0.5) * 0.35,
-            vy: (Math.random() - 0.5) * 0.35,
-            color: COLORS[Math.floor(Math.random() * COLORS.length)],
-            alpha: Math.random() * 0.5 + 0.15,
-            pulse: Math.random() * Math.PI * 2
-        };
-    }
+    function randomParticle() { return { x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.8 + 0.4, vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35, color: COLORS[Math.floor(Math.random() * COLORS.length)], alpha: Math.random() * 0.5 + 0.15, pulse: Math.random() * Math.PI * 2 }; }
     function init() { resize(); particles = Array.from({ length: COUNT }, randomParticle); }
     function draw() {
         ctx.clearRect(0, 0, W, H);
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
+                const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
                 const dist = Math.sqrt(dx*dx + dy*dy);
-                if (dist < 110) {
-                    ctx.beginPath();
-                    ctx.strokeStyle = particles[i].color + (0.12 * (1 - dist/110)) + ')';
-                    ctx.lineWidth = 0.5;
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.stroke();
-                }
+                if (dist < 110) { ctx.beginPath(); ctx.strokeStyle = particles[i].color + (0.12 * (1 - dist/110)) + ')'; ctx.lineWidth = 0.5; ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke(); }
             }
         }
         particles.forEach(p => {
-            const dx = mouse.x - p.x, dy = mouse.y - p.y;
-            const d = Math.sqrt(dx*dx + dy*dy);
+            const dx = mouse.x - p.x, dy = mouse.y - p.y, d = Math.sqrt(dx*dx + dy*dy);
             if (d < 150) { p.vx += dx * 0.00015; p.vy += dy * 0.00015; }
-            p.x += p.vx; p.y += p.vy;
-            p.pulse += 0.02;
+            p.x += p.vx; p.y += p.vy; p.pulse += 0.02;
             const a = p.alpha * (0.7 + 0.3 * Math.sin(p.pulse));
-            if (p.x < 0 || p.x > W) p.vx *= -1;
-            if (p.y < 0 || p.y > H) p.vy *= -1;
-            p.x = Math.max(0, Math.min(W, p.x));
-            p.y = Math.max(0, Math.min(H, p.y));
-            const speed = Math.sqrt(p.vx*p.vx + p.vy*p.vy);
-            if (speed > 0.8) { p.vx *= 0.98; p.vy *= 0.98; }
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r * (1 + 0.2 * Math.sin(p.pulse)), 0, Math.PI * 2);
-            ctx.fillStyle = p.color + a + ')';
-            ctx.fill();
+            if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1;
+            p.x = Math.max(0, Math.min(W, p.x)); p.y = Math.max(0, Math.min(H, p.y));
+            const speed = Math.sqrt(p.vx*p.vx + p.vy*p.vy); if (speed > 0.8) { p.vx *= 0.98; p.vy *= 0.98; }
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.r * (1 + 0.2 * Math.sin(p.pulse)), 0, Math.PI * 2); ctx.fillStyle = p.color + a + ')'; ctx.fill();
         });
         requestAnimationFrame(draw);
     }
@@ -2090,52 +1524,13 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal
     const showAll = document.getElementById('faqShowAll');
     const noResults = document.getElementById('faqNoResults');
     let allExpanded = false;
-    items.forEach(item => {
-        item.querySelector('.faq-question').addEventListener('click', () => { item.classList.toggle('active'); updateBtn(); });
-    });
-    cats.forEach(cat => {
-        cat.addEventListener('click', () => {
-            cats.forEach(c => c.classList.remove('active'));
-            cat.classList.add('active');
-            filter(cat.dataset.category, search ? search.value.toLowerCase() : '');
-        });
-    });
-    if (search) {
-        let t;
-        search.addEventListener('input', () => {
-            clearTimeout(t);
-            t = setTimeout(() => {
-                const active = document.querySelector('.faq-category.active');
-                filter(active ? active.dataset.category : 'all', search.value.toLowerCase());
-            }, 250);
-        });
-        search.addEventListener('keydown', e => { if (e.key === 'Escape') { search.value = ''; filter('all', ''); } });
-    }
+    items.forEach(item => { item.querySelector('.faq-question').addEventListener('click', () => { item.classList.toggle('active'); updateBtn(); }); });
+    cats.forEach(cat => { cat.addEventListener('click', () => { cats.forEach(c => c.classList.remove('active')); cat.classList.add('active'); filter(cat.dataset.category, search ? search.value.toLowerCase() : ''); }); });
+    if (search) { let t; search.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => { const active = document.querySelector('.faq-category.active'); filter(active ? active.dataset.category : 'all', search.value.toLowerCase()); }, 250); }); }
     if (showAll) showAll.addEventListener('click', () => toggleAll(!allExpanded));
-    function filter(cat, q) {
-        let visible = 0;
-        items.forEach(item => {
-            if (item.id === 'faqNoResults') return;
-            const cm = cat === 'all' || item.dataset.category === cat;
-            const sm = !q || item.innerText.toLowerCase().includes(q);
-            if (cm && sm) { item.style.display = ''; visible++; item.style.animation = 'none'; item.offsetHeight; item.style.animation = 'faqFadeIn 0.35s ease forwards'; }
-            else { item.style.display = 'none'; }
-        });
-        if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
-        updateBtn();
-    }
-    function toggleAll(expand) {
-        allExpanded = expand;
-        items.forEach(item => { if (item.id !== 'faqNoResults' && item.style.display !== 'none') item.classList.toggle('active', expand); });
-        if (showAll) showAll.innerHTML = expand ? '<i class="fas fa-chevron-up"></i> Свернуть все' : '<i class="fas fa-chevron-down"></i> Развернуть все';
-    }
-    function updateBtn() {
-        if (!showAll) return;
-        const vis = Array.from(items).filter(i => i.id !== 'faqNoResults' && i.style.display !== 'none');
-        const act = vis.filter(i => i.classList.contains('active'));
-        allExpanded = vis.length > 0 && act.length === vis.length;
-        showAll.innerHTML = allExpanded ? '<i class="fas fa-chevron-up"></i> Свернуть все' : '<i class="fas fa-chevron-down"></i> Развернуть все';
-    }
+    function filter(cat, q) { let visible = 0; items.forEach(item => { if (item.id === 'faqNoResults') return; const cm = cat === 'all' || item.dataset.category === cat; const sm = !q || item.innerText.toLowerCase().includes(q); if (cm && sm) { item.style.display = ''; visible++; item.style.animation = 'none'; item.offsetHeight; item.style.animation = 'faqFadeIn 0.35s ease forwards'; } else { item.style.display = 'none'; } }); if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none'; updateBtn(); }
+    function toggleAll(expand) { allExpanded = expand; items.forEach(item => { if (item.id !== 'faqNoResults' && item.style.display !== 'none') item.classList.toggle('active', expand); }); if (showAll) showAll.innerHTML = expand ? '<i class="fas fa-chevron-up"></i> Свернуть все' : '<i class="fas fa-chevron-down"></i> Развернуть все'; }
+    function updateBtn() { if (!showAll) return; const vis = Array.from(items).filter(i => i.id !== 'faqNoResults' && i.style.display !== 'none'); const act = vis.filter(i => i.classList.contains('active')); allExpanded = vis.length > 0 && act.length === vis.length; showAll.innerHTML = allExpanded ? '<i class="fas fa-chevron-up"></i> Свернуть все' : '<i class="fas fa-chevron-down"></i> Развернуть все'; }
 })();
 
 // ===== STARS CANVAS =====
@@ -2148,26 +1543,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal
     const COLORS = ['255,90,31', '30,200,216', '155,109,255', '63,250,184', '255,255,255'];
     const COUNT = window.innerWidth < 600 ? 80 : 160;
     function resize() { W = canvas.width = section.offsetWidth; H = canvas.height = section.offsetHeight; }
-    function makeStar() {
-        return {
-            x: Math.random() * W, y: Math.random() * H,
-            r: Math.random() * 1.2 + 0.2,
-            color: COLORS[Math.floor(Math.random() * COLORS.length)],
-            alpha: Math.random() * 0.4 + 0.05,
-            twinkleSpeed: Math.random() * 0.0008 + 0.0002,
-            twinkleOffset: Math.random() * Math.PI * 2,
-        };
-    }
+    function makeStar() { return { x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.2 + 0.2, color: COLORS[Math.floor(Math.random() * COLORS.length)], alpha: Math.random() * 0.4 + 0.05, twinkleSpeed: Math.random() * 0.0008 + 0.0002, twinkleOffset: Math.random() * Math.PI * 2 }; }
     function init() { resize(); stars = Array.from({ length: COUNT }, makeStar); }
-    function draw(now) {
-        ctx.clearRect(0, 0, W, H);
-        stars.forEach(s => {
-            const twinkle = s.alpha * (0.4 + 0.6 * Math.sin(now * s.twinkleSpeed + s.twinkleOffset));
-            ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${s.color},${twinkle})`; ctx.fill();
-        });
-        requestAnimationFrame(draw);
-    }
+    function draw(now) { ctx.clearRect(0, 0, W, H); stars.forEach(s => { const twinkle = s.alpha * (0.4 + 0.6 * Math.sin(now * s.twinkleSpeed + s.twinkleOffset)); ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fillStyle = `rgba(${s.color},${twinkle})`; ctx.fill(); }); requestAnimationFrame(draw); }
     window.addEventListener('resize', resize);
     init(); requestAnimationFrame(draw);
 })();
@@ -2176,10 +1554,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal
 (function() {
     const btn = document.getElementById('scrollTopBtn');
     if (!btn) return;
-    window.addEventListener('scroll', () => {
-        btn.style.opacity = window.scrollY > 400 ? '1' : '0';
-        btn.style.pointerEvents = window.scrollY > 400 ? 'auto' : 'none';
-    });
+    window.addEventListener('scroll', () => { btn.style.opacity = window.scrollY > 400 ? '1' : '0'; btn.style.pointerEvents = window.scrollY > 400 ? 'auto' : 'none'; });
     btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
 

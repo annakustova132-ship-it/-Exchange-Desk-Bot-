@@ -8128,9 +8128,9 @@ document.addEventListener('keydown', function(e) {
   })();
   document.addEventListener('DOMContentLoaded',function(){
     buildDots();
-    window.wizardGoTo(0);
+    // wizardGoTo вызывается при открытии секции, не при загрузке
   });
-  if(document.readyState!=='loading'){buildDots();window.wizardGoTo(0);}
+  if(document.readyState!=='loading'){buildDots();}
 })();
 
 
@@ -8245,63 +8245,7 @@ document.addEventListener('keydown', function(e) {
 </script>
 
 
-<script>
-// ── Smart dropdown navigation ──
-(function() {
-  function scrollToSection(selector) {
-    const el = document.querySelector(selector);
-    if (!el) return;
-    const hdr = document.querySelector('.header');
-    const hdrH = hdr ? hdr.offsetHeight : 70;
-    const top = el.getBoundingClientRect().top + window.scrollY - hdrH - 8;
-    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-  }
 
-  function activateFaqCategory(cat) {
-    // Find and click the right category button
-    const btn = document.querySelector('.faq-category[data-category="' + cat + '"]');
-    if (btn) btn.click();
-  }
-
-  function navigateWizard(stepIdx) {
-    const section = document.getElementById('modules');
-    if (!section) return;
-    // First scroll to section
-    const hdr = document.querySelector('.header');
-    const hdrH = hdr ? hdr.offsetHeight : 70;
-    const top = section.getBoundingClientRect().top + window.scrollY - hdrH - 8;
-    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-    // Then activate step
-    if (stepIdx === 'all') {
-      // Show all cards (go to step 0 as entry)
-      setTimeout(function() { window.wizardGoTo && window.wizardGoTo(0); }, 350);
-    } else {
-      setTimeout(function() { window.wizardGoTo && window.wizardGoTo(parseInt(stepIdx)); }, 350);
-    }
-  }
-
-  document.addEventListener('click', function(e) {
-    const link = e.target.closest('[data-nav-action]');
-    if (!link) return;
-    e.preventDefault();
-
-    // Close any open dropdown
-    document.activeElement && document.activeElement.blur();
-
-    const action = link.getAttribute('data-nav-action');
-    const [type, value] = action.split(':');
-
-    if (type === 'scroll') {
-      scrollToSection(value);
-    } else if (type === 'faq') {
-      scrollToSection('#faq');
-      setTimeout(function() { activateFaqCategory(value); }, 300);
-    } else if (type === 'wizard') {
-      navigateWizard(value);
-    }
-  });
-})();
-</script>
 
 
 <script>
@@ -8359,9 +8303,9 @@ document.addEventListener('keydown', function(e) {
 
 <!-- ========== ПРОКРУТКА ПРИ ЗАГРУЗКЕ ========== -->
 <script>
-// На мобильных — прокрутка к #about, на десктопе — к самому верху
 (function() {
-  function scrollOnLoad() {
+  if (history.scrollRestoration) history.scrollRestoration = 'manual';
+  function doScroll() {
     if (window.innerWidth <= 1023) {
       var target = document.getElementById('about');
       if (target) {
@@ -8374,11 +8318,10 @@ document.addEventListener('keydown', function(e) {
       window.scrollTo(0, 0);
     }
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', scrollOnLoad);
-  } else {
-    scrollOnLoad();
-  }
+  // Запускаем после полной загрузки страницы — чтобы перебить любые другие прокрутки
+  window.addEventListener('load', function() {
+    setTimeout(doScroll, 50);
+  });
 })();
 </script>
 <!-- =============================================== -->

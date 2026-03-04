@@ -663,7 +663,7 @@ html{
   .module-modal-content {
     max-height: calc(100dvh - 16px) !important;
     margin-top: 0 !important;
-    border-radius: 0 0 0 0 !important;
+    border-radius: 20px 20px 0 0 !important;
     width: 100% !important;
     max-width: 100% !important;
     display: flex !important;
@@ -1018,8 +1018,8 @@ html{
     <p class="version">Версия 2.1</p>
   </div>
 
-</div></footer><div class="module-modal" id="modal"><div class="module-modal-content"><div class="modal-header"><div style="flex:1; min-width:0;"><h2 class="modal-title" id="modalTitle"></h2><p class="modal-subtitle" id="modalSubtitle"></p><a class="modal-doc-link" id="modalDocLink" href="file:///Users/annaatie/Downloads/Ex_bot_orange_v35-2.html#" target="_blank"><i class="fas fa-book-open"></i> Подробнее
-</a><span id="mobileDocHint" style="display:none;font-size:0.65rem;color:rgba(255,255,255,0.32);margin-top:0.3rem;line-height:1.3;font-style:italic;">Удерживайте кнопку на мобильном для перехода</span></div><button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button></div><div class="modal-tabs" id="modalTabs"><button class="modal-tab active" id="tabInstruction" onclick="switchTab(&#39;instruction&#39;)"><i class="fas fa-list-ul"></i> Инструкция
+</div></footer><div class="module-modal" id="modal"><div class="module-modal-content"><div class="modal-header"><div style="flex:1; min-width:0;"><h2 class="modal-title" id="modalTitle"></h2><p class="modal-subtitle" id="modalSubtitle"></p><a class="modal-doc-link" id="modalDocLink" href="file:///Users/annaatie/Downloads/Ex_bot_orange_v35-2.html#" target="_blank"><i class="fas fa-book-open"></i> Читать полную инструкцию
+</a><span id="mobileDocHint" style="display:none;font-size:0.65rem;color:rgba(255,255,255,0.32);margin-top:0.3rem;line-height:1.3;font-style:italic;">Читать полную инструкцию</span></div><button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button></div><div class="modal-tabs" id="modalTabs"><button class="modal-tab active" id="tabInstruction" onclick="switchTab(&#39;instruction&#39;)"><i class="fas fa-list-ul"></i> Инструкция
 </button><button class="modal-tab" id="tabDemo" onclick="switchTab(&#39;demo&#39;)"><i class="fab fa-telegram-plane"></i> Нажмите, чтобы запустить демо</button></div><div class="modal-tab-pane active" id="paneInstruction"><div class="modal-body"><div class="modal-steps-container"><h3 class="modal-section-title">Пошаговая инструкция</h3><ul class="modal-steps" id="modalSteps"></ul><div class="submodules" id="submodules"></div></div><div class="modal-sidebar"><h4 class="sidebar-title">Полезная информация</h4><div class="sidebar-tip" id="sidebarTip"></div><div class="sidebar-warning" id="sidebarWarning"></div><div class="sidebar-path" id="sidebarPath"></div><div class="sidebar-tags" id="sidebarTags" style="display:none;"></div></div></div></div><div class="modal-tab-pane" id="paneDemo"><div style="padding:0.9rem 1.2rem 0;"><div style="background:linear-gradient(135deg,rgba(34,211,238,0.08),rgba(167,139,250,0.06));border:1px solid rgba(34,211,238,0.2);border-radius:12px;padding:0.75rem 1rem;display:flex;align-items:flex-start;gap:0.65rem;"><span style="font-size:1.1rem;flex-shrink:0;margin-top:1px;">🎮</span><div style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5;"><strong style="color:var(--text-primary);font-size:0.85rem;">Интерактивный симулятор</strong><br>Здесь вы можете безопасно изучить интерфейс бота в режиме демо — нажимайте кнопки, пробуйте сценарии и разбирайтесь в функциях без риска изменить реальные данные.</div></div></div><div class="demo-sub-tabs" id="demoSubTabs" style="display:none !important;"><button class="demo-sub-tab active" id="subTabBot" onclick="switchSubDemo(&#39;bot&#39;)">🤖 Настройка ID</button></div><div class="tg-demo-wrap" id="subDemoCreate" style="display:none !important;"><div class="tg-phone" id="tgPhoneCreate" style="max-width:340px; min-height:420px; pointer-events:auto;"><div class="tg-screen active" id="tgS0"><div class="tg-chat-list-header" style="padding:0.5rem 0.75rem;"><button style="background:rgba(255,255,255,0.08);border:none;color:#e8eaed;border-radius:10px;padding:0.3rem 0.65rem;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:inherit;">Изм.</button><div class="tg-chat-list-title">🔒 Чаты 🍒</div><div style="display:flex;gap:0.3rem;background:rgba(255,255,255,0.08);border-radius:10px;padding:0.25rem 0.4rem;align-items:center;"><button style="background:none;border:none;color:#e8eaed;font-size:0.9rem;cursor:pointer;padding:0.1rem 0.2rem;display:flex;align-items:center;">⊕</button><button onclick="tgGoScreen(1)" style="background:none;border:none;color:#e8eaed;font-size:0.85rem;cursor:pointer;padding:0.1rem 0.2rem;display:flex;align-items:center;" title="Написать сообщение"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" fill="none"></rect><path d="M14.5 6.5l3 3-8 8H7v-2.5l7.5-7.5z"></path><path d="M17 4l3 3-1.5 1.5-3-3L17 4z"></path></svg></button></div></div><div style="display:flex;gap:0.6rem;padding:0.5rem 0.75rem;overflow-x:auto;border-bottom:1px solid rgba(255,255,255,0.05);"><div style="display:flex;flex-direction:column;align-items:center;gap:0.25rem;flex-shrink:0;"><div style="width:44px;height:44px;border-radius:50%;border:2px dashed #6a8fa3;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:#160d07;">➕</div><span style="font-size:0.6rem;color:#8ab4cf;white-space:nowrap;">Моя история</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:0.25rem;flex-shrink:0;"><div style="width:44px;height:44px;border-radius:50%;border:2px solid #ff6b35;background:linear-gradient(135deg,#1a3a1a,#2d5a2d);display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:#5d5;font-weight:700;">M</div><span style="font-size:0.6rem;color:#8ab4cf;white-space:nowrap;">Malina 🍓</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:0.25rem;flex-shrink:0;"><div style="width:44px;height:44px;border-radius:50%;border:2px solid #36d1dc;background:#2a3040;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:#adf;font-weight:700;">A</div><span style="font-size:0.6rem;color:#8ab4cf;white-space:nowrap;">Контакт 1</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:0.25rem;flex-shrink:0;"><div style="width:44px;height:44px;border-radius:50%;border:2px solid #FF6B35;background:#302020;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:#faa;font-weight:700;">Л</div><span style="font-size:0.6rem;color:#8ab4cf;white-space:nowrap;">Контакт 2</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:0.25rem;flex-shrink:0;"><div style="width:44px;height:44px;border-radius:50%;border:2px dashed #36d1dc;background:#1a2a2a;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:#6dc;font-weight:700;">Д</div><span style="font-size:0.6rem;color:#8ab4cf;white-space:nowrap;">Контакт 3</span></div></div><div style="background:rgba(255,255,255,0.04);border-radius:20px;padding:0.4rem 0.8rem;color:#6a8fa3;font-size:0.8rem;margin:0.5rem 0.75rem;text-align:center;">🔍 Поиск</div><div style="padding:1rem;color:#6a8fa3;font-size:0.78rem;text-align:center;">
 Нажмите <strong style="color:#e8eaed;">☐✏</strong> в правом углу
 </div></div><div class="tg-screen" id="tgS1"><div class="tg-screen-header"><button class="tg-nav-btn" onclick="tgGoScreen(0)" style="font-size:1.1rem;">✕</button><div class="tg-screen-title" style="font-weight:700;">Написать сообщение</div></div><div class="tg-screen-body" style="padding:0.75rem 0;">
@@ -1119,13 +1119,13 @@ id="tgS2"&gt;<div class="tg-screen-header"><button class="tg-nav-btn" onclick="t
 Перейти к боту →
 </button></div><div style="background:#160d07;padding:0.5rem 0.75rem;display:flex;align-items:center;gap:0.5rem;border-top:1px solid rgba(255,255,255,0.05);"><span style="color:#6a8fa3;font-size:0.75rem;">📎</span><div style="flex:1;background:rgba(255,255,255,0.05);border-radius:16px;padding:0.35rem 0.75rem;color:#6a8fa3;font-size:0.78rem;">Публикация</div></div></div><div class="tg-screen" id="tgS7"><div class="tg-phone-header"><div class="tg-phone-avatar">🤖</div><div class="tg-phone-info"><div class="tg-phone-name">Exchange Desk</div><div class="tg-phone-status">бот</div></div></div><div class="tg-messages" id="tgCreateMessages"></div><div class="tg-buttons" id="tgCreateButtons"></div><button class="tg-reset" onclick="resetChannelCreate()">↺ Начать сначала</button></div></div></div><div class="tg-demo-wrap" id="subDemoOrders" style="display:none;"><div class="tg-phone" id="tgPhoneOrders"><div class="tg-phone-header"><div class="tg-phone-avatar">🤖</div><div class="tg-phone-info"><div class="tg-phone-name">Exchange Desk</div><div class="tg-phone-status">бот</div></div></div><div class="tg-messages" id="ordMsgs"></div><div class="tg-buttons" id="ordBtns"></div><button class="tg-reset" onclick="ordersReset()">↺ Начать сначала</button></div></div><div class="tg-demo-wrap" id="subDemoBot"><div class="tg-phone" id="tgPhone"><div class="tg-phone-header"><div class="tg-phone-avatar">🤖</div><div class="tg-phone-info"><div class="tg-phone-name">Exchange Desk</div><div class="tg-phone-status">бот</div></div></div><div class="tg-messages" id="tgMessages" role="log" aria-label="Диалог с ботом" aria-live="polite"></div><div class="tg-buttons" id="tgButtons" role="group" aria-label="Кнопки бота"></div><button class="tg-reset" onclick="resetDemo()" aria-label="Начать демо сначала">↺ Начать сначала</button></div></div></div><div class="modal-nav-bar" id="modalNavBar"><button class="modal-nav-btn" id="modalNavPrev"><i class="fas fa-chevron-left"></i> Назад
 </button><div class="modal-nav-dots" id="modalNavDots"></div><button class="modal-nav-btn" id="modalNavNext">
-Далее <i class="fas fa-chevron-right"></i></button></div></div></div><button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх" style="opacity: 0; pointer-events: none;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg></button><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="file:///cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>const BASE = "https://annakustova132-ship-it.github.io/-Exchange-Desk-Bot-/Exchange_Desk_Bot_manual.html";
+Далее <i class="fas fa-chevron-right"></i></button></div></div></div><button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх" style="opacity: 0; pointer-events: none;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg></button><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="file:///cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>const BASE = "https://annakustova132-ship-it.github.io/Manual-2.1/";
 
 const moduleData = {
     start: {
         title: "Шаг 1: Начало работы",
         subtitle: "Первые шаги: регистрация, согласие с условиями, создание или подключение к обменнику",
-        docLink: BASE + "#о-боте",
+        docLink: BASE + "#ch2-2",
         steps: [
             { number:"1", title:"Регистрация в системе", description:"При первом входе система предложит подписать условия использования." },
             { number:"2", title:"Получение Telegram ID", description:"После регистрации бот отправит ваш уникальный Telegram ID. Сохраните его." },
@@ -1140,7 +1140,7 @@ const moduleData = {
     exchange: {
         title: "Шаг 2: Создание обменного пункта",
         subtitle: "Цель: Создание новой точки обмена в системе.",
-        docLink: BASE + "#создание-и-настройка-обменного-пункта",
+        docLink: BASE + "#ch3-2",
         steps: [
             { number:"1", title:"Перейдите в раздел создания", description:"В главном меню выберите: «Настройки» → «Обменник» → «Создать новый»." },
             { number:"2", title:"Задайте название", description:"Укажите уникальное наименование, например: «Обменник Москва Центр»." },
@@ -1156,7 +1156,7 @@ const moduleData = {
     fractional: {
         title: "Шаг 3: Настройка базы валют и кросс-пары",
         subtitle: "Цель: Настройка валютных пар и кросс-курсов в системе.",
-        docLink: BASE + "#настройка-валют-и-валютных-пар",
+        docLink: BASE + "#ch4-1",
         steps: [
             { number:"1", title:"Откройте базу валют", description:"Перейдите в раздел: «Настройки» → «Валютные пары» → «База данных валют»." },
             { number:"2", title:"Добавьте новую валюту", description:"Нажмите «Добавить валюту», вручную введите код (например, USD, EUR, GBP, USD_white). Укажите, добавлять ли пару с RUB (Да/Нет). Для завершения нажмите «Назад»." },
@@ -1172,7 +1172,7 @@ const moduleData = {
     fraction: {
         title: "Шаг 4: Конфигурация валютных параметров",
         subtitle: "Цель: Тонкая настройка параметров каждой валюты в системе.",
-        docLink: BASE + "#настройка-номиналов-купюр",
+        docLink: BASE + "#ch4-3",
         steps: [
             { number:"1", title:"Открыть параметры", description:"Главное меню → Настройки → Валютные пары → Кастомизация валют." },
             { number:"2", title:"Выбрать конфигурацию", description:"Доступно 4 параметра: Номиналы → Дробная часть → Emoji → Глобальные данные." },
@@ -1233,7 +1233,7 @@ const moduleData = {
     rates: {
         title: "Шаг 5: Управление курсами",
         subtitle: "Цель: Описание стандартной процедуры установки курсов.",
-        docLink: BASE + "#выставление-курсов-и-котировок",
+        docLink: BASE + "#ch5-1",
         steps: [
             { number:"1", title:"Перейдите в раздел управления курсами", description:"Главное меню → Выставление котировок." },
             { number:"2", title:"Выберите режим работы", description:"Полная настройка: бот последовательно проведёт по всем парам — введите курс покупки и продажи для каждой.\nКорректировка: выберите, если курсы уже установлены и нужно изменить значение только для отдельных пар." },
@@ -1248,7 +1248,7 @@ const moduleData = {
     channel: {
         title: "Шаг 6: Канал для сотрудников",
         subtitle: "Цель: Настройка Telegram-канала для автоматической рассылки курсов валют.",
-        docLink: BASE + "#настройка-канала-для-сотрудников",
+        docLink: BASE + "#ch7-1",
         steps: [
             { number:"1", title:"Создайте канал", description:"В Telegram нажмите «Новое сообщение» → «New Channel» → выберите «Частный канал»." },
             { number:"2", title:"Получите chat_id канала", description:"Найдите бота @myidbot, нажмите «Start». Перешлите в него любой пост из созданного канала. Бот пришлёт ID — скопируйте его вместе со знаком минус («-»)." },
@@ -1265,7 +1265,7 @@ const moduleData = {
     users: {
         title: "Шаг 7: Создание заказов",
         subtitle: "Цель: Создание нового заказа на обмен валюты в системе.",
-        docLink: BASE + "#создание-и-управление-заказами",
+        docLink: BASE + "#ch6-2",
         steps: [
             { number:"1", title:"Откройте меню создания заказа", description:"В главном меню выберите «Новый заказ». Откроется таблица с текущими курсами и список доступных валютных пар (включая кросс-пары). Выберите нужную пару, например USD/RUB или USDT/EUR." },
             { number:"2", title:"Выберите режим расчёта", description:"Укажите тип операции:\n«По сумме выдачи» — если известна сумма, которую клиент получит на руки. Система рассчитает, сколько он должен отдать.\n«По сумме получения» — если известна сумма, которую клиент отдаёт. Система рассчитает итоговую сумму к выдаче." },
@@ -1280,7 +1280,7 @@ const moduleData = {
     orders: {
         title: "Шаг 8: Статусы заказов",
         subtitle: "Цель: Управление статусами заказов: отслеживание, подтверждение и отметка о выполнении.",
-        docLink: BASE + "#статусы-заказов",
+        docLink: BASE + "#ch6-5",
         steps: [
             { number:"1", title:"Откройте список заказов", description:"В главном меню перейдите в раздел «Заказы». Найдите нужный заказ в списке. Всем новым заказам система автоматически присваивает статус «Новый»." },
             { number:"2", title:"Перейдите к редактированию", description:"Откройте карточку заказа и нажмите кнопку «Редактировать». Это можно сделать как в боте (в личном чате), так и в канале, куда был опубликован заказ." },
@@ -1296,7 +1296,7 @@ const moduleData = {
     "edit-orders": {
         title: "Шаг 9: Работа с кросс-парами",
         subtitle: "Цель: Создание заказов по кросс-парам и корректное округление сумм при расчётах.",
-        docLink: BASE + "#выставление-курсов-и-котировок",
+        docLink: BASE + "#ch6-3",
         steps: [
             { number:"1", title:"Найдите кросс-пару в списке", description:"При создании нового заказа (Главное меню → Новый заказ) все доступные кросс-пары (например, GBP/USD, BTC/USDT, EUR/GBP) отображаются в самом низу списка — после основных валютных пар. Прокрутите перечень вниз, чтобы выбрать нужную." },
             { number:"2", title:"Учтите особенности расчёта", description:"При работе с кросс-парами (особенно если хотя бы одна валюта — криптовалюта) часто возникают дробные суммы. Курсы могут иметь высокую точность (до 8 знаков), и итоговая сумма может оказаться некратной доступным купюрам." },
@@ -1312,7 +1312,7 @@ const moduleData = {
     status: {
         title: "Шаг 10: Редактирование заказов",
         subtitle: "Цель: Внесение изменений в созданные заказы: корректировка параметров, пересчёт сумм и обновление данных.",
-        docLink: BASE + "#редактирование-заказов",
+        docLink: BASE + "#ch6-4",
         steps: [
             { number:"1", title:"Выберите способ редактирования", description:"Система предлагает три способа открыть режим редактирования:\n• Через предпросмотр — сразу после создания заказа.\n• Через меню «Заказы» — для работы с любыми заказами в любое время.\n• По ссылке из канала — для быстрого доступа к заказу, опубликованному в канале сотрудников." },
             { number:"2", title:"Редактирование из предпросмотра", description:"Сразу после создания заказа бот показывает его карточку. Под карточкой доступна кнопка «Редактировать» — нажмите её и выберите параметр для изменения (курс, сумму, статус и т.д.)." },
@@ -1329,7 +1329,7 @@ const moduleData = {
     cross: {
         title: "Шаг 11: Управление пользователями",
         subtitle: "Цель: Администрирование сотрудников: добавление, назначение ролей и блокировка доступа.",
-        docLink: BASE + "#управление-пользователями-и-роли",
+        docLink: BASE + "#ch8-1",
         steps: [
             { number:"1", title:"Откройте список пользователей", description:"Перейдите в главном меню: Настройки → Обменник → «Пользователи». Здесь отображаются все сотрудники, имеющие доступ к системе." },
             { number:"2", title:"Добавьте нового сотрудника", description:"Нажмите «Добавить пользователя». В ответ на запрос бота отправьте username (например, @ivanov) или Telegram ID сотрудника." },
@@ -1346,7 +1346,7 @@ const moduleData = {
     export: {
         title: "Шаг 12: Выгрузка данных",
         subtitle: "Цель: Выгрузка истории заказов за выбранный период для анализа, отчётности или проверки.",
-        docLink: BASE + "#выгрузка-таблицы-с-заказами",
+        docLink: BASE + "#ch9-1",
         steps: [
             { number:"1", title:"Откройте раздел выгрузки данных", description:"В главном меню перейдите: Главное меню → Заказы → выберите пункт «Выгрузка». Откроется окно настройки параметров отчёта." },
             { number:"2", title:"Укажите период выгрузки", description:"Бот запросит ввод даты или диапазона дат. Введите дату в предложенном формате (например, ДД.ММ.ГГГГ). Затем нажмите «Сохранить» для подтверждения периода." },

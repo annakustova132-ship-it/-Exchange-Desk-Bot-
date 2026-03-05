@@ -512,7 +512,6 @@ html{font-size:16px;scroll-behavior:smooth;scroll-padding-top:calc(var(--header-
   animation:guidePulse 1.8s ease-in-out infinite;
 }
 .tg-btn:focus{outline:none;background:#1e2d3d;border-color:rgba(255,255,255,0.08);box-shadow:none;}
-.tg-btn:focus:not(.guide){outline:none!important;box-shadow:none!important;border-color:rgba(255,255,255,0.08)!important;background:#1e2d3d!important;}
 .tg-btn.guide:focus{background:rgba(41,182,246,0.28);border-color:#29b6f6;box-shadow:0 0 12px rgba(41,182,246,0.5);}
 @keyframes guidePulse{
   0%,100%{box-shadow:0 0 8px rgba(41,182,246,0.4),inset 0 0 6px rgba(41,182,246,0.08);border-color:rgba(41,182,246,0.8);}
@@ -725,7 +724,6 @@ body.modal-open .scroll-top-btn{opacity:0!important;pointer-events:none!importan
 
 .tg-btn{background:rgba(41,182,246,0.08)!important;color:#e8f4fd!important;border:1px solid rgba(41,182,246,0.25)!important;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .tg-btn:hover{background:rgba(41,182,246,0.2)!important;border-color:rgba(41,182,246,0.55)!important;box-shadow:0 0 14px rgba(41,182,246,0.3)!important;color:#fff!important}
-.tg-btn:focus:not(.guide){outline:none!important;box-shadow:none!important;border-color:rgba(41,182,246,0.25)!important;background:rgba(41,182,246,0.08)!important;}
 .tg-phone{border:1.5px solid rgba(41,182,246,0.22)!important;background:linear-gradient(160deg,#0d1420 0%,#080e18 100%)!important}
 .tg-phone-header{background:linear-gradient(90deg,#1a2540,#131d30)!important;border-bottom:1px solid rgba(41,182,246,0.12)!important}
 .tg-inline-btns{background:linear-gradient(180deg,#0a0f1a,#080d16)!important;border-top:1px solid rgba(41,182,246,0.1)!important;display:flex;flex-direction:column;gap:0;padding:4px 6px;}
@@ -10883,6 +10881,16 @@ function demoTimeout(fn, delay) {
     return id;
 }
 
+// Универсальный хелпер: снимает фокус перед очисткой контейнера,
+// чтобы браузер не переносил его на первую новую кнопку (проблема iOS Safari)
+function clearContainer(el) {
+    if (!el) return;
+    if (document.activeElement && el.contains(document.activeElement)) {
+        document.activeElement.blur();
+    }
+    el.innerHTML = '';
+}
+
 function renderDemoState() {
     clearDemoTimeouts(); // cancel any in-flight animations
     const msgs = document.getElementById('tgMessages');
@@ -10896,7 +10904,7 @@ function renderDemoState() {
 }
 
     const state = currentDemo[currentDemoState];
-    if (!state) { btns.innerHTML = ''; return; }
+    if (!state) { clearContainer(btns); return; }
 
     if (demoInputHandler) {
         btns.removeEventListener('keydown', demoInputHandler);
@@ -10904,7 +10912,7 @@ function renderDemoState() {
 }
 
     // Clear messages + buttons on every state transition
-    btns.innerHTML = '';
+    clearContainer(btns);
     // Preserve last user message if present, then clear
     const lastUserBubble = msgs.querySelector('.tg-msg.user:last-child, .tg-msg.user');
     const lastUserText = lastUserBubble ? lastUserBubble.childNodes[0].textContent : null;
@@ -11025,7 +11033,7 @@ function renderDemoState() {
 
 function renderDemoButtons(state) {
     const btns = document.getElementById('tgButtons');
-    btns.innerHTML = '';
+    clearContainer(btns);
 
     if (state.input) {
         const row = document.createElement('div');
@@ -11103,7 +11111,7 @@ function resetDemo() {
     const msgs = document.getElementById('tgMessages');
     const btns = document.getElementById('tgButtons');
     if (msgs) msgs.innerHTML = '';
-    if (btns) btns.innerHTML = '';
+    if (btns) clearContainer(btns);
     const _rid = MODULE_ORDER[currentModuleStep];
     currentDemoState = 'start';
     currentDemo = DEMOS[_rid] || null;
@@ -11134,7 +11142,7 @@ function switchTab(tab) {
             const msgs = document.getElementById('tgMessages');
             const btns = document.getElementById('tgButtons');
             if (msgs) msgs.innerHTML = '';
-            if (btns) btns.innerHTML = '';
+            if (btns) clearContainer(btns);
             currentDemo = DEMOS[moduleId] || null;
             currentDemoState = 'start';
             currentDemoModuleId = moduleId;
@@ -11187,7 +11195,7 @@ function initChannelBotDemo() {
     const btns = document.getElementById('tgCreateButtons');
     if (!msgs || !btns) return;
     msgs.innerHTML = '';
-    btns.innerHTML = '';
+    clearContainer(btns);
     setTimeout(() => {
         addMsgToEl(msgs, '✅ Канал успешно привязан! Теперь настройте ID канала в боте.', 'bot');
         setTimeout(() => {
@@ -11244,7 +11252,7 @@ function addMsgToEl(container, text, type) {
 }
 
 function renderBtnsToEl(btnsEl, rows, msgsEl, btnsContainer, stateMap) {
-    btnsEl.innerHTML = '';
+    clearContainer(btnsEl);
     rows.forEach(row => {
         const rowEl = document.createElement('div');
         rowEl.className = 'tg-btn-row';
@@ -11263,7 +11271,7 @@ function renderBtnsToEl(btnsEl, rows, msgsEl, btnsContainer, stateMap) {
                                 if (i === st.msgs.length - 1) {
                                     setTimeout(() => {
                                         if (st.input) {
-                                            btnsContainer.innerHTML = '';
+                                            clearContainer(btnsContainer);
                                             const row2 = document.createElement('div');
                                             row2.style.cssText = 'display:flex;gap:0.35rem;padding:0.35rem;';
                                             const inp = document.createElement('input');
@@ -11311,7 +11319,7 @@ function resetChannelCreate() {
     const m = document.getElementById('tgCreateMessages');
     const b = document.getElementById('tgCreateButtons');
     if (m) m.innerHTML = '';
-    if (b) b.innerHTML = '';
+    if (b) clearContainer(b);
 }
 
 function lockScroll() {
@@ -11751,7 +11759,7 @@ function openModal(moduleId) {
     const msgs = document.getElementById('tgMessages');
     const btnsEl = document.getElementById('tgButtons');
     if (msgs) msgs.innerHTML = '';
-    if (btnsEl) btnsEl.innerHTML = '';
+    if (btnsEl) clearContainer(btnsEl);
     currentDemoState = 'start';
     currentDemo = DEMOS[moduleId] || null;
     currentDemoModuleId = moduleId;
@@ -12129,7 +12137,7 @@ function ordAddMsg(text, cls) {
 
 function ordRender() {
     const btnsEl = document.getElementById('ordBtns');
-    btnsEl.innerHTML = '';
+    clearContainer(btnsEl);
     const state = ORDERS_DEMO[ordState];
     if (!state) return;
 
@@ -12478,20 +12486,5 @@ document.addEventListener('keydown', function(e) {
 
 
 
-<script>
-// iOS Safari fix: снимаем фокус с tg-btn (не .guide) после touchend
-// Safari держит :focus после тапа — это единственный надёжный способ
-document.addEventListener('touchend', function(e) {
-  var btn = e.target.closest('.tg-btn');
-  if (btn && !btn.classList.contains('guide')) {
-    // requestAnimationFrame гарантирует снятие фокуса ПОСЛЕ того как Safari его установит
-    requestAnimationFrame(function() {
-      btn.blur();
-      // двойная страховка
-      if (document.activeElement === btn) btn.blur();
-    });
-  }
-}, { passive: true, capture: true });
-</script>
 </body>
 </html>

@@ -410,7 +410,7 @@
 .mobile-settings-btn::after{transition:transform 0.3s ease,opacity 0.2s ease;}
 .mobile-settings-btn.open::after{transform:rotate(90deg);opacity:1;}
 .burger-settings-panel{overflow:hidden;max-height:0;transition:max-height 0.35s cubic-bezier(0.4,0,0.2,1),opacity 0.3s ease;opacity:0;pointer-events:none;}
-.burger-settings-panel.open{max-height:400px;opacity:1;pointer-events:all;}
+.burger-settings-panel.open{max-height:600px;opacity:1;pointer-events:all;}
 .bsp-section{padding:0.75rem 1rem 0.6rem;}
 .bsp-label{font-size:0.68rem;font-weight:700;letter-spacing:0.09em;color:var(--text-muted);text-transform:uppercase;margin-bottom:0.6rem;display:flex;align-items:center;gap:0.4rem;}
 .bsp-label i{color:var(--accent-primary);font-size:0.78rem;}
@@ -1119,13 +1119,13 @@ html{
 
         <!-- Язык -->
         <div class="bsp-section">
-          <div class="bsp-label"><i class="fas fa-globe"></i> Язык</div>
+          <div class="bsp-label"><i class="fas fa-globe"></i> <span data-i18n="settings-lang">Язык</span></div>
           <div class="bsp-options" id="langOptions">
             <button class="bsp-opt active" data-lang="ru" onclick="applyLang('ru')">
-              <span class="bsp-flag">🇷🇺</span>Русский
+              <span class="bsp-flag">🇷🇺</span><span data-i18n="lang-ru">Русский</span>
             </button>
             <button class="bsp-opt" data-lang="en" onclick="applyLang('en')">
-              <span class="bsp-flag">🇬🇧</span>English
+              <span class="bsp-flag">🇬🇧</span><span data-i18n="lang-en">English</span>
             </button>
           </div>
         </div>
@@ -11401,6 +11401,9 @@ const LANG = {
     'faq-q-09':'Что означают статусы заказов?',
     'faq-q-10':'Клиент оплатил заказ, но сделка сорвалась. Как отразить?',
     'faq-q-11':'Обязательно создавать канал?',
+    'settings-lang':'Язык',
+    'lang-ru':'Русский',
+    'lang-en':'English',
     'settings-theme':'Тема',
     'theme-dark':'Тёмная',
     'theme-dark-desc':'Тёплый тёмный',
@@ -11521,6 +11524,9 @@ const LANG = {
     'faq-a-10-p':'Never delete the order. Open it for editing and change the status to ❌ <strong>Cancelled</strong>. This will preserve the transaction history for reporting.',
     'faq-a-11-p':'No, it is optional. But a channel simplifies team collaboration.',
     'faq-a-11-tip':'With a channel, all staff see orders in real time',
+    'settings-lang':'Language',
+    'lang-ru':'Russian',
+    'lang-en':'English',
     'settings-theme':'Theme',
     'theme-dark':'Dark',
     'theme-dark-desc':'Warm dark',

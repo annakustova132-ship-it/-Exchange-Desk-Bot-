@@ -1075,31 +1075,31 @@ html{
   <div class="nav-item">
     <a href="#" class="nav-link" onclick="toggleNavDropdown(event)">О продукте <i class="fas fa-chevron-down nav-link-arrow"></i></a>
     <div class="nav-dropdown">
-      <a href="#functions" class="nav-dropdown-link" data-nav-action="scroll:#functions"><i class="fas fa-bolt"></i> Топ-10 функций</a>
-      <a href="#about" class="nav-dropdown-link" data-nav-action="scroll:#about"><i class="fas fa-info-circle"></i> О боте</a>
+      <a href="#functions" class="nav-dropdown-link" data-nav-action="scroll:#functions"><i class="fas fa-bolt"></i> <span data-i18n="nav-functions">Топ-10 функций</span></a>
+      <a href="#about" class="nav-dropdown-link" data-nav-action="scroll:#about"><i class="fas fa-info-circle"></i> <span data-i18n="nav-about">О боте</span></a>
     </div>
   </div>
   <div class="nav-item">
     <a href="#" class="nav-link" onclick="toggleNavDropdown(event)">Обучение <i class="fas fa-chevron-down nav-link-arrow"></i></a>
     <div class="nav-dropdown">
-      <a href="#modules" class="nav-dropdown-link" data-nav-action="wizard:0"><i class="fas fa-rocket"></i> Начало работы</a>
+      <a href="#modules" class="nav-dropdown-link" data-nav-action="wizard:0"><i class="fas fa-rocket"></i> <span data-i18n="nav-start">Начало работы</span></a>
     </div>
   </div>
   <div class="nav-item">
     <a href="#" class="nav-link" onclick="toggleNavDropdown(event)">FAQ <i class="fas fa-chevron-down nav-link-arrow"></i></a>
     <div class="nav-dropdown drop-right">
-      <a href="#faq" class="nav-dropdown-link" data-nav-action="faq:all"><i class="fas fa-list"></i> Все вопросы</a>
-      <a href="#faq" class="nav-dropdown-link" data-nav-action="faq:general"><i class="fas fa-circle-info"></i> Общие</a>
-      <a href="#faq" class="nav-dropdown-link" data-nav-action="faq:currency"><i class="fas fa-coins"></i> Валюты</a>
-      <a href="#faq" class="nav-dropdown-link" data-nav-action="faq:orders"><i class="fas fa-receipt"></i> Заказы</a>
-      <a href="#faq" class="nav-dropdown-link" data-nav-action="faq:channel"><i class="fas fa-broadcast-tower"></i> Канал</a>
+      <a href="#faq" class="nav-dropdown-link" data-nav-action="faq:all"><i class="fas fa-list"></i> <span data-i18n="nav-faq-all">Все вопросы</span></a>
+      <a href="#faq" class="nav-dropdown-link" data-nav-action="faq:general"><i class="fas fa-circle-info"></i> <span data-i18n="nav-faq-general">Общие</span></a>
+      <a href="#faq" class="nav-dropdown-link" data-nav-action="faq:currency"><i class="fas fa-coins"></i> <span data-i18n="nav-faq-currency">Валюты</span></a>
+      <a href="#faq" class="nav-dropdown-link" data-nav-action="faq:orders"><i class="fas fa-receipt"></i> <span data-i18n="nav-faq-orders">Заказы</span></a>
+      <a href="#faq" class="nav-dropdown-link" data-nav-action="faq:channel"><i class="fas fa-broadcast-tower"></i> <span data-i18n="nav-faq-channel">Канал</span></a>
     </div>
   </div>
   <div class="nav-item">
     <a href="#" class="nav-link" onclick="toggleNavDropdown(event)">Поддержка <i class="fas fa-chevron-down nav-link-arrow"></i></a>
     <div class="nav-dropdown drop-right">
-      <a href="#support" class="nav-dropdown-link" data-nav-action="scroll:#support"><i class="fas fa-headset"></i> Контакты</a>
-      <a href="#support" class="nav-dropdown-link" data-nav-action="scroll:#support"><i class="fas fa-file-pdf"></i> Ресурсы</a>
+      <a href="#support" class="nav-dropdown-link" data-nav-action="scroll:#support"><i class="fas fa-headset"></i> <span data-i18n="nav-contacts">Контакты</span></a>
+      <a href="#support" class="nav-dropdown-link" data-nav-action="scroll:#support"><i class="fas fa-file-pdf"></i> <span data-i18n="nav-resources">Ресурсы</span></a>
     </div>
   </div>
     <div class="nav-item nav-settings-item">
@@ -11431,6 +11431,10 @@ function applyTheme(t) {
 const LANG = {
   ru: {
     'О продукте':'О продукте','Обучение':'Обучение','FAQ':'FAQ',
+    'nav-functions':'Топ-10 функций','nav-about':'О боте',
+    'nav-start':'Начало работы',
+    'nav-faq-all':'Все вопросы','nav-faq-general':'Общие','nav-faq-currency':'Валюты','nav-faq-orders':'Заказы','nav-faq-channel':'Канал',
+    'nav-contacts':'Контакты','nav-resources':'Ресурсы',
     'Поддержка':'Поддержка','Настройки':'Настройки',
     'site-title':'Exchange Desk Bot | Инструкция',
     'about-eyebrow':'Инструмент профессионала',
@@ -11515,6 +11519,10 @@ const LANG = {
   },
   en: {
     'О продукте':'About','Обучение':'Learn','FAQ':'FAQ',
+    'nav-functions':'Top-10 Features','nav-about':'About the Bot',
+    'nav-start':'Getting Started',
+    'nav-faq-all':'All Questions','nav-faq-general':'General','nav-faq-currency':'Currencies','nav-faq-orders':'Orders','nav-faq-channel':'Channel',
+    'nav-contacts':'Contacts','nav-resources':'Resources',
     'Поддержка':'Support','Настройки':'Settings',
     'site-title':'Exchange Desk Bot | Guide',
     'about-eyebrow':'Professional Tool',

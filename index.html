@@ -722,8 +722,9 @@ body.modal-open .scroll-top-btn{opacity:0!important;pointer-events:none!importan
 .step-dot.active{width:22px;border-radius:4px;background:var(--accent-primary)}
 .step-dot:hover:not(.active){background:rgba(255,255,255,0.38)}
 
-.tg-btn{background:rgba(41,182,246,0.08)!important;color:#e8f4fd!important;border:1px solid rgba(41,182,246,0.25)!important;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.tg-btn{background:rgba(41,182,246,0.08)!important;color:#e8f4fd!important;border:1px solid rgba(255,255,255,0.1)!important;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .tg-btn:hover{background:rgba(41,182,246,0.2)!important;border-color:rgba(41,182,246,0.55)!important;box-shadow:0 0 14px rgba(41,182,246,0.3)!important;color:#fff!important}
+.tg-btn.guide{background:rgba(41,182,246,0.28)!important;border:2px solid #29b6f6!important;box-shadow:0 0 12px rgba(41,182,246,0.5),inset 0 0 8px rgba(41,182,246,0.1)!important;animation:guidePulse 1.8s ease-in-out infinite!important;}
 .tg-phone{border:1.5px solid rgba(41,182,246,0.22)!important;background:linear-gradient(160deg,#0d1420 0%,#080e18 100%)!important}
 .tg-phone-header{background:linear-gradient(90deg,#1a2540,#131d30)!important;border-bottom:1px solid rgba(41,182,246,0.12)!important}
 .tg-inline-btns{background:linear-gradient(180deg,#0a0f1a,#080d16)!important;border-top:1px solid rgba(41,182,246,0.1)!important;display:flex;flex-direction:column;gap:0;padding:4px 6px;}
@@ -10881,16 +10882,6 @@ function demoTimeout(fn, delay) {
     return id;
 }
 
-// Универсальный хелпер: снимает фокус перед очисткой контейнера,
-// чтобы браузер не переносил его на первую новую кнопку (проблема iOS Safari)
-function clearContainer(el) {
-    if (!el) return;
-    if (document.activeElement && el.contains(document.activeElement)) {
-        document.activeElement.blur();
-    }
-    el.innerHTML = '';
-}
-
 function renderDemoState() {
     clearDemoTimeouts(); // cancel any in-flight animations
     const msgs = document.getElementById('tgMessages');
@@ -10904,7 +10895,7 @@ function renderDemoState() {
 }
 
     const state = currentDemo[currentDemoState];
-    if (!state) { clearContainer(btns); return; }
+    if (!state) { btns.innerHTML = ''; return; }
 
     if (demoInputHandler) {
         btns.removeEventListener('keydown', demoInputHandler);
@@ -10912,7 +10903,7 @@ function renderDemoState() {
 }
 
     // Clear messages + buttons on every state transition
-    clearContainer(btns);
+    btns.innerHTML = '';
     // Preserve last user message if present, then clear
     const lastUserBubble = msgs.querySelector('.tg-msg.user:last-child, .tg-msg.user');
     const lastUserText = lastUserBubble ? lastUserBubble.childNodes[0].textContent : null;
@@ -11033,7 +11024,7 @@ function renderDemoState() {
 
 function renderDemoButtons(state) {
     const btns = document.getElementById('tgButtons');
-    clearContainer(btns);
+    btns.innerHTML = '';
 
     if (state.input) {
         const row = document.createElement('div');
@@ -11111,7 +11102,7 @@ function resetDemo() {
     const msgs = document.getElementById('tgMessages');
     const btns = document.getElementById('tgButtons');
     if (msgs) msgs.innerHTML = '';
-    if (btns) clearContainer(btns);
+    if (btns) btns.innerHTML = '';
     const _rid = MODULE_ORDER[currentModuleStep];
     currentDemoState = 'start';
     currentDemo = DEMOS[_rid] || null;
@@ -11142,7 +11133,7 @@ function switchTab(tab) {
             const msgs = document.getElementById('tgMessages');
             const btns = document.getElementById('tgButtons');
             if (msgs) msgs.innerHTML = '';
-            if (btns) clearContainer(btns);
+            if (btns) btns.innerHTML = '';
             currentDemo = DEMOS[moduleId] || null;
             currentDemoState = 'start';
             currentDemoModuleId = moduleId;
@@ -11195,7 +11186,7 @@ function initChannelBotDemo() {
     const btns = document.getElementById('tgCreateButtons');
     if (!msgs || !btns) return;
     msgs.innerHTML = '';
-    clearContainer(btns);
+    btns.innerHTML = '';
     setTimeout(() => {
         addMsgToEl(msgs, '✅ Канал успешно привязан! Теперь настройте ID канала в боте.', 'bot');
         setTimeout(() => {
@@ -11252,7 +11243,7 @@ function addMsgToEl(container, text, type) {
 }
 
 function renderBtnsToEl(btnsEl, rows, msgsEl, btnsContainer, stateMap) {
-    clearContainer(btnsEl);
+    btnsEl.innerHTML = '';
     rows.forEach(row => {
         const rowEl = document.createElement('div');
         rowEl.className = 'tg-btn-row';
@@ -11271,7 +11262,7 @@ function renderBtnsToEl(btnsEl, rows, msgsEl, btnsContainer, stateMap) {
                                 if (i === st.msgs.length - 1) {
                                     setTimeout(() => {
                                         if (st.input) {
-                                            clearContainer(btnsContainer);
+                                            btnsContainer.innerHTML = '';
                                             const row2 = document.createElement('div');
                                             row2.style.cssText = 'display:flex;gap:0.35rem;padding:0.35rem;';
                                             const inp = document.createElement('input');
@@ -11319,7 +11310,7 @@ function resetChannelCreate() {
     const m = document.getElementById('tgCreateMessages');
     const b = document.getElementById('tgCreateButtons');
     if (m) m.innerHTML = '';
-    if (b) clearContainer(b);
+    if (b) b.innerHTML = '';
 }
 
 function lockScroll() {
@@ -11759,7 +11750,7 @@ function openModal(moduleId) {
     const msgs = document.getElementById('tgMessages');
     const btnsEl = document.getElementById('tgButtons');
     if (msgs) msgs.innerHTML = '';
-    if (btnsEl) clearContainer(btnsEl);
+    if (btnsEl) btnsEl.innerHTML = '';
     currentDemoState = 'start';
     currentDemo = DEMOS[moduleId] || null;
     currentDemoModuleId = moduleId;
@@ -12137,7 +12128,7 @@ function ordAddMsg(text, cls) {
 
 function ordRender() {
     const btnsEl = document.getElementById('ordBtns');
-    clearContainer(btnsEl);
+    btnsEl.innerHTML = '';
     const state = ORDERS_DEMO[ordState];
     if (!state) return;
 

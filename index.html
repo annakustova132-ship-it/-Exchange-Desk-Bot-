@@ -1852,7 +1852,7 @@ id="tgS2"&gt;<div class="tg-screen-header"><button class="tg-nav-btn" onclick="t
 Перейти к боту →
 </button></div><div style="background:#160d07;padding:0.5rem 0.75rem;display:flex;align-items:center;gap:0.5rem;border-top:1px solid rgba(255,255,255,0.05);"><span style="color:#6a8fa3;font-size:0.75rem;">📎</span><div style="flex:1;background:rgba(255,255,255,0.05);border-radius:16px;padding:0.35rem 0.75rem;color:#6a8fa3;font-size:0.78rem;">Публикация</div></div></div><div class="tg-screen" id="tgS7"><div class="tg-phone-header"><div class="tg-phone-avatar">🤖</div><div class="tg-phone-info"><div class="tg-phone-name">Exchange Desk</div><div class="tg-phone-status">бот</div></div></div><div class="tg-messages" id="tgCreateMessages"></div><div class="tg-buttons" id="tgCreateButtons"></div><button class="tg-reset" onclick="resetChannelCreate()">↺ Начать сначала</button></div></div></div><div class="tg-demo-wrap" id="subDemoOrders" style="display:none;"><div class="tg-phone" id="tgPhoneOrders"><div class="tg-phone-header"><div class="tg-phone-avatar">🤖</div><div class="tg-phone-info"><div class="tg-phone-name">Exchange Desk</div><div class="tg-phone-status">бот</div></div></div><div class="tg-messages" id="ordMsgs"></div><div class="tg-buttons" id="ordBtns"></div><button class="tg-reset" onclick="ordersReset()">↺ Начать сначала</button></div></div><div class="tg-demo-wrap" id="subDemoBot"><div class="tg-phone" id="tgPhone"><div class="tg-phone-header"><div class="tg-phone-avatar">🤖</div><div class="tg-phone-info"><div class="tg-phone-name">Exchange Desk</div><div class="tg-phone-status">бот</div></div></div><div class="tg-messages" id="tgMessages" role="log" aria-label="Диалог с ботом" aria-live="polite"></div><div class="tg-inline-btns" id="tgButtons" role="group" aria-label="Кнопки бота"></div><div class="tg-reset-bar"><button class="tg-reset-btn" onclick="resetDemo()" aria-label="Начать демо сначала">↺ Сбросить демо</button><div class="tg-cache-badge" id="tgCacheBadge"><i class="fas fa-history"></i> восстановлено</div></div></div></div></div><div class="modal-nav-bar" id="modalNavBar"><button class="modal-nav-btn" id="modalNavPrev"><i class="fas fa-chevron-left"></i> <span data-i18n="modal-prev">Назад</span>
 </button><div class="modal-nav-dots" id="modalNavDots"></div><button class="modal-nav-btn" id="modalNavNext">
-<span data-i18n="modal-next">Далее</span> <i class="fas fa-chevron-right"></i></button></div></div></div><button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх" style="opacity: 0; pointer-events: none;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg></button><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="file:///cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>// Always start at top on fresh page load
+<span data-i18n="modal-next">Далее</span> <i class="fas fa-chevron-right"></i></button></div></div></div><button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх" style="opacity: 0; pointer-events: none;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg></button><script>// Always start at top on fresh page load
 if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
 window.scrollTo(0, 0);
 
@@ -7707,6 +7707,7 @@ const DEMOS = {
             input: { placeholder: "например: 30", next: "edit_done" }
 },
         edit_done: {
+            guide: "🏷 Изменить статус",
             messages: [{ text: "✏️ Редактирование заказа #31\n\n📊 Информация о заказе:\n🏷 Статус: Новый\n💱 Тип: Покупка\n💲 Валютная пара: USD/RUB\n📈 Курс: 23.30\n💵 Сумма (RUB): 233,000.00\n💸 Сумма (USD): 10,000.00 🩷\n👤 Клиент: Ivan\n\nВыберите, что хотите изменить:", type: "bot" }],
             buttons: [
                 [{ label: "📊 Изменить курс", next: "edit_rate" }],
@@ -8528,6 +8529,75 @@ const DEMOS = {
             buttons: [[{ label: "🏠 Главное меню", next: "start" }]]
 }
 },
+    "edit-orders": {
+        start: {
+            guide: "Новый Заказ",
+            messages: [{ text: "Главное меню бота 🏠", type: "bot" }],
+            buttons: [
+                [{ label: "Курсы валют", next: "rates_view" }, { label: "Выставление котировок", next: "quot_menu" }],
+                [{ label: "Новый Заказ", next: "currency_list" }, { label: "Заказы", next: "orders_list" }],
+                [{ label: "О проекте", next: "start" }, { label: "Настройки", next: "start" }]
+]
+},
+        rates_view: {
+            messages: [{ text: "Курсы валют на 28.02.2026 10:17", type: "bot" }],
+            buttons: [[{ label: "◀️ Назад", next: "start" }]]
+},
+        currency_list: {
+            guide: "🟢 USD/Eur 0.989",
+            messages: [{ text: "Выберите валюту и операцию:", type: "bot" }],
+            buttons: [
+                [{ label: "🟢 USD 90.00 💵", next: "currency_list" }, { label: "🔴 USD 56.00 💵", next: "currency_list" }],
+                [{ label: "🟢 Eur 90.45 💶", next: "currency_list" }, { label: "🔴 Eur 34.20 💶", next: "currency_list" }],
+                [{ label: "🟢 GBP 34.50 💷", next: "currency_list" }, { label: "🔴 GBP 59.30 💷", next: "currency_list" }],
+                [{ label: "🟢 USD_white 45.30", next: "currency_list" }, { label: "🔴 USD_white 20.20", next: "currency_list" }],
+                [{ label: "🟢 USD/Eur 0.989", next: "cross_calc_type" }, { label: "🔴 USD/Eur 1.004", next: "currency_list" }],
+                [{ label: "◀️ Назад", next: "start" }]
+]
+},
+        cross_calc_type: {
+            messages: [
+                { text: "Покупка USD 🔄 за 0.989 Eur", type: "bot" },
+                { text: "Как считаем заказ?", type: "bot" }
+            ],
+            buttons: [
+                [{ label: "По сумме выдачи (сколько отдаем)", next: "input_give" }],
+                [{ label: "По сумме получения (сколько получаем)", next: "input_receive" }],
+                [{ label: "Отмена", next: "start" }]
+]
+},
+        input_give: {
+            messages: [{ text: "Введите сумму в Eur, которую вы отдаёте клиенту:", type: "bot" }],
+            input: { placeholder: "например: 989", next: "cross_result" }
+},
+        input_receive: {
+            messages: [{ text: "Введите сумму в USD 🔄, которую вы получаете от клиента:", type: "bot" }],
+            input: { placeholder: "например: 1000", next: "cross_result" }
+},
+        cross_result: {
+            messages: [{ text: "Расчет по кросс-курсу:\n\n💶 Eur: 989.00\n💵 USD: 1,000.000\n\nВыберите вариант расчета:", type: "bot" }],
+            buttons: [
+                [{ label: "Без сдачи", next: "order_done" }],
+                [{ label: "Доплата клиента RUB", next: "order_done" }],
+                [{ label: "Доплата офиса RUB", next: "order_done" }],
+                [{ label: "Назад", next: "cross_calc_type" }]
+]
+},
+        order_done: {
+            messages: [{ text: "✅ Заказ #32 создан!\n\n💶 Eur: 989.00\n💵 USD: 1,000.000\nКурс: 0.989\nСтатус: Новый", type: "bot" }],
+            buttons: [
+                [{ label: "Редактировать", next: "start" }, { label: "В канал", next: "start" }],
+                [{ label: "🏠 Главное меню", next: "start" }]
+]
+},
+        orders_list: {
+            messages: [{ text: "Меню заказов. Выберите действие:", type: "bot" }],
+            buttons: [
+                [{ label: "Выгрузка", next: "start" }, { label: "Редактировать", next: "start" }],
+                [{ label: "Главное меню", next: "start" }]
+]
+}
+},
     status: {
         start: {
             guide: "Заказы",
@@ -9234,6 +9304,7 @@ const DEMOS = {
             buttons: [[{ label: "🏠 Главное меню", next: "start" }]]
 },
         orders_list: {
+            guide: "Редактировать",
             messages: [{ text: "Меню заказов. Выберите действие:", type: "bot" }],
             buttons: [
                 [{ label: "Выгрузка", next: "export_start" }, { label: "Редактировать", next: "edit_order" }],
@@ -9385,6 +9456,7 @@ const DEMOS = {
             ]
 },
         exch_users: {
+            guide: "Добавить пользователя",
             messages: [{ text: "Управление доступом к боту, обменник \"Мой обменник\"\n\nВыберите действие из меню ниже:", type: "bot" }],
             buttons: [
                 [{ label: "Права пользователей", next: "users_rights" }, { label: "Добавить пользователя", next: "users_add" }],
@@ -10082,8 +10154,17 @@ const DEMOS = {
             messages: [{ text: "Главное меню бота 🏠", type: "bot" }],
             buttons: [
                 [{ label: "Курсы валют", next: "rates_view" }, { label: "Выставление котировок", next: "quot_menu" }],
-                [{ label: "Новый Заказ", next: "new_order" }, { label: "Заказы", next: "orders_list" }],
+                [{ label: "Новый Заказ", next: "new_order" }, { label: "Заказы", next: "orders_list_export" }],
                 [{ label: "О проекте", next: "start" }, { label: "Настройки", next: "settings_bot" }]
+]
+},
+
+        orders_list_export: {
+            guide: "Выгрузка",
+            messages: [{ text: "Меню заказов. Выберите действие:", type: "bot" }],
+            buttons: [
+                [{ label: "Выгрузка", next: "export_date" }, { label: "Редактировать", next: "export_date" }],
+                [{ label: "Главное меню", next: "start" }]
 ]
 },
 

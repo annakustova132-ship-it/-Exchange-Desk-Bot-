@@ -10907,16 +10907,9 @@ function setCacheBadge(visible) {
 
 function initDemo(moduleId) {
     currentDemo = DEMOS[moduleId] || null;
-    const cached = loadDemoCache(moduleId);
-    if (cached && currentDemo && currentDemo[cached.state]) {
-        currentDemoState = cached.state;
-        demoInputHistory = cached.history || {};
-        setCacheBadge(true);
-    } else {
-        currentDemoState = 'start';
-        demoInputHistory = {};
-        setCacheBadge(false);
-    }
+    currentDemoState = 'start';
+    demoInputHistory = {};
+    setCacheBadge(false);
     renderDemoState();
 }
 
@@ -11854,11 +11847,14 @@ function openModal(moduleId) {
     modal.style.display = 'flex';
     document.body.classList.add('modal-open');
     lockScroll();
+    // Останавливаем canvas-анимацию пока открыта модалка
+    if (window._particlesPause) window._particlesPause();
     setTimeout(() => { const b = modal.querySelector('.modal-body'); if (b) b.scrollTop = 0; }, 10);
     // Save cache for whatever was open before
     if (currentDemoModuleId && currentDemoModuleId !== moduleId) {
-        saveDemoCache(currentDemoModuleId);
+        clearDemoCache(currentDemoModuleId);
     }
+    clearDemoCache(moduleId);
     const msgs = document.getElementById('tgMessages');
     const btnsEl = document.getElementById('tgButtons');
     if (msgs) msgs.innerHTML = '';
@@ -11884,10 +11880,12 @@ function openModal(moduleId) {
 }
 
 function closeModal() {
-    saveDemoCache(currentDemoModuleId);
+    clearDemoCache(currentDemoModuleId);
     modal.style.display = 'none';
     document.body.classList.remove('modal-open');
     unlockScroll();
+    // Возобновляем canvas-анимацию
+    if (window._particlesResume) window._particlesResume();
     const scrollBtn = document.getElementById('scrollTopBtn');
     if (scrollBtn && window.scrollY > 400) { scrollBtn.style.opacity = '1'; scrollBtn.style.pointerEvents = 'auto'; }
 }
@@ -12724,6 +12722,14 @@ document.addEventListener('keydown', function(e) {
 
   initParticles();
   observer.observe(canvas);
+
+  // Глобальные хуки для паузы из openModal/closeModal
+  window._particlesPause = function(){
+    if(raf !== null){ cancelAnimationFrame(raf); raf = null; }
+  };
+  window._particlesResume = function(){
+    if(visible && raf === null){ draw(); }
+  };
 })();
 </script>
 </body>
